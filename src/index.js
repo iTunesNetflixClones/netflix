@@ -1,8 +1,13 @@
+// @Vendors
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+
+// @App
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+// @Styles
+import './index.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
