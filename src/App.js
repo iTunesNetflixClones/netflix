@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './reducers/index';
 
 // @Routes
-import Routes from './config/Routes';
+import Routes from './components/router/Router';
 
 function App() {
   return (
