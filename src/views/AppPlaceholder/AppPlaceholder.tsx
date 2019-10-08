@@ -1,13 +1,13 @@
 // @Vendors
-import React from 'react';
+import React from "react";
 
 // @Styles
-import styles from './AppPlaceholder.module.scss';
+import styles from "./AppPlaceholder.module.scss";
 
 // @Assets
-import logo from '../../assets/svg/logo.svg';
+import logo from "../../assets/svg/logo.svg";
 
-const AppPlaceholder = () => (
+const AppPlaceholder = (): JSX.Element => (
   <div className={styles.app}>
     <header className={styles.appHeader}>
       <img src={logo} className={styles.appLogo} alt="logo" />
