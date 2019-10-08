@@ -1,0 +1,5 @@
+export const CALC_INTERPOLATION_FULL_PERCENT: number = 100.0;
+export const CALC_INTERPOLATION_MAX_RANGE_DEFAULT : number = 1.0;
+export const CALC_INTERPOLATION_MIN_DEFAULT : number = 0.05;
+export const CALC_INTERPOLATION_MIN_RANGE_DEFAULT : number = 0.0;
+export const TOPBAR_INTERPOLATION_ACCEL : number = 4.0;

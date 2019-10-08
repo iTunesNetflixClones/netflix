@@ -1,0 +1,31 @@
+@import '../../config/theme.scss';
+
+.body {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: $layout-spacing-md $layout-spacing-lg;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $colors-background-primary;
+  z-index: -1;
+}
+
+.logoContainer {
+  height: 50px;
+  width: 150px;
+}
+
+.text {
+  @extend %fonts-ff-regular;
+  color: $colors-font-primary;
+}
