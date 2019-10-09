@@ -1,19 +1,22 @@
 // @Vendors
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 // @Styles
-import styles from "./Topbar.module.scss";
+import styles from './Topbar.module.scss';
 
 // @Constants
-import { TOPBAR_INTERPOLATION_ACCEL } from "../../constants/constants";
+import { TOPBAR_INTERPOLATION_ACCEL } from '../../constants/constants';
+
+// @Components
+import FormattedText from '../formattedText/FormattedText';
 
 // @Utils
-import { interpolateScroll } from "../../utils/calcHelper";
+import { interpolateScroll } from '../../utils/calcHelper';
 
 // @Assets
-const healinerLogo = require("../../assets/png/headliner_logo.png");
+const healinerLogo = require('../../assets/png/headliner_logo.png');
 
-const Topbar = (): JSX.Element => {
+const Topbar = () => {
   const [scrollHeight, setScrollHeight] = useState(
     interpolateScroll({
       scrollPos: window.scrollY,
@@ -42,7 +45,10 @@ const Topbar = (): JSX.Element => {
         className={styles.logoContainer}
       />
       <div>
-        <p className={styles.text}>button soon</p>
+        <FormattedText
+          className={styles.text}
+          textKey="topbar-buttonPlaceholder"
+        />
       </div>
     </div>
   );

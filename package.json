@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/lodash": "^4.14.144",
     "@types/node": "12.7.11",
     "@types/react": "16.9.5",
+    "@types/react-dom": "^16.9.1",
     "@types/react-redux": "^7.1.4",
     "@types/react-router-dom": "5.1.0",
     "husky": "^3.0.8",
@@ -28,7 +30,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write",
+      "prettier --write --single-quote",
       "git add"
     ]
   },
