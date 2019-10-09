@@ -1,18 +1,23 @@
 // @Vendors
-import React from "react";
+import React from 'react';
 
 // @Styles
-import styles from "./AppPlaceholder.module.scss";
+import styles from './AppPlaceholder.module.scss';
+
+// @Components
+import FormattedText from '../../components/formattedText/FormattedText';
 
 // @Assets
-import logo from "../../assets/svg/logo.svg";
+import logo from '../../assets/svg/logo.svg';
 
-const AppPlaceholder = (): JSX.Element => (
+const AppPlaceholder = () => (
   <div className={styles.app}>
     <header className={styles.appHeader}>
       <img src={logo} className={styles.appLogo} alt="logo" />
       <p>
-        Edit <code>src/App.js</code> and save to reload.
+        <FormattedText textKey="test-edit" />
+        <code> src/App.js </code>
+        <FormattedText textKey="test-saveAndReload" />
       </p>
       <a
         className={styles.appLink}
@@ -20,7 +25,7 @@ const AppPlaceholder = (): JSX.Element => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        Learn React
+        <FormattedText textKey="test-learnReact" />
       </a>
     </header>
   </div>
