@@ -1,4 +1,24 @@
-$layout-spacing-xsm: 5px;
-$layout-spacing-sm: 10px;
-$layout-spacing-md: 15px;
-$layout-spacing-lg: 30px;
+$layout-spacing-xsm: 0.4vw;
+$layout-spacing-sm: 0.7vw;
+$layout-spacing-md: 1vw;
+$layout-spacing-lg: 3vw;
+$layout-spacing-xlg: 5vw;
+$layout-spacing-xxlg: 7vw;
+
+$layout-spacing-page-header: 20vw;
+
+$layout-border-radius: 5px;
+
+$layout-rounded-button-size: 2vw;
+
+$layout-button-border_width: 0.1vw;
+$layout-tag-border_width: 0.2vw;
+
+$layout-expanded-header-size: 12.5vw;
+
+$layout-button-circular-width: 3.4vw;
+
+@mixin calculate-aspect-height($width) {
+  height: $width * 9 / 16;
+  width: $width;
+}

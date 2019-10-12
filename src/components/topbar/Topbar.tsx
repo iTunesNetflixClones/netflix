@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Topbar.module.scss';
 
 // @Constants
-import { TOPBAR_INTERPOLATION_ACCEL } from '../../constants/constants';
+import { TOPBAR_SCROLL_INTERPOLATE_RANGE } from '../../constants/constants';
 
 // @Components
 import FormattedText from '../formattedText/FormattedText';
@@ -20,7 +20,8 @@ const Topbar = () => {
   const [scrollHeight, setScrollHeight] = useState(
     interpolateScroll({
       scrollPos: window.scrollY,
-      acceleration: TOPBAR_INTERPOLATION_ACCEL
+      inputRange: TOPBAR_SCROLL_INTERPOLATE_RANGE,
+      outputRange: [0, 1]
     })
   );
 
@@ -32,9 +33,9 @@ const Topbar = () => {
 
   const topbarOpacity: number = interpolateScroll({
     scrollPos: scrollHeight,
-    acceleration: TOPBAR_INTERPOLATION_ACCEL
+    inputRange: TOPBAR_SCROLL_INTERPOLATE_RANGE,
+    outputRange: [0, 1]
   });
-  console.log(topbarOpacity);
 
   return (
     <div className={styles.body}>
