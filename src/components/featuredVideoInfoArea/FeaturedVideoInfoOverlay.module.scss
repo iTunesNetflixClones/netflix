@@ -1,0 +1,38 @@
+@import '../../config//theme.scss';
+
+.container {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(transparent 40%, $colors-background-primary);
+  z-index: 10;
+}
+
+.innerContainer {
+  position: absolute;
+  bottom: $layout-spacing-page-header;
+  padding: 0 $layout-spacing-lg;
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  height: $layout-expanded-header-size;
+  width: $layout-expanded-header-size;
+  border: 1px solid $colors-font-secondary;
+  margin-bottom: $layout-spacing-md;
+}
+
+.logoText {
+  @extend %fonts-ff-bold;
+  font-size: $font-size-xlg;
+  color: $colors-font-primary;
+  padding: $layout-spacing-md;
+}
+
+.descriptionText {
+  max-width: 50vw;
+  @extend %fonts-ff-regular;
+  font-size: $font-size-lg;
+  color: $colors-font-primary;
+}

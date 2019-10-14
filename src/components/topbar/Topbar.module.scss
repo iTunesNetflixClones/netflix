@@ -8,7 +8,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $layout-spacing-md $layout-spacing-lg;
+  padding: $layout-spacing-sm $layout-spacing-lg;
+  z-index: 100;
 }
 
 .background {

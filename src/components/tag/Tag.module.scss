@@ -1,0 +1,18 @@
+@import '../../config//theme.scss';
+
+.body {
+  flex-shrink: 1;
+  padding: $layout-spacing-sm $layout-spacing-xlg $layout-spacing-xsm
+    $layout-spacing-md;
+  background-color: rgba(
+    $colors-background-primary,
+    $colors-opacity-traslucent
+  );
+  border-left: $layout-tag-border_width solid $colors-border-active;
+
+  .text {
+    @extend %fonts-ff-regular;
+    font-size: $font-size-lg;
+    color: $colors-font-primary;
+  }
+}

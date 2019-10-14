@@ -1,29 +1,27 @@
-// @Constants
-import {
-  CALC_INTERPOLATION_FULL_PERCENT,
-  CALC_INTERPOLATION_MAX_RANGE_DEFAULT,
-  CALC_INTERPOLATION_MIN_DEFAULT,
-  CALC_INTERPOLATION_MIN_RANGE_DEFAULT
-} from '../constants/constants';
-
 export const interpolateScroll = ({
   scrollPos,
-  acceleration,
-  minValue = CALC_INTERPOLATION_MIN_DEFAULT,
-  rangeMax = CALC_INTERPOLATION_MAX_RANGE_DEFAULT,
-  rangeMin = CALC_INTERPOLATION_MIN_RANGE_DEFAULT
+  inputRange,
+  outputRange
 }: {
   scrollPos: number;
-  acceleration: number;
-  minValue?: number;
-  rangeMax?: number;
-  rangeMin?: number;
+  inputRange: Array<number>;
+  outputRange: Array<number>;
 }): number => {
-  const interpolatedValue: number = scrollPos
-    ? CALC_INTERPOLATION_FULL_PERCENT / (scrollPos * acceleration)
-    : rangeMax;
-  return Math.min(
-    interpolatedValue > minValue ? interpolatedValue : rangeMin,
-    rangeMax
+  if (scrollPos < Math.min(inputRange[0], inputRange[1])) {
+    return Math.min(inputRange[0], inputRange[1]) === inputRange[0]
+      ? outputRange[0]
+      : outputRange[1];
+  }
+  if (scrollPos > Math.max(inputRange[0], inputRange[1])) {
+    return Math.max(inputRange[0], inputRange[1]) === inputRange[0]
+      ? outputRange[0]
+      : outputRange[1];
+  }
+  const coef: number =
+    (scrollPos - inputRange[0]) /
+    (scrollPos - inputRange[0] + inputRange[1] - scrollPos);
+  return (
+    Math.abs(outputRange[1] - outputRange[0]) * coef +
+    Math.min(outputRange[0], outputRange[1])
   );
 };

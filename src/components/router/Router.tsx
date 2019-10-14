@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 // @Views
-import AppPlaceholder from '../../views/AppPlaceholder/AppPlaceholder';
+import VideoOverview from '../../views/videoOverview/VideoOverview';
 
 // @Components
 import Topbar from '../topbar/Topbar';
@@ -15,7 +15,7 @@ const Routes = () => (
   <Router>
     <div className={styles.container}>
       <Topbar />
-      <Route path="/" exact component={AppPlaceholder} />
+      <Route path="/" exact component={VideoOverview} />
     </div>
   </Router>
 );
