@@ -17,7 +17,6 @@ type propTypes = {
   onPressMoreInfo: (videoId: string) => any;
   showDescription: boolean;
   videoDescription: string;
-  videoControls: any;
   videoId: string;
 };
 
@@ -37,7 +36,6 @@ const FeaturedVideoInfoArea = (props: propTypes) => {
     onPressMoreInfo,
     onPressPlay,
     showDescription,
-    videoControls,
     videoDescription,
     videoId
   } = props;
@@ -56,7 +54,7 @@ const FeaturedVideoInfoArea = (props: propTypes) => {
           onPress={() => {
             onPressPlay(videoId);
           }}
-          spacing={SPACING.right}
+          spacing={[SPACING.right]}
           textKey="featuredVideoHeader-play"
         />
         <Button
@@ -64,7 +62,7 @@ const FeaturedVideoInfoArea = (props: propTypes) => {
           onPress={() => {
             onPressList(videoId);
           }}
-          spacing={SPACING.right}
+          spacing={[SPACING.right]}
           textKey="featuredVideoHeader-myList"
         />
         <Button
@@ -72,11 +70,10 @@ const FeaturedVideoInfoArea = (props: propTypes) => {
           onPress={() => {
             onPressMoreInfo(videoId);
           }}
-          spacing={SPACING.right}
+          spacing={[SPACING.right]}
           textKey="featuredVideoHeader-moreInfo"
         />
       </div>
-      {videoControls}
     </div>
   );
 };

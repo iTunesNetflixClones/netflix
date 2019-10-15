@@ -1,25 +1,7 @@
 @import '../../config//theme.scss';
 
 .wrapper {
-  &__large {
-    position: relative;
-    @include calculate-aspect-height($width: 100vw);
-  }
-}
-
-.controls {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  right: 0;
-  bottom: $layout-spacing-page-header;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
 }

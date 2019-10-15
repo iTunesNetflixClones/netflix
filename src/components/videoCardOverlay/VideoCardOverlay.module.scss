@@ -1,0 +1,60 @@
+@import '../../config//theme.scss';
+
+.container {
+  @extend %layout-absolute-fill;
+  z-index: 10;
+}
+
+.dataContainer {
+  position: absolute;
+  bottom: $layout-sm-controls-bottom-space;
+  left: $layout-spacing-md;
+  margin-bottom: $layout-spacing-sm;
+}
+
+.dataRow {
+  margin-bottom: $layout-spacing-xsm;
+}
+
+.titleText {
+  @extend %fonts-ff-bold;
+  color: $colors-font-secondary;
+  font-size: $font-size-lg;
+  margin: $layout-spacing-xsm 0;
+}
+
+.coincidenceText {
+  @extend %fonts-ff-bold;
+  color: $colors-font-highlight;
+  font-size: $font-size-md;
+}
+
+.parentalLabel {
+  @extend %fonts-ff-regular;
+  color: $colors-font-secondary;
+  font-size: $font-size-md;
+  margin: 0 $layout-spacing-sm;
+  padding: 0 $layout-spacing-sm;
+  border: $layout-button-border_width solid $colors-border-inactive;
+}
+
+.durationText {
+  @extend %fonts-ff-regular;
+  color: $colors-font-secondary;
+  font-size: $font-size-md;
+}
+
+.separator {
+  display: inline;
+  @extend %fonts-ff-regular;
+  color: $colors-font-bullets;
+  font-size: $font-size-md;
+  margin: 0 $layout-spacing-sm;
+}
+
+.tag {
+  display: inline;
+  @extend %fonts-ff-regular;
+  color: $colors-font-secondary;
+  font-size: $font-size-md;
+}

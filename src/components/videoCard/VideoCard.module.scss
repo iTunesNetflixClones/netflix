@@ -1,0 +1,24 @@
+@import '../../config//theme.scss';
+
+.container {
+  position: relative;
+  @include calculate-aspect-height($width: 18vw);
+  margin-left: 150px;
+  margin-bottom: 150px;
+
+  .playerContainer {
+    @extend %layout-absolute-fill;
+  }
+
+  &:hover {
+    animation: grow 0.2s ease-in;
+    @include calculate-aspect-height($width: 18vw * 1.7);
+  }
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+}
+
+@include animate-apect-ratio-size($from-width: 18vw, $size-multiplier: 1.7);
