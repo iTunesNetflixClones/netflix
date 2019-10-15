@@ -7,3 +7,4 @@ export const I18_KEY_SEPARATOR: string = '-';
 export const I18_LANG_EN: string = 'en';
 export const I18N_REPLACEMENT_WILDCARD: string = '%s';
 export const TOPBAR_SCROLL_INTERPOLATE_RANGE: Array<number> = [0, 100];
+export const VIDEO_OVERLAY_SEPARATOR_CHAR = '•';

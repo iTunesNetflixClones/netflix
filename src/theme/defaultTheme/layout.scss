@@ -16,9 +16,43 @@ $layout-tag-border_width: 0.2vw;
 
 $layout-expanded-header-size: 12.5vw;
 
-$layout-button-circular-width: 3.4vw;
+$layout-button-circular-width-regular: 2.6vw;
+$layout-button-circular-width-small: 2.0vw;
+
+$layout-lg-controls-bottom-space: 32%;
+$layout-sm-controls-bottom-space: 15%;
+
+%layout-absolute-fill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 
 @mixin calculate-aspect-height($width) {
   height: $width * 9 / 16;
   width: $width;
+}
+
+@mixin create-enlarge-anim($from, $to) {
+  @keyframes enlarge {
+    0% {
+      transform: scale($from);
+    }
+    100% {
+      transform: scale($to);
+    }
+  }
+}
+
+@mixin animate-apect-ratio-size($from-width, $size-multiplier) {
+  @keyframes grow {
+    0% {
+      @include calculate-aspect-height($from-width)
+    }
+    100% {
+      @include calculate-aspect-height($from-width * $size-multiplier)
+    }
+  }
 }

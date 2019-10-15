@@ -6,14 +6,13 @@
     "@types/lodash": "^4.14.144",
     "@types/node": "12.7.11",
     "@types/react": "16.9.5",
-    "@types/react-dom": "^16.9.1",
-    "@types/react-redux": "^7.1.4",
+    "@types/react-dom": "16.9.1",
+    "@types/react-redux": "7.1.4",
     "@types/react-router-dom": "5.1.0",
     "husky": "^3.0.8",
     "lint-staged": "^9.4.2",
     "lodash": "4.17.15",
     "node-sass": "4.12.0",
-    "prettier": "^1.18.2",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "react-player": "^1.13.0",
@@ -31,8 +30,6 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write --single-quote",
-      "git add"
     ]
   },
   "scripts": {
@@ -57,8 +54,10 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.3.3",
-    "@typescript-eslint/parser": "^2.3.3",
-    "eslint": "^6.5.1"
+    "@typescript-eslint/eslint-plugin": "2.3.3",
+    "@typescript-eslint/parser": "2.3.3",
+    "eslint": "6.5.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   }
 }

@@ -1,0 +1,33 @@
+@import '../../config//theme.scss';
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.controls {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  right: 0;
+  bottom: $layout-lg-controls-bottom-space;
+  z-index: 15;
+
+  &__small {
+    bottom: $layout-sm-controls-bottom-space;
+    right: 4%;
+  }
+}
+
+.controlColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.tagContainer {
+  margin-bottom: $layout-spacing-md;
+}

@@ -1,6 +1,15 @@
 @import '../../config//theme.scss';
 
-.buttonArea {
+@mixin buttonArea($size) {
+  $margin-size: $layout-spacing-md;
+  $circular-width: $layout-button-circular-width-regular;
+  $font-size: $font-size-lg;
+  @if($size == "small") {
+    $margin-size: $layout-spacing-xsm;
+    $circular-width: $layout-button-circular-width-small;
+    $font-size: $font-size-sm;
+  }
+
   cursor: pointer;
   border: none;
   outline: none;
@@ -12,7 +21,7 @@
   );
 
   @extend %fonts-ff-bold;
-  font-size: $font-size-lg;
+  font-size: $font-size;
   color: $colors-font-primary;
 
   i {
@@ -22,13 +31,13 @@
   &:hover {
     background-color: $colors-background-secondary;
     color: $colors-font-contrast;
-    animation: crescendo 0.2s ease-in;
+    animation: enlarge 0.2s ease-in;
     transform: scale(1.1);
   }
 
   &__circle {
-    padding: $layout-spacing-sm;
-    width: $layout-button-circular-width;
+    padding: $layout-spacing-xsm;
+    width: $circular-width;
     border-radius: 50%;
 
     i {
@@ -52,28 +61,35 @@
     }
   }
 
+  &__redContent {
+    &:hover {
+      color: $colors-button-primary;
+    }
+  }
+
   &__topSeparated {
-    margin-top: $layout-spacing-md;
+    margin-top: $margin-size;
   }
 
   &__rightSeparated {
-    margin-right: $layout-spacing-md;
+    margin-right: $margin-size;
   }
 
   &__bottomSeparated {
-    margin-bottom: $layout-spacing-md;
+    margin-bottom: $margin-size;
   }
 
   &__leftSeparated {
-    margin-left: $layout-spacing-md;
+    margin-left: $margin-size;
   }
 }
 
-@keyframes crescendo {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
+.buttonArea {
+  @include buttonArea($size: "regular")
 }
+
+.buttonAreaSmall {
+  @include buttonArea($size: "small")
+}
+
+@include create-enlarge-anim($from: 1, $to: 1.1);

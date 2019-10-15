@@ -23,13 +23,13 @@ export const formatText = (
   if (splittedKey.length !== 2) {
     return I18_DEFAULT_TRANSLATION;
   }
-  const translation: string = get(
+  let translation: string = get(
     lang,
     `${splittedKey[0]}.${splittedKey[1]}`,
     I18_DEFAULT_TRANSLATION
   );
   replacements.forEach(replacement => {
-    translation.replace(I18N_REPLACEMENT_WILDCARD, replacement);
+    translation = translation.replace(I18N_REPLACEMENT_WILDCARD, replacement);
   });
   return translation;
 };

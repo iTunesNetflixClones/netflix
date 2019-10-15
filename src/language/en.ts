@@ -1,4 +1,8 @@
 export default {
+  duration: {
+    fullTime: '%s h %s min',
+    onlyMins: '%s min'
+  },
   featuredVideoHeader: {
     moreInfo: 'More info',
     myList: 'My list',
@@ -8,7 +12,7 @@ export default {
     videoLogo: 'Video logo soon'
   },
   player: {
-    parentalAdvice: '%s +',
+    parentalAdvice: '%s+',
     parentalAll: 'All'
   },
   test: {
@@ -18,5 +22,8 @@ export default {
   },
   topbar: {
     buttonPlaceholder: 'button soon'
+  },
+  videoOverlay: {
+    coincidence: '%s% for you'
   }
 };

@@ -2,31 +2,41 @@
 import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 
-// @Constants
-import { BUTTON_MODIFIERS, PLAYER_SIZES, SPACING } from '../../constants/enums';
-
 // @Components
-import Button from '../button/Button';
-import Tag from '../tag/Tag';
+import PlayerControls from '../playerControls/PlayerControls';
+
+// @Constants
+import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
 
 // @Style
 import styles from './Player.module.scss';
 
 type propTypes = {
-  loop: boolean;
-  muted: boolean;
-  parentalAge: number;
-  playing: boolean;
-  renderOverlay: (playing: boolean, videoControls: any) => any;
-  size: PLAYER_SIZES;
+  controlsSet: Array<PLAYER_CONTROLS>,
+  loop: boolean,
+  muted: boolean,
+  onPressLike: () => any,
+  onPressMyList: () => any,
+  onPressUnlike: () => any,
+  parentalAge: number,
+  playing: boolean,
+  renderOverlay: (playing: boolean) => any,
+  size: PLAYER_CONTROLS_SIZES,
   src: string;
 };
 
-const getToggleMutedButton = (isMuted: boolean): string =>
-  isMuted ? 'fa fa-volume-off' : 'fa fa-volume-up';
-
 const Player = (props: propTypes) => {
-  const { parentalAge, renderOverlay, size, src } = props;
+  const {
+    controlsSet,
+    loop, onPressLike,
+    onPressMyList,
+    onPressUnlike,
+    parentalAge,
+    renderOverlay,
+    size,
+    src
+  } = props;
+
   const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(true);
   const player = useRef<ReactPlayer>(null);
@@ -42,29 +52,10 @@ const Player = (props: propTypes) => {
     }
   };
 
-  const renderVideoControls = () => {
-    const parentalText = parentalAge
-      ? 'player-parentalAdvice'
-      : 'player-parentalAll';
-    const buttonIcon = playing ? getToggleMutedButton(muted) : 'fa fa-redo-alt';
-    const buttonCallback = playing ? toggleMuted : restartPlayer;
-    return (
-      <div className={styles.controls}>
-        <Button
-          iconSource={buttonIcon}
-          modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.circle]}
-          spacing={SPACING.right}
-          onPress={buttonCallback}
-          textKey=""
-        />
-        <Tag injectedTexts={[parentalAge]} textKey={parentalText} />
-      </div>
-    );
-  };
-
   return (
-    <div className={styles.wrapper__large}>
+    <div className={styles.wrapper}>
       <ReactPlayer
+        loop={loop}
         ref={player}
         height="100%"
         width="100%"
@@ -79,19 +70,34 @@ const Player = (props: propTypes) => {
         url={src}
       />
       <div className={styles.overlay}>
-        {renderOverlay && renderOverlay(playing, renderVideoControls())}
+        {renderOverlay && renderOverlay(playing)}
+        <PlayerControls
+          controlsSet={controlsSet}
+          muted={muted}
+          onPressLike={onPressLike}
+          onPressMyList={onPressMyList}
+          onPressUnlike={onPressUnlike}
+          onRestartPlayer={restartPlayer}
+          onToggleMuted={toggleMuted}
+          parentalAge={parentalAge}
+          playing={playing}
+          size={size} />
       </div>
     </div>
   );
 };
 
 Player.defaultProps = {
+  controlsModifiers: [],
+  controlsSet: [],
   loop: false,
   muted: true,
+  onPressLike: () => null,
+  onPressMyList: () => null,
+  onPressUnlike: () => null,
   parentalAge: 0,
   playing: false,
-  renderOverlay: null,
-  size: PLAYER_SIZES.sm
+  renderOverlay: null
 };
 
 export default Player;

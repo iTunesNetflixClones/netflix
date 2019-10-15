@@ -1,8 +1,7 @@
 @import '../../config//theme.scss';
 
 .container {
-  height: 100%;
-  width: 100%;
+  @extend %layout-absolute-fill;
   background: linear-gradient(transparent 40%, $colors-background-primary);
   z-index: 10;
 }

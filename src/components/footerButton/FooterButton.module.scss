@@ -1,0 +1,24 @@
+@import '../../config//theme.scss';
+
+.buttonArea {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+
+  color: $colors-font-primary;
+  font-size: $font-size-lg;
+  padding: $layout-spacing-xsm 0;
+
+  &:hover {
+    color: $colors-button-primary;
+  }
+}
+
+.iconScaled {
+  transform: scale(5, 2);
+}
