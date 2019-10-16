@@ -16,7 +16,7 @@ import { interpolateScroll } from '../../utils/calcHelper';
 // @Assets
 const healinerLogo = require('../../assets/png/headliner_logo.png');
 
-const Topbar = () => {
+const Topbar: React.FunctionComponent<{}>  = () => {
   const [scrollHeight, setScrollHeight] = useState(
     interpolateScroll({
       scrollPos: window.scrollY,
@@ -26,7 +26,7 @@ const Topbar = () => {
   );
 
   useEffect(() => {
-    window.onscroll = () => {
+    window.onscroll = (): void => {
       setScrollHeight(window.scrollY);
     };
   });

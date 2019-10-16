@@ -1,5 +1,5 @@
 // @Vendors
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 
 // @Constants
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
@@ -11,50 +11,56 @@ import VideoCardOverlay from '../videoCardOverlay/VideoCardOverlay';
 // @Styles
 import styles from './VideoCard.module.scss';
 
-type propTypes = {
-  onExpand: () => any,
-  onExpandedStateChanges: (nextState: boolean) => void,
-  onPressLike: () => any,
-  onPressMyList: () => any,
-  onPressUnlike: () => any,
-  posterSrc: string,
+// @PropTypes
+interface PropTypes {
+  onExpand: () => void;
+  onExpandedStateChanges: (expandedState: boolean) => void;
+  onPlay: () => void;
+  onPressLike: () => void;
+  onPressMyList: () => void;
+  onPressUnlike: () => void;
+  posterSrc: string;
   videoData: {
-    coincidence: number,
-    duration: number,
-    parentalAge: number,
-    src: string,
-    tags: Array<string>,
-    title: string
-  }
-};
+    coincidence: number;
+    duration: number;
+    parentalAge: number;
+    src: string;
+    tags: Array<string>;
+    title: string;
+  };
+}
 
-const VideoCard = (props: propTypes) => {
+const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     onExpand,
     onExpandedStateChanges,
+    onPlay,
     onPressLike,
     onPressMyList,
     onPressUnlike,
     posterSrc,
     videoData
   } = props;
+  const { parentalAge, src } = videoData;
+
   const [ expanded, setExpanded ] = useState(false);
 
   const handleSetExpanded = (expandedState: boolean): void => {
     setExpanded(expandedState);
     onExpandedStateChanges(expandedState);
-  }
+  };
 
-  const renderVideoOverlay = (playing: boolean) => {
+  const renderVideoOverlay = (playing: boolean): ReactElement => {
     return (
       <VideoCardOverlay
         onPressExpand={onExpand}
+        onPressPlay={onPlay}
         playing={playing}
         videoData={videoData} />
-    )
-  }
+    );
+  };
 
-  const renderPlayer = () => {
+  const renderPlayer = (): ReactElement | null => {
     if(!expanded) {
       return null;
     }
@@ -72,26 +78,26 @@ const VideoCard = (props: propTypes) => {
           onPressLike={onPressLike}
           onPressMyList={onPressMyList}
           onPressUnlike={onPressUnlike}
-          parentalAge={videoData.parentalAge}
+          parentalAge={parentalAge}
           playing
           renderOverlay={renderVideoOverlay}
           size={PLAYER_CONTROLS_SIZES.small}
-          src={videoData.src} />
+          src={src} />
       </div>
     );
-  }
+  };
 
   return (
     <div
-      onMouseEnter={() => handleSetExpanded(true)}
-      onMouseLeave={() => handleSetExpanded(false)}
+      onMouseEnter={(): void => handleSetExpanded(true)}
+      onMouseLeave={(): void => handleSetExpanded(false)}
       className={styles.container}>
       <img
         className={styles.image}
         src={posterSrc}/>
       { renderPlayer() }
     </div>
-  )
+  );
 };
 
 export default VideoCard;

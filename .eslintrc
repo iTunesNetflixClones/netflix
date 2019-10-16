@@ -1,9 +1,19 @@
 {
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  "parserOptions":  {
+    "ecmaVersion":  2018,
+    "sourceType":  "module",
+    "ecmaFeatures":  {
+      "jsx":  true
+    },
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./"
+  },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "env": {
     "browser": true,
@@ -11,14 +21,20 @@
     "jest": true
   },
   "rules": {
-    "no-unused-vars": "error",
-    "semi": "error"
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }],
+    "@typescript-eslint/semi": ["error"],
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-explicit-any": 0
   },
   "settings": {
     "react": {
       "pragma": "React",
       "version": "detect"
     }
-  },
-  "parser": "@typescript-eslint/parser"
+  }
 }

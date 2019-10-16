@@ -11,7 +11,7 @@ import Topbar from '../topbar/Topbar';
 // @Styles
 import styles from './Router.module.scss';
 
-const Routes = () => (
+const Routes: React.FunctionComponent<{}> = () => (
   <Router>
     <div className={styles.container}>
       <Topbar />

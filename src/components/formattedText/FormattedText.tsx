@@ -4,15 +4,16 @@ import React from 'react';
 // @Utils
 import { formatText } from '../../utils/i18n';
 
-type props = {
-  className: string;
-  injectedTexts: Array<any>;
-  styles: Object;
+// @PropTypes
+interface PropTypes {
+  className?: string;
+  injectedTexts?: Array<string | number>;
+  inlineStyles?: Record<string, any>; // eslint-disable-line
   textKey: string;
-};
+}
 
-const FormattedText = (props: props) => (
-  <span className={props.className} style={props.styles}>
+const FormattedText: React.FunctionComponent<PropTypes>  = (props: PropTypes) => (
+  <span className={props.className} style={props.inlineStyles}>
     {formatText(props.textKey, props.injectedTexts)}
   </span>
 );
@@ -20,7 +21,7 @@ const FormattedText = (props: props) => (
 FormattedText.defaultProps = {
   className: '',
   injectedTexts: [],
-  styles: null
+  inlineStyles: {}
 };
 
 export default FormattedText;

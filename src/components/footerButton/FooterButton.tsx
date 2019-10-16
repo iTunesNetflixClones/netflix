@@ -4,11 +4,12 @@ import React from 'react';
 // @Styles
 import styles from './FooterButton.module.scss';
 
-type propTypes = {
-  onPress: () => any
-};
+// @PropTypes
+interface PropTypes {
+  onPress: () => any;
+}
 
-const FooterButton = (props: propTypes) => {
+const FooterButton: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { onPress } = props;
 
   const iconClass = `fa fa-chevron-down ${styles.iconScaled}`;
@@ -21,6 +22,6 @@ const FooterButton = (props: propTypes) => {
       <i className={iconClass}/>
     </button>
   );
-}
+};
 
 export default FooterButton;

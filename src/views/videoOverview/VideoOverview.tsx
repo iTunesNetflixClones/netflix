@@ -1,16 +1,21 @@
 // @Vendors
 import React from 'react';
+import { InferProps } from 'prop-types';
 
 // @Components
 import FeaturedVideoHeader from '../../components/featuredVideoHeader/FeaturedVideoHeader';
 import VideoCard from '../../components/videoCard/VideoCard';
 
-const VideoOverview = () => (
+// @PropTypes
+const propTypes = {};
+type Props = InferProps<typeof propTypes>;
+
+const VideoOverview: React.FunctionComponent<Props>  = () => (
   <div>
     <FeaturedVideoHeader
-      onPressPlay={(id: string) => {}}
-      onPressList={(id: string) => {}}
-      onPressMoreInfo={(id: string) => {}}
+      onPressPlay={(): void => {}}
+      onPressList={(): void => {}}
+      onPressMoreInfo={(): void => {}}
       videoData={{
         id: 'mock id',
         description:
@@ -20,11 +25,12 @@ const VideoOverview = () => (
     />
     <div style={{position: 'relative'}}>
     <VideoCard
-      onExpand={() => null}
-      onExpandedStateChanges={value => {}}
-      onPressLike={() => null}
-      onPressMyList={() => null}
-      onPressUnlike={() => null}
+      onExpand={(): void => {}}
+      onExpandedStateChanges={(): void => {}}
+      onPlay={(): void => {}}
+      onPressLike={(): void => {}}
+      onPressMyList={(): void => {}}
+      onPressUnlike={(): void => {}}
       posterSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPRIpRuD5lllcBiArrj1JpgCJDm0XQ7AwdUsMHH01Mdx4QzO5t"
       videoData={{
         coincidence: 60,

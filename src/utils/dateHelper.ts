@@ -1,7 +1,7 @@
 export type Duration = {
-  values: Array<number>,
-  textKey: string
-}
+  values: Array<number>;
+  textKey: string;
+};
 
 export const formatDuration = (timeInMs: number): Duration => {
   const hours: number = Math.floor(timeInMs / (60000 * 60));
@@ -16,4 +16,4 @@ export const formatDuration = (timeInMs: number): Duration => {
     values:[mins],
     textKey: 'duration-onlyMins'
   };
-}
+};

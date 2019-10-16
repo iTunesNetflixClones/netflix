@@ -7,12 +7,13 @@ import styles from './Tag.module.scss';
 // @Components
 import FormattedText from '../formattedText/FormattedText';
 
-type propTypes = {
-  injectedTexts: Array<any>;
+// @PropTypes
+interface PropTypes {
   textKey: string;
-};
+  injectedTexts: Array<string | number>;
+}
 
-const Tag = (props: propTypes) => {
+const Tag: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { injectedTexts, textKey } = props;
 
   return (
