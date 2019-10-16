@@ -1,8 +1,8 @@
 // @Vendors
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 // @Constants & enums
-import { BUTTON_MODIFIERS, SPACING } from '../../constants/enums';
+import { SPACING } from '../../constants/enums';
 
 // @Components
 import Button from '../button/Button';
@@ -11,26 +11,17 @@ import FormattedText from '../formattedText/FormattedText';
 // @Styles
 import styles from './FeaturedVideoInfoOverlay.module.scss';
 
-type propTypes = {
+// @PropTypes
+interface PropTypes {
   onPressPlay: (videoId: string) => any;
   onPressList: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
   showDescription: boolean;
   videoDescription: string;
   videoId: string;
-};
+}
 
-const renderDescription = (
-  showDescription: boolean,
-  desciptionText: string
-) => {
-  if (!showDescription) {
-    return null;
-  }
-  return <p className={styles.descriptionText}>{desciptionText}</p>;
-};
-
-const FeaturedVideoInfoArea = (props: propTypes) => {
+const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     onPressList,
     onPressMoreInfo,
@@ -39,6 +30,14 @@ const FeaturedVideoInfoArea = (props: propTypes) => {
     videoDescription,
     videoId
   } = props;
+
+  const renderDescription = (): ReactElement | null => {
+    if (!showDescription) {
+      return null;
+    }
+    return <p className={styles.descriptionText}>{videoDescription}</p>;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
@@ -48,28 +47,22 @@ const FeaturedVideoInfoArea = (props: propTypes) => {
             textKey="placeholders-videoLogo"
           />
         </div>
-        {renderDescription(showDescription, videoDescription)}
+        { renderDescription() }
         <Button
           iconSource="fa fa-play"
-          onPress={() => {
-            onPressPlay(videoId);
-          }}
+          onPress={onPressPlay.bind(null, videoId)}
           spacing={[SPACING.right]}
           textKey="featuredVideoHeader-play"
         />
         <Button
           iconSource="fa fa-plus"
-          onPress={() => {
-            onPressList(videoId);
-          }}
+          onPress={onPressList.bind(null, videoId)}
           spacing={[SPACING.right]}
           textKey="featuredVideoHeader-myList"
         />
         <Button
           iconSource="fa fa-info"
-          onPress={() => {
-            onPressMoreInfo(videoId);
-          }}
+          onPress={onPressMoreInfo.bind(null, videoId)}
           spacing={[SPACING.right]}
           textKey="featuredVideoHeader-moreInfo"
         />

@@ -11,21 +11,22 @@ import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
 // @Style
 import styles from './Player.module.scss';
 
-type propTypes = {
-  controlsSet: Array<PLAYER_CONTROLS>,
-  loop: boolean,
-  muted: boolean,
-  onPressLike: () => any,
-  onPressMyList: () => any,
-  onPressUnlike: () => any,
-  parentalAge: number,
-  playing: boolean,
-  renderOverlay: (playing: boolean) => any,
-  size: PLAYER_CONTROLS_SIZES,
+// @PropTypes
+interface PropTypes {
+  controlsSet?: Array<PLAYER_CONTROLS>;
+  loop?: boolean;
+  muted?: boolean;
+  onPressLike?: () => void;
+  onPressMyList?: () => void;
+  onPressUnlike?: () => void;
+  parentalAge?: number;
+  playing?: boolean;
+  renderOverlay?: (playing: boolean) => void;
+  size: PLAYER_CONTROLS_SIZES;
   src: string;
-};
+}
 
-const Player = (props: propTypes) => {
+const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const {
     controlsSet,
     loop, onPressLike,
@@ -41,11 +42,11 @@ const Player = (props: propTypes) => {
   const [playing, setPlaying] = useState(true);
   const player = useRef<ReactPlayer>(null);
 
-  const toggleMuted = () => setMuted(!muted);
+  const toggleMuted = (): void => setMuted(!muted);
 
-  const togglePlaying = () => setPlaying(!playing);
+  const togglePlaying = (): void => setPlaying(!playing);
 
-  const restartPlayer = () => {
+  const restartPlayer = (): void => {
     if (player.current) {
       player.current.seekTo(0, 'seconds');
       setPlaying(true);
@@ -72,7 +73,7 @@ const Player = (props: propTypes) => {
       <div className={styles.overlay}>
         {renderOverlay && renderOverlay(playing)}
         <PlayerControls
-          controlsSet={controlsSet}
+          controlsSet={controlsSet || []}
           muted={muted}
           onPressLike={onPressLike}
           onPressMyList={onPressMyList}
@@ -88,16 +89,15 @@ const Player = (props: propTypes) => {
 };
 
 Player.defaultProps = {
-  controlsModifiers: [],
   controlsSet: [],
   loop: false,
   muted: true,
-  onPressLike: () => null,
-  onPressMyList: () => null,
-  onPressUnlike: () => null,
+  onPressLike: (): void => {},
+  onPressMyList: (): void => {},
+  onPressUnlike: (): void => {},
   parentalAge: 0,
   playing: false,
-  renderOverlay: null
+  renderOverlay: (): void => {}
 };
 
 export default Player;

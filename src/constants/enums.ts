@@ -6,7 +6,7 @@ export enum BUTTON_MODIFIERS {
 export enum BUTTON_SIZES {
   small,
   regular
-};
+}
 export enum PLAYER_CONTROLS {
   like,
   myList,

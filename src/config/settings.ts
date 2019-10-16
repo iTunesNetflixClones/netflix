@@ -1,4 +1,4 @@
 // @Constants
 import { I18_LANG_EN } from '../constants/constants';
 
-export const currentLang: String = I18_LANG_EN;
+export const currentLang: string = I18_LANG_EN;

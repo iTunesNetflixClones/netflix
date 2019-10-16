@@ -1,5 +1,5 @@
 // @Vendors
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 // @Constants
 import { BUTTON_MODIFIERS, BUTTON_SIZES, PLAYER_CONTROLS, SPACING, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
@@ -14,22 +14,23 @@ import { getParentalAgeText } from '../../utils/miscHelper';
 // Styles
 import styles from './PlayerControls.module.scss';
 
-type propTypes = {
-  controlsSet: Array<PLAYER_CONTROLS>,
-  muted: boolean,
-  onPressLike: () => any,
-  onPressMyList: () => any,
-  onPressUnlike: () => any,
-  onRestartPlayer: () => any,
-  onToggleMuted: () => any,
-  parentalAge: number,
-  playing: boolean,
-  size: PLAYER_CONTROLS_SIZES
+// @PropTypes
+interface PropTypes {
+  controlsSet?: Array<PLAYER_CONTROLS>;
+  muted: boolean;
+  onPressLike?: () => any;
+  onPressMyList?: () => any;
+  onPressUnlike?: () => any;
+  onRestartPlayer: () => any;
+  onToggleMuted: () => any;
+  parentalAge?: number;
+  playing: boolean;
+  size: PLAYER_CONTROLS_SIZES;
 }
 
 const getToggleMutedButton = (isMuted: boolean): string => isMuted ? 'fa fa-volume-off' : 'fa fa-volume-up';
 
-const PlayerControls = (props: propTypes) => {
+const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     controlsSet,
     muted,
@@ -43,25 +44,25 @@ const PlayerControls = (props: propTypes) => {
     size
   } = props;
 
-  const buildControlsModifiers = () => {
+  const buildControlsModifiers = (): string => {
     let styleString = `${styles.controls}`;
     if(size === PLAYER_CONTROLS_SIZES.small) {
       styleString = `${styleString} ${styles.controls__small}`;
     }
     return styleString;
-  }
+  };
 
-  const getControlButtonsSize = () => (
+  const getControlButtonsSize = (): BUTTON_SIZES => (
     size === PLAYER_CONTROLS_SIZES.small ? BUTTON_SIZES.small : BUTTON_SIZES.regular
   );
 
-  const checkControlRender = (controlType: PLAYER_CONTROLS, renderControl: () => any) => {
-    if(controlsSet.find(control => control === controlType) !== undefined) {
+  const checkControlRender = (controlType: PLAYER_CONTROLS, renderControl: () => ReactElement): ReactElement | undefined => {
+    if(controlsSet && controlsSet.find(control => control === controlType) !== undefined) {
       return renderControl();
     }
-  }
+  };
 
-  const renderControlButton = (icon: string, onPress: () => any) => (
+  const renderControlButton = (icon: string, onPress?: () => any): ReactElement => (
     <Button
       iconSource={icon}
       modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.circle]}
@@ -72,10 +73,11 @@ const PlayerControls = (props: propTypes) => {
     />
   );
 
-  const renderParentalTag = () => {
+  const renderParentalTag = (): ReactElement => {
     const parentalText = getParentalAgeText(parentalAge);
+    const injectedTexts = parentalAge ? [parentalAge] : [];
     return (
-      <Tag injectedTexts={[parentalAge]} textKey={parentalText} />
+      <Tag injectedTexts={injectedTexts} textKey={parentalText} />
     );
   };
 
@@ -94,15 +96,14 @@ const PlayerControls = (props: propTypes) => {
       </div>
     </div>
   );
-}
+};
 
 PlayerControls.defaultProps = {
   controlsSet: [],
-  controlsModifiers: [],
-  onPressLike: null,
-  onPressMyList: null,
-  onPressUnlike: null,
-  parentalAge: 0
-}
+  onPressLike: (): any => {},
+  onPressMyList: (): any => {},
+  onPressUnlike: (): any => {},
+  parentalAge: 0 as number
+};
 
 export default PlayerControls;

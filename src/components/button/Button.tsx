@@ -1,5 +1,5 @@
 // @Vendors
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 // @Enums
 import { BUTTON_MODIFIERS, BUTTON_SIZES, SPACING } from '../../constants/enums';
@@ -10,21 +10,22 @@ import styles from './Button.module.scss';
 // @Helpers
 import { formatText } from '../../utils/i18n';
 
-type propTypes = {
-  iconSource: string,
-  modifiers: Array<BUTTON_MODIFIERS>,
-  onPress: () => void,
-  spacing: Array<SPACING>,
-  size: BUTTON_SIZES,
-  textKey: string;
-};
+// @PropTypes
+interface PropTypes {
+  iconSource?: string;
+  modifiers?: Array<BUTTON_MODIFIERS>;
+  onPress?: () => any;
+  spacing?: Array<SPACING>;
+  size?: BUTTON_SIZES;
+  textKey?: string;
+}
 
-const Button = (props: propTypes) => {
+const Button: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { iconSource, modifiers, onPress, size, spacing, textKey } = props;
   const baseButtonClassName = size ===  BUTTON_SIZES.regular ? 'buttonArea' : 'buttonAreaSmall';
   const baseButtonClass = size ===  BUTTON_SIZES.regular ? styles.buttonArea : styles.buttonAreaSmall;
 
-  const buildIcon = () => {
+  const buildIcon = (): ReactElement | undefined => {
     let icon;
     if (iconSource) {
       icon = <i className={iconSource} />;
@@ -41,6 +42,9 @@ const Button = (props: propTypes) => {
 
   const buildSpacing = (): string => {
     let modifiers = '';
+    if(!spacing) {
+      return modifiers;
+    }
     if(spacing.indexOf(SPACING.top) !== -1) {
       modifiers = `${modifiers} ${styles[`${baseButtonClassName}__topSeparated`]}`;
     }
@@ -94,7 +98,7 @@ const Button = (props: propTypes) => {
     return buttonModifiers;
   };
 
-  const buildButtonClassName = () => `${baseButtonClass} ${buildSpacing()} ${buildModifiers()}`;
+  const buildButtonClassName = (): string => `${baseButtonClass} ${buildSpacing()} ${buildModifiers()}`;
 
   return (
     <button
@@ -109,11 +113,12 @@ const Button = (props: propTypes) => {
 };
 
 Button.defaultProps = {
-  iconSource: null,
-  modifiers: null,
+  iconSource: undefined,
+  modifiers: [],
+  onPress: (): void => {},
   size: BUTTON_SIZES.regular,
   spacing:[],
-  textKey: null
+  textKey: undefined
 };
 
 export default Button;

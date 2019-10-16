@@ -1,5 +1,5 @@
 // @Vendors
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 // @Styles
 import styles from './FeaturedVideoHeader.module.scss';
@@ -11,7 +11,8 @@ import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
 import FeaturedVideoInfoOverlay from '../featuredVideoInfoArea/FeaturedVideoInfoOverlay';
 import Player from '../player/Player';
 
-type propTypes = {
+// @PropTypes
+interface PropTypes {
   onPressPlay: (videoId: string) => any;
   onPressList: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
@@ -20,19 +21,21 @@ type propTypes = {
     description: string;
     src: string;
   };
-};
+}
 
-const FeaturedVideoHeader = (props: propTypes) => {
+const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { onPressList, onPressMoreInfo, onPressPlay, videoData } = props;
 
-  const renderVideoOverlay = (playing: boolean) => (
+  const { description, id } = videoData;
+
+  const renderVideoOverlay = (playing: boolean): ReactElement => (
     <FeaturedVideoInfoOverlay
       onPressPlay={onPressPlay}
       onPressList={onPressList}
       onPressMoreInfo={onPressMoreInfo}
       showDescription={!playing}
-      videoDescription={videoData.description}
-      videoId={videoData.id}
+      videoDescription={description}
+      videoId={id}
     />
   );
 

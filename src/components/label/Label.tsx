@@ -4,12 +4,13 @@ import React from 'react';
 // @Styles
 import styles from './Label.module.scss';
 
-type propTypes = {
-  className: string,
-  text: string
+// @PropTypes
+interface PropTypes {
+  className: string;
+  text: string;
 }
 
-const Label = (props: propTypes) => {
+const Label: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const { className, text } = props;
 
   const style = `${styles.text} ${className}`;
@@ -17,10 +18,10 @@ const Label = (props: propTypes) => {
   return (
     <p className={style}>{text}</p>
   );
-}
+};
 
 Label.defaultProps = {
   className: ''
-}
+};
 
-export default Label
+export default Label;

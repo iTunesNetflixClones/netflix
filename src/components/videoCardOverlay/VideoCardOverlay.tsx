@@ -1,5 +1,5 @@
 // @Vendors
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 // @Constants
 import { BUTTON_MODIFIERS } from '../../constants/enums';
@@ -15,31 +15,33 @@ import Label from '../label/Label';
 import { Duration, formatDuration } from '../../utils/dateHelper';
 import { getParentalAgeText } from '../../utils/miscHelper';
 
-// @Styles
+// @Styles
 import styles from './VideoCardOverlay.module.scss';
 
-type propTypes = {
-  onPressExpand: () => any,
-  playing: boolean,
+// @PropTypes
+interface PropTypes {
+  onPressExpand: () => void;
+  onPressPlay: () => void;
+  playing: boolean;
   videoData: {
-    coincidence: number,
-    duration: number,
-    parentalAge: number,
-    src: string,
-    tags: Array<string>,
-    title: string
-  }
+    coincidence: number;
+    duration: number;
+    parentalAge: number;
+    src: string;
+    tags: Array<string>;
+    title: string;
+  };
 }
 
-const VideoCardOverlay = (props: propTypes) => {
-  const { onPressExpand, videoData } = props;
+const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
+  const { onPressExpand, onPressPlay, videoData } = props;
 
   const formattedVideoDuration: Duration = formatDuration(videoData.duration);
 
   const parentalText = getParentalAgeText(videoData.parentalAge);
 
-  const renderTags = () => (
-    videoData.tags.map((tag, index) => {
+  const renderTags = (): Array<ReactElement> => (
+    videoData.tags.map((tag: string, index: number) => {
       let separator;
       if(!(index === videoData.tags.length - 1)) {
         separator = (
@@ -49,15 +51,16 @@ const VideoCardOverlay = (props: propTypes) => {
         );
       }
       return (
-        <React.Fragment>
+        <React.Fragment
+          key={tag}>
           <Label
             className={styles.tag}
             text={tag} />
           {separator}
         </React.Fragment>
-      )
+      );
     })
-  )
+  );
 
   return (
     <div className={styles.container}>
@@ -65,7 +68,7 @@ const VideoCardOverlay = (props: propTypes) => {
         <Button
           iconSource="fa fa-play"
           modifiers={[BUTTON_MODIFIERS.circle, BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
-          onPress={() => {}}
+          onPress={onPressPlay}
         />
         <Label
           className={styles.titleText}
@@ -91,7 +94,7 @@ const VideoCardOverlay = (props: propTypes) => {
       <FooterButton
         onPress={onPressExpand}/>
     </div>
-  )
+  );
 };
 
 export default VideoCardOverlay;

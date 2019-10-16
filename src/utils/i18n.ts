@@ -16,9 +16,9 @@ import {
 
 export const formatText = (
   key: string = '',
-  replacements: Array<any> = []
+  replacements: Array<string | number> = []
 ): string => {
-  const lang: Object = get(languages, `${currentLang}`, {});
+  const lang: Record<string, string> = get(languages, `${currentLang}`, {});
   const splittedKey: Array<string> = key.split(I18_KEY_SEPARATOR);
   if (splittedKey.length !== 2) {
     return I18_DEFAULT_TRANSLATION;
@@ -29,7 +29,7 @@ export const formatText = (
     I18_DEFAULT_TRANSLATION
   );
   replacements.forEach(replacement => {
-    translation = translation.replace(I18N_REPLACEMENT_WILDCARD, replacement);
+    translation = translation.replace(I18N_REPLACEMENT_WILDCARD, replacement.toString());
   });
   return translation;
 };

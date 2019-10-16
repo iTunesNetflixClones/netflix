@@ -1,5 +1,6 @@
 // @Vendors
 import React from 'react';
+import { InferProps } from 'prop-types';
 
 // @Styles
 import styles from './AppPlaceholder.module.scss';
@@ -10,7 +11,11 @@ import FormattedText from '../../components/formattedText/FormattedText';
 // @Assets
 import logo from '../../assets/svg/logo.svg';
 
-const AppPlaceholder = () => (
+// @PropTypes
+const propTypes = {};
+type Props = InferProps<typeof propTypes>;
+
+const AppPlaceholder: React.FunctionComponent<Props>  = () => (
   <div className={styles.app}>
     <header className={styles.appHeader}>
       <img src={logo} className={styles.appLogo} alt="logo" />
