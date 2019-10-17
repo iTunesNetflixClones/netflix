@@ -15,6 +15,7 @@ import styles from './VideoCard.module.scss';
 // @PropTypes
 interface PropTypes {
   index: number;
+  isExpanded: boolean;
   onExpand: (videoId: string) => void;
   onExpandedStateChanges: (index: number, expandedState: boolean) => void;
   onPlay: (videoId: string) => void;
@@ -27,6 +28,7 @@ interface PropTypes {
 const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     index,
+    isExpanded,
     onExpand,
     onExpandedStateChanges,
     onPlay,
@@ -90,11 +92,13 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     );
   };
 
+  const className = `${styles.container} ${isExpanded ? styles.container__expanded : ''}`;
+
   return (
     <div
       onMouseEnter={(): void => handleSetExpanded(true)}
       onMouseLeave={(): void => handleSetExpanded(false)}
-      className={styles.container}>
+      className={className}>
       <img
         className={styles.image}
         src={posterSrc}/>

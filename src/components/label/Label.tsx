@@ -13,7 +13,7 @@ interface PropTypes {
 const Label: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const { className, text } = props;
 
-  const style = `${styles.text} ${className}`;
+  const style = className || styles.text;
 
   return (
     <p className={style}>{text}</p>

@@ -6,6 +6,11 @@ import get from 'lodash/get';
 import styles from './VideoSliderRow.module.scss';
 
 // @Constants
+import {
+  COMMON_WILDCARD,
+  VIDEO_SLIDER_TRANSLATION_COEF,
+  VIDEO_SLIDER_TRANSLATION_EXP
+} from '../../constants/constants';
 import { PositionCheck, VideoData } from '../../constants/types';
 
 // @Helpers
@@ -56,19 +61,21 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   };
 
   const getTranslationStyle = (): string => {
-    const offset: number = currentIndex * 94.4  ;
-    return `translateX(-${offset}vw)`;
+    const offset: number = currentIndex * VIDEO_SLIDER_TRANSLATION_COEF;
+    return VIDEO_SLIDER_TRANSLATION_EXP.replace(COMMON_WILDCARD, offset.toString());
   };
 
   const renderVideoCards = (): Array<ReactElement> => (
     videosList.map((video, indexInRow) => {
-      const className: string = `${styles.sliderCard} ${indexInRow === expandedIndex ? styles.sliderCard__expanded : ''}`; // eslint-disable-line
+      const isExpanded: boolean = indexInRow === expandedIndex;
+      const className: string = `${styles.sliderCard} ${isExpanded ? styles.sliderCard__expanded : ''}`;
       return (
         <div
           key={video.id}
           className={className}>
           <VideoCard
             index={indexInRow}
+            isExpanded={isExpanded}
             onExpand={handleExpandVideo}
             onExpandedStateChanges={handleExpandedStateChange}
             onPlay={onPlayVideo}
@@ -98,9 +105,10 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
 
   const currentScreenWidth: number = window.innerWidth;
   const positionCheck: PositionCheck = checkVideoCardPosition(expandedIndex, currentScreenWidth);
-  const firstInPageClass: string = positionCheck.isFirstInPage ? styles.sliderRow__expandedFirst : ''; // eslint-disable-line
-  const lastInPageClass: string = positionCheck.isLastInPage ? styles.sliderRow__expandedLast : ''; // eslint-disable-line
-  const className: string = `${styles.sliderRow} ${firstInPageClass || lastInPageClass}`;
+  const mouseOverClass: string = expandedIndex !== -1 ? styles.sliderRow__hovered : '';
+  const firstInPageClass: string = positionCheck.isFirstInPage ? styles.sliderRow__expandedFirst : '';
+  const lastInPageClass: string = positionCheck.isLastInPage ? styles.sliderRow__expandedLast : '';
+  const className: string = `${styles.sliderRow} ${mouseOverClass} ${firstInPageClass || lastInPageClass}`;
 
   return (
     <div className={styles.sliderFrame}>

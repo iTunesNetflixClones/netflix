@@ -16,7 +16,7 @@
     transform: scale($player-container-scale-correction);
   }
 
-  &:hover {
+  &__expanded {
     transform: scale($layout-video-card-grow-factor);
   }
 }
