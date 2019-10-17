@@ -20,7 +20,6 @@ interface PropTypes {
   onPressMyList?: () => void;
   onPressUnlike?: () => void;
   parentalAge?: number;
-  playing?: boolean;
   renderOverlay?: (playing: boolean) => void;
   size: PLAYER_CONTROLS_SIZES;
   src: string;
@@ -70,7 +69,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
         volume={1}
         url={src}
       />
-      <div className={styles.overlay}>
+      <div>
         {renderOverlay && renderOverlay(playing)}
         <PlayerControls
           controlsSet={controlsSet || []}
@@ -96,7 +95,6 @@ Player.defaultProps = {
   onPressMyList: (): void => {},
   onPressUnlike: (): void => {},
   parentalAge: 0,
-  playing: false,
   renderOverlay: (): void => {}
 };
 

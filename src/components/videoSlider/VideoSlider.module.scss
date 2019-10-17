@@ -1,0 +1,14 @@
+@import '../../config//theme.scss';
+
+.mainContainer {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: $layout-spacing-lg;
+}
+
+.titleText{
+  @extend %fonts-ff-bold;
+  font-size: $font-size-xlg;
+  color: $colors-font-primary;
+  padding: $layout-spacing-sm $layout-spacing-lg;
+}

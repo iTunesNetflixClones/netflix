@@ -1,3 +1,4 @@
+$layout-spacing-xxsm: 0.2vw;
 $layout-spacing-xsm: 0.4vw;
 $layout-spacing-sm: 0.7vw;
 $layout-spacing-md: 1vw;
@@ -21,6 +22,14 @@ $layout-button-circular-width-small: 2.0vw;
 
 $layout-lg-controls-bottom-space: 32%;
 $layout-sm-controls-bottom-space: 15%;
+
+$layout-video-card-grow-factor: 1.8;
+
+$layout-transition-time: 750ms ease 100ms;
+$layout-transition-time-quick: 300ms ease 100ms;
+
+$player-container-scale-correction: (1 / $layout-video-card-grow-factor);
+$player-container-scale-position-correction: -(($layout-video-card-grow-factor - 1) * 100% / 2);
 
 %layout-absolute-fill {
   position: absolute;

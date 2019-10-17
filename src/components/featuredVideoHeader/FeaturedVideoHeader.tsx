@@ -6,6 +6,7 @@ import styles from './FeaturedVideoHeader.module.scss';
 
 // @Constants & enums
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
+import { VideoData } from '../../constants/types';
 
 // @components
 import FeaturedVideoInfoOverlay from '../featuredVideoInfoArea/FeaturedVideoInfoOverlay';
@@ -16,11 +17,7 @@ interface PropTypes {
   onPressPlay: (videoId: string) => any;
   onPressList: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
-  videoData: {
-    id: string;
-    description: string;
-    src: string;
-  };
+  videoData: VideoData;
 }
 
 const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
@@ -44,7 +41,6 @@ const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropType
       <Player
         controlsSet={[PLAYER_CONTROLS.volumeControl, PLAYER_CONTROLS.parentalTag]}
         loop
-        playing
         renderOverlay={renderVideoOverlay}
         size={PLAYER_CONTROLS_SIZES.regular}
         src={videoData.src}

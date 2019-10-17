@@ -6,7 +6,7 @@ import styles from './Label.module.scss';
 
 // @PropTypes
 interface PropTypes {
-  className: string;
+  className?: string;
   text: string;
 }
 

@@ -3,6 +3,7 @@ import React, { useState, ReactElement } from 'react';
 
 // @Constants
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
+import { VideoData } from '../../constants/types';
 
 // @Components
 import Player from  '../player/Player';
@@ -13,48 +14,51 @@ import styles from './VideoCard.module.scss';
 
 // @PropTypes
 interface PropTypes {
-  onExpand: () => void;
-  onExpandedStateChanges: (expandedState: boolean) => void;
-  onPlay: () => void;
-  onPressLike: () => void;
-  onPressMyList: () => void;
-  onPressUnlike: () => void;
-  posterSrc: string;
-  videoData: {
-    coincidence: number;
-    duration: number;
-    parentalAge: number;
-    src: string;
-    tags: Array<string>;
-    title: string;
-  };
+  index: number;
+  onExpand: (videoId: string) => void;
+  onExpandedStateChanges: (index: number, expandedState: boolean) => void;
+  onPlay: (videoId: string) => void;
+  onPressLike: (videoId: string) => void;
+  onPressMyList: (videoId: string) => void;
+  onPressUnlike: (videoId: string) => void;
+  videoData: VideoData;
 }
 
 const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
+    index,
     onExpand,
     onExpandedStateChanges,
     onPlay,
     onPressLike,
     onPressMyList,
     onPressUnlike,
-    posterSrc,
     videoData
   } = props;
-  const { parentalAge, src } = videoData;
+  const { id, parentalAge, posterSrc, src } = videoData;
 
   const [ expanded, setExpanded ] = useState(false);
 
   const handleSetExpanded = (expandedState: boolean): void => {
     setExpanded(expandedState);
-    onExpandedStateChanges(expandedState);
+    onExpandedStateChanges(index, expandedState);
   };
+
+  const handleExpand = (): void => { onExpand(id); };
+
+  const handleLike = (): void => { onPressLike(id); };
+
+  const handleMyList = (): void => { onPressMyList(id); };
+
+  const handleUnlike = (): void => { onPressUnlike(id); };
+
+  const handlePlay = (): void => { onPlay(id); };
 
   const renderVideoOverlay = (playing: boolean): ReactElement => {
     return (
       <VideoCardOverlay
-        onPressExpand={onExpand}
-        onPressPlay={onPlay}
+        onPressExpand={handleExpand}
+        onPressPlay={handlePlay}
         playing={playing}
         videoData={videoData} />
     );
@@ -75,11 +79,10 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           ]}
           loop
           muted={false}
-          onPressLike={onPressLike}
-          onPressMyList={onPressMyList}
-          onPressUnlike={onPressUnlike}
+          onPressLike={handleLike}
+          onPressMyList={handleMyList}
+          onPressUnlike={handleUnlike}
           parentalAge={parentalAge}
-          playing
           renderOverlay={renderVideoOverlay}
           size={PLAYER_CONTROLS_SIZES.small}
           src={src} />
