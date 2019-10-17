@@ -2,6 +2,7 @@ export const CALC_INTERPOLATION_FULL_PERCENT = 100.0;
 export const CALC_INTERPOLATION_MAX_RANGE_DEFAULT = 1.0;
 export const CALC_INTERPOLATION_MIN_DEFAULT = 0.05;
 export const CALC_INTERPOLATION_MIN_RANGE_DEFAULT = 0.0;
+export const COMMON_WILDCARD = '%s';
 export const I18_DEFAULT_TRANSLATION = '####';
 export const I18_KEY_SEPARATOR = '-';
 export const I18_LANG_EN = 'en';
@@ -18,3 +19,5 @@ export const VIDEO_CARDS_AMOUNT = {
   MOBILE_PORTRAIT: 2
 };
 export const VIDEO_OVERLAY_SEPARATOR_CHAR = '•';
+export const VIDEO_SLIDER_TRANSLATION_COEF = 94.4;
+export const VIDEO_SLIDER_TRANSLATION_EXP = 'translateX(-%svw)';

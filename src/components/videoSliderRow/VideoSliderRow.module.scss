@@ -5,23 +5,28 @@ $slider-cards-amount-tablet: 4;
 $slider-cards-amount-mobile-landscape: 3;
 $slider-cards-amount-mobile-portrait: 2;
 
+@function calc-slider-card-width($cards-amount) {
+  @return (100vw - (($layout-spacing-lg) * 2 + $layout-spacing-xsm * ($cards-amount - 1))) / $cards-amount;
+}
+
+@function calc-slider-translation-base($cards-amount) {
+  $card-width: calc-slider-card-width($cards-amount);
+  @return $card-width * ($layout-video-card-grow-factor - 1)
+}
+
 @mixin calculate-cards-size($cards-amount) {
-  $slider-card-width: (100vw - (($layout-spacing-lg) * 2 + $layout-spacing-xsm * ($cards-amount - 1))) / $cards-amount;
-  $slider-card-height: $slider-card-width * (9 / 16);
-  $translation-dimension: ($slider-card-width * ($layout-video-card-grow-factor - 1));
+  $slider-card-width: calc-slider-card-width($cards-amount);
+  $slider-card-height: $slider-card-width / $player-aspect-ratio-coef;
 
   height: $slider-card-height;
   width: $slider-card-width;
 
   &__expanded ~ .sliderCard {
-    transform: translateX($translation-dimension);
+    transform: translateX(calc-slider-translation-base($cards-amount));
   }
 }
 
 @mixin calculate-cards-left-movement($cards-amount) {
-  $slider-card-width: (100vw - (($layout-spacing-lg) * 2 + $layout-spacing-xsm * ($cards-amount - 1))) / $cards-amount;
-  $translation-dimension: -($slider-card-width * ($layout-video-card-grow-factor - 1) / 2);
-
   &__expandedFirst {
     &:hover {
       margin-left: 0 !important;
@@ -30,12 +35,14 @@ $slider-cards-amount-mobile-portrait: 2;
 
   &__expandedLast {
     &:hover {
-      margin-left: $translation-dimension * 2 !important;
+      margin-left: - calc-slider-translation-base($cards-amount) !important;
     }
   }
 
-  &:hover {
-    margin-left: $translation-dimension;
+  &__hovered {
+    &:hover {
+      margin-left: - calc-slider-translation-base($cards-amount) * 0.5;
+    }
   }
 }
 
@@ -96,14 +103,14 @@ $slider-cards-amount-mobile-portrait: 2;
 }
 
 .scrollButtonArea {
+  cursor: pointer;
+  border: none;
+  outline: none;
   position: absolute;
   top: 0;
   bottom: 0;
   padding: 0 $layout-spacing-md;
   width: $layout-spacing-lg;
-  cursor: pointer;
-  border: none;
-  outline: none;
   z-index: 40;
   opacity: 0;
   background-color: rgba(
@@ -111,7 +118,6 @@ $slider-cards-amount-mobile-portrait: 2;
     $colors-opacity-traslucent
   );
   transition: opacity $layout-transition-time;
-  z-index: 2000;
 
   i {
     transition: transform $layout-transition-time-quick;
@@ -121,7 +127,7 @@ $slider-cards-amount-mobile-portrait: 2;
 
   &:hover {
     i {
-      transform: scaleY(1.5) !important;
+      transform: scaleY($layout-button-grow-factor-large) !important;
     }
   }
 

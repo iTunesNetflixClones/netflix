@@ -20,8 +20,8 @@ const videoSample = {
   duration: 7380000,
   parentalAge: 13,
   posterSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPRIpRuD5lllcBiArrj1JpgCJDm0XQ7AwdUsMHH01Mdx4QzO5t",
-  tags: ['Changos', 're changos', 'changazos'],
-  title: 'Los Simpsons',
+  tags: ['Animation', 'Comedy', 'Family'],
+  title: 'The Simpsons',
   src: "https://www.youtube.com/embed/xXEhIL4gj5o?autoplay=1"
 };
 
@@ -44,7 +44,7 @@ const VideoOverview: React.FunctionComponent<Props>  = () => (
         onPressLike={(): void => {}}
         onPressMyList={(): void => {}}
         onPressUnlike={(): void => {}}
-        titleText="Changos"
+        titleText="Recommended"
         videosList={videosList} />
     </div>
     <div style={{position: 'relative', zIndex: 30 }}>
@@ -53,7 +53,7 @@ const VideoOverview: React.FunctionComponent<Props>  = () => (
         onPressLike={(): void => {}}
         onPressMyList={(): void => {}}
         onPressUnlike={(): void => {}}
-        titleText="Changos"
+        titleText="Trends"
         videosList={videosList} />
     </div>
   </div>

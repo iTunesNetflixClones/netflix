@@ -33,6 +33,6 @@ export const checkVideoCardPosition = (cardIndex: number, currentScreenWidth: nu
   const cardPositionInPage: number = getCardPositionInPage(cardIndex, cardsPerPage);
   return {
     isFirstInPage: cardPositionInPage === 1,
-    isLastInPage: cardPositionInPage === 0
+    isLastInPage: cardIndex !== -1 && cardPositionInPage === 0
   };
 };

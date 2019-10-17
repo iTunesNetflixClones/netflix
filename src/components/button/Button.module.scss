@@ -19,6 +19,7 @@
     $colors-background-primary,
     $colors-opacity-traslucent
   );
+  transition: transform $layout-transition-time-quick;
 
   @extend %fonts-ff-bold;
   font-size: $font-size;
@@ -31,8 +32,7 @@
   &:hover {
     background-color: $colors-background-secondary;
     color: $colors-font-contrast;
-    animation: enlarge 0.2s ease-in;
-    transform: scale(1.1);
+    transform: scale($layout-button-grow-factor-small);
   }
 
   &__circle {
@@ -91,5 +91,3 @@
 .buttonAreaSmall {
   @include buttonArea($size: "small")
 }
-
-@include create-enlarge-anim($from: 1, $to: 1.1);
