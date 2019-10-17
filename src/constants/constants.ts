@@ -6,5 +6,15 @@ export const I18_DEFAULT_TRANSLATION = '####';
 export const I18_KEY_SEPARATOR = '-';
 export const I18_LANG_EN = 'en';
 export const I18N_REPLACEMENT_WILDCARD = '%s';
+export const SCREEN_DESKTOP_MIN_WIDTH = 1171;
+export const SCREEN_MOBILE_LANDSCAPE_MIN_WIDTH = 641;
+export const SCREEN_MOBILE_PORTRAIT_MIN_WIDTH = 0;
+export const SCREEN_TABLET_MIN_WIDTH = 841;
 export const TOPBAR_SCROLL_INTERPOLATE_RANGE: Array<number> = [0, 100];
+export const VIDEO_CARDS_AMOUNT = {
+  DESKTOP: 6,
+  TABLET: 4,
+  MOBILE_LANDSCAPE: 3,
+  MOBILE_PORTRAIT: 2
+};
 export const VIDEO_OVERLAY_SEPARATOR_CHAR = '•';

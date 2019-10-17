@@ -11,6 +11,7 @@
     "ecmaFeatures":  {
       "jsx":  true
     },
+    "extraFileExtensions": [".scss"],
     "project": "./tsconfig.json",
     "tsconfigRootDir": "./"
   },

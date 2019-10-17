@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 // @Constants
 import { BUTTON_MODIFIERS } from '../../constants/enums';
 import { VIDEO_OVERLAY_SEPARATOR_CHAR } from '../../constants/constants';
+import { VideoData } from '../../constants/types';
 
 // @Components
 import Button from '../button/Button';
@@ -23,14 +24,7 @@ interface PropTypes {
   onPressExpand: () => void;
   onPressPlay: () => void;
   playing: boolean;
-  videoData: {
-    coincidence: number;
-    duration: number;
-    parentalAge: number;
-    src: string;
-    tags: Array<string>;
-    title: string;
-  };
+  videoData: VideoData;
 }
 
 const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
@@ -87,7 +81,7 @@ const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) 
             injectedTexts={formattedVideoDuration.values}
             textKey={formattedVideoDuration.textKey}/>
         </div>
-        <div className={styles.tagsRow}>
+        <div >
           { renderTags() }
         </div>
       </div>

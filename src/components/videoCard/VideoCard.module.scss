@@ -2,17 +2,22 @@
 
 .container {
   position: relative;
-  @include calculate-aspect-height($width: 18vw);
-  margin-left: 150px;
-  margin-bottom: 150px;
+  height: 100%;
+  width: 100%;
+  transition: transform $layout-transition-time;
+  transform-origin: center left;
 
   .playerContainer {
-    @extend %layout-absolute-fill;
+    position: absolute;
+    left: $player-container-scale-position-correction;
+    top: $player-container-scale-position-correction;
+    bottom: $player-container-scale-position-correction;
+    right: $player-container-scale-position-correction;
+    transform: scale($player-container-scale-correction);
   }
 
   &:hover {
-    animation: grow 0.2s ease-in;
-    @include calculate-aspect-height($width: 18vw * 1.7);
+    transform: scale($layout-video-card-grow-factor);
   }
 }
 
@@ -20,5 +25,3 @@
   height: 100%;
   width: 100%;
 }
-
-@include animate-apect-ratio-size($from-width: 18vw, $size-multiplier: 1.7);
