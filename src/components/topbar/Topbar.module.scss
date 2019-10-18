@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   padding: $layout-spacing-sm $layout-spacing-lg;
-  z-index: 100;
+  z-index: $layout-topbar-z-index;
 }
 
 .background {
@@ -19,7 +19,7 @@
   bottom: 0;
   left: 0;
   background-color: $colors-background-primary;
-  z-index: -1;
+  z-index: $layout-hidden-z-index;
 }
 
 .logoContainer {

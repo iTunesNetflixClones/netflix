@@ -54,21 +54,23 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
 
   return (
     <div className={styles.wrapper}>
-      <ReactPlayer
-        loop={loop}
-        ref={player}
-        height="100%"
-        width="100%"
-        controls={false}
-        frameBorder="0"
-        modestbranding={1}
-        muted={muted}
-        onEnded={togglePlaying}
-        playing={playing}
-        showinfo={0}
-        volume={1}
-        url={src}
-      />
+      <div className={styles.playerArea}>
+        <ReactPlayer
+          loop={loop}
+          ref={player}
+          height="100%"
+          width="100%"
+          controls={false}
+          frameBorder="0"
+          modestbranding={1}
+          muted={muted}
+          onEnded={togglePlaying}
+          playing={playing}
+          showinfo={0}
+          volume={1}
+          url={src}
+        />
+      </div>
       <div>
         {renderOverlay && renderOverlay(playing)}
         <PlayerControls

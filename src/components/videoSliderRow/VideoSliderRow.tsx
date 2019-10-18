@@ -5,6 +5,10 @@ import get from 'lodash/get';
 // @Styles
 import styles from './VideoSliderRow.module.scss';
 
+// @Components
+import FooterButton from '../footerButton/FooterButton';
+import VideoDataTabbedView from '../videoDataTabbedView/VideoDataTabbedView';
+
 // @Constants
 import {
   COMMON_WILDCARD,
@@ -35,6 +39,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   const [ currentIndex, setCurrentIndex ] = useState(0);
   const [ expandedIndex, setExpandedIndex ] = useState(-1);
   const [ scrollContentWidth, setScrollContentWidth ] = useState(0);
+  const [ selectedIndex, setSelectedIndex ] = useState(-1);
 
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
 
@@ -43,7 +48,14 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     return ((index + 1) * screenWidth) > scrollContentWidth;
   };
 
-  const handleExpandVideo = (): void => {};
+  const handleExpandVideo = (index: number): void => {
+    setSelectedIndex(index);
+  };
+
+  const handleShrinkVideo = (): void => {
+    setSelectedIndex(-1);
+    setExpandedIndex(-1);
+  };
 
   const handleLoad = (): void => {
     const totalWidth: number = get(sliderScrollRef, 'current.scrollWidth', 0);
@@ -65,9 +77,21 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     return VIDEO_SLIDER_TRANSLATION_EXP.replace(COMMON_WILDCARD, offset.toString());
   };
 
+  const renderExpandButton = (index: number, isSelected: boolean): ReactElement | null => {
+    const shouldShowFooter = index === expandedIndex && !isSelected && selectedIndex !== -1;
+    if(!shouldShowFooter) {
+      return null;
+    }
+    return (
+      <FooterButton
+        onPress={handleExpandVideo.bind(null, index)}/>
+    );
+  };
+
   const renderVideoCards = (): Array<ReactElement> => (
     videosList.map((video, indexInRow) => {
-      const isExpanded: boolean = indexInRow === expandedIndex;
+      const isSelected: boolean = selectedIndex === indexInRow;
+      const isExpanded: boolean = selectedIndex === -1 && indexInRow === expandedIndex;
       const className: string = `${styles.sliderCard} ${isExpanded ? styles.sliderCard__expanded : ''}`;
       return (
         <div
@@ -76,12 +100,14 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
           <VideoCard
             index={indexInRow}
             isExpanded={isExpanded}
+            isSelected={isSelected}
             onExpand={handleExpandVideo}
             onExpandedStateChanges={handleExpandedStateChange}
             onPlay={onPlayVideo}
             onPressLike={onPressLike}
             onPressMyList={onPressMyList}
             onPressUnlike={onPressUnlike}
+            renderExpandButton={renderExpandButton.bind(null, indexInRow, isSelected)}
             videoData={video}/>
         </div>
       );
@@ -91,7 +117,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   const renderScrollButton = (backOrientation: boolean): ReactElement | null => {
     const iconClass: string = backOrientation ? 'fa fa-chevron-left' : 'fa fa-chevron-right';
     const buttonClass = `${styles.scrollButtonArea} ${backOrientation ? styles.scrollButtonArea__left : styles.scrollButtonArea__right}`;
-    if((backOrientation && currentIndex === 0) || (!backOrientation && isLastIndex(currentIndex))) {
+    if((selectedIndex !== -1) || (backOrientation && currentIndex === 0) || (!backOrientation && isLastIndex(currentIndex))) {
       return null;
     }
     return (
@@ -103,25 +129,39 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     );
   };
 
+  const renderDetailsTab = (): ReactElement | null => {
+    if(selectedIndex === -1) {
+      return null;
+    }
+    return (
+      <VideoDataTabbedView
+        onClose={handleShrinkVideo}
+        videoData={videosList[selectedIndex]}/>
+    );
+  };
+
   const currentScreenWidth: number = window.innerWidth;
   const positionCheck: PositionCheck = checkVideoCardPosition(expandedIndex, currentScreenWidth);
-  const mouseOverClass: string = expandedIndex !== -1 ? styles.sliderRow__hovered : '';
-  const firstInPageClass: string = positionCheck.isFirstInPage ? styles.sliderRow__expandedFirst : '';
-  const lastInPageClass: string = positionCheck.isLastInPage ? styles.sliderRow__expandedLast : '';
+  const mouseOverClass: string = (expandedIndex !== -1 && selectedIndex === -1) ? styles.sliderRow__hovered : '';
+  const firstInPageClass: string = (mouseOverClass && positionCheck.isFirstInPage) ? styles.sliderRow__expandedFirst : '';
+  const lastInPageClass: string = (mouseOverClass && positionCheck.isLastInPage) ? styles.sliderRow__expandedLast : '';
   const className: string = `${styles.sliderRow} ${mouseOverClass} ${firstInPageClass || lastInPageClass}`;
 
   return (
-    <div className={styles.sliderFrame}>
-      { renderScrollButton(true) }
-      <div
-        onLoad={handleLoad}
-        ref={sliderScrollRef}
-        style={{ transform: getTranslationStyle() }}
-        className={className}>
-        { renderVideoCards() }
+    <React.Fragment>
+      <div className={styles.sliderFrame}>
+        { renderScrollButton(true) }
+        <div
+          onLoad={handleLoad}
+          ref={sliderScrollRef}
+          style={{ transform: getTranslationStyle() }}
+          className={className}>
+          { renderVideoCards() }
+        </div>
+        { renderScrollButton(false) }
       </div>
-      { renderScrollButton(false) }
-    </div>
+      { renderDetailsTab() }
+    </React.Fragment>
   );
 };
 

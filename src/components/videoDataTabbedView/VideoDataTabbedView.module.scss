@@ -1,0 +1,51 @@
+@import '../../config//theme.scss';
+
+.mainContainer {
+  position: relative;
+  @include calculate-aspect-height(100vw, $video-details-aspect-ratio-coef);
+  background-color: $colors-background-tertiary;
+}
+
+.bottomTabs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: $layout-z-index-mid;
+}
+
+.tab {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: $layout-spacing-sm $layout-spacing-xsm;
+  margin: 0 $layout-spacing-md;
+
+  &__selected {
+    border-bottom: $colors-border-tab solid $layout-tab-border_width;
+  }
+}
+
+.tabText {
+  @extend %fonts-ff-regular;
+  color: $colors-font-primary;
+  font-size: $font-size-lg;
+  text-transform: uppercase;
+}
+
+.closeButton {
+  position: absolute;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  top: $layout-spacing-sm;
+  right: $layout-spacing-md;
+  z-index: $layout-z-index-mid;
+
+  @extend %fonts-ff-bold;
+  font-size: $font-size-xlg;
+  color: $colors-font-primary;
+}

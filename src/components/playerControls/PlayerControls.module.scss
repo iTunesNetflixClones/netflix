@@ -15,7 +15,7 @@
   justify-content: center;
   right: 0;
   bottom: $layout-lg-controls-bottom-space;
-  z-index: 15;
+  z-index: $layout-z-index-top;
 
   &__small {
     bottom: $layout-sm-controls-bottom-space;

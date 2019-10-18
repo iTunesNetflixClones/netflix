@@ -19,9 +19,24 @@
   &__expanded {
     transform: scale($layout-video-card-grow-factor);
   }
+
+  &__selected {
+    border: $layout-video-card-border_width solid $colors-border-active;
+    transform: translateY(-$layout-video-card-border_width);
+  }
 }
 
 .image {
   height: 100%;
   width: 100%;
+}
+
+.indicator {
+  width: 0;
+  height: 0;
+  border-left: $layout-spacing-md solid transparent;
+  border-right: $layout-spacing-md solid transparent;
+  margin: 0 auto;
+  border-top: $layout-spacing-sm solid $colors-border-active;
+  z-index: $layout-z-index-top;
 }

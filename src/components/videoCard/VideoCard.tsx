@@ -1,5 +1,5 @@
 // @Vendors
-import React, { useState, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 // @Constants
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
@@ -16,12 +16,14 @@ import styles from './VideoCard.module.scss';
 interface PropTypes {
   index: number;
   isExpanded: boolean;
-  onExpand: (videoId: string) => void;
+  isSelected: boolean;
+  onExpand: (index: number) => void;
   onExpandedStateChanges: (index: number, expandedState: boolean) => void;
   onPlay: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
   onPressMyList: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
+  renderExpandButton?: () => void;
   videoData: VideoData;
 }
 
@@ -29,24 +31,23 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     index,
     isExpanded,
+    isSelected,
     onExpand,
     onExpandedStateChanges,
     onPlay,
     onPressLike,
     onPressMyList,
     onPressUnlike,
+    renderExpandButton,
     videoData
   } = props;
   const { id, parentalAge, posterSrc, src } = videoData;
 
-  const [ expanded, setExpanded ] = useState(false);
-
   const handleSetExpanded = (expandedState: boolean): void => {
-    setExpanded(expandedState);
     onExpandedStateChanges(index, expandedState);
   };
 
-  const handleExpand = (): void => { onExpand(id); };
+  const handleExpand = (): void => { onExpand(index); };
 
   const handleLike = (): void => { onPressLike(id); };
 
@@ -67,7 +68,7 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   };
 
   const renderPlayer = (): ReactElement | null => {
-    if(!expanded) {
+    if(!isExpanded) {
       return null;
     }
     return (
@@ -92,7 +93,16 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     );
   };
 
-  const className = `${styles.container} ${isExpanded ? styles.container__expanded : ''}`;
+  const renderIndicator = (): ReactElement | null => {
+    if(!isSelected) {
+      return null;
+    }
+    return (
+      <div className={styles.indicator}/>
+    );
+  };
+
+  const className = `${styles.container} ${isExpanded ? styles.container__expanded : ''} ${isSelected ? styles.container__selected : ''}`;
 
   return (
     <div
@@ -103,8 +113,14 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         className={styles.image}
         src={posterSrc}/>
       { renderPlayer() }
+      { renderIndicator() }
+      { renderExpandButton && renderExpandButton() }
     </div>
   );
+};
+
+VideoCard.defaultProps = {
+  renderExpandButton: undefined
 };
 
 export default VideoCard;

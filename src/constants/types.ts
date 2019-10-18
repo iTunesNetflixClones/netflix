@@ -1,5 +1,6 @@
 export interface VideoData {
   id: string;
+  isSeries: boolean;
   coincidence: number;
   description: string;
   duration: number;
