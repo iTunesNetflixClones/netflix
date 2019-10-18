@@ -2,7 +2,7 @@
 
 .container {
   @extend %layout-absolute-fill;
-  z-index: 10;
+  z-index: $layout-z-index-low;
 }
 
 .dataContainer {

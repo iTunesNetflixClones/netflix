@@ -15,6 +15,7 @@ type Props = InferProps<typeof propTypes>;
 
 const videoSample = {
   id: '1',
+  isSeries: true,
   coincidence: 60,
   description: 'The series is a satirical depiction of working-class life, epitomized by the Simpson family, which consists of Homer, Marge, Bart, Lisa, and Maggie. The show is set in the fictional town of Springfield and parodies American culture and society, television, and the human condition.',
   duration: 7380000,

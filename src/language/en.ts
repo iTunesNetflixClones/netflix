@@ -25,5 +25,9 @@ export default {
   },
   videoOverlay: {
     coincidence: '%s% for you'
+  },
+  videoTabbedDetails: {
+    generalDescription: 'General description',
+    episodes: 'Episodes'
   }
 };

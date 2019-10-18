@@ -3,7 +3,7 @@
 .container {
   @extend %layout-absolute-fill;
   background: linear-gradient(transparent 40%, $colors-background-primary);
-  z-index: 10;
+  z-index: $layout-z-index-low;
 }
 
 .innerContainer {

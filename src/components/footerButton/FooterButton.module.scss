@@ -4,11 +4,13 @@
   cursor: pointer;
   position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background-color: transparent;
   border: none;
   outline: none;
-
+  z-index: $layout-z-index-top;
 
   color: $colors-font-primary;
   font-size: $font-size-lg;

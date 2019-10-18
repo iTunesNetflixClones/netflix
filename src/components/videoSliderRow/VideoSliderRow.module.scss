@@ -48,7 +48,8 @@ $slider-cards-amount-mobile-portrait: 2;
 
 .sliderFrame {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  z-index: $layout-z-index-low;
 
   .sliderRow {
     padding-left: $layout-spacing-lg;
@@ -56,6 +57,7 @@ $slider-cards-amount-mobile-portrait: 2;
     transition: all $layout-transition-time;
 
     .sliderCard {
+      position: relative;
       display: inline-block;
       margin-right: $layout-spacing-xsm;
       transition: all $layout-transition-time;
@@ -111,7 +113,7 @@ $slider-cards-amount-mobile-portrait: 2;
   bottom: 0;
   padding: 0 $layout-spacing-md;
   width: $layout-spacing-lg;
-  z-index: 40;
+  z-index: $layout-z-index-mid;
   opacity: 0;
   background-color: rgba(
     $colors-background-primary,
