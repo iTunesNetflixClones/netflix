@@ -3,13 +3,11 @@ import React, { ReactElement } from 'react';
 
 // @Constants
 import { VideoData } from '../../constants/types';
-import { BUTTON_MODIFIERS, PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES, SPACING } from '../../constants/enums';
+import { BUTTON_MODIFIERS, SPACING } from '../../constants/enums';
 
 // @Components
 import Button from '../button/Button';
-import FormattedText from '../formattedText/FormattedText';
 import Label from '../label/Label';
-import Player from '../player/Player';
 import VideoAddionalInfo from '../videoAdditionalnfo/VideoAdditionalInfo';
 import VideoInfoRow from '../videoInfoRow/VideoInfoRow';
 
@@ -44,12 +42,6 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     onPressUnlike(videoData.id);
   };
 
-  const renderVideoOverlay = (): ReactElement => {
-    return (
-      <div className={styles.videoOverlay} />
-    );
-  };
-
   const renderButtonsRow = (): ReactElement => {
     return (
       <div className={styles.buttonsRow}>
@@ -82,12 +74,6 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.dataContainer}>
-        <div className={styles.logoArea}>
-          <FormattedText
-            className={styles.logoText}
-            textKey="placeholders-videoLogo"
-          />
-        </div>
         <VideoInfoRow
           showYear
           videoData={videoData}/>
@@ -97,15 +83,6 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         { renderButtonsRow() }
         <VideoAddionalInfo
           videoData={videoData}/>
-      </div>
-      <div className={styles.playerContainer}>
-        <Player
-          controlsSet={[PLAYER_CONTROLS.volumeControl]}
-          loop={false}
-          parentalAge={videoData.parentalAge}
-          renderOverlay={renderVideoOverlay}
-          size={PLAYER_CONTROLS_SIZES.regular}
-          src={videoData.src} />
       </div>
     </div>
   );

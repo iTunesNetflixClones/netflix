@@ -3,6 +3,14 @@ export const CALC_INTERPOLATION_MAX_RANGE_DEFAULT = 1.0;
 export const CALC_INTERPOLATION_MIN_DEFAULT = 0.05;
 export const CALC_INTERPOLATION_MIN_RANGE_DEFAULT = 0.0;
 export const COMMON_WILDCARD = '%s';
+export const EPISODE_CARDS_AMOUNT = {
+  DESKTOP: 5,
+  TABLET: 3,
+  MOBILE_LANDSCAPE: 2,
+  MOBILE_PORTRAIT: 1
+};
+export const EPISODE_SLIDER_TRANSLATION_COEF = 97;
+export const EPISODE_SLIDER_TRANSLATION_EXP = 'translateX(-%svw)';
 export const I18_DEFAULT_TRANSLATION = '####';
 export const I18_KEY_SEPARATOR = '-';
 export const I18_LANG_EN = 'en';

@@ -1,0 +1,49 @@
+@import '../../config//theme.scss';
+
+.sliderButtonArea {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 1;
+  padding: 0 $layout-spacing-md;
+  width: $layout-spacing-lg;
+  z-index: $layout-z-index-mid;
+  background-color: rgba(
+    $colors-background-primary,
+    $colors-opacity-traslucent
+  );
+  transition: opacity $layout-transition-time;
+
+  i {
+    transition: transform $layout-transition-time-quick;
+    font-size: $font-size-xlg;
+    color: $colors-font-primary;
+  }
+
+  &__unmounted {
+    cursor: none;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &__hidden {
+    opacity: 0;
+  }
+
+  &:hover {
+    i {
+      transform: scaleY($layout-button-grow-factor-large) !important;
+    }
+  }
+
+  &__left {
+    left: 0;
+  }
+
+  &__right {
+    right: 0;
+  }
+}

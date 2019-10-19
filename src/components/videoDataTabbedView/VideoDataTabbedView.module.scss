@@ -4,6 +4,62 @@
   position: relative;
   @include calculate-aspect-height(100vw, $video-details-aspect-ratio-coef);
   background-color: $colors-background-tertiary;
+  overflow: hidden;
+
+  @media screen and (max-width: 1170px) {
+    @include calculate-aspect-height(100vw, $video-details-aspect-ratio-coef-shrinked);
+  }
+}
+
+.innerContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.headerContainer {
+  position: relative;
+  height: $layout-spacing-details-header-height;
+  width: $layout-spacing-details-header-width;
+  padding: $layout-spacing-md 0 $layout-spacing-md $layout-spacing-lg;
+  margin-bottom: $layout-spacing-md;
+  z-index: $layout-z-index-mid;
+}
+
+.playerContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  @include calculate-aspect-height($video-details-video-width);
+}
+
+.videoOverlay {
+  @extend %layout-absolute-fill;
+  background: linear-gradient(to right, $colors-background-tertiary 10%, transparent);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  height: $layout-spacing-details-header-height;
+  width: $layout-spacing-details-header-width;
+  border: 1px solid $colors-font-secondary;
+  margin-bottom: $layout-spacing-md;
+  transition: all $layout-transition-time-quick;
+
+  &__shrinked  {
+    height: $layout-spacing-details-header-height * $video-details-header-shrink-factor;
+    width: $layout-spacing-details-header-width * $video-details-header-shrink-factor;
+  }
+}
+
+.logoText {
+  @extend %fonts-ff-bold;
+  font-size: $font-size-xlg;
+  color: $colors-font-primary;
+  padding: $layout-spacing-md;
 }
 
 .bottomTabs {
@@ -20,7 +76,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  padding: $layout-spacing-sm $layout-spacing-xsm;
+  padding: $layout-spacing-xsm 0;
   margin: 0 $layout-spacing-md;
 
   &__selected {

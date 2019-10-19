@@ -1,0 +1,49 @@
+@import '../../config//theme.scss';
+
+$slider-cards-amount-desktop: 5;
+$slider-cards-amount-tablet: 4;
+$slider-cards-amount-mobile-landscape: 4;
+$slider-cards-amount-mobile-portrait: 3;
+
+@function calc-slider-card-width($cards-amount) {
+  @return (100vw - (($layout-spacing-lg) * 2 + $layout-spacing-lg * ($cards-amount - 1))) / $cards-amount;
+}
+
+.sliderFrame {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  margin-top: $layout-spacing-md;
+  margin-left: -$layout-spacing-lg;
+  z-index: $layout-z-index-low;
+
+  .sliderRow {
+    padding-left: $layout-spacing-lg;
+    white-space: nowrap;
+    transition: all $layout-transition-time;
+
+    .sliderCard {
+      position: relative;
+      display: inline-block;
+      margin-right: $layout-spacing-lg;
+      transition: all $layout-transition-time;
+      transform-origin: center left;
+
+      @media screen and (min-width: 1171px) {
+        @include calculate-cards-size($slider-cards-amount-desktop, $aspect-ratio: $episode-aspect-ratio-coef);
+      }
+
+      @media screen and (max-width: 1170px) and (min-width: 841px) {
+        @include calculate-cards-size($slider-cards-amount-tablet, $aspect-ratio: $episode-aspect-ratio-coef)
+      }
+
+      @media screen and (max-width: 840px) and (min-width: 641px) {
+        @include calculate-cards-size($slider-cards-amount-mobile-landscape, $aspect-ratio: $episode-aspect-ratio-coef);
+      }
+
+      @media screen and (max-width:640px) {
+        @include calculate-cards-size($slider-cards-amount-mobile-portrait, $aspect-ratio: $episode-aspect-ratio-coef);
+      }
+    }
+  }
+}

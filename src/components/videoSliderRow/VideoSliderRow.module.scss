@@ -14,18 +14,6 @@ $slider-cards-amount-mobile-portrait: 2;
   @return $card-width * ($layout-video-card-grow-factor - 1)
 }
 
-@mixin calculate-cards-size($cards-amount) {
-  $slider-card-width: calc-slider-card-width($cards-amount);
-  $slider-card-height: $slider-card-width / $player-aspect-ratio-coef;
-
-  height: $slider-card-height;
-  width: $slider-card-width;
-
-  &__expanded ~ .sliderCard {
-    transform: translateX(calc-slider-translation-base($cards-amount));
-  }
-}
-
 @mixin calculate-cards-left-movement($cards-amount) {
   &__expandedFirst {
     &:hover {
@@ -64,19 +52,19 @@ $slider-cards-amount-mobile-portrait: 2;
       transform-origin: center left;
 
       @media screen and (min-width: 1171px) {
-        @include calculate-cards-size($cards-amount: $slider-cards-amount-desktop);
+        @include calculate-cards-size($cards-amount: $slider-cards-amount-desktop, $class-name: 'sliderCard');
       }
 
       @media screen and (max-width: 1170px) and (min-width: 841px) {
-        @include calculate-cards-size($cards-amount: $slider-cards-amount-tablet);
+        @include calculate-cards-size($cards-amount: $slider-cards-amount-tablet, $class-name: 'sliderCard');
       }
 
       @media screen and (max-width: 840px) and (min-width: 641px) {
-        @include calculate-cards-size($cards-amount: $slider-cards-amount-mobile-landscape);
+        @include calculate-cards-size($cards-amount: $slider-cards-amount-mobile-landscape, $class-name: 'sliderCard');
       }
 
       @media screen and (max-width:640px) {
-        @include calculate-cards-size($cards-amount: $slider-cards-amount-mobile-portrait);
+        @include calculate-cards-size($cards-amount: $slider-cards-amount-mobile-portrait, $class-name: 'sliderCard');
       }
     }
 
@@ -95,49 +83,5 @@ $slider-cards-amount-mobile-portrait: 2;
     @media screen and (max-width:640px) {
       @include calculate-cards-left-movement($cards-amount: $slider-cards-amount-mobile-portrait);
     }
-  }
-
-  &:hover {
-    .scrollButtonArea {
-      opacity: 1;
-    }
-  }
-}
-
-.scrollButtonArea {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  padding: 0 $layout-spacing-md;
-  width: $layout-spacing-lg;
-  z-index: $layout-z-index-mid;
-  opacity: 0;
-  background-color: rgba(
-    $colors-background-primary,
-    $colors-opacity-traslucent
-  );
-  transition: opacity $layout-transition-time;
-
-  i {
-    transition: transform $layout-transition-time-quick;
-    font-size: $font-size-xlg;
-    color: $colors-font-primary;
-  }
-
-  &:hover {
-    i {
-      transform: scaleY($layout-button-grow-factor-large) !important;
-    }
-  }
-
-  &__left {
-    left: 0;
-  }
-
-  &__right {
-    right: 0;
   }
 }

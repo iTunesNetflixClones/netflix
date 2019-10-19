@@ -7,18 +7,16 @@ import styles from './VideoSliderRow.module.scss';
 
 // @Components
 import FooterButton from '../footerButton/FooterButton';
+import SliderButton from '../sliderButton/SliderButton';
 import VideoDataTabbedView from '../videoDataTabbedView/VideoDataTabbedView';
 
 // @Constants
-import {
-  COMMON_WILDCARD,
-  VIDEO_SLIDER_TRANSLATION_COEF,
-  VIDEO_SLIDER_TRANSLATION_EXP
-} from '../../constants/constants';
+import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP } from '../../constants/constants';
 import { PositionCheck, VideoData } from '../../constants/types';
+import { SLIDER_BUTTON_TYPES } from '../../constants/enums';
 
 // @Helpers
-import { checkVideoCardPosition } from '../../utils/layoutHelper';
+import { checkVideoCardPosition, getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
 
 // @Components
 import VideoCard from '../videoCard/VideoCard';
@@ -32,21 +30,16 @@ interface PropTypes {
   videosList: Array<VideoData>;
 }
 
-
 const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { onPlayVideo, onPressLike, onPressMyList, onPressUnlike, videosList } = props;
 
+  const [ slideButtonVisible, setSlideButtonVisible ] = useState(false);
   const [ currentIndex, setCurrentIndex ] = useState(0);
   const [ expandedIndex, setExpandedIndex ] = useState(-1);
   const [ scrollContentWidth, setScrollContentWidth ] = useState(0);
   const [ selectedIndex, setSelectedIndex ] = useState(-1);
 
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
-
-  const isLastIndex = (index: number): boolean => {
-    const screenWidth: number = window.innerWidth;
-    return ((index + 1) * screenWidth) > scrollContentWidth;
-  };
 
   const handleExpandVideo = (index: number): void => {
     setSelectedIndex(index);
@@ -70,11 +63,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   const handleScroll = (isBack: boolean): void => {
     const nextIndex: number = currentIndex + (isBack ? -1 : 1);
     setCurrentIndex(nextIndex);
-  };
-
-  const getTranslationStyle = (): string => {
-    const offset: number = currentIndex * VIDEO_SLIDER_TRANSLATION_COEF;
-    return VIDEO_SLIDER_TRANSLATION_EXP.replace(COMMON_WILDCARD, offset.toString());
   };
 
   const renderExpandButton = (index: number, isSelected: boolean): ReactElement | null => {
@@ -114,21 +102,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     })
   );
 
-  const renderScrollButton = (backOrientation: boolean): ReactElement | null => {
-    const iconClass: string = backOrientation ? 'fa fa-chevron-left' : 'fa fa-chevron-right';
-    const buttonClass = `${styles.scrollButtonArea} ${backOrientation ? styles.scrollButtonArea__left : styles.scrollButtonArea__right}`;
-    if((selectedIndex !== -1) || (backOrientation && currentIndex === 0) || (!backOrientation && isLastIndex(currentIndex))) {
-      return null;
-    }
-    return (
-      <button
-        className={buttonClass}
-        onClick={handleScroll.bind(null, backOrientation)}>
-        <i className={iconClass}/>
-      </button>
-    );
-  };
-
   const renderDetailsTab = (): ReactElement | null => {
     if(selectedIndex === -1) {
       return null;
@@ -144,25 +117,41 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     );
   };
 
+  const isHovered = (expandedIndex !== -1 && selectedIndex === -1);
   const currentScreenWidth: number = window.innerWidth;
   const positionCheck: PositionCheck = checkVideoCardPosition(expandedIndex, currentScreenWidth);
-  const mouseOverClass: string = (expandedIndex !== -1 && selectedIndex === -1) ? styles.sliderRow__hovered : '';
-  const firstInPageClass: string = (mouseOverClass && positionCheck.isFirstInPage) ? styles.sliderRow__expandedFirst : '';
-  const lastInPageClass: string = (mouseOverClass && positionCheck.isLastInPage) ? styles.sliderRow__expandedLast : '';
+  const mouseOverClass: string = isHovered ? styles.sliderRow__hovered : '';
+  const firstInPageClass: string = (isHovered && positionCheck.isFirstInPage) ? styles.sliderRow__expandedFirst : '';
+  const lastInPageClass: string = (isHovered && positionCheck.isLastInPage) ? styles.sliderRow__expandedLast : '';
   const className: string = `${styles.sliderRow} ${mouseOverClass} ${firstInPageClass || lastInPageClass}`;
 
   return (
     <React.Fragment>
-      <div className={styles.sliderFrame}>
-        { renderScrollButton(true) }
+      <div
+        onMouseEnter={setSlideButtonVisible.bind(null, true)}
+        onMouseLeave={setSlideButtonVisible.bind(null, false)}
+        className={styles.sliderFrame}>
+        <SliderButton
+          isHidden={!slideButtonVisible}
+          isUnmounted={(selectedIndex !== -1) || currentIndex === 0}
+          onClick={handleScroll}
+          type={SLIDER_BUTTON_TYPES.back}/>
         <div
           onLoad={handleLoad}
           ref={sliderScrollRef}
-          style={{ transform: getTranslationStyle() }}
+          style={{ transform: getTranslationStyle({
+            pageIndex: currentIndex,
+            translationCoef: VIDEO_SLIDER_TRANSLATION_COEF,
+            translationExp: VIDEO_SLIDER_TRANSLATION_EXP
+          })}}
           className={className}>
           { renderVideoCards() }
         </div>
-        { renderScrollButton(false) }
+        <SliderButton
+          isHidden={!slideButtonVisible}
+          isUnmounted={(selectedIndex !== -1) || isLastPage(currentIndex, scrollContentWidth, window.innerWidth)}
+          onClick={handleScroll}
+          type={SLIDER_BUTTON_TYPES.next}/>
       </div>
       { renderDetailsTab() }
     </React.Fragment>
