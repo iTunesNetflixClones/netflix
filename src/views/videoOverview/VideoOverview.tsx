@@ -14,21 +14,26 @@ const propTypes = {};
 type Props = InferProps<typeof propTypes>;
 
 const videoSample = {
+  cast: ['Homer Simpson', 'Marge Simpson', 'Bart Simpson'],
   id: '1',
+  isNew: true,
   isSeries: true,
   coincidence: 60,
-  description: 'The series is a satirical depiction of working-class life, epitomized by the Simpson family, which consists of Homer, Marge, Bart, Lisa, and Maggie. The show is set in the fictional town of Springfield and parodies American culture and society, television, and the human condition.',
+  description: 'The series is a satirical depiction of working-class life. The show is set in the fictional town of Springfield and parodies American culture and society, television, and the human condition.',
   duration: 7380000,
+  genres: ['Animation', 'Comedy', 'Family'],
   parentalAge: 13,
   posterSrc: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPRIpRuD5lllcBiArrj1JpgCJDm0XQ7AwdUsMHH01Mdx4QzO5t",
-  tags: ['Animation', 'Comedy', 'Family'],
+  tags: ['Funny', 'Parody', 'American family'],
   title: 'The Simpsons',
-  src: "https://www.youtube.com/embed/xXEhIL4gj5o?autoplay=1"
+  seasonsAmount: 2,
+  src: "https://www.youtube.com/embed/xXEhIL4gj5o?autoplay=1",
+  year: 2016
 };
 
 const videosList: Array<VideoData> = [];
 for(let i = 0; i < 20; i++) {
-  videosList.push({ ...videoSample, id: `${i}`});
+  videosList.push({ ...videoSample, id: `${i}`, isNew: (i % 2 === 0), isSeries: (i % 3 === 0) });
 }
 
 const VideoOverview: React.FunctionComponent<Props>  = () => (

@@ -95,6 +95,18 @@ const Button: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       buttonModifiers,
       styles[`${baseButtonClassName}__redContent`]
     );
+    buttonModifiers = checkStyleModifier(
+      modifiers,
+      BUTTON_MODIFIERS.redBody,
+      buttonModifiers,
+      styles[`${baseButtonClassName}__redBody`]
+    );
+    buttonModifiers = checkStyleModifier(
+      modifiers,
+      BUTTON_MODIFIERS.upperCase,
+      buttonModifiers,
+      styles[`${baseButtonClassName}__upperCase`]
+    );
     return buttonModifiers;
   };
 

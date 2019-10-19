@@ -1,0 +1,26 @@
+@import '../../config//theme.scss';
+
+.addionalDataContainer {
+  margin-top: $layout-spacing-md;
+}
+
+.infoRow {
+  display: block;
+  margin-bottom: $layout-spacing-xsm;
+}
+
+.infoRowLabel {
+  display: inline;
+  @extend %fonts-ff-bold;
+  color: $colors-font-inactive;
+  font-size: $font-size-md;
+  margin-right: $layout-spacing-sm;
+}
+
+.infoRowText {
+  display: inline;
+  @extend %fonts-ff-regular;
+  color: $colors-font-inactive;
+  font-size: $font-size-md;
+  margin-right: $layout-spacing-sm;
+}

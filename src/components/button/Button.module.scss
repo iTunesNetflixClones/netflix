@@ -67,6 +67,19 @@
     }
   }
 
+  &__redBody {
+    background-color: $colors-button-primary;
+
+    &:hover {
+      color: $colors-font-primary;
+      background-color: $colors-button-active;
+    }
+  }
+
+  &__upperCase {
+    text-transform: uppercase;
+  }
+
   &__topSeparated {
     margin-top: $margin-size;
   }
