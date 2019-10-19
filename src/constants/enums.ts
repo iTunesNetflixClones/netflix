@@ -1,6 +1,8 @@
 export enum BUTTON_MODIFIERS {
   circle,
+  redBody,
   redContent,
+  upperCase,
   withBorder
 }
 export enum BUTTON_SIZES {

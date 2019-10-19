@@ -1,0 +1,30 @@
+@import '../../config//theme.scss';
+
+.row{
+  margin-bottom: $layout-spacing-xsm;
+}
+
+.coincidenceText {
+  display: inline;
+  @extend %fonts-ff-bold;
+  color: $colors-font-highlight;
+  font-size: $font-size-md;
+  margin-right: $layout-spacing-sm;
+}
+
+.parentalLabel {
+  display: inline;
+  @extend %fonts-ff-regular;
+  color: $colors-font-secondary;
+  font-size: $font-size-md;
+  margin: 0 $layout-spacing-sm;
+  padding: 0 $layout-spacing-sm;
+  border: $layout-button-border_width solid $colors-border-inactive;
+}
+
+.infoRowText {
+  display: inline;
+  @extend %fonts-ff-regular;
+  color: $colors-font-secondary;
+  font-size: $font-size-md;
+}

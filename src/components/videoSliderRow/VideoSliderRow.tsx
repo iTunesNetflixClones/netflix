@@ -136,6 +136,10 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     return (
       <VideoDataTabbedView
         onClose={handleShrinkVideo}
+        onPressPlay={onPlayVideo}
+        onPressMyList={onPressMyList}
+        onPressLike={onPressLike}
+        onPressUnlike={onPressUnlike}
         videoData={videosList[selectedIndex]}/>
     );
   };

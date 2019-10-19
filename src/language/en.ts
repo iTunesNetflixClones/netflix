@@ -23,11 +23,19 @@ export default {
   topbar: {
     buttonPlaceholder: 'button soon'
   },
-  videoOverlay: {
-    coincidence: '%s% for you'
+  videoDetails: {
+    cast: 'Cast:',
+    coincidence: '%s% for you',
+    genres: 'Genre:',
+    myList: 'My list',
+    new: 'New',
+    play: 'Play',
+    seasonsAmount: '%s Season',
+    seasonsAmountPlural: '%s Seasons',
+    tags: 'This title is:'
   },
   videoTabbedDetails: {
-    generalDescription: 'General description',
+    generalDescription: 'Overview',
     episodes: 'Episodes'
   }
 };

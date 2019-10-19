@@ -14,12 +14,16 @@ import styles from './VideoDataTabbedView.module.scss';
 
 // @PropTypes
 interface PropTypes {
+  onPressPlay: (videoId: string) => void;
+  onPressMyList: (videoId: string) => void;
+  onPressLike: (videoId: string) => void;
+  onPressUnlike: (videoId: string) => void;
   onClose: () => void;
   videoData: VideoData;
 }
 
 const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onClose, videoData } = props;
+  const { onClose, onPressPlay, onPressMyList, onPressLike, onPressUnlike, videoData } = props;
 
   const [ tabIndex, setTabIndex ] = useState(0);
 
@@ -62,6 +66,10 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
     if(tabIndex === 0) {
       return (
         <VideoDetails
+          onPressPlay={onPressPlay}
+          onPressMyList={onPressMyList}
+          onPressLike={onPressLike}
+          onPressUnlike={onPressUnlike}
           videoData={videoData}/>
       );
     }

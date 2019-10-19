@@ -9,12 +9,8 @@ import { VideoData } from '../../constants/types';
 // @Components
 import Button from '../button/Button';
 import FooterButton from '../footerButton/FooterButton';
-import FormattedText from '../formattedText/FormattedText';
 import Label from '../label/Label';
-
-// @Utils
-import { Duration, formatDuration } from '../../utils/dateHelper';
-import { getParentalAgeText } from '../../utils/miscHelper';
+import VideoInfoRow from '../videoInfoRow/VideoInfoRow';
 
 // @Styles
 import styles from './VideoCardOverlay.module.scss';
@@ -29,10 +25,6 @@ interface PropTypes {
 
 const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { onPressExpand, onPressPlay, videoData } = props;
-
-  const formattedVideoDuration: Duration = formatDuration(videoData.duration);
-
-  const parentalText = getParentalAgeText(videoData.parentalAge);
 
   const renderTags = (): Array<ReactElement> => (
     videoData.tags.map((tag: string, index: number) => {
@@ -67,20 +59,8 @@ const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) 
         <Label
           className={styles.titleText}
           text={videoData.title}/>
-        <div className={styles.dataRow}>
-          <FormattedText
-            className={styles.coincidenceText}
-            injectedTexts={[videoData.coincidence]}
-            textKey="videoOverlay-coincidence"/>
-          <FormattedText
-            className={styles.parentalLabel}
-            injectedTexts={[videoData.parentalAge]}
-            textKey={parentalText}/>
-          <FormattedText
-            className={styles.durationText}
-            injectedTexts={formattedVideoDuration.values}
-            textKey={formattedVideoDuration.textKey}/>
-        </div>
+        <VideoInfoRow
+          videoData={videoData}/>
         <div >
           { renderTags() }
         </div>

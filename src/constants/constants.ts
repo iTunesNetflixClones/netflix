@@ -18,6 +18,7 @@ export const VIDEO_CARDS_AMOUNT = {
   MOBILE_LANDSCAPE: 3,
   MOBILE_PORTRAIT: 2
 };
+export const VIDEO_INFO_TEXT_SEPARATOR = ', ';
 export const VIDEO_OVERLAY_SEPARATOR_CHAR = '•';
 export const VIDEO_SLIDER_TRANSLATION_COEF = 94.4;
 export const VIDEO_SLIDER_TRANSLATION_EXP = 'translateX(-%svw)';
