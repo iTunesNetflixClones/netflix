@@ -9,11 +9,11 @@ import FormattedText from '../formattedText/FormattedText';
 import Label from '../label/Label';
 
 // @Helpers
-import { Duration, formatDuration } from '../../utils/dateHelper';
+import { formatDuration } from '../../utils/dateHelper';
 import { getParentalAgeText } from '../../utils/miscHelper';
 
 // @Constants
-import { VideoData } from '../../constants/types';
+import { Duration, VideoData } from '../../constants/types';
 
 // @PropTypes
 interface PropTypes {

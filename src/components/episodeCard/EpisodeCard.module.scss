@@ -1,0 +1,31 @@
+@import '../../config//theme.scss';
+
+.mainContainer {
+  position: relative;
+  white-space: normal;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.titleText {
+  @extend %fonts-ff-bold;
+  font-size: $font-size-md;
+  color: $colors-font-inactive;
+}
+
+.descriptionText {
+  @extend %fonts-ff-regular;
+  font-size: $font-size-md;
+  color: $colors-font-inactive;
+}
+

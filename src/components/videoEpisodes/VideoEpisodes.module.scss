@@ -1,6 +1,9 @@
 @import '../../config//theme.scss';
 
 .mainContainer {
+  position: relative;
   height: 100%;
   width: 100%;
+  padding: $layout-spacing-md $layout-spacing-lg;
+  z-index: $layout-z-index-low;
 }

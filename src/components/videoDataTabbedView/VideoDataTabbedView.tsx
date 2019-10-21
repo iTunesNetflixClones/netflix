@@ -2,12 +2,14 @@
 import React, { ReactElement, useState } from 'react';
 
 // @Components
-import FormmatedText from '../formattedText/FormattedText';
+import FormattedText from '../formattedText/FormattedText';
+import Player from '../player/Player';
 import VideoEpisodes from '../videoEpisodes/VideoEpisodes';
 import VideoDetails from '../videoDetails/VideoDetails';
 
 // @Constants
 import { VideoData } from '../../constants/types';
+import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
 
 // @Styles
 import styles from './VideoDataTabbedView.module.scss';
@@ -46,7 +48,7 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
       <button
         onClick={setTabIndex.bind(null, index)}
         className={className}>
-        <FormmatedText
+        <FormattedText
           className={styles.tabText}
           textKey={textKey}/>
       </button>
@@ -80,11 +82,38 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
     }
   };
 
+  const renderVideoOverlay = (): ReactElement => {
+    return (
+      <div className={styles.videoOverlay} />
+    );
+  };
+
+  const headerClassName = `${styles.logoContainer} ${tabIndex === 1 ? styles.logoContainer__shrinked : ''}`;
+
   return (
     <div className={styles.mainContainer}>
       { renderCloseButton() }
       { renderTabs() }
+      <div className={styles.innerContainer}>
+        <div className={styles.headerContainer}>
+          <div className={headerClassName}>
+            <FormattedText
+              className={styles.logoText}
+              textKey="placeholders-videoLogo"
+            />
+          </div>
+        </div>
       { renderContent() }
+      </div>
+      <div className={styles.playerContainer}>
+        <Player
+          controlsSet={[PLAYER_CONTROLS.volumeControl]}
+          loop={false}
+          parentalAge={videoData.parentalAge}
+          renderOverlay={renderVideoOverlay}
+          size={PLAYER_CONTROLS_SIZES.regular}
+          src={videoData.src} />
+      </div>
     </div>
   );
 };

@@ -4,7 +4,6 @@
   position: relative;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 
 .dataContainer {
@@ -13,37 +12,8 @@
   z-index: $layout-z-index-low;
 }
 
-.playerContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  @include calculate-aspect-height($video-details-video-width);
-}
-
-.videoOverlay {
-  @extend %layout-absolute-fill;
-  background: linear-gradient(to right, $colors-background-tertiary 10%, transparent);
-}
-
 .buttonsRow {
   margin-bottom: $layout-spacing-md;
-}
-
-.logoArea {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  height: $layout-spacing-details-header-height;
-  width: $layout-spacing-details-header-width;
-  border: 1px solid $colors-font-secondary;
-  margin-bottom: $layout-spacing-md;
-}
-
-.logoText {
-  @extend %fonts-ff-bold;
-  font-size: $font-size-xlg;
-  color: $colors-font-primary;
-  padding: $layout-spacing-md;
 }
 
 .descriptionText {

@@ -3,6 +3,9 @@ export default {
     fullTime: '%s h %s min',
     onlyMins: '%s min'
   },
+  dropdown: {
+    defaultKey: '%s'
+  },
   featuredVideoHeader: {
     moreInfo: 'More info',
     myList: 'My list',
@@ -26,12 +29,14 @@ export default {
   videoDetails: {
     cast: 'Cast:',
     coincidence: '%s% for you',
+    episode: 'Episode %s',
     genres: 'Genre:',
     myList: 'My list',
     new: 'New',
     play: 'Play',
     seasonsAmount: '%s Season',
     seasonsAmountPlural: '%s Seasons',
+    seasonSelector: 'Season %s',
     tags: 'This title is:'
   },
   videoTabbedDetails: {

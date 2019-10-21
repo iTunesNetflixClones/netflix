@@ -8,7 +8,7 @@ $layout-spacing-xxlg: 7vw;
 
 $layout-spacing-page-header: 20vw;
 
-$layout-spacing-details-header-height: 6.5vw;
+$layout-spacing-details-header-height: 5vw;
 $layout-spacing-details-header-width: 40vw;
 $layout-spacing-details-max-width: 50vw;
 
@@ -42,13 +42,17 @@ $layout-z-index-mid: 10;
 $layout-z-index-top: 15;
 $layout-topbar-z-index: 100;
 
+$episode-aspect-ratio-coef: 1.9;
+
 $player-medium-size-width: 60vw;
 $player-container-scale-correction: (1 / $layout-video-card-grow-factor);
 $player-container-scale-position-correction: -(($layout-video-card-grow-factor - 1) * 100% / 2);
 $player-aspect-ratio-coef: 16 / 9;
 
 $video-details-aspect-ratio-coef: 16 / 5;
+$video-details-aspect-ratio-coef-shrinked: 16 / 7;
 $video-details-video-width: 100vw * 7 / 9;
+$video-details-header-shrink-factor: 0.7;
 
 %layout-absolute-fill {
   position: absolute;
@@ -61,4 +65,18 @@ $video-details-video-width: 100vw * 7 / 9;
 @mixin calculate-aspect-height($width, $aspect-ratio: $player-aspect-ratio-coef) {
   height: $width / $aspect-ratio;
   width: $width;
+}
+
+@mixin calculate-cards-size($cards-amount, $class-name: '', $aspect-ratio: $player-aspect-ratio-coef) {
+  $slider-card-width: calc-slider-card-width($cards-amount);
+  $slider-card-height: $slider-card-width / $aspect-ratio;
+
+  height: $slider-card-height;
+  width: $slider-card-width;
+
+  @if($class-name != '') {
+    &__expanded ~ .#{$class-name} {
+      transform: translateX(calc-slider-translation-base($cards-amount));
+    }
+  }
 }
