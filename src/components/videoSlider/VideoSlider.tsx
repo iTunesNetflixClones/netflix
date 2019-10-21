@@ -18,6 +18,7 @@ interface PropTypes {
   onPressLike: (videoId: string) => any;
   onPressMyList: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
+  sliderId: string;
   titleKey?: string;
   titleText?: string;
   videosList: Array<VideoData>;
@@ -25,7 +26,16 @@ interface PropTypes {
 
 
 const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onPlayVideo, onPressLike, onPressMyList, onPressUnlike, titleKey, titleText, videosList } = props;
+  const {
+    onPlayVideo,
+    onPressLike,
+    onPressMyList,
+    onPressUnlike,
+    sliderId,
+    titleKey,
+    titleText,
+    videosList
+  } = props;
 
   const renderTitle = (): ReactElement | null => {
     if(titleKey) {
@@ -53,6 +63,7 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         onPressLike={onPressLike}
         onPressMyList={onPressMyList}
         onPressUnlike={onPressUnlike}
+        sliderId={sliderId}
         videosList={videosList} />
     </div>
   );
