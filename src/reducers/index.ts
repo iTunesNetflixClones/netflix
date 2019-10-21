@@ -3,10 +3,10 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 // @Reducers
-// TODO: import reducers here
+import slidersReducer from './sliders.reducer';
 
 const rootReducer = combineReducers({
-  // TODO: define reducers
+  slidersReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

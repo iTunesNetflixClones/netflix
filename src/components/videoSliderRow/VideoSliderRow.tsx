@@ -1,6 +1,8 @@
 // @Vendors
-import React, { ReactElement, RefObject, useRef, useState } from 'react';
+import React, { ReactElement, RefObject, useRef, useState, useEffect } from 'react';
 import get from 'lodash/get';
+import { connect } from 'react-redux';
+import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 
 // @Styles
 import styles from './VideoSliderRow.module.scss';
@@ -14,6 +16,7 @@ import VideoDataTabbedView from '../videoDataTabbedView/VideoDataTabbedView';
 import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP } from '../../constants/constants';
 import { PositionCheck, VideoData } from '../../constants/types';
 import { SLIDER_BUTTON_TYPES } from '../../constants/enums';
+import { StoreState } from '../../constants/stateTypes';
 
 // @Helpers
 import { checkVideoCardPosition, getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
@@ -21,17 +24,37 @@ import { checkVideoCardPosition, getTranslationStyle, isLastPage } from '../../u
 // @Components
 import VideoCard from '../videoCard/VideoCard';
 
+// @Actions
+import * as sliderActions from '../../actions/slider.actions';
+
 // @PropTypes
-interface PropTypes {
+interface OwnProps {
   onPlayVideo: (videoId: string) => any;
   onPressLike: (videoId: string) => any;
   onPressMyList: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
+  sliderId: string;
   videosList: Array<VideoData>;
 }
+interface StateProps {
+  currentSliderId?: string;
+}
+interface DispatchProps {
+  openSlider: Function;
+}
+type PropTypes = OwnProps & StateProps & DispatchProps;
 
 const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onPlayVideo, onPressLike, onPressMyList, onPressUnlike, videosList } = props;
+  const {
+    currentSliderId,
+    onPlayVideo,
+    onPressLike,
+    onPressMyList,
+    onPressUnlike,
+    openSlider,
+    sliderId,
+    videosList
+  } = props;
 
   const [ slideButtonVisible, setSlideButtonVisible ] = useState(false);
   const [ currentIndex, setCurrentIndex ] = useState(0);
@@ -43,11 +66,13 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
 
   const handleExpandVideo = (index: number): void => {
     setSelectedIndex(index);
+    openSlider(sliderId);
   };
 
   const handleShrinkVideo = (): void => {
     setSelectedIndex(-1);
     setExpandedIndex(-1);
+    openSlider();
   };
 
   const handleLoad = (): void => {
@@ -64,6 +89,12 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     const nextIndex: number = currentIndex + (isBack ? -1 : 1);
     setCurrentIndex(nextIndex);
   };
+
+  useEffect(() => {
+    if(currentSliderId !== undefined && currentSliderId !== sliderId) {
+      handleShrinkVideo();
+    }
+  }, [currentSliderId]);
 
   const renderExpandButton = (index: number, isSelected: boolean): ReactElement | null => {
     const shouldShowFooter = index === expandedIndex && !isSelected && selectedIndex !== -1;
@@ -158,4 +189,15 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   );
 };
 
-export default VideoSliderRow;
+const mapStateToProps = (state: StoreState): StateProps => ({
+  currentSliderId: state.slidersReducer.currentSliderId
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (
+  bindActionCreators({ openSlider: sliderActions.openSlider }, dispatch)
+);
+
+export default connect<StateProps, DispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(VideoSliderRow);

@@ -50,6 +50,7 @@ const VideoOverview: React.FunctionComponent<Props>  = () => (
         onPressLike={(): void => {}}
         onPressMyList={(): void => {}}
         onPressUnlike={(): void => {}}
+        sliderId='1'
         titleText="Recommended"
         videosList={videosList} />
     </div>
@@ -59,6 +60,7 @@ const VideoOverview: React.FunctionComponent<Props>  = () => (
         onPressLike={(): void => {}}
         onPressMyList={(): void => {}}
         onPressUnlike={(): void => {}}
+        sliderId='2'
         titleText="Trends"
         videosList={videosList} />
     </div>

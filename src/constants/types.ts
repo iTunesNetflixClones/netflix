@@ -51,3 +51,8 @@ export type getTranslationStyleArgs = {
   screenWidth?: number;
   fitLastPage?: boolean;
 };
+
+export type Action = {
+  type: string;
+  payload: Record<string, any>;
+};
