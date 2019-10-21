@@ -32,6 +32,10 @@ const VideoEpisodes: React.FunctionComponent<{}> = () => {
     setSelectedSeasonIndex(index);
   };
 
+  const handleEpisodePlay = (episodeId: string): void => {
+    console.log(episodeId);
+  };
+
   return (
     <div className={styles.mainContainer}>
       <Dropdown
@@ -44,6 +48,7 @@ const VideoEpisodes: React.FunctionComponent<{}> = () => {
         selectedIndex={selectedSeasonIndex} />
       <div style={{ width: 300}}>
         <EpisodeSlider
+          onPressPlay={handleEpisodePlay}
           episodesList={mockEpisodesList}/>
       </div>
     </div>

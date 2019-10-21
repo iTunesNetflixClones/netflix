@@ -1,11 +1,12 @@
 // @Vendors
-import React from 'react';
+import React, { useState, ReactElement } from 'react';
 
 // @Constants
-import { EpisodeData } from '../../constants/types';
-import { Duration } from '../../constants/types';
+import { Duration, EpisodeData } from '../../constants/types';
+import { BUTTON_MODIFIERS, BUTTON_SIZES } from '../../constants/enums';
 
 // @Components
+import Button from '../button/Button';
 import FormattedText from '../formattedText/FormattedText';
 import Label from '../label/Label';
 
@@ -18,18 +19,54 @@ import styles from './EpisodeCard.module.scss';
 // @PropTypes
 interface PropTypes {
   episodeData: EpisodeData;
+  onPressPlay: (episodeId: string) => void;
 }
 
 const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { episodeData } = props;
+  const { episodeData, onPressPlay } = props;
 
-  const episodeDuration: Duration = formatDuration(episodeData.duration);
+  const [ hovered, setHovered ] = useState(false);
+
+  const { duration, id, imageSrc } = episodeData;
+  const episodeDuration: Duration = formatDuration(duration);
+
+  const handlePressPlay = (): void => {
+    onPressPlay(id);
+  };
+
+  const renderPlayButton = (): ReactElement | null => {
+    if(!hovered) {
+      return null;
+    }
+    return (
+      <div className={styles.overlay}>
+        <Button
+          iconSource="fa fa-play"
+          modifiers={[BUTTON_MODIFIERS.circle, BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
+          onPress={handlePressPlay}
+          size={BUTTON_SIZES.big}/>
+      </div>
+    );
+  };
+
+  const renderEpisodeImage = (): ReactElement => {
+    return (
+      <div
+        className={styles.imageContainer}
+        onMouseEnter={setHovered.bind(null, true)}
+        onMouseLeave={setHovered.bind(null, false)} >
+        { renderPlayButton() }
+        <img
+          src={imageSrc}
+          alt="Episode poster" />
+      </div>
+    );
+  };
 
   return (
-    <div className={styles.mainContainer}>
-      <img
-        src={episodeData.imageSrc}
-        alt="Episode poster"/>
+    <div
+      className={styles.mainContainer}>
+      { renderEpisodeImage() }
       <div className={styles.titleContainer}>
         <FormattedText
           className={styles.titleText}

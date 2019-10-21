@@ -4,6 +4,9 @@ import React, { ReactElement } from 'react';
 // @Enums
 import { BUTTON_MODIFIERS, BUTTON_SIZES, SPACING } from '../../constants/enums';
 
+// @Helpers
+import { getButtonSizeStyle } from '../../utils/layoutHelper';
+
 // @Styles
 import styles from './Button.module.scss';
 
@@ -22,8 +25,7 @@ interface PropTypes {
 
 const Button: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { iconSource, modifiers, onPress, size, spacing, textKey } = props;
-  const baseButtonClassName = size ===  BUTTON_SIZES.regular ? 'buttonArea' : 'buttonAreaSmall';
-  const baseButtonClass = size ===  BUTTON_SIZES.regular ? styles.buttonArea : styles.buttonAreaSmall;
+  const { baseButtonClass, baseButtonClassName } = getButtonSizeStyle(styles, size);
 
   const buildIcon = (): ReactElement | undefined => {
     let icon;
