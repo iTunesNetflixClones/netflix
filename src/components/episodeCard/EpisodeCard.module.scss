@@ -33,13 +33,13 @@
 
 .titleText {
   @extend %fonts-ff-bold;
-  font-size: $font-size-md;
+  @include font-size-responsive($font-size-md);
   color: $colors-font-inactive;
 }
 
 .descriptionText {
   @extend %fonts-ff-regular;
-  font-size: $font-size-md;
+  @include font-size-responsive($font-size-md);
   color: $colors-font-inactive;
 }
 

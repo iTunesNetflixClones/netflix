@@ -13,7 +13,7 @@
   display: inline;
   @extend %fonts-ff-bold;
   color: $colors-font-inactive;
-  font-size: $font-size-md;
+  @include font-size-responsive($font-size-md);
   margin-right: $layout-spacing-sm;
 }
 
@@ -21,6 +21,6 @@
   display: inline;
   @extend %fonts-ff-regular;
   color: $colors-font-inactive;
-  font-size: $font-size-md;
+  @include font-size-responsive($font-size-md);
   margin-right: $layout-spacing-sm;
 }

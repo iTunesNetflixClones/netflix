@@ -12,7 +12,7 @@
 
   .text {
     @extend %fonts-ff-regular;
-    font-size: $font-size-lg;
+    @include font-size-responsive($font-size-lg);
     color: $colors-font-primary;
   }
 }

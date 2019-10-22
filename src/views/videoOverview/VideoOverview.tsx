@@ -9,6 +9,9 @@ import { VideoData } from '../../constants/types';
 import FeaturedVideoHeader from '../../components/featuredVideoHeader/FeaturedVideoHeader';
 import VideoSlider from '../../components/videoSlider/VideoSlider';
 
+// @Styles
+import styles from './VideoOverview.module.scss';
+
 // @PropTypes
 const propTypes = {};
 type Props = InferProps<typeof propTypes>;
@@ -33,18 +36,18 @@ const videoSample = {
 
 const videosList: Array<VideoData> = [];
 for(let i = 0; i < 20; i++) {
-  videosList.push({ ...videoSample, id: `${i}`, isNew: (i % 2 === 0), isSeries: (i % 3 === 0) });
+  videosList.push({ ...videoSample, id: `${i}`, isNew: (i % 2 === 0), isSeries: (i % 3 === 0), src: i === 1 ? 'https://www.youtube.com/embed/SDr_3N9C7zo?autoplay=1' : videoSample.src});
 }
 
 const VideoOverview: React.FunctionComponent<Props>  = () => (
-  <div style={{ paddingBottom: 200 }}>
+  <div className={styles.mainContainer}>
     <FeaturedVideoHeader
       onPressPlay={(): void => {}}
       onPressList={(): void => {}}
       onPressMoreInfo={(): void => {}}
       videoData={videoSample}
     />
-    <div style={{position: 'relative', marginTop: -270, zIndex: 30 }}>
+    <div className={styles.sliderContainer}>
       <VideoSlider
         onPlayVideo={(): void => {}}
         onPressLike={(): void => {}}
@@ -53,8 +56,6 @@ const VideoOverview: React.FunctionComponent<Props>  = () => (
         sliderId='1'
         titleText="Recommended"
         videosList={videosList} />
-    </div>
-    <div style={{position: 'relative', zIndex: 30 }}>
       <VideoSlider
         onPlayVideo={(): void => {}}
         onPressLike={(): void => {}}

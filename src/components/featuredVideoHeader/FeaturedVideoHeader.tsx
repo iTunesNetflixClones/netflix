@@ -41,6 +41,7 @@ const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropType
       <Player
         controlsSet={[PLAYER_CONTROLS.volumeControl, PLAYER_CONTROLS.parentalTag]}
         loop
+        playerId={`viewHeader-${id}`}
         renderOverlay={renderVideoOverlay}
         size={PLAYER_CONTROLS_SIZES.regular}
         src={videoData.src}

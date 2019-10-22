@@ -3,19 +3,19 @@
 @mixin buttonArea($size) {
   $margin-size: $layout-spacing-md;
   $circular-width: $layout-button-circular-width-regular;
-  $font-size: $font-size-lg;
+  @include font-size-responsive($font-size-lg);
   $cicular-padding: $layout-spacing-xsm;
 
   @if($size == "small") {
     $margin-size: $layout-spacing-xsm;
     $circular-width: $layout-button-circular-width-small;
-    $font-size: $font-size-sm;
+    @include font-size-responsive($font-size-sm);
   }
 
   @if($size == "big") {
     $cicular-padding: $layout-spacing-md;
     $circular-width: $layout-button-circular-width-big;
-    $font-size: $font-size-xlg;
+    @include font-size-responsive($font-size-xlg);
   }
 
   cursor: pointer;
@@ -30,7 +30,6 @@
   transition: transform $layout-transition-time-quick;
 
   @extend %fonts-ff-bold;
-  font-size: $font-size;
   color: $colors-font-primary;
 
   i {
