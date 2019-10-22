@@ -8,6 +8,7 @@ import {
   VIDEO_CARDS_AMOUNT
 } from '../constants/constants';
 import { PositionCheck, getTranslationStyleArgs } from '../constants/types';
+import { BUTTON_SIZES } from '../constants/enums';
 
 const getCardsAmount = (screenWidth: number, cardsPerWidth: Record<string, number>): number => {
   if(screenWidth >= SCREEN_DESKTOP_MIN_WIDTH) {
@@ -85,4 +86,30 @@ export const getTranslationStyle = ({
   }
   const offset: number = pageIndex * coeficient;
   return translationExp.replace(COMMON_WILDCARD, offset.toString());
+};
+
+const buildButtonSylesObject = (
+  styleClass: string,
+  styleClassName: string
+): Record<string, string> => ({
+  baseButtonClass: styleClass,
+  baseButtonClassName: styleClassName
+}
+
+);
+
+export const getButtonSizeStyle = (
+  styles: Record<string, any>,
+  size?: BUTTON_SIZES
+): Record<string, string> => {
+  switch(size) {
+    case BUTTON_SIZES.small:
+      return buildButtonSylesObject(styles.buttonAreaSmall, 'buttonAreaSmall');
+    case BUTTON_SIZES.regular:
+      return buildButtonSylesObject(styles.buttonArea, 'buttonArea');
+    case BUTTON_SIZES.big:
+      return buildButtonSylesObject(styles.buttonAreaBig, 'buttonAreaBig');
+    default:
+      return buildButtonSylesObject(styles.buttonArea, 'buttonArea');
+  }
 };

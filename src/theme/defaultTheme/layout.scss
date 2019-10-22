@@ -25,6 +25,7 @@ $layout-expanded-header-size: 12.5vw;
 
 $layout-button-circular-width-regular: 2.6vw;
 $layout-button-circular-width-small: 2.0vw;
+$layout-button-circular-width-big: 4.0vw;
 
 $layout-lg-controls-bottom-space: 32%;
 $layout-sm-controls-bottom-space: 15%;
@@ -43,6 +44,7 @@ $layout-z-index-top: 15;
 $layout-topbar-z-index: 100;
 
 $episode-aspect-ratio-coef: 1.9;
+$layout-episode-card-height: 10vw;
 
 $player-medium-size-width: 60vw;
 $player-container-scale-correction: (1 / $layout-video-card-grow-factor);
@@ -50,7 +52,6 @@ $player-container-scale-position-correction: -(($layout-video-card-grow-factor -
 $player-aspect-ratio-coef: 16 / 9;
 
 $video-details-aspect-ratio-coef: 16 / 5;
-$video-details-aspect-ratio-coef-shrinked: 16 / 7;
 $video-details-video-width: 100vw * 7 / 9;
 $video-details-header-shrink-factor: 0.7;
 

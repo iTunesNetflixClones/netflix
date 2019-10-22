@@ -4,10 +4,18 @@
   $margin-size: $layout-spacing-md;
   $circular-width: $layout-button-circular-width-regular;
   $font-size: $font-size-lg;
+  $cicular-padding: $layout-spacing-xsm;
+
   @if($size == "small") {
     $margin-size: $layout-spacing-xsm;
     $circular-width: $layout-button-circular-width-small;
     $font-size: $font-size-sm;
+  }
+
+  @if($size == "big") {
+    $cicular-padding: $layout-spacing-md;
+    $circular-width: $layout-button-circular-width-big;
+    $font-size: $font-size-xlg;
   }
 
   cursor: pointer;
@@ -36,7 +44,7 @@
   }
 
   &__circle {
-    padding: $layout-spacing-xsm;
+    padding: $cicular-padding;
     width: $circular-width;
     border-radius: 50%;
 
@@ -98,9 +106,13 @@
 }
 
 .buttonArea {
-  @include buttonArea($size: "regular")
+  @include buttonArea($size: 'regular');
 }
 
 .buttonAreaSmall {
-  @include buttonArea($size: "small")
+  @include buttonArea($size: 'small');
+}
+
+.buttonAreaBig {
+  @include buttonArea($size: 'big');
 }

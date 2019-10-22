@@ -8,7 +8,8 @@ export enum BUTTON_MODIFIERS {
 
 export enum BUTTON_SIZES {
   small,
-  regular
+  regular,
+  big
 }
 
 export enum PLAYER_CONTROLS {

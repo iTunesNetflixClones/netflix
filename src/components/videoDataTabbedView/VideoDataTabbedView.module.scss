@@ -5,10 +5,6 @@
   @include calculate-aspect-height(100vw, $video-details-aspect-ratio-coef);
   background-color: $colors-background-tertiary;
   overflow: hidden;
-
-  @media screen and (max-width: 1170px) {
-    @include calculate-aspect-height(100vw, $video-details-aspect-ratio-coef-shrinked);
-  }
 }
 
 .innerContainer {

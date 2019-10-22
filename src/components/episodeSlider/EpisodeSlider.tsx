@@ -20,10 +20,11 @@ import styles from './EpisodeSlider.module.scss';
 // @PropTypes
 interface PropTypes {
   episodesList: Array<EpisodeData>;
+  onPressPlay: (episodeId: string) => void;
 }
 
 const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { episodesList } = props;
+  const { episodesList, onPressPlay } = props;
 
   const [ slideButtonVisible, setSlideButtonVisible ] = useState(false);
   const [ pageIndex, setPageIndex ] = useState(0);
@@ -47,6 +48,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
         key={episode.id}
         className={styles.sliderCard}>
         <EpisodeCard
+          onPressPlay={onPressPlay}
           episodeData={episode}/>
       </div>
     ));
