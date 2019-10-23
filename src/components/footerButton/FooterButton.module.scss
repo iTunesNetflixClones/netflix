@@ -13,7 +13,7 @@
   z-index: $layout-z-index-top;
 
   color: $colors-font-primary;
-  font-size: $font-size-lg;
+  @include font-size-responsive($font-size-lg);
   padding: $layout-spacing-xsm 0;
 
   &:hover {

@@ -85,6 +85,7 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           onPressLike={handleLike}
           onPressMyList={handleMyList}
           onPressUnlike={handleUnlike}
+          playerId={`card-${id}`}
           parentalAge={parentalAge}
           renderOverlay={renderVideoOverlay}
           size={PLAYER_CONTROLS_SIZES.small}
@@ -110,6 +111,7 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       onMouseLeave={(): void => handleSetExpanded(false)}
       className={className}>
       <img
+        alt="featured video poster"
         className={styles.image}
         src={posterSrc}/>
       { renderPlayer() }

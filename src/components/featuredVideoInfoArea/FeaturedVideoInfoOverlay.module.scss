@@ -24,7 +24,7 @@
 
 .logoText {
   @extend %fonts-ff-bold;
-  font-size: $font-size-xlg;
+  @include font-size-responsive($font-size-xlg);
   color: $colors-font-primary;
   padding: $layout-spacing-md;
 }
@@ -32,6 +32,7 @@
 .descriptionText {
   max-width: 50vw;
   @extend %fonts-ff-regular;
-  font-size: $font-size-lg;
+  @include font-size-responsive($font-size-lg);
   color: $colors-font-primary;
+  margin-bottom: $layout-spacing-md;
 }

@@ -1,5 +1,5 @@
 // @Vendors
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 // @Components
 import FormattedText from '../formattedText/FormattedText';
@@ -16,6 +16,7 @@ import styles from './VideoDataTabbedView.module.scss';
 
 // @PropTypes
 interface PropTypes {
+  id: string;
   onPressPlay: (videoId: string) => void;
   onPressMyList: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
@@ -25,11 +26,15 @@ interface PropTypes {
 }
 
 const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onClose, onPressPlay, onPressMyList, onPressLike, onPressUnlike, videoData } = props;
+  const { id, onClose, onPressPlay, onPressMyList, onPressLike, onPressUnlike, videoData } = props;
 
   const [ tabIndex, setTabIndex ] = useState(0);
 
   const { isSeries } = videoData;
+
+  useEffect(() => {
+    setTabIndex(0);
+  }, [videoData]);
 
   const renderCloseButton = (): ReactElement => {
     return (
@@ -109,6 +114,7 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
         <Player
           controlsSet={[PLAYER_CONTROLS.volumeControl]}
           loop={false}
+          playerId={`${id}`}
           parentalAge={videoData.parentalAge}
           renderOverlay={renderVideoOverlay}
           size={PLAYER_CONTROLS_SIZES.regular}

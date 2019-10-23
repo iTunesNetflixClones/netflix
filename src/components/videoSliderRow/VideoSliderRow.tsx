@@ -139,6 +139,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     }
     return (
       <VideoDataTabbedView
+        id={`tabeedView-${sliderId}`}
         onClose={handleShrinkVideo}
         onPressPlay={onPlayVideo}
         onPressMyList={onPressMyList}

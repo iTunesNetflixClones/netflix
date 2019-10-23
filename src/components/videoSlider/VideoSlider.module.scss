@@ -8,7 +8,7 @@
 
 .titleText{
   @extend %fonts-ff-bold;
-  font-size: $font-size-lg;
+  @include font-size-responsive($font-size-lg);
   color: $colors-font-primary;
-  padding: $layout-spacing-lg $layout-spacing-lg $layout-spacing-sm;
+  padding: $layout-spacing-md $layout-spacing-lg $layout-spacing-sm;
 }

@@ -19,7 +19,7 @@
 
   i {
     transition: transform $layout-transition-time-quick;
-    font-size: $font-size-xlg;
+    @include font-size-responsive($font-size-xlg);
     color: $colors-font-primary;
   }
 

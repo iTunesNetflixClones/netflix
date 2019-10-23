@@ -17,7 +17,7 @@
   background-color: transparent;
 
   @extend %fonts-ff-regular;
-  font-size: $font-size-md;
+  @include font-size-responsive($font-size-md);
   color: $colors-font-primary;
 }
 

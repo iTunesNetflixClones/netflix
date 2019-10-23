@@ -18,7 +18,7 @@
 
 .descriptionText {
   @extend %fonts-ff-bold;
-  font-size: $font-size-lg;
+  @include font-size-responsive($font-size-lg);
   color: $colors-font-inactive;
   width: $layout-spacing-details-header-width;
   margin: $layout-spacing-md 0;

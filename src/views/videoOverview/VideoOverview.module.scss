@@ -1,0 +1,11 @@
+@import '../../config//theme.scss';
+
+.mainContainer {
+  padding-bottom: $layout-spacing-overview-bottom-space;
+}
+
+.sliderContainer {
+  position: relative;
+  margin-top: $layout-spacing-overview-sliders-overlap;
+  z-index: $layout-z-index-mid;
+}
