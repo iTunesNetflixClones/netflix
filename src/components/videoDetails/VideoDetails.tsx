@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 // @Constants
 import { VideoData } from '../../constants/types';
 import { BUTTON_MODIFIERS, SPACING } from '../../constants/enums';
+import { ICON_LIKE, ICON_MY_LIST, ICON_PLAY, ICON_UNLIKE } from '../../constants/constants';
 
 // @Components
 import Button from '../button/Button';
@@ -47,24 +48,24 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       <div className={styles.buttonsRow}>
         <Button
           modifiers={[BUTTON_MODIFIERS.redBody, BUTTON_MODIFIERS.upperCase]}
-          iconSource="fa fa-play"
+          iconSource={ICON_PLAY}
           onPress={handlePressPlay}
           spacing={[SPACING.right]}
           textKey="videoDetails-play"/>
         <Button
           modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.upperCase]}
-          iconSource="fa fa-plus"
+          iconSource={ICON_MY_LIST}
           onPress={hanldePressMyList}
           spacing={[SPACING.right]}
           textKey="videoDetails-myList"/>
         <Button
           modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.circle]}
-          iconSource="fa fa-thumbs-up"
+          iconSource={ICON_LIKE}
           onPress={handlePressLike}
           spacing={[SPACING.right, SPACING.left]}/>
         <Button
           modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.circle]}
-          iconSource="fa fa-thumbs-down"
+          iconSource={ICON_UNLIKE}
           onPress={handlePressUnlike}
           spacing={[SPACING.right, SPACING.left]}/>
       </div>

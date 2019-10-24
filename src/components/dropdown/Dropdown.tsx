@@ -9,6 +9,7 @@ import FormattedText from '../formattedText/FormattedText';
 import Label from '../label/Label';
 
 // @Constants
+import { ICON_CARET_DOWN } from '../../constants/constants';
 import { SelectorOption } from '../../constants/types';
 
 // @Styles
@@ -95,7 +96,7 @@ const Dropdown: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         onClick={handleToggleDropdown}
         className={styles.selectorMainButton}>
         { renderSelectedOption(options) }
-        <i className="fa fa-caret-down"/>
+        <i className={ICON_CARET_DOWN}/>
       </button>
       { renderMenu() }
     </div>
