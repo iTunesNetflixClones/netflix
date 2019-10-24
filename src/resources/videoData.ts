@@ -32,7 +32,7 @@ const videosData: Array<VideoData> = [
     posterSrc: require('../assets/png/call_her_daddy.png'),
     tags: ['Tag 1', 'Tag 2', 'Tag 3'],
     title: 'Call her daddy',
-    seasonsAmount: 0,
+    seasonsAmount: 1,
     src: require('../assets/podcasts/call_her_daddy.mp4'),
     year: 2018
   },

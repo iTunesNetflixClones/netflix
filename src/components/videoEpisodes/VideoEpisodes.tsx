@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 // Constants
-import { SelectorOption } from '../../constants/types';
+import { SelectorOption, VideoData } from '../../constants/types';
 
 // @Components
 import Dropdown from '../dropdown/Dropdown';
@@ -11,10 +11,19 @@ import EpisodeSlider from '../episodeSlider/EpisodeSlider';
 // @Styles
 import styles from './VideoEpisodes.module.scss';
 
-// Resources
+// @Resources
 import epidodesList from '../../resources/episodeData';
 
-const VideoEpisodes: React.FunctionComponent<{}> = () => {
+// @PropTypes
+interface PropTypes {
+  videoData: VideoData;
+}
+
+const VideoEpisodes: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
+  const { videoData } = props;
+
+  const { seasonsAmount } = videoData;
+
   const [ selectedSeasonIndex, setSelectedSeasonIndex ] = useState(0);
 
   const handleSelectSeason = (option: SelectorOption, index: number): void => {
@@ -25,15 +34,26 @@ const VideoEpisodes: React.FunctionComponent<{}> = () => {
     console.log(episodeId);
   };
 
+  const buildSeasonsOptions = (): Array<SelectorOption> => {
+    const seasonsOptions: Array<SelectorOption> = [];
+    if(seasonsAmount) {
+      for(let i = 0; i < seasonsAmount; i++) {
+        const season = i + 1;
+        seasonsOptions.push({
+          code: season.toString(),
+          value: season,
+          textKey: 'videoDetails-seasonSelector'
+        });
+      }
+    }
+    return seasonsOptions;
+  };
+
   return (
     <div className={styles.mainContainer}>
       <Dropdown
         onSelectOption={handleSelectSeason}
-        options={[
-          { code: '1', value: 1, textKey: 'videoDetails-seasonSelector' },
-          { code: '2', value: 2, textKey: 'videoDetails-seasonSelector' },
-          { code: '3', value: 3, textKey: 'videoDetails-seasonSelector' },
-        ]}
+        options={buildSeasonsOptions()}
         selectedIndex={selectedSeasonIndex} />
       <div style={{ width: 300}}>
         <EpisodeSlider

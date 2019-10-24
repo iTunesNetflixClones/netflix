@@ -83,7 +83,8 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
     }
     if(tabIndex === 1) {
       return (
-        <VideoEpisodes />
+        <VideoEpisodes
+          videoData={videoData}/>
       );
     }
   };
