@@ -12,7 +12,10 @@ import EpisodeCard from '../episodeCard/EpisodeCard';
 import SliderButton from '../sliderButton/SliderButton';
 
 // @Helpers
-import { getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
+import { getLastPageIndex, getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
+
+// @Hooks
+import useResizeDetector from '../../hooks/resizeDetector';
 
 // @Styles
 import styles from './EpisodeSlider.module.scss';
@@ -31,6 +34,15 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
   const [ scrollContentWidth, setScrollContentWidth ] = useState(0);
 
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
+
+  const onChangeWindowDimensions = (): void => {
+    if(isLastPage(pageIndex, scrollContentWidth, window.innerWidth)) {
+      const lastPageIndex = getLastPageIndex(window.innerWidth, episodesList.length, EPISODE_CARDS_AMOUNT);
+      setPageIndex(lastPageIndex);
+    }
+  };
+
+  useResizeDetector(onChangeWindowDimensions, [pageIndex, scrollContentWidth]);
 
   const handleLoad = (): void => {
     const totalWidth: number = get(sliderScrollRef, 'current.scrollWidth', 0);

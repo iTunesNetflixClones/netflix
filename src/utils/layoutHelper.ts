@@ -48,7 +48,7 @@ export const isLastPage = (
   scrollContentWidth: number,
   screenWidth: number
 ): boolean => {
-  return ((pageIndex + 1) * screenWidth) > scrollContentWidth;
+  return ((pageIndex + 1) * screenWidth) >= scrollContentWidth;
 };
 
 const adjustTranslationCoef = (
@@ -56,6 +56,9 @@ const adjustTranslationCoef = (
   cardsPerPage: number,
   translationCoef: number
 ): number => {
+  if(cardsAmount % cardsPerPage === 0) {
+    return translationCoef;
+  }
   return ((cardsAmount % cardsPerPage) / cardsPerPage) * translationCoef;
 };
 
@@ -64,7 +67,7 @@ const shouldFit = (
   cardsPerPage: number,
   pageIndex: number
 ): boolean => {
-  return cardsAmount / (pageIndex * cardsPerPage) > 1.0;
+  return cardsAmount / (pageIndex * cardsPerPage) >= 1.0;
 };
 
 export const getTranslationStyle = ({
@@ -84,7 +87,7 @@ export const getTranslationStyle = ({
       coeficient = adjustTranslationCoef(cardsAmount, cardsPerPage, translationCoef);
     }
   }
-  const offset: number = pageIndex * coeficient;
+  const offset: number = (pageIndex - 1) * translationCoef + coeficient;
   return translationExp.replace(COMMON_WILDCARD, offset.toString());
 };
 
@@ -112,4 +115,14 @@ export const getButtonSizeStyle = (
     default:
       return buildButtonSylesObject(styles.buttonArea, 'buttonArea');
   }
+};
+
+
+export const getLastPageIndex = (
+  windowWidth: number,
+  cardsAmount: number,
+  cardsPerPageMap: Record<string, number>
+): number => {
+  const cardsAmountPerPage = getCardsAmount(windowWidth, cardsPerPageMap);
+  return Math.ceil(cardsAmount / cardsAmountPerPage) - 1;
 };

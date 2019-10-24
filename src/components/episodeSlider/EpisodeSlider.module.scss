@@ -1,9 +1,10 @@
 @import '../../config//theme.scss';
 
-$slider-cards-amount-desktop: 5;
-$slider-cards-amount-tablet: 4;
-$slider-cards-amount-mobile-landscape: 4;
-$slider-cards-amount-mobile-portrait: 3;
+$breakpoints: (
+  1170px: $episode-slider-cards-amount-tablet,
+  840px: $episode-slider-cards-amount-mobile-landscape,
+  640px: $episode-slider-cards-amount-mobile-portrait
+);
 
 @function calc-slider-card-width($cards-amount) {
   @return (100vw - (($layout-spacing-lg) * 2 + $layout-spacing-lg * ($cards-amount - 1))) / $cards-amount;
@@ -29,20 +30,12 @@ $slider-cards-amount-mobile-portrait: 3;
       transition: all $layout-transition-time;
       transform-origin: center left;
 
-      @media screen and (min-width: 1171px) {
-        @include calculate-cards-size($slider-cards-amount-desktop, $aspect-ratio: $episode-aspect-ratio-coef);
-      }
+      @include calculate-cards-size($episode-slider-cards-amount-desktop, $aspect-ratio: $episode-aspect-ratio-coef);
 
-      @media screen and (max-width: 1170px) and (min-width: 841px) {
-        @include calculate-cards-size($slider-cards-amount-tablet, $aspect-ratio: $episode-aspect-ratio-coef)
-      }
-
-      @media screen and (max-width: 840px) and (min-width: 641px) {
-        @include calculate-cards-size($slider-cards-amount-mobile-landscape, $aspect-ratio: $episode-aspect-ratio-coef);
-      }
-
-      @media screen and (max-width:640px) {
-        @include calculate-cards-size($slider-cards-amount-mobile-portrait, $aspect-ratio: $episode-aspect-ratio-coef);
+      @each $width, $cards-amount in $breakpoints {
+        @media screen and (max-width: $width) {
+          @include calculate-cards-size($cards-amount, $aspect-ratio: $episode-aspect-ratio-coef)
+        }
       }
     }
   }

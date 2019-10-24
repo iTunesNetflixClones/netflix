@@ -46,7 +46,10 @@ $layout-z-index-top: 15;
 $layout-topbar-z-index: 100;
 
 $episode-aspect-ratio-coef: 1.9;
-$layout-episode-card-height: 10vw;
+$episode-slider-cards-amount-desktop: 5;
+$episode-slider-cards-amount-tablet: 4;
+$episode-slider-cards-amount-mobile-landscape: 3;
+$episode-slider-cards-amount-mobile-portrait: 2;
 
 $player-medium-size-width: 60vw;
 $player-container-scale-correction: (1 / $layout-video-card-grow-factor);
@@ -54,7 +57,12 @@ $player-container-scale-position-correction: -(($layout-video-card-grow-factor -
 $player-aspect-ratio-coef: 16 / 9;
 
 $video-details-aspect-ratio-coef: 16 / 5;
+$video-details-aspect-ratio-coef-tablet: 16 / 6;
+$video-details-aspect-ratio-coef-landscape: 16 / 7;
+$video-details-aspect-ratio-coef-portrait: 16 / 9;
+
 $video-details-video-width: 100vw * 7 / 9;
+$video-details-video-width-portrait: 100vw;
 $video-details-header-shrink-factor: 0.7;
 
 %layout-absolute-fill {
