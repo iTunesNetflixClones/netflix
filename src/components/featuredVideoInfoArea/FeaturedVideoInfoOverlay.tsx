@@ -1,5 +1,5 @@
 // @Vendors
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 // @Constants & enums
 import { SPACING } from '../../constants/enums';
@@ -16,7 +16,6 @@ interface PropTypes {
   onPressPlay: (videoId: string) => any;
   onPressList: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
-  showDescription: boolean;
   videoDescription: string;
   videoId: string;
 }
@@ -26,17 +25,9 @@ const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTy
     onPressList,
     onPressMoreInfo,
     onPressPlay,
-    showDescription,
     videoDescription,
     videoId
   } = props;
-
-  const renderDescription = (): ReactElement | null => {
-    if (!showDescription) {
-      return null;
-    }
-    return <p className={styles.descriptionText}>{videoDescription}</p>;
-  };
 
   return (
     <div className={styles.container}>
@@ -47,7 +38,7 @@ const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTy
             textKey="placeholders-videoLogo"
           />
         </div>
-        { renderDescription() }
+        <p className={styles.descriptionText}>{videoDescription}</p>;
         <Button
           iconSource="fa fa-play"
           onPress={onPressPlay.bind(null, videoId)}

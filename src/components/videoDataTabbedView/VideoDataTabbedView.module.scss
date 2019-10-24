@@ -41,6 +41,10 @@ $breakpoints: (
   right: 0;
   @include calculate-aspect-height($video-details-video-width);
 
+  @media screen and (max-width: 840px) {
+    @include calculate-aspect-height($video-details-video-width-landscape)
+  }
+
   @media screen and (max-width: 640px) {
     @include calculate-aspect-height($video-details-video-width-portrait)
   }

@@ -2,7 +2,9 @@
 
 .container {
   @extend %layout-absolute-fill;
-  background: linear-gradient(transparent 40%, $colors-background-primary);
+  background:
+    linear-gradient(to right, $colors-background-primary 50%, transparent),
+    linear-gradient(transparent 40%, $colors-background-primary);
   z-index: $layout-z-index-low;
 }
 
