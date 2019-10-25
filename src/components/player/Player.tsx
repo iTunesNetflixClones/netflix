@@ -65,7 +65,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
 
   useEffect(() => {
     requestPlayerControl(playerId);
-  }, [playerId]);
+  }, [playerId, requestPlayerControl]);
 
   const handlePauseVideo = (): void => {
     setPlaying(false);
