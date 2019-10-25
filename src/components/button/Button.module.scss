@@ -43,8 +43,7 @@
   }
 
   &__circle {
-    padding: $cicular-padding;
-    width: $circular-width;
+    @include circular-button-size-responsive($circular-width, $cicular-padding);
     border-radius: 50%;
 
     i {

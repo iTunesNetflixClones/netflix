@@ -9,11 +9,11 @@
 
   .playerContainer {
     position: absolute;
-    left: $player-container-scale-position-correction;
-    top: $player-container-scale-position-correction;
-    bottom: $player-container-scale-position-correction;
-    right: $player-container-scale-position-correction;
-    transform: scale($player-container-scale-correction);
+    left: calculate-player-scale-position-correction($layout-video-card-grow-factor);
+    top: calculate-player-scale-position-correction($layout-video-card-grow-factor);
+    bottom: calculate-player-scale-position-correction($layout-video-card-grow-factor);
+    right: calculate-player-scale-position-correction($layout-video-card-grow-factor);
+    transform: scale(calculate-player-scale-correction($layout-video-card-grow-factor));
   }
 
   &__expanded {

@@ -4,6 +4,14 @@
   position: relative;
   overflow: hidden;
   padding: $layout-spacing-lg 0 $layout-spacing-xxlg;
+
+  @media screen and (max-width: 840px) {
+    padding: ($layout-spacing-lg * 1.6) 0 ($layout-spacing-xxlg * 1.6);
+  }
+
+  @media screen and (max-width: 640px) {
+    padding: ($layout-spacing-lg * 2) 0 ($layout-spacing-xxlg * 2);
+  }
 }
 
 .titleText{
