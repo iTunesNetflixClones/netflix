@@ -8,7 +8,7 @@ import { formatText } from '../../utils/i18n';
 interface PropTypes {
   className?: string;
   injectedTexts?: Array<string | number>;
-  inlineStyles?: Record<string, any>; // eslint-disable-line
+  inlineStyles?: Record<string, any>;
   textKey: string;
 }
 

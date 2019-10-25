@@ -8,7 +8,7 @@ const  useResizeDetector = (onResize: () => void, propCheck?: Array<any>): any =
     return (): void => {
       window.removeEventListener('resize', onResize);
     };
-  }, [propCheck])
+  }, [propCheck, onResize])
 );
 
 export default useResizeDetector;
