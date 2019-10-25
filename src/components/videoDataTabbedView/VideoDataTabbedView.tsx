@@ -8,6 +8,7 @@ import VideoEpisodes from '../videoEpisodes/VideoEpisodes';
 import VideoDetails from '../videoDetails/VideoDetails';
 
 // @Constants
+import { ICON_CLOSE } from '../../constants/constants';
 import { VideoData } from '../../constants/types';
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
 
@@ -41,7 +42,7 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
       <button
         className={styles.closeButton}
         onClick={onClose}>
-        <i className="fa fa-times" />
+        <i className={ICON_CLOSE} />
       </button>
     );
   };
@@ -82,7 +83,8 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
     }
     if(tabIndex === 1) {
       return (
-        <VideoEpisodes />
+        <VideoEpisodes
+          videoData={videoData}/>
       );
     }
   };

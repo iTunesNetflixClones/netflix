@@ -3,6 +3,7 @@
 .container {
   @extend %layout-absolute-fill;
   z-index: $layout-z-index-low;
+  background: linear-gradient(transparent 50%, $colors-background-primary);
 }
 
 .dataContainer {

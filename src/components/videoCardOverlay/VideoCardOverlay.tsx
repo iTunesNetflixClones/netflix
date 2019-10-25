@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 
 // @Constants
 import { BUTTON_MODIFIERS } from '../../constants/enums';
-import { VIDEO_OVERLAY_SEPARATOR_CHAR } from '../../constants/constants';
+import { ICON_PLAY, VIDEO_OVERLAY_SEPARATOR_CHAR } from '../../constants/constants';
 import { VideoData } from '../../constants/types';
 
 // @Components
@@ -52,7 +52,7 @@ const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) 
     <div className={styles.container}>
       <div className={styles.dataContainer}>
         <Button
-          iconSource="fa fa-play"
+          iconSource={ICON_PLAY}
           modifiers={[BUTTON_MODIFIERS.circle, BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
           onPress={onPressPlay}
         />

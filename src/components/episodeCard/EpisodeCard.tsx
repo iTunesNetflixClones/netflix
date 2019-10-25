@@ -4,6 +4,7 @@ import React, { useState, ReactElement } from 'react';
 // @Constants
 import { Duration, EpisodeData } from '../../constants/types';
 import { BUTTON_MODIFIERS, BUTTON_SIZES } from '../../constants/enums';
+import { ICON_PLAY } from '../../constants/constants';
 
 // @Components
 import Button from '../button/Button';
@@ -41,7 +42,7 @@ const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     return (
       <div className={styles.overlay}>
         <Button
-          iconSource="fa fa-play"
+          iconSource={ICON_PLAY}
           modifiers={[BUTTON_MODIFIERS.circle, BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
           onPress={handlePressPlay}
           size={BUTTON_SIZES.big}/>

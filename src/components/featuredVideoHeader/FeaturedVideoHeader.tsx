@@ -1,5 +1,5 @@
 // @Vendors
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 // @Styles
 import styles from './FeaturedVideoHeader.module.scss';
@@ -25,27 +25,24 @@ const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropType
 
   const { description, id } = videoData;
 
-  const renderVideoOverlay = (playing: boolean): ReactElement => (
-    <FeaturedVideoInfoOverlay
-      onPressPlay={onPressPlay}
-      onPressList={onPressList}
-      onPressMoreInfo={onPressMoreInfo}
-      showDescription={!playing}
-      videoDescription={description}
-      videoId={id}
-    />
-  );
-
   return (
-    <div className={styles.container}>
-      <Player
-        controlsSet={[PLAYER_CONTROLS.volumeControl, PLAYER_CONTROLS.parentalTag]}
-        loop
-        playerId={`viewHeader-${id}`}
-        renderOverlay={renderVideoOverlay}
-        size={PLAYER_CONTROLS_SIZES.regular}
-        src={videoData.src}
+    <div className={styles.mainContainer}>
+      <FeaturedVideoInfoOverlay
+        onPressPlay={onPressPlay}
+        onPressList={onPressList}
+        onPressMoreInfo={onPressMoreInfo}
+        videoDescription={description}
+        videoId={id}
       />
+      <div className={styles.playerContainer}>
+        <Player
+          controlsSet={[PLAYER_CONTROLS.volumeControl, PLAYER_CONTROLS.parentalTag]}
+          loop
+          playerId={`viewHeader-${id}`}
+          size={PLAYER_CONTROLS_SIZES.regular}
+          src={videoData.src}
+        />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,11 @@
 @import '../../config//theme.scss';
 
-.container {
-  @include calculate-aspect-height($width: 100vw);
+.mainContainer {
+  position: relative;
+  @include calculate-aspect-height($width: 100vw, $aspect-ratio: $featured-video-header-aspect-ratio);
+}
+
+.playerContainer {
+  @include calculate-aspect-height($width: 100vw / $featured-video-header-aspect-ratio);
+  margin-left: 100vw - 100vw / $featured-video-header-aspect-ratio;
 }

@@ -13,13 +13,16 @@ import SliderButton from '../sliderButton/SliderButton';
 import VideoDataTabbedView from '../videoDataTabbedView/VideoDataTabbedView';
 
 // @Constants
-import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP } from '../../constants/constants';
+import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP, VIDEO_CARDS_AMOUNT } from '../../constants/constants';
 import { PositionCheck, VideoData } from '../../constants/types';
 import { SLIDER_BUTTON_TYPES } from '../../constants/enums';
 import { StoreState } from '../../constants/stateTypes';
 
 // @Helpers
-import { checkVideoCardPosition, getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
+import { checkVideoCardPosition, getLastPageIndex, getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
+
+// @Hooks
+import useResizeDetector from '../../hooks/resizeDetector';
 
 // @Components
 import VideoCard from '../videoCard/VideoCard';
@@ -63,6 +66,15 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   const [ selectedIndex, setSelectedIndex ] = useState(-1);
 
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
+
+  const onChangeWindowDimensions = (): void => {
+    if(isLastPage(currentIndex, scrollContentWidth, window.innerWidth)) {
+      const lastPageIndex = getLastPageIndex(window.innerWidth, videosList.length, VIDEO_CARDS_AMOUNT);
+      setCurrentIndex(lastPageIndex);
+    }
+  };
+
+  useResizeDetector(onChangeWindowDimensions, [currentIndex, scrollContentWidth]);
 
   const handleExpandVideo = (index: number): void => {
     setSelectedIndex(index);

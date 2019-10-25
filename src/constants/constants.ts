@@ -5,9 +5,9 @@ export const CALC_INTERPOLATION_MIN_RANGE_DEFAULT = 0.0;
 export const COMMON_WILDCARD = '%s';
 export const EPISODE_CARDS_AMOUNT = {
   DESKTOP: 5,
-  TABLET: 3,
-  MOBILE_LANDSCAPE: 2,
-  MOBILE_PORTRAIT: 1
+  TABLET: 4,
+  MOBILE_LANDSCAPE: 3,
+  MOBILE_PORTRAIT: 2
 };
 export const EPISODE_SLIDER_TRANSLATION_COEF = 97;
 export const EPISODE_SLIDER_TRANSLATION_EXP = 'translateX(-%svw)';
@@ -15,6 +15,13 @@ export const I18_DEFAULT_TRANSLATION = '####';
 export const I18_KEY_SEPARATOR = '-';
 export const I18_LANG_EN = 'en';
 export const I18N_REPLACEMENT_WILDCARD = '%s';
+export const ICON_CARET_DOWN = 'fa fa-caret-down';
+export const ICON_CLOSE = 'fa fa-times';
+export const ICON_INFO = 'fa fa-info';
+export const ICON_LIKE = 'fa fa-thumbs-up';
+export const ICON_MY_LIST = 'fa fa-plus';
+export const ICON_PLAY = 'fa fa-play';
+export const ICON_UNLIKE = 'fa fa-thumbs-down';
 export const SCREEN_DESKTOP_MIN_WIDTH = 1171;
 export const SCREEN_MOBILE_LANDSCAPE_MIN_WIDTH = 641;
 export const SCREEN_MOBILE_PORTRAIT_MIN_WIDTH = 0;

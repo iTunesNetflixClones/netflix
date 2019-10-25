@@ -1,8 +1,9 @@
 // @Vendors
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 // @Constants & enums
 import { SPACING } from '../../constants/enums';
+import { ICON_INFO, ICON_MY_LIST, ICON_PLAY } from '../../constants/constants';
 
 // @Components
 import Button from '../button/Button';
@@ -16,7 +17,6 @@ interface PropTypes {
   onPressPlay: (videoId: string) => any;
   onPressList: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
-  showDescription: boolean;
   videoDescription: string;
   videoId: string;
 }
@@ -26,17 +26,9 @@ const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTy
     onPressList,
     onPressMoreInfo,
     onPressPlay,
-    showDescription,
     videoDescription,
     videoId
   } = props;
-
-  const renderDescription = (): ReactElement | null => {
-    if (!showDescription) {
-      return null;
-    }
-    return <p className={styles.descriptionText}>{videoDescription}</p>;
-  };
 
   return (
     <div className={styles.container}>
@@ -47,21 +39,21 @@ const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTy
             textKey="placeholders-videoLogo"
           />
         </div>
-        { renderDescription() }
+        <p className={styles.descriptionText}>{videoDescription}</p>;
         <Button
-          iconSource="fa fa-play"
+          iconSource={ICON_PLAY}
           onPress={onPressPlay.bind(null, videoId)}
           spacing={[SPACING.right]}
           textKey="featuredVideoHeader-play"
         />
         <Button
-          iconSource="fa fa-plus"
+          iconSource={ICON_MY_LIST}
           onPress={onPressList.bind(null, videoId)}
           spacing={[SPACING.right]}
           textKey="featuredVideoHeader-myList"
         />
         <Button
-          iconSource="fa fa-info"
+          iconSource={ICON_INFO}
           onPress={onPressMoreInfo.bind(null, videoId)}
           spacing={[SPACING.right]}
           textKey="featuredVideoHeader-moreInfo"

@@ -1,10 +1,22 @@
 @import '../../config//theme.scss';
 
+$breakpoints: (
+  1170px: $video-details-aspect-ratio-coef-tablet,
+  840px: $video-details-aspect-ratio-coef-landscape,
+  640px: $video-details-aspect-ratio-coef-portrait
+);
+
 .mainContainer {
   position: relative;
   @include calculate-aspect-height(100vw, $video-details-aspect-ratio-coef);
   background-color: $colors-background-tertiary;
   overflow: hidden;
+
+  @each $width, $aspect-ratio in $breakpoints {
+    @media screen and (max-width: $width) {
+      @include calculate-aspect-height(100vw, $aspect-ratio);
+    }
+  }
 }
 
 .innerContainer {
@@ -28,6 +40,14 @@
   top: 0;
   right: 0;
   @include calculate-aspect-height($video-details-video-width);
+
+  @media screen and (max-width: 840px) {
+    @include calculate-aspect-height($video-details-video-width-landscape)
+  }
+
+  @media screen and (max-width: 640px) {
+    @include calculate-aspect-height($video-details-video-width-portrait)
+  }
 }
 
 .videoOverlay {

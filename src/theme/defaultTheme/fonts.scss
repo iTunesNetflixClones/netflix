@@ -19,7 +19,15 @@ $font-size-xxlg: 2vw;
 @mixin font-size-responsive($base-font-size) {
   font-size: $base-font-size;
 
-  @media screen and (max-width: 840px) {
-    font-size: $base-font-size * 1.5;
+  $breakpoints: (
+    1170px: 1.2,
+    840px: 1.5,
+    640px: 1.8
+  );
+
+  @each $width, $size-multiplier in $breakpoints {
+    @media screen and (max-width: $width) {
+      font-size: $base-font-size * $size-multiplier;
+    }
   }
 }
