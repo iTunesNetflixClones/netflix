@@ -48,7 +48,7 @@ export const isLastPage = (
   scrollContentWidth: number,
   screenWidth: number
 ): boolean => {
-  return ((pageIndex + 1) * screenWidth) >= scrollContentWidth;
+  return ((pageIndex + 1) * screenWidth) > scrollContentWidth;
 };
 
 const adjustTranslationCoef = (
