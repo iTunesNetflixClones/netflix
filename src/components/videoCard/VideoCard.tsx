@@ -80,7 +80,6 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
             PLAYER_CONTROLS.unlike,
             PLAYER_CONTROLS.myList
           ]}
-          loop
           muted={false}
           onPressLike={handleLike}
           onPressMyList={handleMyList}

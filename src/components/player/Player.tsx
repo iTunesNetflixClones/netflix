@@ -57,7 +57,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     src
   } = props;
 
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(true);
   const player = useRef<ReactPlayer>(null);
 
@@ -73,12 +73,12 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
 
   const toggleMuted = (): void => setMuted(!muted);
 
-  const togglePlaying = (): void => setPlaying(!playing);
+  const stopPlaying = (): void => setPlaying(false);
 
   const restartPlayer = (): void => {
     if (player.current) {
       requestPlayerControl(playerId);
-      player.current.seekTo(0, 'seconds');
+      player.current.seekTo(0);
       setPlaying(true);
     }
   };
@@ -96,7 +96,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
           modestbranding={1}
           muted={muted}
           onPause={handlePauseVideo}
-          onEnded={togglePlaying}
+          onEnded={stopPlaying}
           playing={isPlaying}
           showinfo={0}
           volume={1}

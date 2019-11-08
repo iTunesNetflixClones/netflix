@@ -37,7 +37,6 @@ const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropType
       <div className={styles.playerContainer}>
         <Player
           controlsSet={[PLAYER_CONTROLS.volumeControl, PLAYER_CONTROLS.parentalTag]}
-          loop
           playerId={`viewHeader-${id}`}
           size={PLAYER_CONTROLS_SIZES.regular}
           src={videoData.src}
