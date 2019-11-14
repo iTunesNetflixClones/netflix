@@ -14,6 +14,9 @@ import styles from './VideoOverview.module.scss';
 // @Actions
 import { enablePlayers } from 'actions/player.actions';
 
+// @Utils
+import { formatText } from 'utils/i18n';
+
 // @Mock data
 import videosList from 'resources/videoData';
 
@@ -49,16 +52,48 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           onPressLike={(): void => {}}
           onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
-          sliderId='1'
-          titleText="Recommended"
+          sliderId="1"
+          titleText={formatText('placeholders-categoryTrending')}
           videosList={videosList} />
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
           onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
-          sliderId='2'
-          titleText="Trends"
+          sliderId="2"
+          titleText={formatText('placeholders-categoryEntertainment')}
+          videosList={videosList} />
+        <VideoSlider
+          onPlayVideo={(): void => {}}
+          onPressLike={(): void => {}}
+          onPressMyList={(): void => {}}
+          onPressUnlike={(): void => {}}
+          sliderId="3"
+          titleText={formatText('placeholders-categoryComedy')}
+          videosList={videosList} />
+        <VideoSlider
+          onPlayVideo={(): void => {}}
+          onPressLike={(): void => {}}
+          onPressMyList={(): void => {}}
+          onPressUnlike={(): void => {}}
+          sliderId="4"
+          titleText={formatText('placeholders-categoryTech')}
+          videosList={videosList} />
+        <VideoSlider
+          onPlayVideo={(): void => {}}
+          onPressLike={(): void => {}}
+          onPressMyList={(): void => {}}
+          onPressUnlike={(): void => {}}
+          sliderId="5"
+          titleText={formatText('placeholders-categoryCrime')}
+          videosList={videosList} />
+        <VideoSlider
+          onPlayVideo={(): void => {}}
+          onPressLike={(): void => {}}
+          onPressMyList={(): void => {}}
+          onPressUnlike={(): void => {}}
+          sliderId="6"
+          titleText={formatText('placeholders-categoryNews')}
           videosList={videosList} />
       </div>
     </div>
