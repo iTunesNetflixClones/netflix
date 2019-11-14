@@ -1,0 +1,52 @@
+@import '../../config//theme.scss';
+
+.buttonAreaContainer {
+  display: block;
+  padding: $hl-layout-spacing-xxsm 0;
+
+  &__extraSpacing {
+    padding: $hl-layout-spacing-xxsm $hl-layout-spacing-xxlg;
+
+    @media screen and (max-width: $hl-layout-app-width) {
+      padding: $hl-layout-spacing-xxsm 0;
+    }
+  }
+}
+
+.container {
+  cursor: pointer;
+  border: none;
+  background-color: $hl-colors-background-button;
+  padding: $hl-layout-spacing-sm 0;
+  text-align: center;
+  width: 100%;
+  border-radius: $hl-layout-border-radius-button;
+
+  @extend %hl-fonts-ff-indicator-and-buttons;
+  font-size: $hl-font-size-sm;
+  color: $hl-colors-font-data-and-button;
+
+  transition: transform $hl-layout-animation-button-scale;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    &:not(.container__disabled) {
+      transform: scale($hl-layout-grow-factor-button);
+    }
+  }
+
+  &__disabled {
+    opacity: 0.5;
+  }
+
+  &__gradientBG {
+    @extend %hl-colors-gradient;
+  }
+
+  &__smallFont {
+    font-size: $hl-font-size-xxsm;
+  }
+}

@@ -12,6 +12,15 @@ export enum BUTTON_SIZES {
   big
 }
 
+export enum HL_BUTTON_CONTAINER_MODIFIERS {
+  EXTRA_SPACING
+}
+
+export enum HL_BUTTON_MODIFIERS {
+  GRADIENT_BG,
+  SMALL_FONT
+}
+
 export enum PLAYER_CONTROLS {
   like,
   myList,

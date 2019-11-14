@@ -63,6 +63,8 @@ $layout-z-index-low: 5;
 $layout-z-index-mid: 10;
 $layout-z-index-top: 15;
 $layout-topbar-z-index: 100;
+$layout-modal-z-index: 110;
+$layout-modal-content-z-index: 120;
 
 $episode-aspect-ratio-coef: 1.9;
 $episode-slider-cards-amount-desktop: 5;
@@ -119,3 +121,23 @@ $video-details-header-shrink-factor: 0.7;
 @function calculate-player-scale-position-correction($grow-factor) {
   @return -(($layout-video-card-grow-factor - 1) * 100% / 2);
 }
+
+// TODO: Unify designs
+$hl-layout-spacing-xxsm: 8.5px;
+$hl-layout-spacing-sm: 15px;
+$hl-layout-spacing-md: 25px;
+$hl-layout-spacing-xxlg: 90px;
+
+$hl-layout-logo-size: 100px;
+
+$hl-layout-border-radius-button: 1.5px;
+$hl-layout-border-radius-lg: 10px;
+
+$hl-layout-border-width: 2.5px;
+
+$hl-layout-app-width: 768px;
+$hl-layout-tablet-width: 992px;
+
+$hl-layout-animation-button-scale: 300ms ease-out;
+
+$hl-layout-grow-factor-button: 1.05;

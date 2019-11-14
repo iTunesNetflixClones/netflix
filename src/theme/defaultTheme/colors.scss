@@ -21,3 +21,15 @@ $colors-button-active: #FF0A16;
 $colors-tag-primary: #e50914;
 
 $colors-opacity-traslucent: 0.4;
+
+// TODO: Await for styles unifying... Following styles are added for modal
+$hl-colors-background-primary: #14191e;
+$hl-colors-background-primary-opaque: #14191ee6;
+$hl-colors-background-button: #19b5fe;
+
+$hl-colors-font-data-and-button: #ffffff;
+$hl-colors-font-header: #8ca0c3;
+
+%hl-colors-gradient {
+  background: -webkit-linear-gradient(left top, #5dbefc, #dd92fe);
+}
