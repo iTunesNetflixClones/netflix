@@ -6,7 +6,7 @@ import styles from './Modal.module.scss';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
-import HeadilnerButton from 'components/headlinerButton/HeadlinerButton';
+import HeadlinerButton from 'components/headlinerButton/HeadlinerButton';
 
 // @Assets
 const micLogo = require('assets/png/mic_logo.png');
@@ -41,7 +41,7 @@ const Modal: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
             <FormattedText
               textKey="introModal-modalText"/>
           </p>
-          <HeadilnerButton
+          <HeadlinerButton
             onClick={onAcceptModal}
             textKey="introModal-buttonText" />
         </div>
