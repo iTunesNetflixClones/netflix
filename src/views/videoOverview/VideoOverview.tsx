@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 
 // @Components
-import FeaturedVideoHeader from '../../components/featuredVideoHeader/FeaturedVideoHeader';
+import FeaturedVideoHeader from 'components/featuredVideoHeader/FeaturedVideoHeader';
 import Modal from 'components/modal/Modal';
-import VideoSlider from '../../components/videoSlider/VideoSlider';
+import VideoSlider from 'components/videoSlider/VideoSlider';
 
 // @Styles
 import styles from './VideoOverview.module.scss';
@@ -15,7 +15,7 @@ import styles from './VideoOverview.module.scss';
 import { enablePlayers } from 'actions/player.actions';
 
 // @Mock data
-import videosList from '../../resources/videoData';
+import videosList from 'resources/videoData';
 
 // @PropTypes
 interface DispatchProps {

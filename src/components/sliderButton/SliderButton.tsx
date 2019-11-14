@@ -2,7 +2,7 @@
 import React from 'react';
 
 // @Constants
-import { SLIDER_BUTTON_TYPES } from '../../constants/enums';
+import { SLIDER_BUTTON_TYPES } from 'constants/enums';
 
 // @Styles
 import styles from './SliderButton.module.scss';

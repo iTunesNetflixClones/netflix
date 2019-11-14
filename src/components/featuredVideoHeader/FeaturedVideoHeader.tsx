@@ -5,12 +5,12 @@ import React from 'react';
 import styles from './FeaturedVideoHeader.module.scss';
 
 // @Constants & enums
-import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
-import { VideoData } from '../../constants/types';
+import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
+import { VideoData } from 'constants/types';
 
 // @components
-import FeaturedVideoInfoOverlay from '../featuredVideoInfoArea/FeaturedVideoInfoOverlay';
-import Player from '../player/Player';
+import FeaturedVideoInfoOverlay from 'components/featuredVideoInfoArea/FeaturedVideoInfoOverlay';
+import Player from 'components/player/Player';
 
 // @PropTypes
 interface PropTypes {

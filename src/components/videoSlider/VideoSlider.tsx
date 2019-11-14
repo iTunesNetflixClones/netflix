@@ -5,12 +5,12 @@ import React, { ReactElement } from 'react';
 import styles from './VideoSlider.module.scss';
 
 // @Constants
-import { VideoData } from '../../constants/types';
+import { VideoData } from 'constants/types';
 
 // @Components
-import FormattedText from '../formattedText/FormattedText';
-import Label from '../label/Label';
-import VideoSliderRow from '../videoSliderRow/VideoSliderRow';
+import FormattedText from 'components/formattedText/FormattedText';
+import Label from 'components/label/Label';
+import VideoSliderRow from 'components/videoSliderRow/VideoSliderRow';
 
 // @PropTypes
 interface PropTypes {

@@ -2,15 +2,15 @@
 import React, { ReactElement, RefObject, useRef, useState } from 'react';
 
 // @Custom hooks
-import useOutsideAlerter from '../../hooks/ousideClickDetector';
+import useOutsideAlerter from 'hooks/ousideClickDetector';
 
 // @Components
-import FormattedText from '../formattedText/FormattedText';
-import Label from '../label/Label';
+import FormattedText from 'components/formattedText/FormattedText';
+import Label from 'components/label/Label';
 
 // @Constants
-import { ICON_CARET_DOWN } from '../../constants/constants';
-import { SelectorOption } from '../../constants/types';
+import { ICON_CARET_DOWN } from 'constants/constants';
+import { SelectorOption } from 'constants/types';
 
 // @Styles
 import styles from './Dropdown.module.scss';

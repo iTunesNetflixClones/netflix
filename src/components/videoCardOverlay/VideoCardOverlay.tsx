@@ -2,15 +2,15 @@
 import React, { ReactElement } from 'react';
 
 // @Constants
-import { BUTTON_MODIFIERS } from '../../constants/enums';
-import { ICON_PLAY, VIDEO_OVERLAY_SEPARATOR_CHAR } from '../../constants/constants';
+import { BUTTON_MODIFIERS } from 'constants/enums';
+import { ICON_PLAY, VIDEO_OVERLAY_SEPARATOR_CHAR } from 'constants/constants';
 import { VideoData } from '../../constants/types';
 
 // @Components
-import Button from '../button/Button';
-import FooterButton from '../footerButton/FooterButton';
-import Label from '../label/Label';
-import VideoInfoRow from '../videoInfoRow/VideoInfoRow';
+import Button from 'components/button/Button';
+import FooterButton from 'components/footerButton/FooterButton';
+import Label from 'components/label/Label';
+import VideoInfoRow from 'components/videoInfoRow/VideoInfoRow';
 
 // @Styles
 import styles from './VideoCardOverlay.module.scss';

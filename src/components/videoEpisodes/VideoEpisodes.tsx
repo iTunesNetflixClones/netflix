@@ -2,17 +2,17 @@
 import React, { useState } from 'react';
 
 // Constants
-import { SelectorOption, VideoData } from '../../constants/types';
+import { SelectorOption, VideoData } from 'constants/types';
 
 // @Components
-import Dropdown from '../dropdown/Dropdown';
-import EpisodeSlider from '../episodeSlider/EpisodeSlider';
+import Dropdown from 'components/dropdown/Dropdown';
+import EpisodeSlider from 'components/episodeSlider/EpisodeSlider';
 
 // @Styles
 import styles from './VideoEpisodes.module.scss';
 
 // @Resources
-import epidodesList from '../../resources/episodeData';
+import epidodesList from 'resources/episodeData';
 
 // @PropTypes
 interface PropTypes {

@@ -2,15 +2,15 @@
 import React, { ReactElement } from 'react';
 
 // @Constants
-import { VideoData } from '../../constants/types';
-import { BUTTON_MODIFIERS, SPACING } from '../../constants/enums';
-import { ICON_LIKE, ICON_MY_LIST, ICON_PLAY, ICON_UNLIKE } from '../../constants/constants';
+import { VideoData } from 'constants/types';
+import { BUTTON_MODIFIERS, SPACING } from 'constants/enums';
+import { ICON_LIKE, ICON_MY_LIST, ICON_PLAY, ICON_UNLIKE } from 'constants/constants';
 
 // @Components
-import Button from '../button/Button';
-import Label from '../label/Label';
-import VideoAddionalInfo from '../videoAdditionalnfo/VideoAdditionalInfo';
-import VideoInfoRow from '../videoInfoRow/VideoInfoRow';
+import Button from 'components/button/Button';
+import Label from 'components/label/Label';
+import VideoAddionalInfo from 'components/videoAdditionalnfo/VideoAdditionalInfo';
+import VideoInfoRow from 'components/videoInfoRow/VideoInfoRow';
 
 // @Styles
 import styles from './VideoDetails.module.scss';

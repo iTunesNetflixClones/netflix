@@ -5,15 +5,15 @@ import React, { ReactElement } from 'react';
 import styles from './VideoInfoRow.module.scss';
 
 // @Components
-import FormattedText from '../formattedText/FormattedText';
-import Label from '../label/Label';
+import FormattedText from 'components/formattedText/FormattedText';
+import Label from 'components/label/Label';
 
 // @Helpers
-import { formatDuration } from '../../utils/dateHelper';
-import { getParentalAgeText } from '../../utils/miscHelper';
+import { formatDuration } from 'utils/dateHelper';
+import { getParentalAgeText } from 'utils/miscHelper';
 
 // @Constants
-import { Duration, VideoData } from '../../constants/types';
+import { Duration, VideoData } from 'constants/types';
 
 // @PropTypes
 interface PropTypes {

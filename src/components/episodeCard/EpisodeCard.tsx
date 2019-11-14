@@ -2,17 +2,17 @@
 import React, { useState, ReactElement } from 'react';
 
 // @Constants
-import { Duration, EpisodeData } from '../../constants/types';
-import { BUTTON_MODIFIERS, BUTTON_SIZES } from '../../constants/enums';
-import { ICON_PLAY } from '../../constants/constants';
+import { Duration, EpisodeData } from 'constants/types';
+import { BUTTON_MODIFIERS, BUTTON_SIZES } from 'constants/enums';
+import { ICON_PLAY } from 'constants/constants';
 
 // @Components
-import Button from '../button/Button';
-import FormattedText from '../formattedText/FormattedText';
-import Label from '../label/Label';
+import Button from 'components/button/Button';
+import FormattedText from 'components/formattedText/FormattedText';
+import Label from 'components/label/Label';
 
 // @Helpers
-import { formatDuration } from '../../utils/dateHelper';
+import { formatDuration } from 'utils/dateHelper';
 
 // @Styles
 import styles from './EpisodeCard.module.scss';

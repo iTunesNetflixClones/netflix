@@ -3,19 +3,19 @@ import React, { RefObject, useRef, useState, ReactElement } from 'react';
 import get from 'lodash/get';
 
 // @Constants
-import { EpisodeData } from '../../constants/types';
-import { SLIDER_BUTTON_TYPES } from '../../constants/enums';
-import { EPISODE_CARDS_AMOUNT, EPISODE_SLIDER_TRANSLATION_COEF, EPISODE_SLIDER_TRANSLATION_EXP } from '../../constants/constants';
+import { EpisodeData } from 'constants/types';
+import { SLIDER_BUTTON_TYPES } from 'constants/enums';
+import { EPISODE_CARDS_AMOUNT, EPISODE_SLIDER_TRANSLATION_COEF, EPISODE_SLIDER_TRANSLATION_EXP } from 'constants/constants';
 
 // @Components
-import EpisodeCard from '../episodeCard/EpisodeCard';
-import SliderButton from '../sliderButton/SliderButton';
+import EpisodeCard from 'components/episodeCard/EpisodeCard';
+import SliderButton from 'components/sliderButton/SliderButton';
 
 // @Helpers
-import { getLastPageIndex, getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
+import { getLastPageIndex, getTranslationStyle, isLastPage } from 'utils/layoutHelper';
 
 // @Hooks
-import useResizeDetector from '../../hooks/resizeDetector';
+import useResizeDetector from 'hooks/resizeDetector';
 
 // @Styles
 import styles from './EpisodeSlider.module.scss';

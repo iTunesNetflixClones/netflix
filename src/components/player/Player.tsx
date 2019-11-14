@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 
 // @Components
-import PlayerControls from '../playerControls/PlayerControls';
+import PlayerControls from 'components/playerControls/PlayerControls';
 
 // @Actions
-import { requestPlayerControl } from '../../actions/player.actions';
+import { requestPlayerControl } from 'actions/player.actions';
 
 // @Constants
-import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
-import { StoreState } from '../../constants/stateTypes';
+import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
+import { StoreState } from 'constants/stateTypes';
 
 // @Style
 import styles from './Player.module.scss';

@@ -5,16 +5,16 @@ import React, { useEffect, useState } from 'react';
 import styles from './Topbar.module.scss';
 
 // @Constants
-import { TOPBAR_SCROLL_INTERPOLATE_RANGE } from '../../constants/constants';
+import { TOPBAR_SCROLL_INTERPOLATE_RANGE } from 'constants/constants';
 
 // @Components
-import FormattedText from '../formattedText/FormattedText';
+import FormattedText from 'components/formattedText/FormattedText';
 
 // @Utils
-import { interpolateScroll } from '../../utils/calcHelper';
+import { interpolateScroll } from 'utils/calcHelper';
 
 // @Assets
-const healinerLogo = require('../../assets/png/headliner_logo.png');
+const healinerLogo = require('assets/png/headliner_logo.png');
 
 const Topbar: React.FunctionComponent<{}>  = () => {
   const [scrollHeight, setScrollHeight] = useState(

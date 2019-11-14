@@ -2,14 +2,14 @@
 import React, { ReactElement } from 'react';
 
 // @Constants
-import { BUTTON_MODIFIERS, BUTTON_SIZES, PLAYER_CONTROLS, SPACING, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
+import { BUTTON_MODIFIERS, BUTTON_SIZES, PLAYER_CONTROLS, SPACING, PLAYER_CONTROLS_SIZES } from 'constants/enums';
 
 // @Components
-import Button from '../button/Button';
-import Tag from '../tag/Tag';
+import Button from 'components/button/Button';
+import Tag from 'components/tag/Tag';
 
 // @Utils
-import { getParentalAgeText } from '../../utils/miscHelper';
+import { getParentalAgeText } from 'utils/miscHelper';
 
 // Styles
 import styles from './PlayerControls.module.scss';

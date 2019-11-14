@@ -1,5 +1,5 @@
 // @Vendors
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const  useResizeDetector = (onResize: () => void, propCheck?: Array<any>): any => (
   useEffect(() => {

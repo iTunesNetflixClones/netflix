@@ -1,5 +1,5 @@
 // @Constants
-import { VideoData } from '../constants/types';
+import { VideoData } from 'constants/types';
 
 const videosData: Array<VideoData> = [
   {

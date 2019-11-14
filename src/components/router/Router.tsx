@@ -3,10 +3,10 @@ import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 // @Views
-import VideoOverview from '../../views/videoOverview/VideoOverview';
+import VideoOverview from 'views/videoOverview/VideoOverview';
 
 // @Components
-import Topbar from '../topbar/Topbar';
+import Topbar from 'components/topbar/Topbar';
 
 // @Styles
 import styles from './Router.module.scss';

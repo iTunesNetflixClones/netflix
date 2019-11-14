@@ -1,5 +1,5 @@
 // Constants
-import { EpisodeData } from '../constants/types';
+import { EpisodeData } from 'constants/types';
 
 const episodeData: Array<EpisodeData> = [
   {
