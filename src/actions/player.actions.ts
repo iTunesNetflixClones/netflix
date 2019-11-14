@@ -2,7 +2,7 @@
 import  {
   PLAYER_ENABLE,
   PLAYER_REQUEST_CONTROL
-} from '../constants/actionTypes';
+} from 'constants/actionTypes';
 
 // @Constants
 import { Action } from 'constants/types';

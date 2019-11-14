@@ -2,12 +2,12 @@
 import React, { ReactElement } from 'react';
 
 // @Constants
-import { VideoData } from '../../constants/types';
-import { VIDEO_INFO_TEXT_SEPARATOR } from '../../constants/constants';
+import { VideoData } from 'constants/types';
+import { VIDEO_INFO_TEXT_SEPARATOR } from 'constants/constants';
 
 // @Components
-import FormattedText from '../formattedText/FormattedText';
-import Label from '../label/Label';
+import FormattedText from 'components/formattedText/FormattedText';
+import Label from 'components/label/Label';
 
 // @Styles
 import styles from './VideoAdditionalInfo.module.scss';

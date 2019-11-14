@@ -2,12 +2,12 @@
 import React from 'react';
 
 // @Constants & enums
-import { SPACING } from '../../constants/enums';
-import { ICON_INFO, ICON_MY_LIST, ICON_PLAY } from '../../constants/constants';
+import { SPACING } from 'constants/enums';
+import { ICON_INFO, ICON_MY_LIST, ICON_PLAY } from 'constants/constants';
 
 // @Components
-import Button from '../button/Button';
-import FormattedText from '../formattedText/FormattedText';
+import Button from 'components/button/Button';
+import FormattedText from 'components/formattedText/FormattedText';
 
 // @Styles
 import styles from './FeaturedVideoInfoOverlay.module.scss';

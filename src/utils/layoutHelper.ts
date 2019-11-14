@@ -6,9 +6,9 @@ import {
   SCREEN_MOBILE_PORTRAIT_MIN_WIDTH,
   SCREEN_TABLET_MIN_WIDTH,
   VIDEO_CARDS_AMOUNT
-} from '../constants/constants';
-import { PositionCheck, getTranslationStyleArgs } from '../constants/types';
-import { BUTTON_SIZES } from '../constants/enums';
+} from 'constants/constants';
+import { PositionCheck, getTranslationStyleArgs } from 'constants/types';
+import { BUTTON_SIZES } from 'constants/enums';
 
 const getCardsAmount = (screenWidth: number, cardsPerWidth: Record<string, number>): number => {
   if(screenWidth >= SCREEN_DESKTOP_MIN_WIDTH) {

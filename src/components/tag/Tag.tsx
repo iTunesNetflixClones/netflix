@@ -5,7 +5,7 @@ import React from 'react';
 import styles from './Tag.module.scss';
 
 // @Components
-import FormattedText from '../formattedText/FormattedText';
+import FormattedText from 'components/formattedText/FormattedText';
 
 // @PropTypes
 interface PropTypes {

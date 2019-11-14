@@ -1,5 +1,5 @@
 // @Vendors
-import { useEffect, RefObject } from "react";
+import { useEffect, RefObject } from 'react';
 
 const  useOutsideAlerter = (
   ref: RefObject<any>,
@@ -13,9 +13,9 @@ const  useOutsideAlerter = (
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return (): void => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   });
 };

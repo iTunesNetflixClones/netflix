@@ -5,11 +5,11 @@ import produce from 'immer';
 import {
   PLAYER_ENABLE,
   PLAYER_REQUEST_CONTROL
-} from '../constants/actionTypes';
+} from 'constants/actionTypes';
 
 // @Constants
-import { Action } from '../constants/types';
-import { PlayerState } from '../constants/stateTypes';
+import { Action } from 'constants/types';
+import { PlayerState } from 'constants/stateTypes';
 
 const initialState = (): PlayerState => ({
   currentPlayingId: undefined,

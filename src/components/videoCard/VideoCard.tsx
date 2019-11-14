@@ -2,12 +2,12 @@
 import React, { ReactElement } from 'react';
 
 // @Constants
-import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
-import { VideoData } from '../../constants/types';
+import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
+import { VideoData } from 'constants/types';
 
 // @Components
-import Player from  '../player/Player';
-import VideoCardOverlay from '../videoCardOverlay/VideoCardOverlay';
+import Player from  'components/player/Player';
+import VideoCardOverlay from 'components/videoCardOverlay/VideoCardOverlay';
 
 // @Styles
 import styles from './VideoCard.module.scss';

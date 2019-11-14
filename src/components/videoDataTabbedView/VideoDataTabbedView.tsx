@@ -2,15 +2,15 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 
 // @Components
-import FormattedText from '../formattedText/FormattedText';
-import Player from '../player/Player';
-import VideoEpisodes from '../videoEpisodes/VideoEpisodes';
-import VideoDetails from '../videoDetails/VideoDetails';
+import FormattedText from 'components/formattedText/FormattedText';
+import Player from 'components/player/Player';
+import VideoEpisodes from 'components/videoEpisodes/VideoEpisodes';
+import VideoDetails from 'components/videoDetails/VideoDetails';
 
 // @Constants
-import { ICON_CLOSE } from '../../constants/constants';
-import { VideoData } from '../../constants/types';
-import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from '../../constants/enums';
+import { ICON_CLOSE } from 'constants/constants';
+import { VideoData } from 'constants/types';
+import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
 
 // @Styles
 import styles from './VideoDataTabbedView.module.scss';

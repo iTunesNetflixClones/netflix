@@ -2,16 +2,16 @@
 import React, { ReactElement } from 'react';
 
 // @Enums
-import { BUTTON_MODIFIERS, BUTTON_SIZES, SPACING } from '../../constants/enums';
+import { BUTTON_MODIFIERS, BUTTON_SIZES, SPACING } from 'constants/enums';
 
 // @Helpers
-import { getButtonSizeStyle } from '../../utils/layoutHelper';
+import { getButtonSizeStyle } from 'utils/layoutHelper';
 
 // @Styles
 import styles from './Button.module.scss';
 
 // @Helpers
-import { formatText } from '../../utils/i18n';
+import { formatText } from 'utils/i18n';
 
 // @PropTypes
 interface PropTypes {

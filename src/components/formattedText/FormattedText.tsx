@@ -2,7 +2,7 @@
 import React from 'react';
 
 // @Utils
-import { formatText } from '../../utils/i18n';
+import { formatText } from 'utils/i18n';
 
 // @PropTypes
 interface PropTypes {

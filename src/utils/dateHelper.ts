@@ -1,5 +1,5 @@
 // @Constants
-import { Duration } from '../constants/types';
+import { Duration } from 'constants/types';
 
 export const formatDuration = (timeInMs: number): Duration => {
   const hours: number = Math.floor(timeInMs / (60000 * 60));

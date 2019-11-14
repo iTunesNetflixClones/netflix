@@ -2,17 +2,17 @@
 import get from 'lodash/get';
 
 // @Config
-import { currentLang } from '../config/settings';
+import { currentLang } from 'config/settings';
 
 // @Languajes
-import * as languages from '../language/index';
+import * as languages from 'language/index';
 
 // @Constants
 import {
   I18_DEFAULT_TRANSLATION,
   I18_KEY_SEPARATOR,
   I18N_REPLACEMENT_WILDCARD
-} from '../constants/constants';
+} from 'constants/constants';
 
 export const formatText = (
   key: string = '',

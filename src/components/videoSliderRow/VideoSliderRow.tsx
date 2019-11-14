@@ -8,27 +8,25 @@ import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 import styles from './VideoSliderRow.module.scss';
 
 // @Components
-import FooterButton from '../footerButton/FooterButton';
-import SliderButton from '../sliderButton/SliderButton';
-import VideoDataTabbedView from '../videoDataTabbedView/VideoDataTabbedView';
+import FooterButton from 'components/footerButton/FooterButton';
+import SliderButton from 'components/sliderButton/SliderButton';
+import VideoCard from 'components/videoCard/VideoCard';
+import VideoDataTabbedView from 'components/videoDataTabbedView/VideoDataTabbedView';
 
 // @Constants
-import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP, VIDEO_CARDS_AMOUNT } from '../../constants/constants';
-import { PositionCheck, VideoData } from '../../constants/types';
-import { SLIDER_BUTTON_TYPES } from '../../constants/enums';
-import { StoreState } from '../../constants/stateTypes';
+import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP, VIDEO_CARDS_AMOUNT } from 'constants/constants';
+import { PositionCheck, VideoData } from 'constants/types';
+import { SLIDER_BUTTON_TYPES } from 'constants/enums';
+import { StoreState } from 'constants/stateTypes';
 
 // @Helpers
-import { checkVideoCardPosition, getLastPageIndex, getTranslationStyle, isLastPage } from '../../utils/layoutHelper';
+import { checkVideoCardPosition, getLastPageIndex, getTranslationStyle, isLastPage } from 'utils/layoutHelper';
 
 // @Hooks
-import useResizeDetector from '../../hooks/resizeDetector';
-
-// @Components
-import VideoCard from '../videoCard/VideoCard';
+import useResizeDetector from 'hooks/resizeDetector';
 
 // @Actions
-import * as sliderActions from '../../actions/slider.actions';
+import * as sliderActions from 'actions/slider.actions';
 
 // @PropTypes
 interface OwnProps {
