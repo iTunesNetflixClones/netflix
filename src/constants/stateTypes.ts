@@ -1,5 +1,6 @@
 export type PlayerState = {
   currentPlayingId?: string;
+  playingEnabled: boolean;
 };
 
 export type SlidersState = {

@@ -1,0 +1,65 @@
+@import '../../config//theme.scss';
+
+.container {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+
+  z-index: $layout-modal-z-index;
+  background-color: $hl-colors-background-primary-opaque;
+}
+
+.modalWrapper {
+  display: inline-block;
+
+  margin: auto;
+
+  width: 30vw;
+
+  @media screen and (max-width: $hl-layout-tablet-width) {
+    width: 60vw;
+  }
+
+  @media screen and (max-width: $hl-layout-app-width) {
+    width: 80vw;
+  }
+
+  border-radius: $hl-layout-border-radius-lg;
+  padding: $hl-layout-border-width;
+
+  @extend %hl-colors-gradient;
+}
+
+.modalContainer {
+  border-radius: $hl-layout-border-radius-lg;
+  padding: $hl-layout-spacing-md;
+
+  background-color: $hl-colors-background-primary;
+  z-index: $layout-modal-content-z-index;
+
+  text-align: center;
+}
+
+.textWrapper {
+  padding: $layout-spacing-sm $layout-spacing-lg;
+  text-align: center;
+
+  @extend %hl-fonts-ff-regular;
+  font-size: $hl-font-size-md;
+  color: $hl-colors-font-header;
+}
+
+.welcomeText {
+  @extend %hl-fonts-ff-bold;
+}
+
+.logoImg {
+  height: $hl-layout-logo-size;
+  width: $hl-layout-logo-size;
+}

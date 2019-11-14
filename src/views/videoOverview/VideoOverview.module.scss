@@ -1,6 +1,7 @@
 @import '../../config//theme.scss';
 
 .mainContainer {
+  position: relative;
   padding-bottom: $layout-spacing-overview-bottom-space;
 }
 

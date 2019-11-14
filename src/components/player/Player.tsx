@@ -34,6 +34,7 @@ interface OwnProps {
 
 interface StateProps {
   currentPlayingId?: string;
+  playingEnabled: boolean;
 }
 
 interface DispatchProps {
@@ -49,6 +50,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     loop, onPressLike,
     onPressMyList,
     onPressUnlike,
+    playingEnabled,
     playerId,
     parentalAge,
     renderOverlay,
@@ -57,11 +59,11 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     src
   } = props;
 
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const [playing, setPlaying] = useState(true);
   const player = useRef<ReactPlayer>(null);
 
-  const isPlaying: boolean = playing && playerId === currentPlayingId;
+  const isPlaying: boolean = playingEnabled && playing && playerId === currentPlayingId;
 
   useEffect(() => {
     requestPlayerControl(playerId);
@@ -133,7 +135,8 @@ Player.defaultProps = {
 };
 
 const mapStateToProps = (state: StoreState): StateProps => ({
-  currentPlayingId: state.playerReducer.currentPlayingId
+  currentPlayingId: state.playerReducer.currentPlayingId,
+  playingEnabled: state.playerReducer.playingEnabled
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (

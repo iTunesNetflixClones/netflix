@@ -31,3 +31,33 @@ $font-size-xxlg: 2vw;
     }
   }
 }
+
+// ----------------------
+// TODO: Unify styles
+// ----------------------
+@font-face {
+  font-family: 'Monserrat Regular';
+  src: local('FiraSans'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Monserrat Bold';
+  src: local('FiraSans'), url(../../assets/fonts/Montserrat-Bold.otf) format('truetype');
+}
+
+%hl-fonts-ff-regular {
+  font-family: 'Monserrat Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+%hl-fonts-ff-bold {
+  font-family: 'Monserrat Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+%hl-fonts-ff-indicator-and-buttons {
+  font-family: 'Robotto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+$hl-font-size-xxsm: 8px;
+$hl-font-size-sm: 12px;
+$hl-font-size-md: 15px;

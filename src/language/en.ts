@@ -11,6 +11,11 @@ export default {
     myList: 'My list',
     play: 'Play'
   },
+  introModal: {
+    buttonText: 'Take me to the future of audio',
+    modalText: 'This is a VERY literal take on the "Netflix of Podcasting"',
+    welcome: 'Welcome! '
+  },
   placeholders: {
     videoLogo: 'Video logo soon'
   },
