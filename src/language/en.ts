@@ -17,7 +17,13 @@ export default {
     welcome: 'Welcome! '
   },
   placeholders: {
-    videoLogo: 'Video logo soon'
+    videoLogo: 'Video logo soon',
+    categoryTrending: 'Trending',
+    categoryEntertainment: 'Entertainment (Music/TV and Movies)',
+    categoryComedy: 'Comedy',
+    categoryTech: 'Technology',
+    categoryCrime: 'True Crime',
+    categoryNews: 'News'
   },
   player: {
     parentalAdvice: '%s+',
