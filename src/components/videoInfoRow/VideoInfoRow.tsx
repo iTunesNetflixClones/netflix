@@ -13,12 +13,12 @@ import { formatDuration } from 'utils/dateHelper';
 import { getParentalAgeText } from 'utils/miscHelper';
 
 // @Constants
-import { Duration, VideoData } from 'constants/types';
+import { Duration, PodcastData } from 'constants/types';
 
 // @PropTypes
 interface PropTypes {
   showYear?: boolean;
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {

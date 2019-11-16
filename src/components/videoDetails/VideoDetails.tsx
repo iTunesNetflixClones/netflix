@@ -2,7 +2,7 @@
 import React, { ReactElement } from 'react';
 
 // @Constants
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 import { BUTTON_MODIFIERS, HL_BUTTON_MODIFIERS, SPACING, HL_BUTTON_CONTAINER_MODIFIERS } from 'constants/enums';
 import { ICON_LIKE, ICON_MY_LIST, ICON_PLAY, ICON_UNLIKE } from 'constants/constants';
 
@@ -25,7 +25,7 @@ interface PropTypes {
   onPressMyList: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {

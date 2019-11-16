@@ -1,7 +1,7 @@
 // @Constants
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 
-const videosData: Array<VideoData> = [
+const podcastsData: Array<PodcastData> = [
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
     id: '0',
@@ -174,4 +174,4 @@ const videosData: Array<VideoData> = [
   }
 ];
 
-export default videosData;
+export default podcastsData;

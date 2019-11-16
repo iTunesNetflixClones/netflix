@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 
 // @Constants
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 
 // @Components
 import Player from  'components/player/Player';
@@ -24,7 +24,7 @@ interface PropTypes {
   onPressMyList: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   renderExpandButton?: () => void;
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {

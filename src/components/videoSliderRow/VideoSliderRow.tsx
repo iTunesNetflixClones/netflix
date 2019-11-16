@@ -15,7 +15,7 @@ import VideoDataTabbedView from 'components/videoDataTabbedView/VideoDataTabbedV
 
 // @Constants
 import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP, VIDEO_CARDS_AMOUNT } from 'constants/constants';
-import { PositionCheck, VideoData } from 'constants/types';
+import { PositionCheck, PodcastData } from 'constants/types';
 import { SLIDER_BUTTON_TYPES } from 'constants/enums';
 import { StoreState } from 'constants/stateTypes';
 
@@ -35,7 +35,7 @@ interface OwnProps {
   onPressMyList: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
   sliderId: string;
-  videosList: Array<VideoData>;
+  videosList: Array<PodcastData>;
 }
 interface StateProps {
   currentSliderId?: string;

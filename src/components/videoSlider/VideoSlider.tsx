@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react';
 import styles from './VideoSlider.module.scss';
 
 // @Constants
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
@@ -21,7 +21,7 @@ interface PropTypes {
   sliderId: string;
   titleKey?: string;
   titleText?: string;
-  videosList: Array<VideoData>;
+  videosList: Array<PodcastData>;
 }
 
 

@@ -12,18 +12,7 @@ export interface EpisodeData {
   videoSrc: string;
 }
 
-export interface PositionCheck {
-  isFirstInPage: boolean;
-  isLastInPage: boolean;
-}
-
-export interface SelectorOption {
-  code: string;
-  textKey?: string;
-  value: string | number;
-}
-
-export interface VideoData {
+export interface PodcastData {
   cast: Array<string>;
   id: string;
   isNew: boolean;
@@ -39,6 +28,17 @@ export interface VideoData {
   seasonsAmount?: number;
   src: string;
   year: number;
+}
+
+export interface PositionCheck {
+  isFirstInPage: boolean;
+  isLastInPage: boolean;
+}
+
+export interface SelectorOption {
+  code: string;
+  textKey?: string;
+  value: string | number;
 }
 
 export type getTranslationStyleArgs = {

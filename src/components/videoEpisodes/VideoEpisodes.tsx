@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 // Constants
-import { SelectorOption, VideoData } from 'constants/types';
+import { SelectorOption, PodcastData } from 'constants/types';
 
 // @Components
 import Dropdown from 'components/dropdown/Dropdown';
@@ -16,7 +16,7 @@ import epidodesList from 'resources/episodeData';
 
 // @PropTypes
 interface PropTypes {
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoEpisodes: React.FunctionComponent<PropTypes> = (props: PropTypes) => {

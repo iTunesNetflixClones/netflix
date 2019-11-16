@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 // @Constants
 import { BUTTON_MODIFIERS } from 'constants/enums';
 import { ICON_PLAY, VIDEO_OVERLAY_SEPARATOR_CHAR } from 'constants/constants';
-import { VideoData } from '../../constants/types';
+import { PodcastData } from '../../constants/types';
 
 // @Components
 import CircularButton from 'components/button/CircularButton';
@@ -20,7 +20,7 @@ interface PropTypes {
   onPressExpand: () => void;
   onPressPlay: () => void;
   playing: boolean;
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) => {

@@ -42,9 +42,8 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
       onAcceptModal={handleCloseModal}/>
       <FeaturedVideoHeader
         onPressPlay={(): void => {}}
-        onPressList={(): void => {}}
         onPressMoreInfo={(): void => {}}
-        videoData={videosList[1]}
+        podcastData={videosList[2]}
       />
       <div className={styles.sliderContainer}>
         <VideoSlider

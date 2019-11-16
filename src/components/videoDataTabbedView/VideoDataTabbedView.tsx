@@ -10,7 +10,7 @@ import VideoDetails from 'components/videoDetails/VideoDetails';
 
 // @Constants
 import { ICON_CLOSE } from 'constants/constants';
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
 
 // @Styles
@@ -24,7 +24,7 @@ interface PropTypes {
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   onClose: () => void;
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropTypes) => {

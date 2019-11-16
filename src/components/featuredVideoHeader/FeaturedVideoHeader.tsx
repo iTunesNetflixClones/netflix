@@ -6,7 +6,7 @@ import styles from './FeaturedVideoHeader.module.scss';
 
 // @Constants & enums
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 
 // @components
 import FeaturedVideoInfoOverlay from 'components/featuredVideoInfoArea/FeaturedVideoInfoOverlay';
@@ -15,31 +15,30 @@ import Player from 'components/player/Player';
 // @PropTypes
 interface PropTypes {
   onPressPlay: (videoId: string) => any;
-  onPressList: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
-  videoData: VideoData;
+  podcastData: PodcastData;
 }
 
 const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onPressList, onPressMoreInfo, onPressPlay, videoData } = props;
+  const { onPressMoreInfo, onPressPlay, podcastData } = props;
 
-  const { description, id } = videoData;
+  const { description, id, title } = podcastData;
 
   return (
     <div className={styles.mainContainer}>
       <FeaturedVideoInfoOverlay
         onPressPlay={onPressPlay}
-        onPressList={onPressList}
         onPressMoreInfo={onPressMoreInfo}
-        videoDescription={description}
+        podcastDescription={description}
+        podcastName={title}
         videoId={id}
       />
       <div className={styles.playerContainer}>
         <Player
-          controlsSet={[PLAYER_CONTROLS.volumeControl, PLAYER_CONTROLS.parentalTag]}
+          controlsSet={[PLAYER_CONTROLS.volumeControl]}
           playerId={`viewHeader-${id}`}
           size={PLAYER_CONTROLS_SIZES.regular}
-          src={videoData.src}
+          src={podcastData.src}
         />
       </div>
     </div>

@@ -9,7 +9,8 @@ export default {
   featuredVideoHeader: {
     moreInfo: 'More info',
     myList: 'My list',
-    play: 'Play'
+    play: 'Play',
+    watchAndListen: 'Watch and listen!'
   },
   introModal: {
     buttonText: 'Take me to the future of audio',
