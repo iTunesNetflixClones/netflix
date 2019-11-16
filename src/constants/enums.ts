@@ -1,5 +1,4 @@
 export enum BUTTON_MODIFIERS {
-  circle,
   redBody,
   redContent,
   upperCase,
@@ -13,7 +12,8 @@ export enum BUTTON_SIZES {
 }
 
 export enum HL_BUTTON_CONTAINER_MODIFIERS {
-  EXTRA_SPACING
+  EXTRA_SPACING,
+  INLINE
 }
 
 export enum HL_BUTTON_MODIFIERS {

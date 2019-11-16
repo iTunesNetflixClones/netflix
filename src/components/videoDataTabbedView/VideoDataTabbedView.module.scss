@@ -87,16 +87,25 @@ $breakpoints: (
   z-index: $layout-z-index-mid;
 }
 
+.tabContainer {
+  display: inline-block;
+  margin: 0 $layout-spacing-md;
+}
+
 .tab {
   cursor: pointer;
   border: none;
   outline: none;
   background-color: transparent;
   padding: $layout-spacing-xsm 0;
-  margin: 0 $layout-spacing-md;
+}
+
+.tabIndicator {
+  height: $layout-tab-border_width;
+  background-color: transparent;
 
   &__selected {
-    border-bottom: $colors-border-tab solid $layout-tab-border_width;
+    @extend %hl-colors-gradient;
   }
 }
 

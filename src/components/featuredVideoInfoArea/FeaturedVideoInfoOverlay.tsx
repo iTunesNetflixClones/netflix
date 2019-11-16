@@ -2,12 +2,15 @@
 import React from 'react';
 
 // @Constants & enums
-import { SPACING } from 'constants/enums';
+import { HL_BUTTON_CONTAINER_MODIFIERS } from 'constants/enums';
 import { ICON_INFO, ICON_MY_LIST, ICON_PLAY } from 'constants/constants';
 
 // @Components
-import Button from 'components/button/Button';
+import HeadlinerButton from 'components/headlinerButton/HeadlinerButton';
 import FormattedText from 'components/formattedText/FormattedText';
+
+// @Utils
+import { formatText } from 'utils/i18n';
 
 // @Styles
 import styles from './FeaturedVideoInfoOverlay.module.scss';
@@ -39,24 +42,24 @@ const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTy
             textKey="placeholders-videoLogo"
           />
         </div>
-        <p className={styles.descriptionText}>{videoDescription}</p>;
-        <Button
+        <p className={styles.descriptionText}>{videoDescription}</p>
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           iconSource={ICON_PLAY}
-          onPress={onPressPlay.bind(null, videoId)}
-          spacing={[SPACING.right]}
-          textKey="featuredVideoHeader-play"
+          onClick={onPressPlay.bind(null, videoId)}
+          text={formatText('featuredVideoHeader-play')}
         />
-        <Button
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           iconSource={ICON_MY_LIST}
-          onPress={onPressList.bind(null, videoId)}
-          spacing={[SPACING.right]}
-          textKey="featuredVideoHeader-myList"
+          onClick={onPressList.bind(null, videoId)}
+          text={formatText('featuredVideoHeader-myList')}
         />
-        <Button
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           iconSource={ICON_INFO}
-          onPress={onPressMoreInfo.bind(null, videoId)}
-          spacing={[SPACING.right]}
-          textKey="featuredVideoHeader-moreInfo"
+          onClick={onPressMoreInfo.bind(null, videoId)}
+          text={formatText('featuredVideoHeader-moreInfo')}
         />
       </div>
     </div>

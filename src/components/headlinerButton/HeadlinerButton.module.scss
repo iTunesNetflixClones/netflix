@@ -2,31 +2,41 @@
 
 .buttonAreaContainer {
   display: block;
-  padding: $hl-layout-spacing-xxsm 0;
+  padding: $layout-spacing-xxsm-abs 0;
 
   &__extraSpacing {
-    padding: $hl-layout-spacing-xxsm $hl-layout-spacing-xxlg;
+    padding: $layout-spacing-xxsm-abs $layout-spacing-xxlg-abs;
 
-    @media screen and (max-width: $hl-layout-app-width) {
-      padding: $hl-layout-spacing-xxsm 0;
+    @media screen and (max-width: $layout-app-width-breakpoint) {
+      padding: $layout-spacing-xxsm-abs 0;
     }
+  }
+
+  &__inline {
+    display: inline-block;
+    margin-right: $layout-spacing-sm-abs;
   }
 }
 
 .container {
   cursor: pointer;
   border: none;
-  background-color: $hl-colors-background-button;
-  padding: $hl-layout-spacing-sm 0;
+  background-color: $colors-button-primary;
+  padding: $layout-spacing-xsm-abs $layout-spacing-lg-abs;
   text-align: center;
   width: 100%;
-  border-radius: $hl-layout-border-radius-button;
+  border-radius: $layout-border-radius-button;
 
-  @extend %hl-fonts-ff-indicator-and-buttons;
-  font-size: $hl-font-size-sm;
-  color: $hl-colors-font-data-and-button;
+  @extend %fonts-ff-indicator-and-buttons;
+  font-size: $font-size-sm-abs;
+  color: $colors-font-data-and-button;
 
-  transition: transform $hl-layout-animation-button-scale;
+  transition: transform $layout-transition-time-quick;
+
+  i {
+    margin-right: $layout-spacing-sm-abs;
+    font-size: $font-size-md-abs;
+  }
 
   &:focus {
     outline: none;
@@ -34,7 +44,7 @@
 
   &:hover {
     &:not(.container__disabled) {
-      transform: scale($hl-layout-grow-factor-button);
+      transform: scale($layout-grow-factor-hl-button);
     }
   }
 
@@ -47,6 +57,11 @@
   }
 
   &__smallFont {
-    font-size: $hl-font-size-xxsm;
+    font-size: $font-size-xxsm-abs;
+  }
+
+  &__inline {
+    display: inline-block;
+    margin-right: $layout-spacing-sm-abs;
   }
 }

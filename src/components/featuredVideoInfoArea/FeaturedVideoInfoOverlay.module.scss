@@ -3,8 +3,8 @@
 .container {
   @extend %layout-absolute-fill;
   background:
-    linear-gradient(to right, $colors-background-primary 50%, transparent),
-    linear-gradient(transparent 40%, $colors-background-primary);
+    linear-gradient(transparent 40%, $colors-background-primary),
+    linear-gradient(to right, $colors-hl-gradient-start, $colors-hl-gradient-mid, $colors-hl-gradient-end 50%, transparent 65%);
   z-index: $layout-z-index-low;
 }
 
@@ -27,7 +27,7 @@
 .logoText {
   @extend %fonts-ff-bold;
   @include font-size-responsive($font-size-xlg);
-  color: $colors-font-primary;
+  color: $colors-font-tertiary;
   padding: $layout-spacing-md;
 }
 
@@ -35,6 +35,6 @@
   max-width: 50vw;
   @extend %fonts-ff-regular;
   @include font-size-responsive($font-size-lg);
-  color: $colors-font-primary;
+  color: $colors-font-tertiary;
   margin-bottom: $layout-spacing-md;
 }

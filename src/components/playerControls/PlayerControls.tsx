@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react';
 import { BUTTON_MODIFIERS, BUTTON_SIZES, PLAYER_CONTROLS, SPACING, PLAYER_CONTROLS_SIZES } from 'constants/enums';
 
 // @Components
-import Button from 'components/button/Button';
+import CircularButton from 'components/button/CircularButton';
 import Tag from 'components/tag/Tag';
 
 // @Utils
@@ -63,13 +63,12 @@ const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   };
 
   const renderControlButton = (icon: string, onPress?: () => any): ReactElement => (
-    <Button
+    <CircularButton
       iconSource={icon}
-      modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.circle]}
+      modifiers={[BUTTON_MODIFIERS.withBorder]}
       size={getControlButtonsSize()}
       spacing={[SPACING.right, SPACING.bottom]}
       onPress={onPress}
-      textKey=""
     />
   );
 

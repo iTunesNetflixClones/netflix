@@ -7,7 +7,7 @@ import { ICON_PLAY, VIDEO_OVERLAY_SEPARATOR_CHAR } from 'constants/constants';
 import { VideoData } from '../../constants/types';
 
 // @Components
-import Button from 'components/button/Button';
+import CircularButton from 'components/button/CircularButton';
 import FooterButton from 'components/footerButton/FooterButton';
 import Label from 'components/label/Label';
 import VideoInfoRow from 'components/videoInfoRow/VideoInfoRow';
@@ -51,9 +51,9 @@ const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) 
   return (
     <div className={styles.container}>
       <div className={styles.dataContainer}>
-        <Button
+        <CircularButton
           iconSource={ICON_PLAY}
-          modifiers={[BUTTON_MODIFIERS.circle, BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
+          modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
           onPress={onPressPlay}
         />
         <Label

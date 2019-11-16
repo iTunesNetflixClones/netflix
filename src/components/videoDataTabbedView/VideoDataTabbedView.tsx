@@ -1,5 +1,6 @@
 // @Vendors
 import React, { ReactElement, useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
@@ -49,15 +50,22 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
 
   const renderTab = (textKey: string, index: number): ReactElement => {
     const isSelected: boolean = index === tabIndex;
-    const className: string = `${styles.tab} ${isSelected ? styles.tab__selected : ''}`;
+    const tabIndicatorClassname = classNames({
+      [styles.tabIndicator]: true,
+      [styles.tabIndicator__selected]: isSelected
+    });
+
     return (
-      <button
-        onClick={setTabIndex.bind(null, index)}
-        className={className}>
-        <FormattedText
-          className={styles.tabText}
-          textKey={textKey}/>
-      </button>
+      <div className={styles.tabContainer}>
+        <button
+          onClick={setTabIndex.bind(null, index)}
+          className={styles.tab}>
+          <FormattedText
+            className={styles.tabText}
+            textKey={textKey}/>
+        </button>
+        <div className={tabIndicatorClassname}/>
+      </div>
     );
   };
 

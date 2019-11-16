@@ -2,61 +2,52 @@
 
 @mixin buttonArea($size) {
   $margin-size: $layout-spacing-md;
-  $circular-width: $layout-button-circular-width-regular;
-  @include font-size-responsive($font-size-lg);
+  $circular-dimensions: $layout-button-circular-width-regular;
+  $icon-size: $font-size-lg-abs;
   $cicular-padding: $layout-spacing-xsm;
 
   @if($size == "small") {
     $margin-size: $layout-spacing-xsm;
-    $circular-width: $layout-button-circular-width-small;
-    @include font-size-responsive($font-size-sm);
+    $circular-dimensions: $layout-button-circular-width-small;
+    $icon-size: $font-size-sm-abs;
   }
 
   @if($size == "big") {
     $cicular-padding: $layout-spacing-md;
-    $circular-width: $layout-button-circular-width-big;
-    @include font-size-responsive($font-size-xlg);
+    $circular-dimensions: $layout-button-circular-width-big;
+    $icon-size: $font-size-xlg-abs;
   }
 
   cursor: pointer;
   border: none;
   outline: none;
   border-radius: $layout-border-radius;
-  padding: $layout-spacing-sm $layout-spacing-lg;
+  padding: auto;
   background-color: rgba(
     $colors-background-primary,
     $colors-opacity-traslucent
   );
   transition: transform $layout-transition-time-quick;
 
-  @extend %fonts-ff-bold;
-  color: $colors-font-primary;
+  height: $circular-dimensions;
+  width: $circular-dimensions;
 
+  border-radius: 50%;
+
+  @extend %fonts-ff-bold;
+  color: $colors-font-data-and-button;
   i {
-    margin-right: $layout-spacing-sm;
+    font-size: $icon-size;
+    margin: auto;
   }
 
   &:hover {
-    background-color: $colors-background-secondary;
+    background-color: rgba(
+      $colors-background-secondary,
+      $colors-opacity-traslucent
+    );
     color: $colors-font-contrast;
     transform: scale($layout-button-grow-factor-small);
-  }
-
-  &__circle {
-    @include circular-button-size-responsive($circular-width, $cicular-padding);
-    border-radius: 50%;
-
-    i {
-      margin: auto;
-    }
-
-    &:hover {
-      background-color: rgba(
-        $colors-background-primary,
-        $colors-opacity-traslucent
-      );
-      color: $colors-font-primary;
-    }
   }
 
   &__border {

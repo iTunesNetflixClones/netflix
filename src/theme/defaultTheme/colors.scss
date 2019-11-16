@@ -1,35 +1,40 @@
-$colors-font-primary: #ffffff;
-$colors-font-secondary: #e5e5e5;
-$colors-font-tertiary: #dcdcdc;
-$colors-font-inactive: #dcdcdc80;
-$colors-font-highlight: #25b840;
-$colors-font-contrast: #141414;
-$colors-font-bullets: #dcdcdc80;
+$colors-font-primary: #8ca0c3;
+$colors-font-secondary: #dce1eb;
+$colors-font-tertiary: #ffffff;
+$colors-font-inactive: #dce1eb80;
+$colors-font-highlight: #19b5fe;
+$colors-font-contrast: #14191e;
+$colors-font-bullets: #19b5fe;
+$colors-font-data-and-button: #ffffff;
 
-$colors-background-primary: #141414;
+$colors-hl-gradient-start: #5dbefc;
+$colors-hl-gradient-mid: #dd92fe;
+$colors-hl-gradient-end: #ff8969;
+
+$colors-background-primary: #14191e;
 $colors-background-secondary: #dcdcdc;
 $colors-background-tertiary: #000000;
+$colors-background-primary-opaque: #14191ee6;
 
 $colors-border-inactive: #dcdcdc80;
 $colors-border-active: #ffffff;
-$colors-border-tab: #e50914;
+$colors-border-tab: #19b5fe;
 
-$colors-button-primary: #e50914;
+$colors-button-primary: #19b5fe;
 $colors-button-seconday: #333333;
-$colors-button-active: #FF0A16;
+$colors-button-active: #19b5fe;
 
-$colors-tag-primary: #e50914;
+$colors-tag-primary: #19b5fe;
 
 $colors-opacity-traslucent: 0.4;
 
-// TODO: Await for styles unifying... Following styles are added for modal
-$hl-colors-background-primary: #14191e;
-$hl-colors-background-primary-opaque: #14191ee6;
-$hl-colors-background-button: #19b5fe;
-
-$hl-colors-font-data-and-button: #ffffff;
-$hl-colors-font-header: #8ca0c3;
-
 %hl-colors-gradient {
   background: -webkit-linear-gradient(left top, #5dbefc, #dd92fe);
+}
+
+%hl-colors-font-gradient {
+  background: -webkit-linear-gradient(left top, #5dbefc, #dd92fe);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

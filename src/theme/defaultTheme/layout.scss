@@ -6,6 +6,16 @@ $layout-spacing-lg: 3vw;
 $layout-spacing-xlg: 5vw;
 $layout-spacing-xxlg: 7vw;
 
+$layout-spacing-xxsm-abs: 8.5px;
+$layout-spacing-xsm-abs: 12.5px;
+$layout-spacing-sm-abs: 15px;
+$layout-spacing-md-abs: 25px;
+$layout-spacing-lg-abs: 30px;
+$layout-spacing-xlg-abs: 45px;
+$layout-spacing-xxlg-abs: 90px;
+
+$layout-logo-size: 100px;
+
 $layout-spacing-page-header: 20vw;
 
 $layout-spacing-details-header-height: 5vw;
@@ -15,6 +25,12 @@ $layout-spacing-overview-bottom-space: 15vw;
 $layout-spacing-overview-sliders-overlap: -15vw;
 
 $layout-border-radius: 5px;
+$layout-border-radius-lg: 10px;
+$layout-border-radius-button: 1.5px;
+
+$layout-app-width-breakpoint: 768px;
+$layout-tablet-width-breakpoint: 992px;
+$layout-desktop-small-width-breakpoint: 1200px;
 
 $layout-rounded-button-size: 2vw;
 
@@ -22,35 +38,19 @@ $layout-button-border_width: 0.1vw;
 $layout-tag-border_width: 0.2vw;
 $layout-video-card-border_width: 0.3vw;
 $layout-tab-border_width: 0.3vw;
+$layout-border-width-abs: 2.5px;
 
 $layout-expanded-header-width: 16vw;
 $layout-expanded-header-height: 16vw * 9 / 16;
 
-$layout-button-circular-width-regular: 2.6vw;
-$layout-button-circular-width-small: 2.0vw;
-$layout-button-circular-width-big: 4.0vw;
-
-@mixin circular-button-size-responsive($base-button-size, $base-padding) {
-  width: $base-button-size;
-  padding: $base-padding;
-
-  $breakpoints: (
-    1170px: 1.4,
-    840px: 1.8,
-    640px: 2.2
-  );
-
-  @each $width, $size-multiplier in $breakpoints {
-    @media screen and (max-width: $width) {
-      width: $base-button-size * $size-multiplier;
-      padding: $base-padding * $size-multiplier * 1.5;
-    }
-  }
-}
+$layout-button-circular-width-regular: 50px;
+$layout-button-circular-width-small: 35px;
+$layout-button-circular-width-big: 75px;
 
 $layout-lg-controls-bottom-space: 32%;
 $layout-sm-controls-bottom-space: 15%;
 
+$layout-grow-factor-hl-button: 1.05;
 $layout-button-grow-factor-small: 1.1;
 $layout-button-grow-factor-large: 1.5;
 $layout-video-card-grow-factor: 1.6;
@@ -121,23 +121,3 @@ $video-details-header-shrink-factor: 0.7;
 @function calculate-player-scale-position-correction($grow-factor) {
   @return -(($layout-video-card-grow-factor - 1) * 100% / 2);
 }
-
-// TODO: Unify designs
-$hl-layout-spacing-xxsm: 8.5px;
-$hl-layout-spacing-sm: 15px;
-$hl-layout-spacing-md: 25px;
-$hl-layout-spacing-xxlg: 90px;
-
-$hl-layout-logo-size: 100px;
-
-$hl-layout-border-radius-button: 1.5px;
-$hl-layout-border-radius-lg: 10px;
-
-$hl-layout-border-width: 2.5px;
-
-$hl-layout-app-width: 768px;
-$hl-layout-tablet-width: 992px;
-
-$hl-layout-animation-button-scale: 300ms ease-out;
-
-$hl-layout-grow-factor-button: 1.05;

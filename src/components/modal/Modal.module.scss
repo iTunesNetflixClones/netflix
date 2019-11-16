@@ -12,7 +12,7 @@
   justify-content: center;
 
   z-index: $layout-modal-z-index;
-  background-color: $hl-colors-background-primary-opaque;
+  background-color: $colors-background-primary-opaque;
 }
 
 .modalWrapper {
@@ -22,25 +22,25 @@
 
   width: 30vw;
 
-  @media screen and (max-width: $hl-layout-tablet-width) {
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
     width: 60vw;
   }
 
-  @media screen and (max-width: $hl-layout-app-width) {
+  @media screen and (max-width: $layout-app-width-breakpoint) {
     width: 80vw;
   }
 
-  border-radius: $hl-layout-border-radius-lg;
-  padding: $hl-layout-border-width;
+  border-radius: $layout-border-radius-lg;
+  padding: $layout-border-width-abs;
 
   @extend %hl-colors-gradient;
 }
 
 .modalContainer {
-  border-radius: $hl-layout-border-radius-lg;
-  padding: $hl-layout-spacing-md;
+  border-radius: $layout-border-radius-lg;
+  padding: $layout-spacing-md-abs;
 
-  background-color: $hl-colors-background-primary;
+  background-color: $colors-background-primary;
   z-index: $layout-modal-content-z-index;
 
   text-align: center;
@@ -50,16 +50,16 @@
   padding: $layout-spacing-sm $layout-spacing-lg;
   text-align: center;
 
-  @extend %hl-fonts-ff-regular;
-  font-size: $hl-font-size-md;
-  color: $hl-colors-font-header;
+  @extend %fonts-ff-regular;
+  font-size: $font-size-md-abs;
+  color: $colors-font-primary;
 }
 
 .welcomeText {
-  @extend %hl-fonts-ff-bold;
+  @extend %fonts-ff-bold;
 }
 
 .logoImg {
-  height: $hl-layout-logo-size;
-  width: $hl-layout-logo-size;
+  height: $layout-logo-size;
+  width: $layout-logo-size;
 }

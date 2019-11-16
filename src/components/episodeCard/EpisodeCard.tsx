@@ -7,7 +7,7 @@ import { BUTTON_MODIFIERS, BUTTON_SIZES } from 'constants/enums';
 import { ICON_PLAY } from 'constants/constants';
 
 // @Components
-import Button from 'components/button/Button';
+import CircularButton from 'components/button/CircularButton';
 import FormattedText from 'components/formattedText/FormattedText';
 import Label from 'components/label/Label';
 
@@ -41,9 +41,9 @@ const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     }
     return (
       <div className={styles.overlay}>
-        <Button
+        <CircularButton
           iconSource={ICON_PLAY}
-          modifiers={[BUTTON_MODIFIERS.circle, BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
+          modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.redContent]}
           onPress={handlePressPlay}
           size={BUTTON_SIZES.big}/>
       </div>

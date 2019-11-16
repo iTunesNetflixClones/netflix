@@ -3,14 +3,18 @@ import React, { ReactElement } from 'react';
 
 // @Constants
 import { VideoData } from 'constants/types';
-import { BUTTON_MODIFIERS, SPACING } from 'constants/enums';
+import { BUTTON_MODIFIERS, HL_BUTTON_MODIFIERS, SPACING, HL_BUTTON_CONTAINER_MODIFIERS } from 'constants/enums';
 import { ICON_LIKE, ICON_MY_LIST, ICON_PLAY, ICON_UNLIKE } from 'constants/constants';
 
 // @Components
-import Button from 'components/button/Button';
+import CircularButton from 'components/button/CircularButton';
+import HeadlinerButton from 'components/headlinerButton/HeadlinerButton';
 import Label from 'components/label/Label';
 import VideoAddionalInfo from 'components/videoAdditionalnfo/VideoAdditionalInfo';
 import VideoInfoRow from 'components/videoInfoRow/VideoInfoRow';
+
+// @Utils
+import { formatText } from 'utils/i18n';
 
 // @Styles
 import styles from './VideoDetails.module.scss';
@@ -46,25 +50,24 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const renderButtonsRow = (): ReactElement => {
     return (
       <div className={styles.buttonsRow}>
-        <Button
-          modifiers={[BUTTON_MODIFIERS.redBody, BUTTON_MODIFIERS.upperCase]}
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
+          modifiers={[HL_BUTTON_MODIFIERS.GRADIENT_BG]}
           iconSource={ICON_PLAY}
-          onPress={handlePressPlay}
-          spacing={[SPACING.right]}
-          textKey="videoDetails-play"/>
-        <Button
-          modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.upperCase]}
+          onClick={handlePressPlay}
+          text={formatText('videoDetails-play')}/>
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           iconSource={ICON_MY_LIST}
-          onPress={hanldePressMyList}
-          spacing={[SPACING.right]}
-          textKey="videoDetails-myList"/>
-        <Button
-          modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.circle]}
+          onClick={hanldePressMyList}
+          text={formatText('videoDetails-myList')}/>
+        <CircularButton
+          modifiers={[BUTTON_MODIFIERS.withBorder]}
           iconSource={ICON_LIKE}
           onPress={handlePressLike}
           spacing={[SPACING.right, SPACING.left]}/>
-        <Button
-          modifiers={[BUTTON_MODIFIERS.withBorder, BUTTON_MODIFIERS.circle]}
+        <CircularButton
+          modifiers={[BUTTON_MODIFIERS.withBorder]}
           iconSource={ICON_UNLIKE}
           onPress={handlePressUnlike}
           spacing={[SPACING.right, SPACING.left]}/>

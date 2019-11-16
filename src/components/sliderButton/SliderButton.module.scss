@@ -20,7 +20,7 @@
   i {
     transition: transform $layout-transition-time-quick;
     @include font-size-responsive($font-size-xlg);
-    color: $colors-font-primary;
+    color: $colors-font-data-and-button;
   }
 
   &__unmounted {
