@@ -32,7 +32,6 @@ import * as sliderActions from 'actions/slider.actions';
 interface OwnProps {
   onPlayVideo: (videoId: string) => any;
   onPressLike: (videoId: string) => any;
-  onPressMyList: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
   sliderId: string;
   videosList: Array<PodcastData>;
@@ -50,7 +49,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     currentSliderId,
     onPlayVideo,
     onPressLike,
-    onPressMyList,
     onPressUnlike,
     openSlider,
     sliderId,
@@ -151,7 +149,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
         id={`tabeedView-${sliderId}`}
         onClose={handleShrinkVideo}
         onPressPlay={onPlayVideo}
-        onPressMyList={onPressMyList}
         onPressLike={onPressLike}
         onPressUnlike={onPressUnlike}
         videoData={videosList[selectedIndex]}/>

@@ -16,7 +16,6 @@ import VideoSliderRow from 'components/videoSliderRow/VideoSliderRow';
 interface PropTypes {
   onPlayVideo: (videoId: string) => any;
   onPressLike: (videoId: string) => any;
-  onPressMyList: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
   sliderId: string;
   titleKey?: string;
@@ -29,7 +28,6 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     onPlayVideo,
     onPressLike,
-    onPressMyList,
     onPressUnlike,
     sliderId,
     titleKey,
@@ -61,7 +59,6 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       <VideoSliderRow
         onPlayVideo={onPlayVideo}
         onPressLike={onPressLike}
-        onPressMyList={onPressMyList}
         onPressUnlike={onPressUnlike}
         sliderId={sliderId}
         videosList={videosList} />

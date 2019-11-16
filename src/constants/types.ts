@@ -8,12 +8,14 @@ export interface EpisodeData {
   description: string;
   duration: number;
   episodeNumber: number;
-  imageSrc: string;
-  videoSrc: string;
+  link: string;
+  name: string;
+  src: string;
 }
 
 export interface PodcastData {
   cast: Array<string>;
+  episodesAmount: number;
   id: string;
   isNew: boolean;
   isSeries: boolean;

@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 // @Constants
 import { PodcastData } from 'constants/types';
 import { BUTTON_MODIFIERS, HL_BUTTON_MODIFIERS, SPACING, HL_BUTTON_CONTAINER_MODIFIERS } from 'constants/enums';
-import { ICON_LIKE, ICON_MY_LIST, ICON_PLAY, ICON_UNLIKE } from 'constants/constants';
+import { ICON_LIKE, ICON_PLAY, ICON_UNLIKE } from 'constants/constants';
 
 // @Components
 import CircularButton from 'components/button/CircularButton';
@@ -22,21 +22,16 @@ import styles from './VideoDetails.module.scss';
 // @PropTypes
 interface PropTypes {
   onPressPlay: (videoId: string) => void;
-  onPressMyList: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   videoData: PodcastData;
 }
 
 const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onPressPlay, onPressMyList, onPressLike, onPressUnlike, videoData } = props;
+  const { onPressPlay, onPressLike, onPressUnlike, videoData } = props;
 
   const handlePressPlay = (): void => {
     onPressPlay(videoData.id);
-  };
-
-  const hanldePressMyList = (): void => {
-    onPressMyList(videoData.id);
   };
 
   const handlePressLike = (): void => {
@@ -56,11 +51,6 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           iconSource={ICON_PLAY}
           onClick={handlePressPlay}
           text={formatText('videoDetails-play')}/>
-        <HeadlinerButton
-          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
-          iconSource={ICON_MY_LIST}
-          onClick={hanldePressMyList}
-          text={formatText('videoDetails-myList')}/>
         <CircularButton
           modifiers={[BUTTON_MODIFIERS.withBorder]}
           iconSource={ICON_LIKE}

@@ -17,20 +17,26 @@ import { Duration, PodcastData } from 'constants/types';
 
 // @PropTypes
 interface PropTypes {
+  showHighlightedText?: boolean;
+  showParentalTag?: boolean;
   showYear?: boolean;
   videoData: PodcastData;
 }
 
 const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { videoData, showYear } = props;
+  const { videoData, showHighlightedText, showParentalTag, showYear } = props;
 
-  const { coincidence, isNew, isSeries, seasonsAmount, year } = videoData;
+  const { coincidence, episodesAmount, isNew, isSeries, parentalAge, year } = videoData;
 
   const formattedVideoDuration: Duration = formatDuration(videoData.duration);
 
   const parentalText = getParentalAgeText(videoData.parentalAge);
 
-  const renderHighlightedText = (): ReactElement => {
+  const renderHighlightedText = (): ReactElement | null => {
+    if(!showHighlightedText) {
+      return null;
+    }
+
     const textKey = isNew ? "videoDetails-new" : "videoDetails-coincidence";
     return (
       <FormattedText
@@ -49,11 +55,11 @@ const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           textKey={formattedVideoDuration.textKey}/>
       );
     }
-    const textKey = seasonsAmount === 1 ? "videoDetails-seasonsAmount" : "videoDetails-seasonsAmountPlural";
+    const textKey = episodesAmount === 1 ? "videoDetails-episodesAmount" : "videoDetails-episodesAmountPlural";
     return (
       <FormattedText
         className={styles.infoRowText}
-        injectedTexts={[seasonsAmount || '']}
+        injectedTexts={[episodesAmount || '']}
         textKey={textKey} />
     );
   };
@@ -69,20 +75,32 @@ const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     );
   };
 
+  const renderParentalTag = (): ReactElement | null => {
+    if(!showParentalTag) {
+      return null;
+    }
+
+    return  (
+      <FormattedText
+        className={styles.parentalLabel}
+        injectedTexts={[parentalAge]}
+        textKey={parentalText}/>
+    );
+  };
+
   return (
     <div className={styles.row}>
       { renderHighlightedText() }
       { renderYearLabel() }
-      <FormattedText
-        className={styles.parentalLabel}
-        injectedTexts={[videoData.parentalAge]}
-        textKey={parentalText}/>
+      { renderParentalTag() }
       { renderDurationSeasonsText() }
     </div>
   );
 };
 
 VideoInfoRow.defaultProps = {
+  showHighlightedText: true,
+  showParentalTag: true,
   showYear: false
 };
 

@@ -20,6 +20,7 @@ import styles from './Player.module.scss';
 // @PropTypes
 interface OwnProps {
   controlsSet?: Array<PLAYER_CONTROLS>;
+  hoverPlayMode?: boolean;
   loop?: boolean;
   muted?: boolean;
   onPressLike?: () => void;
@@ -47,6 +48,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const {
     controlsSet,
     currentPlayingId,
+    hoverPlayMode,
     loop, onPressLike,
     onPressMyList,
     onPressUnlike,
@@ -61,13 +63,18 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
 
   const [muted, setMuted] = useState(false);
   const [playing, setPlaying] = useState(true);
+  const [hoverPlayOn, setHoverPlay] = useState(false);
   const player = useRef<ReactPlayer>(null);
 
-  const isPlaying: boolean = playingEnabled && playing && playerId === currentPlayingId;
+  const hoverPlayBlocked = hoverPlayMode && !hoverPlayOn;
+
+  const isPlaying: boolean = !hoverPlayBlocked && playingEnabled && playing && playerId === currentPlayingId;
 
   useEffect(() => {
-    requestPlayerControl(playerId);
-  }, [playerId]);
+    if(!hoverPlayMode) {
+      requestPlayerControl(playerId);
+    }
+  }, [hoverPlayMode, playerId]);
 
   const handlePauseVideo = (): void => {
     setPlaying(false);
@@ -85,9 +92,22 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     }
   };
 
+  const handleTogleHoverPlay = (nextState: boolean): void => {
+    if(hoverPlayMode) {
+      if(nextState) {
+        restartPlayer();
+      }
+      setHoverPlay(nextState);
+    }
+  };
+
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.playerArea}>
+    <div
+      onMouseEnter={handleTogleHoverPlay.bind(null, true)}
+      onMouseLeave={handleTogleHoverPlay.bind(null, false)}
+      className={styles.wrapper}>
+      <div
+        className={styles.playerArea}>
         <ReactPlayer
           loop={loop}
           ref={player}
@@ -125,6 +145,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
 
 Player.defaultProps = {
   controlsSet: [],
+  hoverPlayMode: false,
   loop: false,
   muted: true,
   onPressLike: (): void => {},

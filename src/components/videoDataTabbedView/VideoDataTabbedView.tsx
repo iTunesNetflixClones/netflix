@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
+import Label from 'components/label/Label';
 import Player from 'components/player/Player';
 import VideoEpisodes from 'components/videoEpisodes/VideoEpisodes';
 import VideoDetails from 'components/videoDetails/VideoDetails';
@@ -20,7 +21,6 @@ import styles from './VideoDataTabbedView.module.scss';
 interface PropTypes {
   id: string;
   onPressPlay: (videoId: string) => void;
-  onPressMyList: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   onClose: () => void;
@@ -28,11 +28,11 @@ interface PropTypes {
 }
 
 const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { id, onClose, onPressPlay, onPressMyList, onPressLike, onPressUnlike, videoData } = props;
+  const { id, onClose, onPressPlay, onPressLike, onPressUnlike, videoData } = props;
 
   const [ tabIndex, setTabIndex ] = useState(0);
 
-  const { isSeries } = videoData;
+  const { isSeries, title } = videoData;
 
   useEffect(() => {
     setTabIndex(0);
@@ -54,6 +54,10 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
       [styles.tabIndicator]: true,
       [styles.tabIndicator__selected]: isSelected
     });
+    const tabTextClassName = classNames({
+      [styles.tabText]: true,
+      [styles.tabText__selected]: isSelected
+    });
 
     return (
       <div className={styles.tabContainer}>
@@ -61,7 +65,7 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
           onClick={setTabIndex.bind(null, index)}
           className={styles.tab}>
           <FormattedText
-            className={styles.tabText}
+            className={tabTextClassName}
             textKey={textKey}/>
         </button>
         <div className={tabIndicatorClassname}/>
@@ -83,7 +87,6 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
       return (
         <VideoDetails
           onPressPlay={onPressPlay}
-          onPressMyList={onPressMyList}
           onPressLike={onPressLike}
           onPressUnlike={onPressUnlike}
           videoData={videoData}/>
@@ -103,23 +106,28 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
     );
   };
 
-  const headerClassName = `${styles.logoContainer} ${tabIndex === 1 ? styles.logoContainer__shrinked : ''}`;
+  const renderHeader = (): ReactElement => {
+    const headerClassName = classNames({
+      [styles.titleContainer]: true,
+      [styles.titleContainer__shrinked]: tabIndex !== 0
+    });
+
+    return (
+      <div className={headerClassName}>
+        <Label
+          className={styles.titleText}
+          text={title}
+        />
+      </div>
+    );
+  };
 
   return (
     <div className={styles.mainContainer}>
       { renderCloseButton() }
       { renderTabs() }
-      <div className={styles.innerContainer}>
-        <div className={styles.headerContainer}>
-          <div className={headerClassName}>
-            <FormattedText
-              className={styles.logoText}
-              textKey="placeholders-videoLogo"
-            />
-          </div>
-        </div>
+      { renderHeader() }
       { renderContent() }
-      </div>
       <div className={styles.playerContainer}>
         <Player
           controlsSet={[PLAYER_CONTROLS.volumeControl]}

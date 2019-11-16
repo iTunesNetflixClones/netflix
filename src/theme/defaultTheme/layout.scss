@@ -18,8 +18,9 @@ $layout-logo-size: 100px;
 
 $layout-spacing-page-header: 20vw;
 
-$layout-spacing-details-header-height: 5vw;
+$layout-spacing-details-header-height: 3vw;
 $layout-spacing-details-header-width: 40vw;
+$layout-spacing-details-header-width-responsive: 80vw;
 $layout-spacing-details-max-width: 50vw;
 $layout-spacing-overview-bottom-space: 15vw;
 $layout-spacing-overview-sliders-overlap: -15vw;
@@ -66,7 +67,7 @@ $layout-topbar-z-index: 100;
 $layout-modal-z-index: 110;
 $layout-modal-content-z-index: 120;
 
-$episode-aspect-ratio-coef: 1.9;
+$episode-aspect-ratio-coef: 1;
 $episode-slider-cards-amount-desktop: 5;
 $episode-slider-cards-amount-tablet: 4;
 $episode-slider-cards-amount-mobile-landscape: 3;
@@ -77,14 +78,15 @@ $featured-video-header-aspect-ratio: 16 / 9;
 $player-medium-size-width: 60vw;
 $player-aspect-ratio-coef: 1;
 
-$video-details-aspect-ratio-coef: 16 / 5;
-$video-details-aspect-ratio-coef-tablet: 16 / 6;
-$video-details-aspect-ratio-coef-landscape: 16 / 7;
-$video-details-aspect-ratio-coef-portrait: 16 / 9;
+$video-details-aspect-ratio-coef: 16 / 6;
+$video-details-aspect-ratio-coef-tablet: 16 / 7;
+$video-details-aspect-ratio-coef-landscape: 16 / 9;
+$video-details-aspect-ratio-coef-portrait: 16 / 12;
 
 $video-details-video-width: 40vw;
+$video-details-video-width-tablet: 50vw;
 $video-details-video-width-landscape: 60vw;
-$video-details-video-width-portrait: 70vw;
+$video-details-video-width-portrait: 80vw;
 $video-details-header-shrink-factor: 0.7;
 
 %layout-absolute-fill {

@@ -6,6 +6,9 @@ export default {
   dropdown: {
     defaultKey: '%s'
   },
+  episodeCard: {
+    goToEpisode: 'Go to episode!'
+  },
   featuredVideoHeader: {
     moreInfo: 'More info',
     myList: 'My list',
@@ -45,12 +48,12 @@ export default {
     cast: 'Cast:',
     coincidence: '%s% for you',
     episode: 'Episode %s',
+    episodesAmount: '%s Episodes',
+    episodesAmountPlural: '%s Episodes',
     genres: 'Genre:',
     myList: 'My list',
     new: 'New',
     play: 'Play',
-    seasonsAmount: '%s Season',
-    seasonsAmountPlural: '%s Seasons',
     seasonSelector: 'Season %s',
     tags: 'This title is:'
   },
