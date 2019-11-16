@@ -1,4 +1,4 @@
-@import '../../config//theme.scss';
+@import '../../config/theme.scss';
 
 @function caculate-dropdown-offset($font-size, $padding-vertical, $border-width) {
   @return $padding-vertical * 2 + $font-size + $border_width * 6

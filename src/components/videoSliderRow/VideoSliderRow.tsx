@@ -134,7 +134,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
             onExpandedStateChanges={handleExpandedStateChange}
             onPlay={onPlayVideo}
             onPressLike={onPressLike}
-            onPressMyList={onPressMyList}
             onPressUnlike={onPressUnlike}
             renderExpandButton={renderExpandButton.bind(null, indexInRow, isSelected)}
             videoData={video}/>

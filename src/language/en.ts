@@ -38,6 +38,9 @@ export default {
   topbar: {
     buttonPlaceholder: 'button soon'
   },
+  videoCard: {
+    latestEpisode: 'Watch latest episode'
+  },
   videoDetails: {
     cast: 'Cast:',
     coincidence: '%s% for you',
