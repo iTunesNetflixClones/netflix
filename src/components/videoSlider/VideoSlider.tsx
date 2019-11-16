@@ -1,5 +1,7 @@
 // @Vendors
-import React, { ReactElement } from 'react';
+import React, { ReactElement, RefObject, useRef, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 
 // @Styles
 import styles from './VideoSlider.module.scss';
@@ -12,8 +14,12 @@ import FormattedText from 'components/formattedText/FormattedText';
 import Label from 'components/label/Label';
 import VideoSliderRow from 'components/videoSliderRow/VideoSliderRow';
 
+// @Actions
+import { registerSlider, unregisterSlider } from 'actions/slider.actions';
+import { formatText } from 'utils/i18n';
+
 // @PropTypes
-interface PropTypes {
+interface OwnProps {
   onPlayVideo: (videoId: string) => any;
   onPressLike: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
@@ -23,9 +29,17 @@ interface PropTypes {
   videosList: Array<PodcastData>;
 }
 
+interface DispatchProps {
+  connectSlider: (sliderId: string, text: string, ref: RefObject<any>) => void;
+  disconnectSlider: (sliderId: string) => void;
+}
+
+type PropTypes = OwnProps & DispatchProps;
 
 const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
+    connectSlider,
+    disconnectSlider,
     onPlayVideo,
     onPressLike,
     onPressUnlike,
@@ -34,6 +48,17 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     titleText,
     videosList
   } = props;
+
+  const sliderRef = useRef(null);
+
+  useEffect(() => {
+    const text = titleKey ? formatText(titleKey) : titleText;
+    connectSlider(sliderId, text || '', sliderRef);
+
+    return (): void => {
+      disconnectSlider(sliderId);
+    };
+  }, [sliderRef]);
 
   const renderTitle = (): ReactElement | null => {
     if(titleKey) {
@@ -54,7 +79,9 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   };
 
   return (
-    <div className={styles.mainContainer}>
+    <div
+      ref={sliderRef}
+      className={styles.mainContainer}>
       { renderTitle() }
       <VideoSliderRow
         onPlayVideo={onPlayVideo}
@@ -71,4 +98,16 @@ VideoSlider.defaultProps = {
   titleText: ''
 };
 
-export default VideoSlider;
+const mapStateToProps = (): {} => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (
+  bindActionCreators({
+    connectSlider: registerSlider,
+    disconnectSlider: unregisterSlider
+  }, dispatch)
+);
+
+export default connect<{}, DispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(VideoSlider);

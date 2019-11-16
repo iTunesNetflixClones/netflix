@@ -1,3 +1,6 @@
+// @Vendors
+import { RefObject } from "react";
+
 export interface Duration {
   values: Array<number>;
   textKey: string;
@@ -57,4 +60,10 @@ export type getTranslationStyleArgs = {
 export type Action = {
   type: string;
   payload: Record<string, any>;
+};
+
+export type SliderRef = {
+  sliderId: string;
+  text: string;
+  ref: RefObject<any>;
 };

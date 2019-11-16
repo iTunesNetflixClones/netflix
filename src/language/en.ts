@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    trending: 'Trending',
+    entertainment: 'Entertainment (Music/TV and Movies)',
+    comedy: 'Comedy',
+    technology: 'Technology',
+    trueCrime: 'True Crime',
+    news: 'News'
+  },
   duration: {
     fullTime: '%s h %s min',
     onlyMins: '%s min'

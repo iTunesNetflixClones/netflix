@@ -23,11 +23,31 @@
 }
 
 .logoContainer {
-  height: 50px;
-  width: 150px;
+  flex-shrink: 1;
+  height: 45px;
+  width: 143px;
 }
 
-.text {
-  @extend %fonts-ff-regular;
-  color: $colors-font-primary;
+.anchorsContainer {
+  flex-basis: 100%;
+  list-style-type: none;
+  margin: auto $layout-spacing-xlg-abs;
+}
+
+.anchor {
+  cursor: pointer;
+  display: inline-block;
+  @extend %fonts-ff-bold;
+  color: $colors-font-tertiary;
+  font-size: $font-size-md;
+  margin: auto $layout-spacing-md;
+  text-decoration: none;
+
+  &:hover {
+    color: $colors-font-highlight;
+  }
+
+  &:active {
+    color: $colors-font-tertiary;
+  }
 }

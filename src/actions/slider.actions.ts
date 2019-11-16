@@ -1,6 +1,11 @@
+// @Vendors
+import { RefObject } from 'react';
+
 // @Action types
 import  {
-  SLIDER_OPEN_DESCRIPTIONS
+  SLIDER_OPEN_DESCRIPTIONS,
+  SLIDER_REGISTER_SLIDER,
+  SLIDER_UNREGISTER_SLIDER
 } from 'constants/actionTypes';
 
 // @Constants
@@ -11,6 +16,18 @@ const openSlider = (sliderId: string): Action => ({
   payload: { sliderId }
 });
 
+const registerSlider = (sliderId: string, text: string, ref: RefObject<any>): Action => ({
+  type: SLIDER_REGISTER_SLIDER,
+  payload: { sliderId, text, ref }
+});
+
+const unregisterSlider = (sliderId: string): Action => ({
+  type: SLIDER_UNREGISTER_SLIDER,
+  payload: { sliderId }
+});
+
 export {
-  openSlider
+  openSlider,
+  registerSlider,
+  unregisterSlider
 };
