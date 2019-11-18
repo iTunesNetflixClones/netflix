@@ -12,17 +12,18 @@
 }
 
 .buttonsRow {
-  margin-bottom: $layout-spacing-md;
+  margin-bottom: $layout-spacing-xxsm-abs;
 }
 
 .descriptionText {
   @extend %fonts-ff-regular;
-  @include font-size-responsive($font-size-lg);
+  font-size: $font-size-lg-abs;
   color: $colors-font-inactive;
   width: $layout-spacing-details-header-width;
-  margin: $layout-spacing-md 0;
+  margin: $layout-spacing-sm-abs 0 $layout-spacing-md-abs;
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
     width: $layout-spacing-details-header-width-responsive;
+    font-size: $font-size-md-abs;
   }
 }

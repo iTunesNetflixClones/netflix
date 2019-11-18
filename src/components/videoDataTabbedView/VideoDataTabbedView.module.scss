@@ -1,9 +1,19 @@
 @import '../../config/theme.scss';
 
-$breakpoints: (
-  1170px: $video-details-aspect-ratio-coef-tablet,
-  840px: $video-details-aspect-ratio-coef-landscape,
-  640px: $video-details-aspect-ratio-coef-portrait
+$breakpoints-main: (
+  1200px: $video-details-aspect-ratio-coef-tablet,
+  992px: $video-details-aspect-ratio-coef-landscape,
+  768px: $video-details-aspect-ratio-coef-portrait,
+  375px: $video-details-aspect-ratio-coef-portrait-xs,
+  335px: $video-details-aspect-ratio-coef-portrait-xxs
+);
+
+$breakpoints-player: (
+  1200px: $video-details-video-width-tablet,
+  992px: $video-details-video-width-landscape,
+  768px: $video-details-video-width-portrait,
+  375px: $video-details-video-width-portrait-xs,
+  335px: $video-details-video-width-portrait-xxs
 );
 
 .mainContainer {
@@ -12,7 +22,7 @@ $breakpoints: (
   background-color: $colors-background-tertiary;
   overflow: hidden;
 
-  @each $width, $aspect-ratio in $breakpoints {
+  @each $width, $aspect-ratio in $breakpoints-main {
     @media screen and (max-width: $width) {
       @include calculate-aspect-height(100vw, $aspect-ratio);
     }
@@ -25,22 +35,20 @@ $breakpoints: (
   right: 0;
   @include calculate-aspect-height($video-details-video-width);
 
-  @media screen and (max-width: $layout-desktop-small-width-breakpoint) {
-    @include calculate-aspect-height($video-details-video-width-tablet);
-  }
-
-  @media screen and (max-width: $layout-tablet-width-breakpoint) {
-    @include calculate-aspect-height($video-details-video-width-landscape);
-  }
-
-  @media screen and (max-width: $layout-app-width-breakpoint) {
-    @include calculate-aspect-height($video-details-video-width-portrait);
+  @each $width, $aspect-width in $breakpoints-player {
+    @media screen and (max-width: $width) {
+      @include calculate-aspect-height($aspect-width);
+    }
   }
 }
 
 .videoOverlay {
   @extend %layout-absolute-fill;
   background: linear-gradient(to right, $colors-background-tertiary 10%, transparent);
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    background: linear-gradient(to right, $colors-background-tertiary 20%, $colors-background-tertiary-overlay);
+  }
 }
 
 .titleContainer {
@@ -50,25 +58,26 @@ $breakpoints: (
   align-items: center;
   justify-items: flex-start;
   padding-left: $layout-spacing-lg;
-  margin-top: $layout-spacing-xxlg;
+  margin-top: $layout-spacing-xlg-abs;
 
   transition: margin-top $layout-transition-time-quick;
 
   &__shrinked  {
-    margin-top: $layout-spacing-md;
+    margin-top: $layout-spacing-md-abs;
 
     @media screen and (max-width: $layout-app-width-breakpoint) {
-      margin-top: $layout-spacing-lg;
+      margin-top: $layout-spacing-lg-abs;
     }
   }
 }
 
 .titleText {
-  max-width: 50%;
+  max-width: 80%;
   @extend %fonts-ff-bold;
-  @include font-size-responsive($font-size-xlg);
+  font-size: $font-size-lg-abs;
   color: $colors-font-primary;
   text-transform: uppercase;
+  margin-bottom: $layout-spacing-sm-abs;
 
   z-index: $layout-z-index-mid;
 }
@@ -84,7 +93,7 @@ $breakpoints: (
 
 .tabContainer {
   display: inline-block;
-  margin: 0 $layout-spacing-md;
+  margin: 0 $layout-spacing-sm-abs;
 }
 
 .tab {
@@ -92,7 +101,7 @@ $breakpoints: (
   border: none;
   outline: none;
   background-color: transparent;
-  padding: $layout-spacing-sm 0;
+  padding: $layout-spacing-xxsm-abs 0;
 }
 
 .tabIndicator {
@@ -107,9 +116,12 @@ $breakpoints: (
 .tabText {
   @extend %fonts-ff-bold;
   color: $colors-font-inactive;
-  @include font-size-responsive($font-size-lg);
-  padding: 0 $layout-spacing-xxsm;
+  font-size: $font-size-lg-abs;
   text-transform: uppercase;
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    font-size: $font-size-md-abs;
+  }
 
   &__selected {
     color: $colors-font-secondary;

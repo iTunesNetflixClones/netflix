@@ -74,7 +74,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     if(!hoverPlayMode) {
       requestPlayerControl(playerId);
     }
-  }, [hoverPlayMode, playerId]);
+  }, [hoverPlayMode, playerId, requestPlayerControl]);
 
   const handlePauseVideo = (): void => {
     setPlaying(false);

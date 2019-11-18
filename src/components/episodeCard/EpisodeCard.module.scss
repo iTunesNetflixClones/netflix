@@ -37,8 +37,9 @@
 
 .titleText {
   @extend %fonts-ff-bold;
-  @include font-size-responsive($font-size-md);
+  font-size: $font-size-md-abs;
   color: $colors-font-inactive;
+  margin-right: $layout-spacing-xsm-abs;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -48,13 +49,13 @@
   width: auto;
   flex-shrink: 0;
   @extend %fonts-ff-bold;
-  @include font-size-responsive($font-size-md);
+  font-size: $font-size-md-abs;
   color: $colors-font-inactive;
 }
 
 .descriptionText {
   @extend %fonts-ff-regular;
-  @include font-size-responsive($font-size-md);
-  color: $colors-font-inactive;
+  font-size: $font-size-sm-abs;
+  color: $colors-font-tertiary;
 }
 

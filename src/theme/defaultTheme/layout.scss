@@ -20,15 +20,20 @@ $layout-spacing-page-header: 20vw;
 
 $layout-spacing-details-header-height: 3vw;
 $layout-spacing-details-header-width: 40vw;
-$layout-spacing-details-header-width-responsive: 80vw;
+$layout-spacing-details-header-width-responsive: 85vw;
 $layout-spacing-details-max-width: 50vw;
 $layout-spacing-overview-bottom-space: 15vw;
 $layout-spacing-overview-sliders-overlap: -15vw;
+$layout-spacing-overview-sliders-overlap-app: -25vw;
+$layout-spacing-overview-sliders-overlap-mobile: -15vw;
 
 $layout-border-radius: 5px;
 $layout-border-radius-lg: 10px;
 $layout-border-radius-button: 1.5px;
 
+$layout-portrait-xs-width-breakpoint: 335px;
+$layout-portrait-xs-width-breakpoint: 375px;
+$layout-portrait-width-breakpoint: 576px;
 $layout-app-width-breakpoint: 768px;
 $layout-tablet-width-breakpoint: 992px;
 $layout-desktop-small-width-breakpoint: 1200px;
@@ -38,7 +43,7 @@ $layout-rounded-button-size: 2vw;
 $layout-button-border_width: 0.1vw;
 $layout-tag-border_width: 0.2vw;
 $layout-video-card-border_width: 0.3vw;
-$layout-tab-border_width: 0.3vw;
+$layout-tab-border_width: 4px;
 $layout-border-width-abs: 2.5px;
 
 $layout-expanded-header-width: 16vw;
@@ -74,19 +79,25 @@ $episode-slider-cards-amount-mobile-landscape: 3;
 $episode-slider-cards-amount-mobile-portrait: 2;
 
 $featured-video-header-aspect-ratio: 16 / 9;
+$featured-video-header-aspect-ratio-tablet: 16 / 12;
+$featured-video-header-aspect-ratio-app: 1;
 
 $player-medium-size-width: 60vw;
 $player-aspect-ratio-coef: 1;
 
 $video-details-aspect-ratio-coef: 16 / 6;
-$video-details-aspect-ratio-coef-tablet: 16 / 7;
-$video-details-aspect-ratio-coef-landscape: 16 / 9;
-$video-details-aspect-ratio-coef-portrait: 16 / 12;
+$video-details-aspect-ratio-coef-tablet: 16 / 9;
+$video-details-aspect-ratio-coef-landscape: 16 / 11;
+$video-details-aspect-ratio-coef-portrait: 1;
+$video-details-aspect-ratio-coef-portrait-xs: 100 / 115;
+$video-details-aspect-ratio-coef-portrait-xxs: 100 / 150;
 
 $video-details-video-width: 40vw;
-$video-details-video-width-tablet: 50vw;
+$video-details-video-width-tablet: 70vw;
 $video-details-video-width-landscape: 60vw;
-$video-details-video-width-portrait: 80vw;
+$video-details-video-width-portrait: 100vw;
+$video-details-video-width-portrait-xs: 115vw;
+$video-details-video-width-portrait-xxs: 150vw;
 $video-details-header-shrink-factor: 0.7;
 
 %layout-absolute-fill {

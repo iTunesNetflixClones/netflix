@@ -6,10 +6,17 @@
   right: 0;
   left: 0;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  padding: $layout-spacing-sm $layout-spacing-lg;
+  width: 100%;
+  padding: $layout-spacing-xxsm-abs $layout-spacing-lg;
   z-index: $layout-topbar-z-index;
+}
+
+.anchorsContainer {
+  position: relative;
+  display: inline-block;
+  margin: auto 0;
 }
 
 .background {
@@ -23,25 +30,24 @@
 }
 
 .logoContainer {
-  flex-shrink: 1;
-  height: 45px;
-  width: 143px;
-}
-
-.anchorsContainer {
-  flex-basis: 100%;
-  list-style-type: none;
-  margin: auto $layout-spacing-xlg-abs;
+  height: 40px;
 }
 
 .anchor {
   cursor: pointer;
-  display: inline-block;
+  border: none;
+  background-color: transparent;
+  height: 100%;
+
   @extend %fonts-ff-bold;
   color: $colors-font-tertiary;
-  font-size: $font-size-md;
+  font-size: $font-size-md-abs;
   margin: auto $layout-spacing-md;
   text-decoration: none;
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    font-size: $font-size-sm-abs;
+  }
 
   &:hover {
     color: $colors-font-highlight;
@@ -49,5 +55,59 @@
 
   &:active {
     color: $colors-font-tertiary;
+  }
+
+  &__menuItem {
+    display: block;
+    height: auto;
+    width: 100%;
+    font-size: $font-size-md-abs;
+
+    margin-bottom: $layout-spacing-sm-abs
+  }
+}
+
+.moreOptionsMenuButton {
+  position: relative;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: $layout-spacing-xxsm-abs;
+
+  img {
+    height: 100%;
+  }
+}
+
+.moreOptionsMenu {
+  background-color: $colors-background-primary-opaque;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: $layout-spacing-xxlg-abs;
+  text-align: center;
+
+  &:active {
+    outline: none;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: $layout-spacing-sm-abs;
+  right: $layout-spacing-sm-abs;
+  border: none;
+  background-color: transparent;
+
+  i {
+    @extend %hl-colors-font-gradient;
+    font-size: $font-size-lg-abs;
+  }
+
+  &:active {
+    outline: none;
   }
 }

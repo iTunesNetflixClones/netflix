@@ -102,7 +102,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     if(currentSliderId !== undefined && currentSliderId !== sliderId) {
       handleShrinkVideo();
     }
-  }, [currentSliderId]);
+  }, [currentSliderId, handleShrinkVideo, sliderId]);
 
   const renderExpandButton = (index: number, isSelected: boolean): ReactElement | null => {
     const shouldShowFooter = index === expandedIndex && !isSelected && selectedIndex !== -1;

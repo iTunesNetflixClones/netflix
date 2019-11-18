@@ -3,9 +3,18 @@
 .mainContainer {
   position: relative;
   @include calculate-aspect-height($width: 100vw, $aspect-ratio: $featured-video-header-aspect-ratio);
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    @include calculate-aspect-height($width: 100vw, $aspect-ratio: $featured-video-header-aspect-ratio-app);
+  }
 }
 
 .playerContainer {
   @include calculate-aspect-height($width: 100vw / $featured-video-header-aspect-ratio);
   margin-left: 100vw - 100vw / $featured-video-header-aspect-ratio;
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    @include calculate-aspect-height($width: 100vw / $featured-video-header-aspect-ratio-app);
+    margin-left: 100vw - 100vw / $featured-video-header-aspect-ratio-app;
+  }
 }
