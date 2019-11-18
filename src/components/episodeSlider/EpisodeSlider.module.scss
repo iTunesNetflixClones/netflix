@@ -2,8 +2,8 @@
 
 $breakpoints: (
   1170px: $episode-slider-cards-amount-tablet,
-  840px: $episode-slider-cards-amount-mobile-landscape,
-  640px: $episode-slider-cards-amount-mobile-portrait
+  768px: $episode-slider-cards-amount-mobile-landscape,
+  576px: $episode-slider-cards-amount-mobile-portrait
 );
 
 @function calc-slider-card-width($cards-amount) {
