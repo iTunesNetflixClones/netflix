@@ -51,36 +51,36 @@ $slider-cards-amount-mobile-portrait: 2;
       transition: all $layout-transition-time;
       transform-origin: center left;
 
-      @media screen and (min-width: 1171px) {
+      @media screen and (min-width: 1201px) {
         @include calculate-cards-size($cards-amount: $slider-cards-amount-desktop, $class-name: 'sliderCard');
       }
 
-      @media screen and (max-width: 1170px) and (min-width: 841px) {
+      @media screen and (max-width: 1200px) and (min-width: 769px) {
         @include calculate-cards-size($cards-amount: $slider-cards-amount-tablet, $class-name: 'sliderCard');
       }
 
-      @media screen and (max-width: 840px) and (min-width: 641px) {
+      @media screen and (max-width: 768px) and (min-width: 577px) {
         @include calculate-cards-size($cards-amount: $slider-cards-amount-mobile-landscape, $class-name: 'sliderCard');
       }
 
-      @media screen and (max-width:640px) {
+      @media screen and (max-width: 576px) {
         @include calculate-cards-size($cards-amount: $slider-cards-amount-mobile-portrait, $class-name: 'sliderCard');
       }
     }
 
-    @media screen and (min-width: 1171px) {
+    @media screen and (min-width: 1201px) {
       @include calculate-cards-left-movement($cards-amount: $slider-cards-amount-desktop);
     }
 
-    @media screen and (max-width: 1170px) and (min-width: 841px) {
+    @media screen and (max-width: 1200px) and (min-width: 769px) {
       @include calculate-cards-left-movement($cards-amount: $slider-cards-amount-tablet);
     }
 
-    @media screen and (max-width: 840px) and (min-width: 641px) {
+    @media screen and (max-width: 768px) and (min-width: 577px) {
       @include calculate-cards-left-movement($cards-amount: $slider-cards-amount-mobile-landscape);
     }
 
-    @media screen and (max-width:640px) {
+    @media screen and (max-width: 576px) {
       @include calculate-cards-left-movement($cards-amount: $slider-cards-amount-mobile-portrait);
     }
   }
