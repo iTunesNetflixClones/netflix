@@ -9,7 +9,7 @@ import FormattedText from 'components/formattedText/FormattedText';
 import HeadlinerButton from 'components/headlinerButton/HeadlinerButton';
 
 // @Assets
-const micLogo = require('assets/png/mic_logo.png');
+import micLogo from 'assets/png/mic_logo.png';
 
 // @PropTypes
 interface PropTypes {

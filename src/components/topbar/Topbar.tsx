@@ -22,9 +22,9 @@ import { interpolateScroll } from 'utils/calcHelper';
 import useResizeDetector from 'hooks/resizeDetector';
 
 // @Assets
-const hamburger = require('assets/png/hamburger.png');
-const headlinerLogo = require('assets/png/headliner_logo.png');
-const headlinerLogoMini = require('assets/png/headliner_logo_mini.png');
+import hamburger from 'assets/png/hamburger.png';
+import headlinerLogo from 'assets/png/headliner_logo.png';
+import headlinerLogoMini from 'assets/png/headliner_logo_mini.png';
 
 interface PropTypes {
   anchors?: SliderRef[];
