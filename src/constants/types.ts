@@ -1,3 +1,6 @@
+// @Vendors
+import { RefObject } from "react";
+
 export interface Duration {
   values: Array<number>;
   textKey: string;
@@ -8,23 +11,14 @@ export interface EpisodeData {
   description: string;
   duration: number;
   episodeNumber: number;
-  imageSrc: string;
-  videoSrc: string;
+  link: string;
+  name: string;
+  src: string;
 }
 
-export interface PositionCheck {
-  isFirstInPage: boolean;
-  isLastInPage: boolean;
-}
-
-export interface SelectorOption {
-  code: string;
-  textKey?: string;
-  value: string | number;
-}
-
-export interface VideoData {
+export interface PodcastData {
   cast: Array<string>;
+  episodesAmount: number;
   id: string;
   isNew: boolean;
   isSeries: boolean;
@@ -41,6 +35,17 @@ export interface VideoData {
   year: number;
 }
 
+export interface PositionCheck {
+  isFirstInPage: boolean;
+  isLastInPage: boolean;
+}
+
+export interface SelectorOption {
+  code: string;
+  textKey?: string;
+  value: string | number;
+}
+
 export type getTranslationStyleArgs = {
   pageIndex: number;
   translationCoef: number;
@@ -55,4 +60,10 @@ export type getTranslationStyleArgs = {
 export type Action = {
   type: string;
   payload: Record<string, any>;
+};
+
+export type SliderRef = {
+  sliderId: string;
+  text: string;
+  ref: RefObject<any>;
 };

@@ -42,15 +42,13 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
       onAcceptModal={handleCloseModal}/>
       <FeaturedVideoHeader
         onPressPlay={(): void => {}}
-        onPressList={(): void => {}}
         onPressMoreInfo={(): void => {}}
-        videoData={videosList[1]}
+        podcastData={videosList[0]}
       />
       <div className={styles.sliderContainer}>
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
-          onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="1"
           titleText={formatText('placeholders-categoryTrending')}
@@ -58,7 +56,6 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
-          onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="2"
           titleText={formatText('placeholders-categoryEntertainment')}
@@ -66,7 +63,6 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
-          onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="3"
           titleText={formatText('placeholders-categoryComedy')}
@@ -74,7 +70,6 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
-          onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="4"
           titleText={formatText('placeholders-categoryTech')}
@@ -82,7 +77,6 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
-          onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="5"
           titleText={formatText('placeholders-categoryCrime')}
@@ -90,7 +84,6 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
-          onPressMyList={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="6"
           titleText={formatText('placeholders-categoryNews')}

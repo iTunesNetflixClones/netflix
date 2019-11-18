@@ -1,40 +1,38 @@
-@import '../../config//theme.scss';
+@import '../../config/theme.scss';
 
 .container {
   @extend %layout-absolute-fill;
+  display: flex;
+  align-items: center;
   background:
-    linear-gradient(to right, $colors-background-primary 50%, transparent),
-    linear-gradient(transparent 40%, $colors-background-primary);
+    linear-gradient(transparent 40%, $colors-background-primary),
+    linear-gradient(to right, $colors-hl-gradient-start, $colors-hl-gradient-mid, $colors-hl-gradient-end, transparent 75%);
   z-index: $layout-z-index-low;
 }
 
 .innerContainer {
-  position: absolute;
-  bottom: $layout-spacing-page-header;
   padding: 0 $layout-spacing-lg;
 }
 
-.logoArea {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  height: $layout-expanded-header-height;
-  width: $layout-expanded-header-width;
-  border: 1px solid $colors-font-secondary;
-  margin-bottom: $layout-spacing-md;
+.titleText {
+  @extend %fonts-ff-bold;
+  font-size: $font-size-xlg;
+  color: $colors-font-secondary;
+  text-transform: uppercase;
+  margin: 0 auto $layout-spacing-md;
 }
 
-.logoText {
+.subtitleText {
   @extend %fonts-ff-bold;
-  @include font-size-responsive($font-size-xlg);
-  color: $colors-font-primary;
-  padding: $layout-spacing-md;
+  font-size: $font-size-lg;
+  color: $colors-font-highlight;
+  margin: 0 auto;
 }
 
 .descriptionText {
   max-width: 50vw;
   @extend %fonts-ff-regular;
-  @include font-size-responsive($font-size-lg);
-  color: $colors-font-primary;
-  margin-bottom: $layout-spacing-md;
+  font-size: $font-size-lg;
+  color: $colors-font-inactive;
+  margin: $layout-spacing-xsm 0 $layout-spacing-md;
 }

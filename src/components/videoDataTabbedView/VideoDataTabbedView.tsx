@@ -1,15 +1,17 @@
 // @Vendors
 import React, { ReactElement, useEffect, useState } from 'react';
+import classNames from 'classnames';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
+import Label from 'components/label/Label';
 import Player from 'components/player/Player';
 import VideoEpisodes from 'components/videoEpisodes/VideoEpisodes';
 import VideoDetails from 'components/videoDetails/VideoDetails';
 
 // @Constants
 import { ICON_CLOSE } from 'constants/constants';
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
 
 // @Styles
@@ -19,19 +21,18 @@ import styles from './VideoDataTabbedView.module.scss';
 interface PropTypes {
   id: string;
   onPressPlay: (videoId: string) => void;
-  onPressMyList: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   onClose: () => void;
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { id, onClose, onPressPlay, onPressMyList, onPressLike, onPressUnlike, videoData } = props;
+  const { id, onClose, onPressPlay, onPressLike, onPressUnlike, videoData } = props;
 
   const [ tabIndex, setTabIndex ] = useState(0);
 
-  const { isSeries } = videoData;
+  const { isSeries, title } = videoData;
 
   useEffect(() => {
     setTabIndex(0);
@@ -49,15 +50,26 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
 
   const renderTab = (textKey: string, index: number): ReactElement => {
     const isSelected: boolean = index === tabIndex;
-    const className: string = `${styles.tab} ${isSelected ? styles.tab__selected : ''}`;
+    const tabIndicatorClassname = classNames({
+      [styles.tabIndicator]: true,
+      [styles.tabIndicator__selected]: isSelected
+    });
+    const tabTextClassName = classNames({
+      [styles.tabText]: true,
+      [styles.tabText__selected]: isSelected
+    });
+
     return (
-      <button
-        onClick={setTabIndex.bind(null, index)}
-        className={className}>
-        <FormattedText
-          className={styles.tabText}
-          textKey={textKey}/>
-      </button>
+      <div className={styles.tabContainer}>
+        <button
+          onClick={setTabIndex.bind(null, index)}
+          className={styles.tab}>
+          <FormattedText
+            className={tabTextClassName}
+            textKey={textKey}/>
+        </button>
+        <div className={tabIndicatorClassname}/>
+      </div>
     );
   };
 
@@ -75,7 +87,6 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
       return (
         <VideoDetails
           onPressPlay={onPressPlay}
-          onPressMyList={onPressMyList}
           onPressLike={onPressLike}
           onPressUnlike={onPressUnlike}
           videoData={videoData}/>
@@ -95,23 +106,28 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
     );
   };
 
-  const headerClassName = `${styles.logoContainer} ${tabIndex === 1 ? styles.logoContainer__shrinked : ''}`;
+  const renderHeader = (): ReactElement => {
+    const headerClassName = classNames({
+      [styles.titleContainer]: true,
+      [styles.titleContainer__shrinked]: tabIndex !== 0
+    });
+
+    return (
+      <div className={headerClassName}>
+        <Label
+          className={styles.titleText}
+          text={title}
+        />
+      </div>
+    );
+  };
 
   return (
     <div className={styles.mainContainer}>
       { renderCloseButton() }
       { renderTabs() }
-      <div className={styles.innerContainer}>
-        <div className={styles.headerContainer}>
-          <div className={headerClassName}>
-            <FormattedText
-              className={styles.logoText}
-              textKey="placeholders-videoLogo"
-            />
-          </div>
-        </div>
+      { renderHeader() }
       { renderContent() }
-      </div>
       <div className={styles.playerContainer}>
         <Player
           controlsSet={[PLAYER_CONTROLS.volumeControl]}

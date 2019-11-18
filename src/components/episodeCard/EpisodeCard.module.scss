@@ -1,4 +1,4 @@
-@import '../../config//theme.scss';
+@import '../../config/theme.scss';
 
 .mainContainer {
   position: relative;
@@ -9,7 +9,6 @@
 
 .imageContainer {
   position: relative;
-  width: 100%;
 
   img {
     height: 100%;
@@ -24,13 +23,30 @@
   justify-content: center;
 }
 
+.linkRow {
+  margin-top: $layout-spacing-sm;
+  text-align: right;
+}
+
 .titleContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: $layout-spacing-xxsm;
 }
 
 .titleText {
+  @extend %fonts-ff-bold;
+  @include font-size-responsive($font-size-md);
+  color: $colors-font-inactive;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.durationText {
+  width: auto;
+  flex-shrink: 0;
   @extend %fonts-ff-bold;
   @include font-size-responsive($font-size-md);
   color: $colors-font-inactive;

@@ -15,7 +15,7 @@ import VideoDataTabbedView from 'components/videoDataTabbedView/VideoDataTabbedV
 
 // @Constants
 import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP, VIDEO_CARDS_AMOUNT } from 'constants/constants';
-import { PositionCheck, VideoData } from 'constants/types';
+import { PositionCheck, PodcastData } from 'constants/types';
 import { SLIDER_BUTTON_TYPES } from 'constants/enums';
 import { StoreState } from 'constants/stateTypes';
 
@@ -32,10 +32,9 @@ import * as sliderActions from 'actions/slider.actions';
 interface OwnProps {
   onPlayVideo: (videoId: string) => any;
   onPressLike: (videoId: string) => any;
-  onPressMyList: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
   sliderId: string;
-  videosList: Array<VideoData>;
+  videosList: Array<PodcastData>;
 }
 interface StateProps {
   currentSliderId?: string;
@@ -50,7 +49,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     currentSliderId,
     onPlayVideo,
     onPressLike,
-    onPressMyList,
     onPressUnlike,
     openSlider,
     sliderId,
@@ -134,7 +132,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
             onExpandedStateChanges={handleExpandedStateChange}
             onPlay={onPlayVideo}
             onPressLike={onPressLike}
-            onPressMyList={onPressMyList}
             onPressUnlike={onPressUnlike}
             renderExpandButton={renderExpandButton.bind(null, indexInRow, isSelected)}
             videoData={video}/>
@@ -152,7 +149,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
         id={`tabeedView-${sliderId}`}
         onClose={handleShrinkVideo}
         onPressPlay={onPlayVideo}
-        onPressMyList={onPressMyList}
         onPressLike={onPressLike}
         onPressUnlike={onPressUnlike}
         videoData={videosList[selectedIndex]}/>

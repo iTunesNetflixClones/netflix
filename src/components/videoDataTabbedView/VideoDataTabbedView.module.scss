@@ -1,4 +1,4 @@
-@import '../../config//theme.scss';
+@import '../../config/theme.scss';
 
 $breakpoints: (
   1170px: $video-details-aspect-ratio-coef-tablet,
@@ -19,34 +19,22 @@ $breakpoints: (
   }
 }
 
-.innerContainer {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.headerContainer {
-  position: relative;
-  height: $layout-spacing-details-header-height;
-  width: $layout-spacing-details-header-width;
-  padding: $layout-spacing-md 0 $layout-spacing-md $layout-spacing-lg;
-  margin-bottom: $layout-spacing-md;
-  z-index: $layout-z-index-mid;
-}
-
 .playerContainer {
   position: absolute;
   top: 0;
   right: 0;
   @include calculate-aspect-height($video-details-video-width);
 
-  @media screen and (max-width: 840px) {
-    @include calculate-aspect-height($video-details-video-width-landscape)
+  @media screen and (max-width: $layout-desktop-small-width-breakpoint) {
+    @include calculate-aspect-height($video-details-video-width-tablet);
   }
 
-  @media screen and (max-width: 640px) {
-    @include calculate-aspect-height($video-details-video-width-portrait)
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    @include calculate-aspect-height($video-details-video-width-landscape);
+  }
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    @include calculate-aspect-height($video-details-video-width-portrait);
   }
 }
 
@@ -55,27 +43,34 @@ $breakpoints: (
   background: linear-gradient(to right, $colors-background-tertiary 10%, transparent);
 }
 
-.logoContainer {
+.titleContainer {
+  height: $layout-spacing-details-header-height;
+
   display: flex;
   align-items: center;
-  justify-items: center;
-  height: $layout-spacing-details-header-height;
-  width: $layout-spacing-details-header-width;
-  border: 1px solid $colors-font-secondary;
-  margin-bottom: $layout-spacing-md;
-  transition: all $layout-transition-time-quick;
+  justify-items: flex-start;
+  padding-left: $layout-spacing-lg;
+  margin-top: $layout-spacing-xxlg;
+
+  transition: margin-top $layout-transition-time-quick;
 
   &__shrinked  {
-    height: $layout-spacing-details-header-height * $video-details-header-shrink-factor;
-    width: $layout-spacing-details-header-width * $video-details-header-shrink-factor;
+    margin-top: $layout-spacing-md;
+
+    @media screen and (max-width: $layout-app-width-breakpoint) {
+      margin-top: $layout-spacing-lg;
+    }
   }
 }
 
-.logoText {
+.titleText {
+  max-width: 50%;
   @extend %fonts-ff-bold;
   @include font-size-responsive($font-size-xlg);
   color: $colors-font-primary;
-  padding: $layout-spacing-md;
+  text-transform: uppercase;
+
+  z-index: $layout-z-index-mid;
 }
 
 .bottomTabs {
@@ -87,24 +82,38 @@ $breakpoints: (
   z-index: $layout-z-index-mid;
 }
 
+.tabContainer {
+  display: inline-block;
+  margin: 0 $layout-spacing-md;
+}
+
 .tab {
   cursor: pointer;
   border: none;
   outline: none;
   background-color: transparent;
-  padding: $layout-spacing-xsm 0;
-  margin: 0 $layout-spacing-md;
+  padding: $layout-spacing-sm 0;
+}
+
+.tabIndicator {
+  height: $layout-tab-border_width;
+  background-color: transparent;
 
   &__selected {
-    border-bottom: $colors-border-tab solid $layout-tab-border_width;
+    @extend %hl-colors-gradient;
   }
 }
 
 .tabText {
-  @extend %fonts-ff-regular;
-  color: $colors-font-primary;
+  @extend %fonts-ff-bold;
+  color: $colors-font-inactive;
   @include font-size-responsive($font-size-lg);
+  padding: 0 $layout-spacing-xxsm;
   text-transform: uppercase;
+
+  &__selected {
+    color: $colors-font-secondary;
+  }
 }
 
 .closeButton {
@@ -118,6 +127,6 @@ $breakpoints: (
   z-index: $layout-z-index-mid;
 
   @extend %fonts-ff-bold;
-  @include font-size-responsive($font-size-xlg);
+  font-size: $font-size-xlg-abs;
   color: $colors-font-primary;
 }

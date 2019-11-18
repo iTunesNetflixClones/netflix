@@ -1,5 +1,5 @@
 // @Vendors
-import React, { RefObject, useRef, useState, ReactElement } from 'react';
+import React, { RefObject, useRef, useState, ReactElement, useEffect } from 'react';
 import get from 'lodash/get';
 
 // @Constants
@@ -27,9 +27,9 @@ interface PropTypes {
 }
 
 const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { episodesList, onPressPlay } = props;
+  const { episodesList } = props;
 
-  const [ slideButtonVisible, setSlideButtonVisible ] = useState(false);
+  const [ sliderButtonVisible, setSliderButtonVisible ] = useState(false);
   const [ pageIndex, setPageIndex ] = useState(0);
   const [ scrollContentWidth, setScrollContentWidth ] = useState(0);
 
@@ -46,7 +46,9 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
 
   const handleLoad = (): void => {
     const totalWidth: number = get(sliderScrollRef, 'current.scrollWidth', 0);
-    setScrollContentWidth(totalWidth);
+    if(totalWidth !== scrollContentWidth) {
+      setScrollContentWidth(totalWidth);
+    }
   };
 
   const handleScroll = (isBack: boolean): void => {
@@ -54,13 +56,16 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
     setPageIndex(nextIndex);
   };
 
+  useEffect(() => {
+    handleLoad();
+  }, [handleLoad, sliderScrollRef]);
+
   const renderEpisodeCards = (): Array<ReactElement> => {
     return episodesList.map(episode => (
       <div
         key={episode.id}
         className={styles.sliderCard}>
         <EpisodeCard
-          onPressPlay={onPressPlay}
           episodeData={episode}/>
       </div>
     ));
@@ -68,16 +73,15 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
 
   return (
     <div
-      onMouseEnter={setSlideButtonVisible.bind(null, true)}
-      onMouseLeave={setSlideButtonVisible.bind(null, false)}
+      onMouseEnter={setSliderButtonVisible.bind(null, true) }
+      onMouseLeave={setSliderButtonVisible.bind(null, false)}
       className={styles.sliderFrame}>
       <SliderButton
-        isHidden={!slideButtonVisible}
+        isHidden={!sliderButtonVisible}
         isUnmounted={pageIndex === 0}
         onClick={handleScroll}
         type={SLIDER_BUTTON_TYPES.back}/>
       <div
-        onLoad={handleLoad}
         ref={sliderScrollRef}
         style={{ transform: getTranslationStyle({
           pageIndex,
@@ -93,7 +97,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
         { renderEpisodeCards() }
       </div>
       <SliderButton
-        isHidden={!slideButtonVisible}
+        isHidden={!sliderButtonVisible}
         isUnmounted={isLastPage(pageIndex, scrollContentWidth, window.innerWidth)}
         onClick={handleScroll}
         type={SLIDER_BUTTON_TYPES.next}/>

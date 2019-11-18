@@ -1,9 +1,10 @@
 // @Constants
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 
-const videosData: Array<VideoData> = [
+const podcastsData: Array<PodcastData> = [
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 5,
     id: '0',
     isNew: true,
     isSeries: true,
@@ -21,6 +22,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 1,
     id: '1',
     isNew: false,
     isSeries: true,
@@ -38,6 +40,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 6,
     id: '2',
     isNew: false,
     isSeries: true,
@@ -55,6 +58,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 4,
     id:'3',
     isNew: false,
     isSeries: true,
@@ -72,6 +76,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 2,
     id: '4',
     isNew: true,
     isSeries: true,
@@ -89,6 +94,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 1,
     id: '5',
     isNew: false,
     isSeries: true,
@@ -106,6 +112,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 7,
     id: '6',
     isNew: false,
     isSeries: true,
@@ -123,6 +130,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 9,
     id: '7',
     isNew: true,
     isSeries: true,
@@ -140,6 +148,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 4,
     id: '8',
     isNew: false,
     isSeries: true,
@@ -157,6 +166,7 @@ const videosData: Array<VideoData> = [
   },
   {
     cast: ['Cast member 1', 'Cast member 2', 'Cast member 3'],
+    episodesAmount: 4,
     id: '9',
     isNew: false,
     isSeries: true,
@@ -174,4 +184,4 @@ const videosData: Array<VideoData> = [
   }
 ];
 
-export default videosData;
+export default podcastsData;

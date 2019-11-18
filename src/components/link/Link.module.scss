@@ -1,0 +1,12 @@
+@import '../../config/theme.scss';
+
+.link {
+  @extend %fonts-ff-bold;
+  color: $colors-font-highlight;
+  font-size: $font-size-md;
+  text-decoration: none;
+
+  &:active {
+    color: $colors-font-highlight;
+  }
+}

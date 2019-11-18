@@ -1,4 +1,12 @@
 export default {
+  categories: {
+    trending: 'Trending',
+    entertainment: 'Entertainment (Music/TV and Movies)',
+    comedy: 'Comedy',
+    technology: 'Technology',
+    trueCrime: 'True Crime',
+    news: 'News'
+  },
   duration: {
     fullTime: '%s h %s min',
     onlyMins: '%s min'
@@ -6,10 +14,14 @@ export default {
   dropdown: {
     defaultKey: '%s'
   },
+  episodeCard: {
+    goToEpisode: 'Go to episode!'
+  },
   featuredVideoHeader: {
     moreInfo: 'More info',
     myList: 'My list',
-    play: 'Play'
+    play: 'Play',
+    watchAndListen: 'Watch and listen!'
   },
   introModal: {
     buttonText: 'Take me to the future of audio',
@@ -37,16 +49,19 @@ export default {
   topbar: {
     buttonPlaceholder: 'button soon'
   },
+  videoCard: {
+    latestEpisode: 'Watch latest episode'
+  },
   videoDetails: {
     cast: 'Cast:',
     coincidence: '%s% for you',
     episode: 'Episode %s',
+    episodesAmount: '%s Episodes',
+    episodesAmountPlural: '%s Episodes',
     genres: 'Genre:',
     myList: 'My list',
     new: 'New',
     play: 'Play',
-    seasonsAmount: '%s Season',
-    seasonsAmountPlural: '%s Seasons',
     seasonSelector: 'Season %s',
     tags: 'This title is:'
   },

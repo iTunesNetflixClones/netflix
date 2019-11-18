@@ -1,11 +1,24 @@
-%fonts-ff-bold {
-  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: bold;
+@font-face {
+  font-family: 'Monserrat Regular';
+  src: local('FiraSans'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Monserrat Bold';
+  src: local('FiraSans'), url(../../assets/fonts/Montserrat-Bold.otf) format('truetype');
 }
 
 %fonts-ff-regular {
-  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  font-family: 'Monserrat Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+%fonts-ff-bold {
+  font-family: 'Monserrat Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+%fonts-ff-indicator-and-buttons {
+  font-family: 'Robotto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
 }
 
 $font-size-xxsm: 0.5vw;
@@ -15,6 +28,14 @@ $font-size-md: 1vw;
 $font-size-lg: 1.2vw;
 $font-size-xlg: 1.4vw;
 $font-size-xxlg: 2vw;
+
+$font-size-xxsm-abs: 8px;
+$font-size-xsm-abs: 10px;
+$font-size-sm-abs: 12px;
+$font-size-md-abs: 15px;
+$font-size-lg-abs: 18px;
+$font-size-xlg-abs: 25px;
+$font-size-xxlg-abs: 30px;
 
 @mixin font-size-responsive($base-font-size) {
   font-size: $base-font-size;
@@ -31,33 +52,3 @@ $font-size-xxlg: 2vw;
     }
   }
 }
-
-// ----------------------
-// TODO: Unify styles
-// ----------------------
-@font-face {
-  font-family: 'Monserrat Regular';
-  src: local('FiraSans'), url(../../assets/fonts/Montserrat-Regular.otf) format('truetype');
-}
-
-@font-face {
-  font-family: 'Monserrat Bold';
-  src: local('FiraSans'), url(../../assets/fonts/Montserrat-Bold.otf) format('truetype');
-}
-
-%hl-fonts-ff-regular {
-  font-family: 'Monserrat Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-%hl-fonts-ff-bold {
-  font-family: 'Monserrat Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-%hl-fonts-ff-indicator-and-buttons {
-  font-family: 'Robotto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: bold;
-}
-
-$hl-font-size-xxsm: 8px;
-$hl-font-size-sm: 12px;
-$hl-font-size-md: 15px;

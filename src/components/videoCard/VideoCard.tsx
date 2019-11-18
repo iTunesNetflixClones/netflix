@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 
 // @Constants
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 
 // @Components
 import Player from  'components/player/Player';
@@ -21,10 +21,9 @@ interface PropTypes {
   onExpandedStateChanges: (index: number, expandedState: boolean) => void;
   onPlay: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
-  onPressMyList: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   renderExpandButton?: () => void;
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
@@ -36,7 +35,6 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     onExpandedStateChanges,
     onPlay,
     onPressLike,
-    onPressMyList,
     onPressUnlike,
     renderExpandButton,
     videoData
@@ -50,8 +48,6 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const handleExpand = (): void => { onExpand(index); };
 
   const handleLike = (): void => { onPressLike(id); };
-
-  const handleMyList = (): void => { onPressMyList(id); };
 
   const handleUnlike = (): void => { onPressUnlike(id); };
 
@@ -77,12 +73,10 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           controlsSet={[
             PLAYER_CONTROLS.volumeControl,
             PLAYER_CONTROLS.like,
-            PLAYER_CONTROLS.unlike,
-            PLAYER_CONTROLS.myList
+            PLAYER_CONTROLS.unlike
           ]}
           muted={false}
           onPressLike={handleLike}
-          onPressMyList={handleMyList}
           onPressUnlike={handleUnlike}
           playerId={`card-${id}`}
           parentalAge={parentalAge}

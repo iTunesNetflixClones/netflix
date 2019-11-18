@@ -1,4 +1,4 @@
-@import '../../config//theme.scss';
+@import '../../config/theme.scss';
 
 .container {
   @extend %layout-absolute-fill;
@@ -24,33 +24,17 @@
   margin: $layout-spacing-xsm 0;
 }
 
-.coincidenceText {
-  @extend %fonts-ff-bold;
-  color: $colors-font-highlight;
-  @include font-size-responsive($font-size-md);
-}
-
-.parentalLabel {
-  @extend %fonts-ff-regular;
-  color: $colors-font-secondary;
-  @include font-size-responsive($font-size-md);
-  margin: 0 $layout-spacing-sm;
-  padding: 0 $layout-spacing-sm;
-  border: $layout-button-border_width solid $colors-border-inactive;
-}
-
-.durationText {
-  @extend %fonts-ff-regular;
-  color: $colors-font-secondary;
-  @include font-size-responsive($font-size-md);
-}
-
 .separator {
   display: inline;
   @extend %fonts-ff-regular;
   color: $colors-font-bullets;
   @include font-size-responsive($font-size-md);
   margin: 0 $layout-spacing-sm;
+}
+
+.tagsRow {
+  display: inline-block;
+  margin-bottom: $layout-spacing-sm;
 }
 
 .tag {

@@ -2,7 +2,7 @@
 import React, { ReactElement } from 'react';
 
 // @Constants
-import { VideoData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 import { VIDEO_INFO_TEXT_SEPARATOR } from 'constants/constants';
 
 // @Components
@@ -14,7 +14,7 @@ import styles from './VideoAdditionalInfo.module.scss';
 
 // @PropTypes
 interface PropTypes {
-  videoData: VideoData;
+  videoData: PodcastData;
 }
 
 const VideoAddionalInfo: React.FunctionComponent<PropTypes> = (props: PropTypes) => {

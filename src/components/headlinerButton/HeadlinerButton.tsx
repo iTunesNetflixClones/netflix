@@ -1,5 +1,5 @@
 // @Vendors
-import React from 'react';
+import React, { ReactElement } from 'react';
 import classNames from 'classnames';
 
 // @Styles
@@ -13,6 +13,7 @@ import { formatText } from 'utils/i18n';
 
 // @PropTypes
 interface PropTypes {
+  iconSource?: string;
   disabled?: boolean;
   containerModifiers?: Array<HL_BUTTON_CONTAINER_MODIFIERS>;
   modifiers?: Array<HL_BUTTON_MODIFIERS>;
@@ -22,7 +23,7 @@ interface PropTypes {
 }
 
 const HeadlinerButton: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
-  const { containerModifiers, disabled, modifiers, onClick, text, textKey } = props;
+  const { containerModifiers, disabled, iconSource, modifiers, onClick, text, textKey } = props;
 
   const buttonText = textKey ? formatText(textKey) : (text || '');
 
@@ -46,8 +47,19 @@ const HeadlinerButton: React.FunctionComponent<PropTypes>  = (props: PropTypes) 
 
     return classNames({
       [styles.buttonAreaContainer]: true,
-      [styles.buttonAreaContainer__extraSpacing]: containerModifiers.indexOf(HL_BUTTON_CONTAINER_MODIFIERS.EXTRA_SPACING) !== -1
+      [styles.buttonAreaContainer__extraSpacing]: containerModifiers.indexOf(HL_BUTTON_CONTAINER_MODIFIERS.EXTRA_SPACING) !== -1,
+      [styles.buttonAreaContainer__inline]: containerModifiers.indexOf(HL_BUTTON_CONTAINER_MODIFIERS.INLINE) !== -1
     });
+  };
+
+  const renderIcon = (): ReactElement | null => {
+    if(!iconSource) {
+      return null;
+    }
+
+    return (
+      <i className={iconSource} />
+    );
   };
 
   return (
@@ -56,6 +68,7 @@ const HeadlinerButton: React.FunctionComponent<PropTypes>  = (props: PropTypes) 
         className={buildButtonClassName()}
         disabled={disabled}
         onClick={onClick}>
+        { renderIcon() }
         { buttonText.toUpperCase() }
       </button>
     </div>
@@ -63,6 +76,7 @@ const HeadlinerButton: React.FunctionComponent<PropTypes>  = (props: PropTypes) 
 };
 
 HeadlinerButton.defaultProps = {
+  iconSource: undefined,
   disabled: false,
   modifiers: [],
   text: ''

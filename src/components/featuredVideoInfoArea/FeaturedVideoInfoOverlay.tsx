@@ -2,12 +2,16 @@
 import React from 'react';
 
 // @Constants & enums
-import { SPACING } from 'constants/enums';
-import { ICON_INFO, ICON_MY_LIST, ICON_PLAY } from 'constants/constants';
+import { HL_BUTTON_CONTAINER_MODIFIERS } from 'constants/enums';
+import { ICON_INFO, ICON_PLAY } from 'constants/constants';
 
 // @Components
-import Button from 'components/button/Button';
 import FormattedText from 'components/formattedText/FormattedText';
+import HeadlinerButton from 'components/headlinerButton/HeadlinerButton';
+import Label from 'components/label/Label';
+
+// @Utils
+import { formatText } from 'utils/i18n';
 
 // @Styles
 import styles from './FeaturedVideoInfoOverlay.module.scss';
@@ -15,48 +19,44 @@ import styles from './FeaturedVideoInfoOverlay.module.scss';
 // @PropTypes
 interface PropTypes {
   onPressPlay: (videoId: string) => any;
-  onPressList: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
-  videoDescription: string;
+  podcastDescription: string;
+  podcastName: string;
   videoId: string;
 }
 
 const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
-    onPressList,
     onPressMoreInfo,
     onPressPlay,
-    videoDescription,
+    podcastDescription,
+    podcastName,
     videoId
   } = props;
 
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
-        <div className={styles.logoArea}>
-          <FormattedText
-            className={styles.logoText}
-            textKey="placeholders-videoLogo"
-          />
-        </div>
-        <p className={styles.descriptionText}>{videoDescription}</p>;
-        <Button
+        <Label
+          className={styles.titleText}
+          text={podcastName} />
+        <FormattedText
+          className={styles.subtitleText}
+          textKey="featuredVideoHeader-watchAndListen" />
+        <Label
+          className={styles.descriptionText}
+          text={podcastDescription} />
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           iconSource={ICON_PLAY}
-          onPress={onPressPlay.bind(null, videoId)}
-          spacing={[SPACING.right]}
-          textKey="featuredVideoHeader-play"
+          onClick={onPressPlay.bind(null, videoId)}
+          text={formatText('featuredVideoHeader-play')}
         />
-        <Button
-          iconSource={ICON_MY_LIST}
-          onPress={onPressList.bind(null, videoId)}
-          spacing={[SPACING.right]}
-          textKey="featuredVideoHeader-myList"
-        />
-        <Button
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           iconSource={ICON_INFO}
-          onPress={onPressMoreInfo.bind(null, videoId)}
-          spacing={[SPACING.right]}
-          textKey="featuredVideoHeader-moreInfo"
+          onClick={onPressMoreInfo.bind(null, videoId)}
+          text={formatText('featuredVideoHeader-moreInfo')}
         />
       </div>
     </div>
