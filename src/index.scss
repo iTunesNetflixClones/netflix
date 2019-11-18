@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-y: overlay;
+}
+
 body {
   background-color: $colors-background-primary;
   margin: 0;
