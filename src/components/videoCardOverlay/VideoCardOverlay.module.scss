@@ -3,7 +3,7 @@
 .container {
   @extend %layout-absolute-fill;
   z-index: $layout-z-index-low;
-  background: linear-gradient(transparent 50%, $colors-background-primary);
+  background: linear-gradient(transparent, $colors-background-primary 80%);
 }
 
 .dataContainer {
@@ -20,7 +20,7 @@
 .titleText {
   @extend %fonts-ff-bold;
   color: $colors-font-secondary;
-  @include font-size-responsive($font-size-lg);
+  font-size: $font-size-lg-abs;
   margin: $layout-spacing-xsm 0;
 }
 
@@ -28,7 +28,7 @@
   display: inline;
   @extend %fonts-ff-regular;
   color: $colors-font-bullets;
-  @include font-size-responsive($font-size-md);
+  font-size: $font-size-md-abs;
   margin: 0 $layout-spacing-sm;
 }
 
@@ -41,5 +41,5 @@
   display: inline;
   @extend %fonts-ff-regular;
   color: $colors-font-secondary;
-  @include font-size-responsive($font-size-md);
+  font-size: $font-size-md-abs;
 }

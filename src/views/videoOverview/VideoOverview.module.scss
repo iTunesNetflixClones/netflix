@@ -9,4 +9,12 @@
   position: relative;
   margin-top: $layout-spacing-overview-sliders-overlap;
   z-index: $layout-z-index-mid;
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    margin-top: $layout-spacing-overview-sliders-overlap-app;
+  }
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    margin-top: $layout-spacing-overview-sliders-overlap-mobile;
+  }
 }

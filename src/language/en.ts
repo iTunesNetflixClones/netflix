@@ -32,6 +32,7 @@ export default {
     videoLogo: 'Video logo soon',
     categoryTrending: 'Trending',
     categoryEntertainment: 'Entertainment (Music/TV and Movies)',
+    categoryEntertainmentShort: 'Entetaintment',
     categoryComedy: 'Comedy',
     categoryTech: 'Technology',
     categoryCrime: 'True Crime',

@@ -31,12 +31,32 @@
   font-size: $font-size-sm-abs;
   color: $colors-font-data-and-button;
 
-  transition: transform $layout-transition-time-quick;
-
   i {
     margin-right: $layout-spacing-sm-abs;
     font-size: $font-size-md-abs;
   }
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    padding: $layout-spacing-xxsm-abs $layout-spacing-md-abs;
+    font-size: $font-size-xsm-abs;
+
+    i {
+      margin-right: $layout-spacing-xsm-abs;
+      font-size: $font-size-sm-abs;
+    }
+  }
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    padding: $layout-spacing-xxsm-abs $layout-spacing-sm-abs;
+    font-size: $font-size-xxsm-abs;
+
+    i {
+      margin-right: $layout-spacing-xxsm-abs;
+      font-size: $font-size-xsm-abs;
+    }
+  }
+
+  transition: transform $layout-transition-time-quick;
 
   &:focus {
     outline: none;

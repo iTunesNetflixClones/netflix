@@ -16,7 +16,6 @@ import VideoSliderRow from 'components/videoSliderRow/VideoSliderRow';
 
 // @Actions
 import { registerSlider, unregisterSlider } from 'actions/slider.actions';
-import { formatText } from 'utils/i18n';
 
 // @PropTypes
 interface OwnProps {
@@ -25,6 +24,7 @@ interface OwnProps {
   onPressUnlike: (videoId: string) => any;
   sliderId: string;
   titleKey?: string;
+  anchorText: string;
   titleText?: string;
   videosList: Array<PodcastData>;
 }
@@ -38,6 +38,7 @@ type PropTypes = OwnProps & DispatchProps;
 
 const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
+    anchorText,
     connectSlider,
     disconnectSlider,
     onPlayVideo,
@@ -52,13 +53,12 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    const text = titleKey ? formatText(titleKey) : titleText;
-    connectSlider(sliderId, text || '', sliderRef);
+    connectSlider(sliderId, anchorText, sliderRef);
 
     return (): void => {
       disconnectSlider(sliderId);
     };
-  }, [sliderRef]);
+  }, [anchorText, connectSlider, disconnectSlider, sliderId, sliderRef]);
 
   const renderTitle = (): ReactElement | null => {
     if(titleKey) {

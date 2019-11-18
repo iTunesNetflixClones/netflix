@@ -3,7 +3,7 @@
 .link {
   @extend %fonts-ff-bold;
   color: $colors-font-highlight;
-  font-size: $font-size-md;
+  font-size: $font-size-md-abs;
   text-decoration: none;
 
   &:active {

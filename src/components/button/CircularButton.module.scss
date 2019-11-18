@@ -7,13 +7,13 @@
   $cicular-padding: $layout-spacing-xsm;
 
   @if($size == "small") {
-    $margin-size: $layout-spacing-xsm;
+    $margin-size: $layout-spacing-xxsm-abs;
     $circular-dimensions: $layout-button-circular-width-small;
     $icon-size: $font-size-sm-abs;
   }
 
   @if($size == "big") {
-    $cicular-padding: $layout-spacing-md;
+    $cicular-padding: $layout-spacing-md-abs;
     $circular-dimensions: $layout-button-circular-width-big;
     $icon-size: $font-size-xlg-abs;
   }
@@ -31,13 +31,26 @@
 
   height: $circular-dimensions;
   width: $circular-dimensions;
+  font-size: $icon-size;
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    height: $circular-dimensions * 0.85;
+    width: $circular-dimensions * 0.85;
+    font-size: $icon-size * 0.85;
+  }
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    height: $circular-dimensions * 0.7;
+    width: $circular-dimensions * 0.7;
+    font-size: $icon-size * 0.7;
+  }
 
   border-radius: 50%;
 
   @extend %fonts-ff-bold;
   color: $colors-font-data-and-button;
+
   i {
-    font-size: $icon-size;
     margin: auto;
   }
 

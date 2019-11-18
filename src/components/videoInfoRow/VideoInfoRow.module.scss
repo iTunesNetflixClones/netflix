@@ -8,23 +8,23 @@
   display: inline;
   @extend %fonts-ff-bold;
   color: $colors-font-highlight;
-  @include font-size-responsive($font-size-md);
-  margin-right: $layout-spacing-sm;
+  font-size: $font-size-md-abs;
+  margin-right: $layout-spacing-xsm-abs;
 }
 
 .parentalLabel {
   display: inline;
-  @extend %fonts-ff-regular;
+  @extend %fonts-ff-bold;
   color: $colors-font-secondary;
-  @include font-size-responsive($font-size-md);
-  margin: 0 $layout-spacing-sm;
-  padding: 0 $layout-spacing-sm;
+  font-size: $font-size-md-abs;
+  margin: 0 $layout-spacing-sm-abs;
+  padding: 0 $layout-spacing-sm-abs;
   border: $layout-button-border_width solid $colors-border-inactive;
 }
 
 .infoRowText {
   display: inline;
-  @extend %fonts-ff-regular;
+  @extend %fonts-ff-bold;
   color: $colors-font-secondary;
-  @include font-size-responsive($font-size-md);
+  font-size: $font-size-md-abs;
 }

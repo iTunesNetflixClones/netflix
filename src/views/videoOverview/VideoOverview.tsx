@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
+import { Container } from 'reactstrap';
 
 // @Components
 import FeaturedVideoHeader from 'components/featuredVideoHeader/FeaturedVideoHeader';
@@ -36,10 +37,10 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
   };
 
   return (
-    <div className={styles.mainContainer}>
-    <Modal
-      isVisible={modalVisible}
-      onAcceptModal={handleCloseModal}/>
+    <Container className={styles.mainContainer}>
+      <Modal
+        isVisible={modalVisible}
+        onAcceptModal={handleCloseModal}/>
       <FeaturedVideoHeader
         onPressPlay={(): void => {}}
         onPressMoreInfo={(): void => {}}
@@ -51,6 +52,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="1"
+          anchorText={formatText('placeholders-categoryTrending')}
           titleText={formatText('placeholders-categoryTrending')}
           videosList={videosList} />
         <VideoSlider
@@ -58,6 +60,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="2"
+          anchorText={formatText('placeholders-categoryEntertainmentShort')}
           titleText={formatText('placeholders-categoryEntertainment')}
           videosList={videosList} />
         <VideoSlider
@@ -65,6 +68,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="3"
+          anchorText={formatText('placeholders-categoryComedy')}
           titleText={formatText('placeholders-categoryComedy')}
           videosList={videosList} />
         <VideoSlider
@@ -72,6 +76,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="4"
+          anchorText={formatText('placeholders-categoryTech')}
           titleText={formatText('placeholders-categoryTech')}
           videosList={videosList} />
         <VideoSlider
@@ -79,6 +84,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="5"
+          anchorText={formatText('placeholders-categoryCrime')}
           titleText={formatText('placeholders-categoryCrime')}
           videosList={videosList} />
         <VideoSlider
@@ -86,10 +92,11 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="6"
+          anchorText={formatText('placeholders-categoryNews')}
           titleText={formatText('placeholders-categoryNews')}
           videosList={videosList} />
       </div>
-    </div>
+    </Container>
   );
 };
 
