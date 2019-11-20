@@ -8,23 +8,35 @@
   display: inline;
   @extend %fonts-ff-bold;
   color: $colors-font-highlight;
-  font-size: $font-size-md-abs;
+  font-size: $font-size-lg-abs;
   margin-right: $layout-spacing-xsm-abs;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-md-abs;
+  }
 }
 
 .parentalLabel {
   display: inline;
   @extend %fonts-ff-bold;
   color: $colors-font-secondary;
-  font-size: $font-size-md-abs;
+  font-size: $font-size-lg-abs;
   margin: 0 $layout-spacing-sm-abs;
   padding: 0 $layout-spacing-sm-abs;
   border: $layout-button-border_width solid $colors-border-inactive;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-md-abs;
+  }
 }
 
 .infoRowText {
   display: inline;
   @extend %fonts-ff-bold;
   color: $colors-font-secondary;
-  font-size: $font-size-md-abs;
+  font-size: $font-size-lg-abs;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-md-abs;
+  }
 }

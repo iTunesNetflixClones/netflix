@@ -13,11 +13,15 @@
   z-index: $layout-z-index-top;
 
   color: $colors-font-primary;
-  @include font-size-responsive($font-size-lg);
-  padding: $layout-spacing-xsm 0;
+  font-size: $font-size-lg-abs;
+  padding: $layout-spacing-xsm-abs 0;
 
   &:hover {
     color: $colors-button-primary;
+  }
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    font-size: $font-size-md-abs;
   }
 }
 

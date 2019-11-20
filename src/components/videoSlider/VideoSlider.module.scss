@@ -5,18 +5,22 @@
   overflow: hidden;
   padding: $layout-spacing-lg 0 $layout-spacing-xxlg;
 
-  @media screen and (max-width: 840px) {
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
     padding: ($layout-spacing-lg * 1.6) 0 ($layout-spacing-xxlg * 1.6);
   }
 
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: $layout-app-width-breakpoint) {
     padding: ($layout-spacing-lg * 2) 0 ($layout-spacing-xxlg * 2);
   }
 }
 
 .titleText{
   @extend %fonts-ff-bold;
-  font-size: $font-size-lg-abs;
-  color: $colors-font-primary;
+  font-size: $font-size-xlg-abs;
+  color: $colors-font-tertiary;
   padding: $layout-spacing-md $layout-spacing-lg $layout-spacing-sm-abs;
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    font-size: $font-size-lg-abs;
+  }
 }
