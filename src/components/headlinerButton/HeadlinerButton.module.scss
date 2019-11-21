@@ -37,18 +37,16 @@
   }
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
-    padding: $layout-spacing-xxsm-abs $layout-spacing-md-abs;
-    font-size: $font-size-xsm-abs;
+    padding: $layout-spacing-xsm-abs $layout-spacing-md-abs;
 
     i {
       margin-right: $layout-spacing-xsm-abs;
-      font-size: $font-size-sm-abs;
     }
   }
 
   @media screen and (max-width: $layout-app-width-breakpoint) {
     padding: $layout-spacing-xxsm-abs $layout-spacing-sm-abs;
-    font-size: $font-size-xxsm-abs;
+    font-size: $font-size-sm-abs;
 
     i {
       margin-right: $layout-spacing-xxsm-abs;

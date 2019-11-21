@@ -1,16 +1,20 @@
 @import '../../config/theme.scss';
 
 .container {
-  @extend %layout-absolute-fill;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
   z-index: $layout-z-index-low;
-  background: linear-gradient(transparent, $colors-background-primary 80%);
+  background: linear-gradient(transparent, $colors-background-primary-opaque 80%);
 }
 
 .dataContainer {
   position: absolute;
   bottom: $layout-sm-controls-bottom-space;
-  left: $layout-spacing-md;
-  margin-bottom: $layout-spacing-sm;
+  left: $layout-spacing-sm-abs;
+  margin-bottom: $layout-spacing-sm-abs;
 }
 
 .dataRow {
@@ -20,26 +24,44 @@
 .titleText {
   @extend %fonts-ff-bold;
   color: $colors-font-secondary;
-  font-size: $font-size-lg-abs;
-  margin: $layout-spacing-xsm 0;
+  font-size: $font-size-xlg-abs;
+  margin: $layout-spacing-xsm-abs 0;
+  max-width: 50%;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-md-abs;
+    margin: $layout-spacing-xxsm-abs 0;
+  }
 }
 
 .separator {
   display: inline;
   @extend %fonts-ff-regular;
   color: $colors-font-bullets;
-  font-size: $font-size-md-abs;
-  margin: 0 $layout-spacing-sm;
+  font-size: $font-size-lg-abs;
+  margin: 0 $layout-spacing-xsm-abs;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-sm-abs;
+  }
 }
 
 .tagsRow {
   display: inline-block;
-  margin-bottom: $layout-spacing-sm;
+  margin-bottom: $layout-spacing-sm-abs;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    margin-bottom: $layout-spacing-xsm-abs;
+  }
 }
 
 .tag {
   display: inline;
   @extend %fonts-ff-regular;
   color: $colors-font-secondary;
-  font-size: $font-size-md-abs;
+  font-size: $font-size-lg-abs;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-sm-abs;
+  }
 }

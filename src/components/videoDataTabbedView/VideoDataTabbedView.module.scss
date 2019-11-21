@@ -63,23 +63,23 @@ $breakpoints-player: (
   transition: margin-top $layout-transition-time-quick;
 
   &__shrinked  {
-    margin-top: $layout-spacing-md-abs;
-
-    @media screen and (max-width: $layout-app-width-breakpoint) {
-      margin-top: $layout-spacing-lg-abs;
-    }
+    margin-top: $layout-spacing-lg-abs;
   }
 }
 
 .titleText {
   max-width: 80%;
   @extend %fonts-ff-bold;
-  font-size: $font-size-lg-abs;
+  font-size: $font-size-xlg-abs;
   color: $colors-font-primary;
   text-transform: uppercase;
   margin-bottom: $layout-spacing-sm-abs;
 
   z-index: $layout-z-index-mid;
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    font-size: $font-size-lg-abs;
+  }
 }
 
 .bottomTabs {

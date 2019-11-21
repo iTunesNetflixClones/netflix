@@ -13,14 +13,22 @@
   display: inline;
   @extend %fonts-ff-bold;
   color: $colors-font-tertiary;
-  font-size: $font-size-sm-abs;
+  font-size: $font-size-lg-abs;
   margin-right: $layout-spacing-sm;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-sm-abs;
+  }
 }
 
 .infoRowText {
   display: inline;
   @extend %fonts-ff-regular;
   color: $colors-font-tertiary;
-  font-size: $font-size-sm-abs;
+  font-size: $font-size-lg-abs;
   margin-right: $layout-spacing-sm;
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    font-size: $font-size-sm-abs;
+  }
 }

@@ -9,7 +9,7 @@ import styles from './Topbar.module.scss';
 
 // @Constants
 import {
-  SCREEN_MOBILE_LANDSCAPE_MIN_WIDTH,
+  SCREEN_TABLET_MIN_WIDTH,
   SCROLL_TOPBAR_OFF_SET_CORRECTOR,
   TOPBAR_SCROLL_INTERPOLATE_RANGE
 } from 'constants/constants';
@@ -33,7 +33,7 @@ interface PropTypes {
 const Topbar: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const { anchors } = props;
 
-  const checkAppMode = (): boolean => window.innerWidth < SCREEN_MOBILE_LANDSCAPE_MIN_WIDTH;
+  const checkAppMode = (): boolean => window.innerWidth < SCREEN_TABLET_MIN_WIDTH;
 
   const [ appMode, setAppMode ] = useState(checkAppMode());
   const [ menuVisible, setMenuVisible ] = useState(false);

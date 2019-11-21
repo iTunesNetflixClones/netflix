@@ -9,7 +9,7 @@
     linear-gradient(to right, $colors-hl-gradient-start, $colors-hl-gradient-mid, $colors-hl-gradient-end, transparent 75%);
 
   @media screen and (max-width: $layout-app-width-breakpoint) {
-    background: linear-gradient($colors-background-primary-overlay, $colors-background-primary 80%)
+    background: linear-gradient($colors-background-primary-overlay, $colors-background-primary 80%);
   }
   z-index: $layout-z-index-low;
 }
@@ -20,27 +20,36 @@
 
 .titleText {
   @extend %fonts-ff-bold;
-  font-size: $font-size-xlg-abs;
+  font-size: $font-size-xxlg-abs;
   color: $colors-font-secondary;
   text-transform: uppercase;
   margin: 0 auto $layout-spacing-md;
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    font-size: $font-size-xlg-abs;
+  }
 }
 
 .subtitleText {
   @extend %fonts-ff-bold;
-  font-size: $font-size-lg-abs;
+  font-size: $font-size-xlg-abs;
   color: $colors-font-highlight;
   margin: 0 auto;
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    font-size: $font-size-lg-abs;
+  }
 }
 
 .descriptionText {
   max-width: 50vw;
   @extend %fonts-ff-regular;
-  font-size: $font-size-lg-abs;
+  font-size: $font-size-xlg-abs;
   color: $colors-font-inactive;
   margin: $layout-spacing-xsm 0 $layout-spacing-md;
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    font-size: $font-size-lg-abs;
     max-width: 80vw;
   }
 
