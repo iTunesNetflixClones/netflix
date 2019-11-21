@@ -45,7 +45,7 @@
   max-width: 50vw;
   @extend %fonts-ff-regular;
   font-size: $font-size-xlg-abs;
-  color: $colors-font-inactive;
+  color: $colors-font-secondary;
   margin: $layout-spacing-xsm 0 $layout-spacing-md;
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
