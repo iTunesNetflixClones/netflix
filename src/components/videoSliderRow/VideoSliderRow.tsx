@@ -3,6 +3,7 @@ import React, { ReactElement, RefObject, useRef, useState, useEffect } from 'rea
 import get from 'lodash/get';
 import { connect } from 'react-redux';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
+import { useDrag } from 'react-use-gesture';
 
 // @Styles
 import styles from './VideoSliderRow.module.scss';
@@ -14,7 +15,12 @@ import VideoCard from 'components/videoCard/VideoCard';
 import VideoDataTabbedView from 'components/videoDataTabbedView/VideoDataTabbedView';
 
 // @Constants
-import { VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_SLIDER_TRANSLATION_EXP, VIDEO_CARDS_AMOUNT } from 'constants/constants';
+import {
+  VIDEO_SLIDER_SCROLL_BLOCK_TIME,
+  VIDEO_SLIDER_TRANSLATION_COEF,
+  VIDEO_SLIDER_TRANSLATION_EXP,
+  VIDEO_CARDS_AMOUNT
+} from 'constants/constants';
 import { PositionCheck, PodcastData } from 'constants/types';
 import { SLIDER_BUTTON_TYPES } from 'constants/enums';
 import { StoreState } from 'constants/stateTypes';
@@ -24,6 +30,7 @@ import { checkVideoCardPosition, getLastPageIndex, getTranslationStyle, isLastPa
 
 // @Hooks
 import useResizeDetector from 'hooks/resizeDetector';
+import dragScrollBindCreator from 'hooks/dragHook';
 
 // @Actions
 import * as sliderActions from 'actions/slider.actions';
@@ -60,6 +67,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   const [ expandedIndex, setExpandedIndex ] = useState(-1);
   const [ scrollContentWidth, setScrollContentWidth ] = useState(0);
   const [ selectedIndex, setSelectedIndex ] = useState(-1);
+  const [ scrollBlocked, setScrollBlocked ] = useState(false);
 
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
 
@@ -98,6 +106,18 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     setCurrentIndex(nextIndex);
   };
 
+  const dragBind = dragScrollBindCreator({
+    scrollBackAllowed: currentIndex > 0,
+    scrollForwardAllowed: !isLastPage(currentIndex, scrollContentWidth, window.innerWidth),
+    scrollIsBlocked: scrollBlocked
+  }, useDrag, (isBack: boolean) => {
+    setScrollBlocked(true);
+    handleScroll(isBack);
+    setTimeout(() => {
+      setScrollBlocked(false);
+    }, VIDEO_SLIDER_SCROLL_BLOCK_TIME);
+  });
+
   useEffect(() => {
     if(currentSliderId !== undefined && currentSliderId !== sliderId) {
       handleShrinkVideo();
@@ -126,7 +146,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
           className={className}>
           <VideoCard
             index={indexInRow}
-            isExpanded={isExpanded}
+            isExpanded={!scrollBlocked && isExpanded}
             isSelected={isSelected}
             onExpand={handleExpandVideo}
             onExpandedStateChanges={handleExpandedStateChange}
@@ -166,6 +186,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   return (
     <React.Fragment>
       <div
+        { ... dragBind() }
         onMouseEnter={setSlideButtonVisible.bind(null, true)}
         onMouseLeave={setSlideButtonVisible.bind(null, false)}
         className={styles.sliderFrame}>

@@ -36,5 +36,7 @@ export const VIDEO_CARDS_AMOUNT = {
 };
 export const VIDEO_INFO_TEXT_SEPARATOR = ', ';
 export const VIDEO_OVERLAY_SEPARATOR_CHAR = '•';
+export const VIDEO_SLIDER_SCROLL_BLOCK_TIME = 1000;
+export const VIDEO_SLIDER_SCROLL_OFFSET_COEF = 50;
 export const VIDEO_SLIDER_TRANSLATION_COEF = 92.4;
 export const VIDEO_SLIDER_TRANSLATION_EXP = 'translateX(-%svw)';
