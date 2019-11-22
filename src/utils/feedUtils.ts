@@ -1,20 +1,21 @@
 // @Constants
-import { PodcastData, PodcastAPIData } from 'constants/types';
+import { PodcastData, EpisodeAPIData, FeaturedPodcastAPIData, PodcastAPIData } from 'constants/types';
 import {
   PODCAST_EXPLICIT,
-  PODCAST_EXPLICIT_AGE,
-  PODCAST_OVERVIEW_INDICATOR,
+  PODCAST_DRIVE_IMG_LINK_SUFFIX,
   PODCAST_DRIVE_LINK_PREFIX,
   PODCAST_DRIVE_LINK_SUFFIX,
+  PODCAST_DRIVE_IMG_LINK_RESOLVER,
   PODCAST_DRIVE_LINK_RESOLVER
 } from 'constants/constants';
 
 // @Utils
-import { getDurationInMilis } from './dateHelper';
+import { getDataElement } from './commonUtils';
 
 // @jsonFeed
-const featuredFeed: PodcastAPIData = require('jsonFeed/featured.json');
-const episodesFeed: PodcastAPIData[] = require('jsonFeed/episodes.json');
+import featuredFeed from 'jsonFeed/featured.json';
+import episodesFeed from 'jsonFeed/episodes.json';
+import podcastsFeed from 'jsonFeed/podcasts.json';
 
 const pushCategory = (category: string, genres: string[]): void => {
   if(category) {
@@ -22,71 +23,76 @@ const pushCategory = (category: string, genres: string[]): void => {
   }
 };
 
-const mapGenres = (cat1: string, cat2: string, cat3: string): string[] => {
+const mapGenres = (podcast: PodcastAPIData | FeaturedPodcastAPIData): string[] => {
   const genres: string[] = [];
+  const cat1 = getDataElement(podcast, 'Category1', '');
+  const cat2 = getDataElement(podcast, 'Category2', '');
+  const cat3 = getDataElement(podcast, 'Category3', '');
   pushCategory(cat1, genres);
   pushCategory(cat2, genres);
   pushCategory(cat3, genres);
   return genres;
 };
 
-const mapSliderGroups = (slider1: string, slider2: string): string[] => {
+const mapSliderGroups = (podcast: PodcastAPIData | FeaturedPodcastAPIData): string[] => {
   const sliderGroups: string[] = [];
+  const slider1 = getDataElement(podcast, 'Slider_Group_1', '');
+  const slider2 = getDataElement(podcast, 'Slider_Group_2', '');
   pushCategory(slider1.toLocaleLowerCase(), sliderGroups);
   pushCategory(slider2.toLocaleLowerCase(), sliderGroups);
   return sliderGroups;
 };
 
-const getParentalAge = (rating: string): number => {
-  if(rating.toLowerCase() === PODCAST_EXPLICIT) {
-    return PODCAST_EXPLICIT_AGE;
-  }
-  return 0;
+const getExplicitRate = (podcast: PodcastAPIData | FeaturedPodcastAPIData): boolean => {
+  const rating = getDataElement(podcast, 'Rating', '');
+  return rating.toLowerCase() === PODCAST_EXPLICIT;
 };
 
-const countEpisodes = (podcasts: PodcastAPIData[], podcastTitle: string): number => (
-  podcasts.filter((podcast: PodcastAPIData): boolean => (
-    podcast.Podcast_Title.toLocaleLowerCase() === podcastTitle.toLocaleLowerCase()
+const countEpisodes = (episodes: EpisodeAPIData[], podcastId: string): number => (
+  episodes.filter((episode: EpisodeAPIData): boolean => (
+    episode.ID.toLocaleLowerCase() === podcastId.toLocaleLowerCase()
   )).length
 );
 
-const buildVideoUrl = (videoURL: string): string => {
+const buildVideoUrl = (podcast: PodcastAPIData | FeaturedPodcastAPIData): string => {
+  const videoURL = getDataElement(podcast, 'Video_URL', '');
   const videoId = videoURL.replace(PODCAST_DRIVE_LINK_PREFIX, '').replace(PODCAST_DRIVE_LINK_SUFFIX, '');
   return `${PODCAST_DRIVE_LINK_RESOLVER}${videoId}`;
 };
 
-const mapPodcastAPIData = (podcast: PodcastAPIData): PodcastData => ({
-  cast: [podcast.Author],
-  episodesAmount: countEpisodes(episodesFeed, podcast.Podcast_Title),
-  id: podcast.Podcast_Title,
-  isNew: false, // TODO: define this field
-  isSeries: true,
-  coincidence: 0, // TODO: define this field
-  description: podcast.Podcast_Description,
-  duration: getDurationInMilis(podcast.Duration),
-  genres: mapGenres(podcast.Category1, podcast.Category2, podcast.Category3),
-  parentalAge: getParentalAge(podcast.Rating),
-  posterSrc: podcast.Poster_src,
-  tags: mapGenres(podcast.Category1, podcast.Category2, podcast.Category3),
-  title: podcast.Podcast_Title,
-  seasonsAmount: 0,
-  sliderGroups: mapSliderGroups(podcast.Slider_Group_1, podcast.Slider_Group_2),
-  src: buildVideoUrl(podcast.Video_URL),
-  year: 0
+const buildImageUrl = (podcast: PodcastAPIData | FeaturedPodcastAPIData): string => {
+  const imgURL = getDataElement(podcast, 'poster_src', '');
+  const videoId = imgURL.replace(PODCAST_DRIVE_LINK_PREFIX, '').replace(PODCAST_DRIVE_IMG_LINK_SUFFIX, '');
+  return `${PODCAST_DRIVE_IMG_LINK_RESOLVER}${videoId}`;
+};
+
+const mapPodcastAPIData = (podcast: PodcastAPIData | FeaturedPodcastAPIData): PodcastData => ({
+  author: getDataElement(podcast, 'Author', ''),
+  episodesAmount: countEpisodes(episodesFeed, getDataElement(podcast, 'ID', '')),
+  id: getDataElement(podcast, 'ID', ''),
+  isNew: false, // TODO: Define this value
+  categories: mapGenres(podcast),
+  coincidence: 100, // TODO: Define this value
+  description: getDataElement(podcast, 'Podcast_Description', ''),
+  explicit: getExplicitRate(podcast),
+  posterSrc: buildImageUrl(podcast),
+  title: getDataElement(podcast, 'Podcast_Title', ''),
+  sliderGroups: mapSliderGroups(podcast),
+  src: buildVideoUrl(podcast),
+  website: getDataElement(podcast, 'Website', '')
 });
 
 export const mapPodcasts = (): PodcastData[] => {
-  if(!(episodesFeed instanceof Array)) {
+  if(!(podcastsFeed instanceof Array)) {
     return [];
   }
 
-  return episodesFeed
-    .filter((podcast: PodcastAPIData): boolean => podcast.overview.toLowerCase() === PODCAST_OVERVIEW_INDICATOR)
-    .map(mapPodcastAPIData);
+  return podcastsFeed.map(mapPodcastAPIData);
 };
 
 export const mapFeaturedPodcast = (): PodcastData => {
-  return mapPodcastAPIData(featuredFeed);
+  const featured = getDataElement(featuredFeed, '[0]', {});
+  return mapPodcastAPIData(featured);
 };
 
 export const filterByCategory = (sliderCategory: string, podcasts: PodcastData[] = []): PodcastData[] => (

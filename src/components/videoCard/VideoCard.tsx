@@ -39,7 +39,7 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     renderExpandButton,
     videoData
   } = props;
-  const { id, parentalAge, posterSrc, src } = videoData;
+  const { id, explicit, posterSrc, src } = videoData;
 
   const handleSetExpanded = (expandedState: boolean): void => {
     onExpandedStateChanges(index, expandedState);
@@ -75,11 +75,11 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
             PLAYER_CONTROLS.like,
             PLAYER_CONTROLS.unlike
           ]}
+          explicit={explicit}
           muted={false}
           onPressLike={handleLike}
           onPressUnlike={handleUnlike}
           playerId={`card-${id}`}
-          parentalAge={parentalAge}
           renderOverlay={renderVideoOverlay}
           size={PLAYER_CONTROLS_SIZES.small}
           src={src} />

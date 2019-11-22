@@ -40,7 +40,7 @@ export default {
     categorySport: 'Sports'
   },
   player: {
-    parentalAdvice: '%s+',
+    parentalExplicit: 'Explicit',
     parentalAll: 'All'
   },
   test: {
@@ -55,6 +55,7 @@ export default {
     latestEpisode: 'Watch latest episode'
   },
   videoDetails: {
+    author: 'Author',
     cast: 'Cast:',
     coincidence: '%s% for you',
     episode: 'Episode %s',
@@ -65,7 +66,8 @@ export default {
     new: 'New',
     play: 'Play',
     seasonSelector: 'Season %s',
-    tags: 'This title is:'
+    tags: 'This title is:',
+    visitWebsite: 'Visit website'
   },
   videoTabbedDetails: {
     generalDescription: 'Overview',

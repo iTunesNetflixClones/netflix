@@ -9,4 +9,8 @@
   &:active {
     color: $colors-font-highlight;
   }
+
+  &__large {
+    font-size: $font-size-lg-abs;
+  }
 }

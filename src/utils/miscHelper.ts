@@ -1,3 +1,3 @@
-export const getParentalAgeText = (parentalAge?: number): string => (
-  parentalAge ? 'player-parentalAdvice' : 'player-parentalAll'
+export const getParentalAgeText = (parentalAge?: boolean): string => (
+  parentalAge ? 'player-parentalExplicit' : 'player-parentalAll'
 );

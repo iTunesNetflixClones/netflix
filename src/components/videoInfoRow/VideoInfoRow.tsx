@@ -6,31 +6,26 @@ import styles from './VideoInfoRow.module.scss';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
-import Label from 'components/label/Label';
 
 // @Helpers
-import { formatDuration } from 'utils/dateHelper';
 import { getParentalAgeText } from 'utils/miscHelper';
 
 // @Constants
-import { Duration, PodcastData } from 'constants/types';
+import { PodcastData } from 'constants/types';
 
 // @PropTypes
 interface PropTypes {
   showHighlightedText?: boolean;
   showParentalTag?: boolean;
-  showYear?: boolean;
   videoData: PodcastData;
 }
 
 const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { videoData, showHighlightedText, showParentalTag, showYear } = props;
+  const { videoData, showHighlightedText, showParentalTag } = props;
 
-  const { coincidence, episodesAmount, isNew, isSeries, parentalAge, year } = videoData;
+  const { coincidence, episodesAmount, isNew } = videoData;
 
-  const formattedVideoDuration: Duration = formatDuration(videoData.duration);
-
-  const parentalText = getParentalAgeText(videoData.parentalAge);
+  const parentalText = getParentalAgeText(videoData.explicit);
 
   const renderHighlightedText = (): ReactElement | null => {
     if(!showHighlightedText) {
@@ -46,32 +41,13 @@ const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     );
   };
 
-  const renderDurationSeasonsText = (): ReactElement | null => {
-    if(!isSeries) {
-      return (
-        <FormattedText
-          className={styles.infoRowText}
-          injectedTexts={formattedVideoDuration.values}
-          textKey={formattedVideoDuration.textKey}/>
-      );
-    }
+  const renderDurationSeasonsText = (): ReactElement => {
     const textKey = episodesAmount === 1 ? "videoDetails-episodesAmount" : "videoDetails-episodesAmountPlural";
     return (
       <FormattedText
         className={styles.infoRowText}
         injectedTexts={[episodesAmount || '']}
         textKey={textKey} />
-    );
-  };
-
-  const renderYearLabel = (): ReactElement | null => {
-    if(!showYear) {
-      return null;
-    }
-    return (
-      <Label
-        className={styles.infoRowText}
-        text={year.toString()} />
     );
   };
 
@@ -83,7 +59,7 @@ const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     return  (
       <FormattedText
         className={styles.parentalLabel}
-        injectedTexts={[parentalAge]}
+        injectedTexts={[]}
         textKey={parentalText}/>
     );
   };
@@ -91,7 +67,6 @@ const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   return (
     <div className={styles.row}>
       { renderHighlightedText() }
-      { renderYearLabel() }
       { renderParentalTag() }
       { renderDurationSeasonsText() }
     </div>
@@ -100,8 +75,7 @@ const VideoInfoRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
 
 VideoInfoRow.defaultProps = {
   showHighlightedText: true,
-  showParentalTag: true,
-  showYear: false
+  showParentalTag: true
 };
 
 export default VideoInfoRow;

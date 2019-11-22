@@ -69,7 +69,6 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     <div className={styles.mainContainer}>
       <div className={styles.dataContainer}>
         <VideoInfoRow
-          showYear
           videoData={videoData}/>
         <Label
           className={styles.descriptionText}
