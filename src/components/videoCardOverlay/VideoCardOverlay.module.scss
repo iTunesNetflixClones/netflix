@@ -14,7 +14,9 @@
   position: absolute;
   bottom: $layout-sm-controls-bottom-space;
   left: $layout-spacing-sm-abs;
+  right: $layout-spacing-xlg-abs;
   margin-bottom: $layout-spacing-sm-abs;
+  white-space: normal;
 }
 
 .dataRow {
@@ -26,7 +28,6 @@
   color: $colors-font-secondary;
   font-size: $font-size-xlg-abs;
   margin: $layout-spacing-xsm-abs 0;
-  max-width: 50%;
 
   @media screen and (max-width: $layout-portrait-width-breakpoint) {
     font-size: $font-size-md-abs;

@@ -36,7 +36,8 @@ export default {
     categoryComedy: 'Comedy',
     categoryTech: 'Technology',
     categoryCrime: 'True Crime',
-    categoryNews: 'News'
+    categoryNews: 'News',
+    categorySport: 'Sports'
   },
   player: {
     parentalAdvice: '%s+',
