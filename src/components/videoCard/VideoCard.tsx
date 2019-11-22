@@ -106,7 +106,7 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       <img
         alt="featured video poster"
         className={styles.image}
-        src={posterSrc}/>
+        src={posterSrc} />
       { renderPlayer() }
       { renderIndicator() }
       { renderExpandButton && renderExpandButton() }

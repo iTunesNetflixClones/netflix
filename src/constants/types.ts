@@ -16,6 +16,28 @@ export interface EpisodeData {
   src: string;
 }
 
+export interface PodcastAPIData {
+  Indentifier: string;
+  Podcast_Title: string;
+  Podcast_Description: string;
+  Website: string;
+  Author: string;
+  Category1: string;
+  Category2: string;
+  Category3: string;
+  Episode_Title: string;
+  Episode_Description: string;
+  Duration: string;
+  Episode_Date: string;
+  Episode_Website: string;
+  Poster_src: string;
+  Rating: string;
+  Video_URL: string;
+  Slider_Group_1: string;
+  Slider_Group_2: string;
+  overview: string;
+}
+
 export interface PodcastData {
   cast: Array<string>;
   episodesAmount: number;
@@ -31,6 +53,7 @@ export interface PodcastData {
   tags: Array<string>;
   title: string;
   seasonsAmount?: number;
+  sliderGroups: string[];
   src: string;
   year: number;
 }

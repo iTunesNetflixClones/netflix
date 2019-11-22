@@ -3,6 +3,7 @@ export const CALC_INTERPOLATION_MAX_RANGE_DEFAULT = 1.0;
 export const CALC_INTERPOLATION_MIN_DEFAULT = 0.05;
 export const CALC_INTERPOLATION_MIN_RANGE_DEFAULT = 0.0;
 export const COMMON_WILDCARD = '%s';
+export const DURATION_SEPARATOR = ':';
 export const EPISODE_CARDS_AMOUNT = {
   DESKTOP: 5,
   TABLET: 4,
@@ -22,6 +23,12 @@ export const ICON_LIKE = 'fa fa-thumbs-up';
 export const ICON_MY_LIST = 'fa fa-plus';
 export const ICON_PLAY = 'fa fa-play';
 export const ICON_UNLIKE = 'fa fa-thumbs-down';
+export const PODCAST_EXPLICIT = 'explicit';
+export const PODCAST_EXPLICIT_AGE = 16;
+export const PODCAST_OVERVIEW_INDICATOR = 'yes';
+export const PODCAST_DRIVE_LINK_PREFIX = 'https://drive.google.com/file/d/';
+export const PODCAST_DRIVE_LINK_SUFFIX = '/view?usp=sharing';
+export const PODCAST_DRIVE_LINK_RESOLVER = 'https://drive.google.com/uc?export=download&id=';
 export const SCREEN_DESKTOP_MIN_WIDTH = 1201;
 export const SCREEN_MOBILE_LANDSCAPE_MIN_WIDTH = 577;
 export const SCREEN_MOBILE_PORTRAIT_MIN_WIDTH = 0;
@@ -36,6 +43,15 @@ export const VIDEO_CARDS_AMOUNT = {
 };
 export const VIDEO_INFO_TEXT_SEPARATOR = ', ';
 export const VIDEO_OVERLAY_SEPARATOR_CHAR = '•';
+export const VIDEO_SLIDER_CATEGORIES = {
+  TRENDING: 'trending',
+  ENTERTAINMENT: 'arts and entertainment',
+  COMEDY: 'comedy',
+  TECHNO: 'technology',
+  NEWS: 'news',
+  CRIME: 'true crime',
+  SPORTS: 'sports'
+};
 export const VIDEO_SLIDER_SCROLL_BLOCK_TIME = 1000;
 export const VIDEO_SLIDER_SCROLL_OFFSET_COEF = 50;
 export const VIDEO_SLIDER_TRANSLATION_COEF = 92.4;

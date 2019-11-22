@@ -9,6 +9,9 @@ import FeaturedVideoHeader from 'components/featuredVideoHeader/FeaturedVideoHea
 import Modal from 'components/modal/Modal';
 import VideoSlider from 'components/videoSlider/VideoSlider';
 
+// @Constants
+import { VIDEO_SLIDER_CATEGORIES } from 'constants/constants';
+
 // @Styles
 import styles from './VideoOverview.module.scss';
 
@@ -17,9 +20,17 @@ import { enablePlayers } from 'actions/player.actions';
 
 // @Utils
 import { formatText } from 'utils/i18n';
+import { mapFeaturedPodcast, mapPodcasts, filterByCategory } from 'utils/feedUtils';
 
-// @Mock data
-import videosList from 'resources/videoData';
+const podcastList = mapPodcasts();
+const featuredPodcast = mapFeaturedPodcast();
+const trendingPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.TRENDING, podcastList);
+const entertainmentPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.ENTERTAINMENT, podcastList);
+const comedyPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.COMEDY, podcastList);
+const techPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.TECHNO, podcastList);
+const newsPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.NEWS, podcastList);
+const crimePodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.CRIME, podcastList);
+const sportsPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.SPORTS, podcastList);
 
 // @PropTypes
 interface DispatchProps {
@@ -44,7 +55,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
       <FeaturedVideoHeader
         onPressPlay={(): void => {}}
         onPressMoreInfo={(): void => {}}
-        podcastData={videosList[0]}
+        podcastData={featuredPodcast}
       />
       <div className={styles.sliderContainer}>
         <VideoSlider
@@ -54,7 +65,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           sliderId="1"
           anchorText={formatText('placeholders-categoryTrending')}
           titleText={formatText('placeholders-categoryTrending')}
-          videosList={videosList} />
+          videosList={trendingPodcasts} />
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
@@ -62,7 +73,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           sliderId="2"
           anchorText={formatText('placeholders-categoryEntertainmentShort')}
           titleText={formatText('placeholders-categoryEntertainment')}
-          videosList={videosList} />
+          videosList={entertainmentPodcasts} />
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
@@ -70,7 +81,7 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           sliderId="3"
           anchorText={formatText('placeholders-categoryComedy')}
           titleText={formatText('placeholders-categoryComedy')}
-          videosList={videosList} />
+          videosList={comedyPodcasts} />
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
@@ -78,23 +89,31 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
           sliderId="4"
           anchorText={formatText('placeholders-categoryTech')}
           titleText={formatText('placeholders-categoryTech')}
-          videosList={videosList} />
+          videosList={techPodcasts} />
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="5"
-          anchorText={formatText('placeholders-categoryCrime')}
-          titleText={formatText('placeholders-categoryCrime')}
-          videosList={videosList} />
+          anchorText={formatText('placeholders-categoryNews')}
+          titleText={formatText('placeholders-categoryNews')}
+          videosList={newsPodcasts} />
         <VideoSlider
           onPlayVideo={(): void => {}}
           onPressLike={(): void => {}}
           onPressUnlike={(): void => {}}
           sliderId="6"
-          anchorText={formatText('placeholders-categoryNews')}
-          titleText={formatText('placeholders-categoryNews')}
-          videosList={videosList} />
+          anchorText={formatText('placeholders-categoryCrime')}
+          titleText={formatText('placeholders-categoryCrime')}
+          videosList={crimePodcasts} />
+        <VideoSlider
+          onPlayVideo={(): void => {}}
+          onPressLike={(): void => {}}
+          onPressUnlike={(): void => {}}
+          sliderId="7"
+          anchorText={formatText('placeholders-categorySport')}
+          titleText={formatText('placeholders-categorySport')}
+          videosList={sportsPodcasts} />
       </div>
     </Container>
   );
