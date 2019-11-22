@@ -21,6 +21,10 @@ export enum HL_BUTTON_MODIFIERS {
   SMALL_FONT
 }
 
+export enum LINK_MODIFIERS {
+  LARGE
+}
+
 export enum PLAYER_CONTROLS {
   like,
   myList,

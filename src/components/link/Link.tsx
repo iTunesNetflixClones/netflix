@@ -1,21 +1,31 @@
 // @Vendors
 import React from 'react';
+import classNames from 'classnames';
 
 // @Styles
 import styles from './Link.module.scss';
 
+// @Constants
+import { LINK_MODIFIERS } from 'constants/enums';
+
 // @PropTypes
 interface PropTypes {
+  modifiers?: LINK_MODIFIERS[];
   href: string;
   text: string;
 }
 
 const Link: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { href, text } = props;
+  const { href, modifiers, text } = props;
+
+  const className = classNames({
+    [styles.link]: true,
+    [styles.link__large]: modifiers ? modifiers.includes(LINK_MODIFIERS.LARGE) : false
+  });
 
   return (
     <a
-      className={styles.link}
+      className={className}
       href={href}>
       { text }
     </a>

@@ -17,13 +17,13 @@ import styles from './PlayerControls.module.scss';
 // @PropTypes
 interface PropTypes {
   controlsSet?: Array<PLAYER_CONTROLS>;
+  explicit?: boolean;
   muted: boolean;
   onPressLike?: () => any;
   onPressMyList?: () => any;
   onPressUnlike?: () => any;
   onRestartPlayer: () => any;
   onToggleMuted: () => any;
-  parentalAge?: number;
   playing: boolean;
   size: PLAYER_CONTROLS_SIZES;
 }
@@ -33,13 +33,13 @@ const getToggleMutedButton = (isMuted: boolean): string => isMuted ? 'fa fa-volu
 const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     controlsSet,
+    explicit,
     muted,
     onPressLike,
     onPressMyList,
     onPressUnlike,
     onRestartPlayer,
     onToggleMuted,
-    parentalAge,
     playing,
     size
   } = props;
@@ -56,7 +56,9 @@ const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     size === PLAYER_CONTROLS_SIZES.small ? BUTTON_SIZES.small : BUTTON_SIZES.regular
   );
 
-  const checkControlRender = (controlType: PLAYER_CONTROLS, renderControl: () => ReactElement): ReactElement | undefined => {
+  const checkControlRender = (
+    controlType: PLAYER_CONTROLS, renderControl: () => ReactElement
+  ): ReactElement | undefined => {
     if(controlsSet && controlsSet.find(control => control === controlType) !== undefined) {
       return renderControl();
     }
@@ -73,10 +75,9 @@ const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   );
 
   const renderParentalTag = (): ReactElement => {
-    const parentalText = getParentalAgeText(parentalAge);
-    const injectedTexts = parentalAge ? [parentalAge] : [];
+    const parentalText = getParentalAgeText(explicit);
     return (
-      <Tag injectedTexts={injectedTexts} textKey={parentalText} />
+      <Tag injectedTexts={[]} textKey={parentalText} />
     );
   };
 
@@ -99,10 +100,10 @@ const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
 
 PlayerControls.defaultProps = {
   controlsSet: [],
+  explicit: false,
   onPressLike: (): any => {},
   onPressMyList: (): any => {},
-  onPressUnlike: (): any => {},
-  parentalAge: 0 as number
+  onPressUnlike: (): any => {}
 };
 
 export default PlayerControls;

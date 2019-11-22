@@ -32,7 +32,7 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
 
   const [ tabIndex, setTabIndex ] = useState(0);
 
-  const { isSeries, title } = videoData;
+  const { title } = videoData;
 
   useEffect(() => {
     setTabIndex(0);
@@ -77,7 +77,7 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
     return (
       <div className={styles.bottomTabs}>
         { renderTab("videoTabbedDetails-generalDescription", 0)}
-        { isSeries && renderTab("videoTabbedDetails-episodes", 1)}
+        { renderTab("videoTabbedDetails-episodes", 1) }
       </div>
     );
   };
@@ -131,9 +131,9 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
       <div className={styles.playerContainer}>
         <Player
           controlsSet={[PLAYER_CONTROLS.volumeControl]}
+          explicit={videoData.explicit}
           loop={false}
           playerId={`${id}`}
-          parentalAge={videoData.parentalAge}
           renderOverlay={renderVideoOverlay}
           size={PLAYER_CONTROLS_SIZES.regular}
           src={videoData.src} />

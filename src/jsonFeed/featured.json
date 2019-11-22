@@ -1,21 +1,10 @@
-{
-  "Indentifier": "I01",
-  "Podcast_Title": "Intrigue",
-  "Podcast_Description": "Tunnel 29: Thirty years after the fall of the Berlin Wall, Helena Merriman tells the true story of a man who dug a tunnel into the East, right under the feet of border guards.",
-  "Website": "http://www.bbc.co.uk/programmes/p04sj2pt",
-  "Author": "BBC Radio 4",
-  "Category1": "News",
-  "Category2": "",
-  "Category3": "",
-  "Episode_Title": "Ep10: Tunnel 29 - The Shoes",
-  "Episode_Description": "“I started dancing with Eveline.” A final twist in the final chapter. Thirty years after the fall of the Berlin Wall, Helena Merriman tells the extraordinary true story of a man who dug a tunnel into the East, right under the feet of border guards, to help friends, family and strangers escape. The series is based on original interviews with the survivors as well as thousands of documents from the Stasi archives and recordings from the tunnel",
-  "Duration": "18:13:00",
-  "Episode_Date": "10/16/2019",
-  "Episode_Website": "https://www.bbc.co.uk/sounds/play/p07r3fhz",
-  "Poster_src": "https://is3-ssl.mzstatic.com/image/thumb/Podcasts123/v4/7f/56/a9/7f56a9d3-c063-2e3c-ec9b-3b96359fccb3/mza_6103679164767026255.jpg/268x0w.jpg",
-  "Rating": "Clean",
-  "Video_URL": "https://drive.google.com/file/d/1WlPNZ6E04gTi8MElsMw2dQB_B9DYE3iN/view?usp=sharing",
-  "Slider_Group_1": "News",
-  "Slider_Group_2": "",
-  "overview": "yes"
-}
+[
+  {
+    "ID": "DOLLY",
+    "Podcast_Title": "Dolly Parton's America",
+    "Podcast_Description": "In this intensely divided moment, one of the few things everyone still seems to agree on is Dolly Parton—but why? That simple question leads to a deeply personal, historical, and musical rethinking of one of America’s great icons. Join us for a 9-episode journey into the Dollyverse. Hosted by Jad Abumrad, creator of Radiolab and More Perfect. Dolly Parton’s America is co-produced by WNYC Studios, home to great podcasts like Snap Judgement, Death, Sex & Money, and Nancy.",
+    "Website": "https://www.wnycstudios.org/podcasts/dolly-partons-america",
+    "Video_URL": "https://drive.google.com/file/d/1bKQS97KxUOaIRpZwuBr7KfoFvDKTHVBc/view?usp=sharing",
+    "poster_src": "https://drive.google.com/file/d/1ZIQcxxgWcrsa3LGj9-bCOgH5vzkAeX9c/view"
+  }
+]

@@ -28,9 +28,9 @@ const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) 
   const { onPressExpand, videoData } = props;
 
   const renderTags = (): Array<ReactElement> => (
-    videoData.tags.map((tag: string, index: number) => {
+    videoData.categories.map((tag: string, index: number) => {
       let separator;
-      if(!(index === videoData.tags.length - 1)) {
+      if(!(index === videoData.categories.length - 1)) {
         separator = (
           <Label
             className={styles.separator}

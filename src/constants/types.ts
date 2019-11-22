@@ -16,46 +16,50 @@ export interface EpisodeData {
   src: string;
 }
 
-export interface PodcastAPIData {
-  Indentifier: string;
+export interface FeaturedPodcastAPIData {
+  ID: string;
   Podcast_Title: string;
   Podcast_Description: string;
   Website: string;
+  Video_URL: string;
+  poster_src: string;
+}
+
+export interface PodcastAPIData extends FeaturedPodcastAPIData {
   Author: string;
   Category1: string;
   Category2: string;
   Category3: string;
+  Rating: string;
+  Slider_Group_1: string;
+  Slider_Group_2: string;
+}
+
+export interface PodcastData {
+  author: string;
+  episodesAmount: number;
+  id: string;
+  isNew: boolean;
+  categories: Array<string>;
+  coincidence: number;
+  description: string;
+  explicit: boolean;
+  posterSrc: string;
+  title: string;
+  sliderGroups: string[];
+  src: string;
+  website: string;
+}
+
+export interface EpisodeAPIData {
+  ID: string;
   Episode_Title: string;
   Episode_Description: string;
   Duration: string;
   Episode_Date: string;
   Episode_Website: string;
-  Poster_src: string;
-  Rating: string;
   Video_URL: string;
-  Slider_Group_1: string;
-  Slider_Group_2: string;
-  overview: string;
-}
-
-export interface PodcastData {
-  cast: Array<string>;
-  episodesAmount: number;
-  id: string;
-  isNew: boolean;
-  isSeries: boolean;
-  coincidence: number;
-  description: string;
-  duration: number;
-  genres: Array<string>;
-  parentalAge: number;
-  posterSrc: string;
-  tags: Array<string>;
-  title: string;
-  seasonsAmount?: number;
-  sliderGroups: string[];
-  src: string;
-  year: number;
+  poster_src: string;
 }
 
 export interface PositionCheck {

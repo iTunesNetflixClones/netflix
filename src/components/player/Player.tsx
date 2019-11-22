@@ -20,6 +20,7 @@ import styles from './Player.module.scss';
 // @PropTypes
 interface OwnProps {
   controlsSet?: Array<PLAYER_CONTROLS>;
+  explicit?: boolean;
   hoverPlayMode?: boolean;
   loop?: boolean;
   muted?: boolean;
@@ -27,7 +28,6 @@ interface OwnProps {
   onPressMyList?: () => void;
   onPressUnlike?: () => void;
   playerId: string;
-  parentalAge?: number;
   renderOverlay?: (playing: boolean) => void;
   size: PLAYER_CONTROLS_SIZES;
   src: string;
@@ -48,13 +48,13 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const {
     controlsSet,
     currentPlayingId,
+    explicit,
     hoverPlayMode,
     loop, onPressLike,
     onPressMyList,
     onPressUnlike,
     playingEnabled,
     playerId,
-    parentalAge,
     renderOverlay,
     requestPlayerControl,
     size,
@@ -129,13 +129,13 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
         {renderOverlay && renderOverlay(playing)}
         <PlayerControls
           controlsSet={controlsSet || []}
+          explicit={explicit}
           muted={muted}
           onPressLike={onPressLike}
           onPressMyList={onPressMyList}
           onPressUnlike={onPressUnlike}
           onRestartPlayer={restartPlayer}
           onToggleMuted={toggleMuted}
-          parentalAge={parentalAge}
           playing={playing}
           size={size} />
       </div>
@@ -145,13 +145,13 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
 
 Player.defaultProps = {
   controlsSet: [],
+  explicit: false,
   hoverPlayMode: false,
   loop: false,
   muted: true,
   onPressLike: (): void => {},
   onPressMyList: (): void => {},
   onPressUnlike: (): void => {},
-  parentalAge: 0,
   renderOverlay: (): void => {}
 };
 
