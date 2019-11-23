@@ -56,5 +56,9 @@
   font-size: $font-size-md-abs;
   color: $colors-font-tertiary;
   margin-bottom: $layout-spacing-sm-abs;
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    font-size: $font-size-sm-abs;
+  }
 }
 

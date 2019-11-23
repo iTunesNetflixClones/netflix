@@ -78,8 +78,22 @@
     font-size: $font-size-xxsm-abs;
   }
 
+  &__largeFont {
+    font-size: $font-size-lg-abs;
+
+    i {
+      font-size: $font-size-lg-abs;
+    }
+  }
+
   &__inline {
     display: inline-block;
     margin-right: $layout-spacing-sm-abs;
+  }
+
+  &__noText {
+    i {
+      margin-right: 0;
+    }
   }
 }

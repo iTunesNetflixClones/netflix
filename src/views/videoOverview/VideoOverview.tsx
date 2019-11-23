@@ -45,7 +45,7 @@ const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) =>
   useEffect(() => {
     getFeaturedPodcastData();
     getSlidersData();
-  }, []);
+  }, [getFeaturedPodcastData, getSlidersData]);
 
   const handleCloseModal = (): void => {
     setModalVisible(false);
@@ -59,7 +59,6 @@ const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) =>
 
     return (
       <FeaturedVideoHeader
-        onPressPlay={(): void => {}}
         onPressMoreInfo={(): void => {}}
         podcastData={featuredPodcastData}
       />
@@ -69,13 +68,12 @@ const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) =>
   const renderVideoSliders = (data: PodcastEntry[]): ReactElement => {
     return (
       <div className={styles.sliderContainer}>
-        { data.map((slider: PodcastEntry): ReactElement => (
+        { data.map((slider: PodcastEntry, index: number): ReactElement => (
           <VideoSlider
             key={slider.sliderTitleKey}
-            onPlayVideo={(): void => {}}
             onPressLike={(): void => {}}
             onPressUnlike={(): void => {}}
-            sliderId="1"
+            sliderId={index.toString()}
             anchorText={formatText(slider.anchorTextKey)}
             titleText={formatText(slider.sliderTitleKey)}
             videosList={slider.podcastsData} />

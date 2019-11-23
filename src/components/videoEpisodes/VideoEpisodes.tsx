@@ -36,7 +36,7 @@ const VideoEpisodes: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
 
   useEffect(() => {
     getEpisodes(podcastId);
-  }, [podcastId]);
+  }, [getEpisodes, podcastId]);
 
   const handleEpisodePlay = (episodeId: string): void => {
     console.log(episodeId);

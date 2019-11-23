@@ -2,8 +2,8 @@
 import React from 'react';
 
 // @Constants & enums
-import { HL_BUTTON_CONTAINER_MODIFIERS } from 'constants/enums';
-import { ICON_INFO, ICON_PLAY } from 'constants/constants';
+import { HL_BUTTON_CONTAINER_MODIFIERS, HL_BUTTON_MODIFIERS } from 'constants/enums';
+import { ICON_INFO, ICON_LINK } from 'constants/constants';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
@@ -18,7 +18,7 @@ import styles from './FeaturedVideoInfoOverlay.module.scss';
 
 // @PropTypes
 interface PropTypes {
-  onPressPlay: (videoId: string) => any;
+  onPressPlay: () => any;
   onPressMoreInfo: (videoId: string) => any;
   podcastDescription: string;
   podcastName: string;
@@ -48,10 +48,9 @@ const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTy
           text={podcastDescription} />
         <HeadlinerButton
           containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
-          iconSource={ICON_PLAY}
-          onClick={onPressPlay.bind(null, videoId)}
-          text={formatText('featuredVideoHeader-play')}
-        />
+          modifiers={[HL_BUTTON_MODIFIERS.GRADIENT_BG]}
+          iconSource={ICON_LINK}
+          onClick={onPressPlay} />
         <HeadlinerButton
           containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           iconSource={ICON_INFO}

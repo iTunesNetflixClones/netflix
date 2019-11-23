@@ -36,7 +36,9 @@ const HeadlinerButton: React.FunctionComponent<PropTypes>  = (props: PropTypes) 
       [styles.container]: true,
       [styles.container__disabled]: disabled,
       [styles.container__gradientBG]: modifiers.indexOf(HL_BUTTON_MODIFIERS.GRADIENT_BG) !== -1,
-      [styles.container__smallFont]: modifiers.indexOf(HL_BUTTON_MODIFIERS.SMALL_FONT) !== -1
+      [styles.container__smallFont]: modifiers.indexOf(HL_BUTTON_MODIFIERS.SMALL_FONT) !== -1,
+      [styles.container__largeFont]: modifiers.indexOf(HL_BUTTON_MODIFIERS.LARGE_FONT) !== -1,
+      [styles.container__noText]: !(textKey || text)
     });
   };
 

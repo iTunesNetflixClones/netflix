@@ -19,6 +19,7 @@ $layout-logo-size: 100px;
 $layout-spacing-page-header: 20vw;
 
 $layout-spacing-details-header-height: 3vw;
+$layout-spacing-details-header-height-app: 21vw;
 $layout-spacing-details-header-width: 50vw;
 $layout-spacing-details-header-width-tablet: 70vw;
 $layout-spacing-details-header-width-responsive: 85vw;
@@ -43,7 +44,7 @@ $layout-rounded-button-size: 2vw;
 
 $layout-button-border_width: 0.1vw;
 $layout-tag-border_width: 0.2vw;
-$layout-video-card-border_width: 0.3vw;
+$layout-video-card-border_width: 8px;
 $layout-tab-border_width: 4px;
 $layout-border-width-abs: 2.5px;
 
@@ -91,16 +92,16 @@ $player-aspect-ratio-coef: 1;
 $video-details-aspect-ratio-coef: 16 / 7;
 $video-details-aspect-ratio-coef-tablet: 16 / 9;
 $video-details-aspect-ratio-coef-landscape: 16 / 11;
-$video-details-aspect-ratio-coef-portrait: 100 / 120;
-$video-details-aspect-ratio-coef-portrait-xs: 100 / 130;
-$video-details-aspect-ratio-coef-portrait-xxs: 100 / 155;
+$video-details-aspect-ratio-coef-portrait: 100 / 125;
+$video-details-aspect-ratio-coef-portrait-xs: 100 / 150;
+$video-details-aspect-ratio-coef-portrait-xxs: 100 / 175;
 
 $video-details-video-width: 50vw;
 $video-details-video-width-tablet: 70vw;
 $video-details-video-width-landscape: 80vw;
-$video-details-video-width-portrait: 120vw;
-$video-details-video-width-portrait-xs: 130vw;
-$video-details-video-width-portrait-xxs: 155vw;
+$video-details-video-width-portrait: 125vw;
+$video-details-video-width-portrait-xs: 150vw;
+$video-details-video-width-portrait-xxs: 175vw;
 $video-details-header-shrink-factor: 0.7;
 
 %layout-absolute-fill {

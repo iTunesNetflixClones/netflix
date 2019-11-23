@@ -44,21 +44,17 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
 
   useResizeDetector(onChangeWindowDimensions, [pageIndex, scrollContentWidth]);
 
-  const handleLoad = (): void => {
-    const totalWidth: number = get(sliderScrollRef, 'current.scrollWidth', 0);
-    if(totalWidth !== scrollContentWidth) {
-      setScrollContentWidth(totalWidth);
-    }
-  };
-
   const handleScroll = (isBack: boolean): void => {
     const nextIndex: number = pageIndex + (isBack ? -1 : 1);
     setPageIndex(nextIndex);
   };
 
   useEffect(() => {
-    handleLoad();
-  }, [handleLoad, sliderScrollRef]);
+    const totalWidth: number = get(sliderScrollRef, 'current.scrollWidth', 0);
+    if(totalWidth !== scrollContentWidth) {
+      setScrollContentWidth(totalWidth);
+    }
+  }, [sliderScrollRef, scrollContentWidth, setScrollContentWidth]);
 
   const renderEpisodeCards = (): Array<ReactElement> => {
     return episodesList.map(episode => {

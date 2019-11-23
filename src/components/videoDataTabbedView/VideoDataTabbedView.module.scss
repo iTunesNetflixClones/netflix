@@ -65,6 +65,10 @@ $breakpoints-player: (
   &__shrinked  {
     margin-top: $layout-spacing-lg-abs;
   }
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    height: $layout-spacing-details-header-height-app;
+  }
 }
 
 .titleText {

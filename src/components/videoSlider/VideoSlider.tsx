@@ -19,7 +19,6 @@ import { registerSlider, unregisterSlider } from 'actions/slider.actions';
 
 // @PropTypes
 interface OwnProps {
-  onPlayVideo: (videoId: string) => any;
   onPressLike: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
   sliderId: string;
@@ -41,7 +40,6 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     anchorText,
     connectSlider,
     disconnectSlider,
-    onPlayVideo,
     onPressLike,
     onPressUnlike,
     sliderId,
@@ -84,7 +82,6 @@ const VideoSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       className={styles.mainContainer}>
       { renderTitle() }
       <VideoSliderRow
-        onPlayVideo={onPlayVideo}
         onPressLike={onPressLike}
         onPressUnlike={onPressUnlike}
         sliderId={sliderId}

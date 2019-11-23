@@ -37,7 +37,6 @@ import * as sliderActions from 'actions/slider.actions';
 
 // @PropTypes
 interface OwnProps {
-  onPlayVideo: (videoId: string) => any;
   onPressLike: (videoId: string) => any;
   onPressUnlike: (videoId: string) => any;
   sliderId: string;
@@ -54,7 +53,6 @@ type PropTypes = OwnProps & StateProps & DispatchProps;
 const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
     currentSliderId,
-    onPlayVideo,
     onPressLike,
     onPressUnlike,
     openSlider,
@@ -85,7 +83,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     openSlider(sliderId);
   };
 
-  const handleShrinkVideo = (): void => {
+  const handleCloseVideo = (): void => {
     setSelectedIndex(-1);
     setExpandedIndex(-1);
     openSlider();
@@ -119,10 +117,11 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   });
 
   useEffect(() => {
-    if(currentSliderId !== undefined && currentSliderId !== sliderId) {
-      handleShrinkVideo();
+    if(selectedIndex !== -1 && currentSliderId !== sliderId) {
+      setSelectedIndex(-1);
+      setExpandedIndex(-1);
     }
-  }, [currentSliderId, handleShrinkVideo, sliderId]);
+  }, [currentSliderId, selectedIndex, setExpandedIndex, setSelectedIndex, sliderId]);
 
   const renderExpandButton = (index: number, isSelected: boolean): ReactElement | null => {
     const shouldShowFooter = index === expandedIndex && !isSelected && selectedIndex !== -1;
@@ -150,7 +149,6 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
             isSelected={isSelected}
             onExpand={handleExpandVideo}
             onExpandedStateChanges={handleExpandedStateChange}
-            onPlay={onPlayVideo}
             onPressLike={onPressLike}
             onPressUnlike={onPressUnlike}
             renderExpandButton={renderExpandButton.bind(null, indexInRow, isSelected)}
@@ -167,8 +165,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     return (
       <VideoDataTabbedView
         id={`tabeedView-${sliderId}`}
-        onClose={handleShrinkVideo}
-        onPressPlay={onPlayVideo}
+        onClose={handleCloseVideo}
         onPressLike={onPressLike}
         onPressUnlike={onPressUnlike}
         videoData={videosList[selectedIndex]}/>

@@ -14,20 +14,23 @@ import Player from 'components/player/Player';
 
 // @PropTypes
 interface PropTypes {
-  onPressPlay: (videoId: string) => any;
   onPressMoreInfo: (videoId: string) => any;
   podcastData: PodcastData;
 }
 
 const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onPressMoreInfo, onPressPlay, podcastData } = props;
+  const { onPressMoreInfo, podcastData } = props;
 
   const { description, id, title } = podcastData;
+
+  const handlePressMainButton = (): void => {
+    window.open(podcastData.website, '_blank');
+  };
 
   return (
     <div className={styles.mainContainer}>
       <FeaturedVideoInfoOverlay
-        onPressPlay={onPressPlay}
+        onPressPlay={handlePressMainButton}
         onPressMoreInfo={onPressMoreInfo}
         podcastDescription={description}
         podcastName={title}
