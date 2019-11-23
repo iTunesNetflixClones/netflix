@@ -43,8 +43,9 @@ const FooterBar: React.FunctionComponent<{}> = () => {
     return (
       <a
         href={href}
-        className={className}
-        target="blank"/>
+        target="blank">
+        <i className={className}/>
+      </a>
     );
   };
 
