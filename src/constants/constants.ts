@@ -14,17 +14,28 @@ export const EPISODE_CARDS_AMOUNT = {
 export const EPISODE_DESCRIPTION_MAX_LENGTH = 180;
 export const EPISODE_SLIDER_TRANSLATION_COEF = 96;
 export const EPISODE_SLIDER_TRANSLATION_EXP = 'translateX(-%svw)';
+export const HEADLINER_LINKS = {
+  getPro: 'https://make.headliner.app/sign-up?redirect=%2Fprojects%3Ftier%3Dpro&_ga=2.219697887.771030251.1574526425-708842208.1573087194',
+  facebook: 'https://www.facebook.com/headlinervideo/',
+  instagram: 'https://www.instagram.com/headlinervideo/?hl=en',
+  twitter: 'https://twitter.com/headlinervideo?lang=en',
+  youtube: 'https://www.youtube.com/channel/UCUd7OPxBSnOw0uHnQYq5N9A'
+};
 export const I18_DEFAULT_TRANSLATION = '####';
 export const I18_KEY_SEPARATOR = '-';
 export const I18_LANG_EN = 'en';
 export const I18N_REPLACEMENT_WILDCARD = '%s';
 export const ICON_CARET_DOWN = 'fa fa-caret-down';
 export const ICON_CLOSE = 'fa fa-times';
+export const ICON_FACEBOOK = 'fab fa-facebook-f';
 export const ICON_INFO = 'fa fa-info';
+export const ICON_INSTAGRAM = 'fab fa-instagram';
 export const ICON_LIKE = 'fa fa-thumbs-up';
 export const ICON_MY_LIST = 'fa fa-plus';
 export const ICON_PLAY = 'fa fa-play';
+export const ICON_TWITTER = 'fab fa-twitter';
 export const ICON_UNLIKE = 'fa fa-thumbs-down';
+export const ICON_YOUTUBE = 'fab fa-youtube';
 export const PODCAST_DESCRIPTION_MAX_LENGTH = 300;
 export const PODCAST_EXPLICIT = 'explicit';
 export const PODCAST_EXPLICIT_AGE = 16;

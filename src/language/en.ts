@@ -23,6 +23,10 @@ export default {
     play: 'Play',
     watchAndListen: 'Watch and listen!'
   },
+  footerBar: {
+    getPro: 'Get Pro for Free',
+    getProLink:'Refer Friends Now'
+  },
   introModal: {
     buttonText: 'Take me to the future of audio',
     modalText: 'This is a VERY literal take on the "Netflix of Podcasting"',
