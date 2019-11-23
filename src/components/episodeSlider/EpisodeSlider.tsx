@@ -61,14 +61,17 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
   }, [handleLoad, sliderScrollRef]);
 
   const renderEpisodeCards = (): Array<ReactElement> => {
-    return episodesList.map(episode => (
-      <div
-        key={episode.id}
-        className={styles.sliderCard}>
-        <EpisodeCard
-          episodeData={episode}/>
-      </div>
-    ));
+    return episodesList.map(episode => {
+      const composedId = `${episode.relatedPodcastId}${episode.title}`;
+      return (
+        <div
+          key={composedId}
+          className={styles.sliderCard}>
+          <EpisodeCard
+            episodeData={episode}/>
+        </div>
+      );
+    });
   };
 
   return (

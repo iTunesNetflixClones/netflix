@@ -26,8 +26,9 @@ interface PropTypes {
 const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { episodeData } = props;
 
-  const { duration, link, name, id, src } = episodeData;
+  const { duration, website, title, relatedPodcastId, videoSrc } = episodeData;
   const episodeDuration: Duration = formatDuration(duration);
+  const composedId = `${title}${relatedPodcastId}`;
 
   const renderEpisodeImage = (): ReactElement => {
     return (
@@ -37,9 +38,9 @@ const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           hoverPlayMode
           loop={false}
           muted={false}
-          playerId={id}
+          playerId={composedId}
           size={PLAYER_CONTROLS_SIZES.small}
-          src={src}
+          src={videoSrc}
           />
       </div>
     );
@@ -52,7 +53,7 @@ const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       <div className={styles.titleContainer}>
         <Label
           className={styles.titleText}
-          text={name}/>
+          text={title}/>
         <FormattedText
           className={styles.durationText}
           injectedTexts={episodeDuration.values}
@@ -63,7 +64,7 @@ const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
         text={episodeData.description}/>
       <div className={styles.linkRow}>
         <Link
-          href={link}
+          href={website}
           text={formatText('episodeCard-goToEpisode')}/>
       </div>
     </div>

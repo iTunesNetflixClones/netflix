@@ -26,7 +26,8 @@ const Link: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   return (
     <a
       className={className}
-      href={href}>
+      href={href}
+      target="blank">
       { text }
     </a>
   );

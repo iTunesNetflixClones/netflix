@@ -22,6 +22,10 @@
   width: $layout-spacing-details-header-width;
   margin: $layout-spacing-sm-abs 0 $layout-spacing-md-abs;
 
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    width: $layout-spacing-details-header-width-tablet;
+  }
+
   @media screen and (max-width: $layout-app-width-breakpoint) {
     width: $layout-spacing-details-header-width-responsive;
   }

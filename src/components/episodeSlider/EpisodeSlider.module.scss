@@ -13,12 +13,12 @@ $breakpoints: (
 .sliderFrame {
   position: relative;
   width: 100vw;
-  height: 100%;
   margin-top: $layout-spacing-md;
   margin-left: -$layout-spacing-lg;
   z-index: $layout-z-index-low;
 
   .sliderRow {
+    vertical-align: top;
     padding-left: $layout-spacing-lg;
     white-space: nowrap;
     transition: all $layout-transition-time;

@@ -1,19 +1,32 @@
 // @Vendors
 import { RefObject } from "react";
+import { Moment } from "moment";
 
 export interface Duration {
   values: Array<number>;
   textKey: string;
 }
 
+export interface EpisodeAPIData {
+  ID: string;
+  Episode_Title: string;
+  Episode_Description: string;
+  Duration: string;
+  Episode_Date: string;
+  Episode_Website: string;
+  Video_URL: string;
+  poster_src: string;
+}
+
 export interface EpisodeData {
-  id: string;
+  relatedPodcastId: string;
+  title: string;
   description: string;
   duration: number;
-  episodeNumber: number;
-  link: string;
-  name: string;
-  src: string;
+  date: Moment;
+  posterSrc: string;
+  videoSrc: string;
+  website: string;
 }
 
 export interface FeaturedPodcastAPIData {
@@ -51,15 +64,10 @@ export interface PodcastData {
   website: string;
 }
 
-export interface EpisodeAPIData {
-  ID: string;
-  Episode_Title: string;
-  Episode_Description: string;
-  Duration: string;
-  Episode_Date: string;
-  Episode_Website: string;
-  Video_URL: string;
-  poster_src: string;
+export interface PodcastEntry {
+  podcastsData: PodcastData[];
+  sliderTitleKey: string;
+  anchorTextKey: string;
 }
 
 export interface PositionCheck {
@@ -71,6 +79,12 @@ export interface SelectorOption {
   code: string;
   textKey?: string;
   value: string | number;
+}
+
+export interface SliderCategory {
+  searchKey: string;
+  sliderKey: string;
+  sliderShortKey: string;
 }
 
 export type getTranslationStyleArgs = {

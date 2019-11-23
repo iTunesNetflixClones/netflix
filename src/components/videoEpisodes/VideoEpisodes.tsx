@@ -1,8 +1,11 @@
 // @Vendors
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 
 // Constants
-import { PodcastData } from 'constants/types';
+import { EpisodeData } from 'constants/types';
+import { StoreState } from 'constants/stateTypes';
 
 // @Components
 import EpisodeSlider from 'components/episodeSlider/EpisodeSlider';
@@ -10,15 +13,31 @@ import EpisodeSlider from 'components/episodeSlider/EpisodeSlider';
 // @Styles
 import styles from './VideoEpisodes.module.scss';
 
-// @Resources
-import epidodesList from 'resources/episodeData';
+// @Actions
+import * as episodeActions from 'actions/episodes.actions';
 
 // @PropTypes
-interface PropTypes {
-  videoData: PodcastData;
+interface OwnProps {
+  podcastId: string;
 }
 
-const VideoEpisodes: React.FunctionComponent<PropTypes> = () => {
+interface StateProps {
+  episodesData: EpisodeData[];
+}
+
+interface DispatchProps {
+  getEpisodes: (podcastId: string) => void;
+}
+
+type PropTypes = OwnProps & StateProps & DispatchProps;
+
+const VideoEpisodes: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
+  const { episodesData, getEpisodes, podcastId } = props;
+
+  useEffect(() => {
+    getEpisodes(podcastId);
+  }, [podcastId]);
+
   const handleEpisodePlay = (episodeId: string): void => {
     console.log(episodeId);
   };
@@ -28,10 +47,21 @@ const VideoEpisodes: React.FunctionComponent<PropTypes> = () => {
       <div style={{ width: 300}}>
         <EpisodeSlider
           onPressPlay={handleEpisodePlay}
-          episodesList={epidodesList}/>
+          episodesList={episodesData}/>
       </div>
     </div>
   );
 };
 
-export default VideoEpisodes;
+const mapStateToProps = (state: StoreState): StateProps => ({
+  episodesData: state.episodesReducer.episodesData
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (
+  bindActionCreators({ getEpisodes: episodeActions.getEpisodes }, dispatch)
+);
+
+export default connect<StateProps, DispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(VideoEpisodes);
