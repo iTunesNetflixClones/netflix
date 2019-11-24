@@ -4,7 +4,6 @@
   position: relative;
   height: 100%;
   width: 100%;
-  transition: padding $layout-transition-time-quick;
 
   &__selected {
     @extend %hl-colors-gradient;

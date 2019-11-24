@@ -36,7 +36,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
 
   const onChangeWindowDimensions = (): void => {
-    if(isLastPage(pageIndex, scrollContentWidth, window.innerWidth)) {
+    if(isLastPage(pageIndex, window.innerWidth, EPISODE_CARDS_AMOUNT, episodesList.length)) {
       const lastPageIndex = getLastPageIndex(window.innerWidth, episodesList.length, EPISODE_CARDS_AMOUNT);
       setPageIndex(lastPageIndex);
     }
@@ -88,7 +88,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
           translationExp: EPISODE_SLIDER_TRANSLATION_EXP,
           cardsAmount: episodesList.length,
           cardsAmountPerPage: EPISODE_CARDS_AMOUNT,
-          scrollContentWidth,
+          elementsAmount: episodesList.length,
           screenWidth: window.innerWidth,
           fitLastPage: true
         })}}
@@ -97,7 +97,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
       </div>
       <SliderButton
         isHidden={!sliderButtonVisible}
-        isUnmounted={isLastPage(pageIndex, scrollContentWidth, window.innerWidth)}
+        isUnmounted={isLastPage(pageIndex, window.innerWidth, EPISODE_CARDS_AMOUNT, episodesList.length)}
         onClick={handleScroll}
         type={SLIDER_BUTTON_TYPES.next}/>
     </div>

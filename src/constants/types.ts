@@ -65,6 +65,7 @@ export interface PodcastData {
 }
 
 export interface PodcastEntry {
+  sliderId: string;
   podcastsData: PodcastData[];
   sliderTitleKey: string;
   anchorTextKey: string;
@@ -93,7 +94,7 @@ export type getTranslationStyleArgs = {
   translationExp: string;
   cardsAmount?: number;
   cardsAmountPerPage?: Record<string, number>;
-  scrollContentWidth?: number;
+  elementsAmount: number;
   screenWidth?: number;
   fitLastPage?: boolean;
 };
@@ -101,6 +102,10 @@ export type getTranslationStyleArgs = {
 export type Action = {
   type: string;
   payload: Record<string, any>;
+};
+
+export type ActionSimple = {
+  type: string;
 };
 
 export type SliderRef = {

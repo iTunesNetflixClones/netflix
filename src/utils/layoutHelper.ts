@@ -1,3 +1,6 @@
+// @Vendors
+import { RefObject } from 'react';
+
 // @Constants
 import {
   COMMON_WILDCARD,
@@ -5,10 +8,14 @@ import {
   SCREEN_MOBILE_LANDSCAPE_MIN_WIDTH,
   SCREEN_MOBILE_PORTRAIT_MIN_WIDTH,
   SCREEN_TABLET_MIN_WIDTH,
+  SCROLL_TOPBAR_OFF_SET_CORRECTOR,
   VIDEO_CARDS_AMOUNT
 } from 'constants/constants';
 import { PositionCheck, getTranslationStyleArgs } from 'constants/types';
 import { BUTTON_SIZES } from 'constants/enums';
+
+// @Utils
+import { getDataElement } from './commonUtils';
 
 const getCardsAmount = (screenWidth: number, cardsPerWidth: Record<string, number>): number => {
   if(screenWidth >= SCREEN_DESKTOP_MIN_WIDTH) {
@@ -45,10 +52,12 @@ export const checkVideoCardPosition = (
 
 export const isLastPage = (
   pageIndex: number,
-  scrollContentWidth: number,
-  screenWidth: number
+  screenWidth: number,
+  cardsPerPageCfg: Record<string, number>,
+  totalElements: number
 ): boolean => {
-  return ((pageIndex + 1) * screenWidth) >= scrollContentWidth;
+  const cardsPerPage = getCardsAmount(screenWidth, cardsPerPageCfg);
+  return ((pageIndex + 1) * cardsPerPage) >= totalElements;
 };
 
 const adjustTranslationCoef = (
@@ -76,12 +85,12 @@ export const getTranslationStyle = ({
   translationExp,
   cardsAmount = 0,
   cardsAmountPerPage = VIDEO_CARDS_AMOUNT,
-  scrollContentWidth = 0,
+  elementsAmount = 0,
   screenWidth = 0,
   fitLastPage = false
 }: getTranslationStyleArgs): string => {
   let coeficient = translationCoef;
-  if(fitLastPage && isLastPage(pageIndex, scrollContentWidth, screenWidth)) {
+  if(fitLastPage && isLastPage(pageIndex, screenWidth, cardsAmountPerPage, elementsAmount)) {
     const cardsPerPage = getCardsAmount(screenWidth, cardsAmountPerPage);
     if(shouldFit(cardsAmount, cardsPerPage, pageIndex)) {
       coeficient = adjustTranslationCoef(cardsAmount, cardsPerPage, translationCoef);
@@ -117,7 +126,6 @@ export const getButtonSizeStyle = (
   }
 };
 
-
 export const getLastPageIndex = (
   windowWidth: number,
   cardsAmount: number,
@@ -125,4 +133,12 @@ export const getLastPageIndex = (
 ): number => {
   const cardsAmountPerPage = getCardsAmount(windowWidth, cardsPerPageMap);
   return Math.ceil(cardsAmount / cardsAmountPerPage) - 1;
+};
+
+export const scrollToRef = (ref: RefObject<any>): void => {
+  const currentRef = getDataElement(ref, 'current', null);
+  if(currentRef && currentRef.getBoundingClientRect) {
+    const offset = ref.current.getBoundingClientRect().top + window.pageYOffset + SCROLL_TOPBAR_OFF_SET_CORRECTOR;
+    window.scrollTo(0, offset);
+  }
 };

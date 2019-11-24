@@ -13,7 +13,8 @@ import { filterByCategory, mapPodcasts, mapFeaturedPodcast } from 'utils/feedUti
 
 export const getSlidersData = () => (dispatch: Dispatch): Action => {
   const podcastsData = mapPodcasts();
-  const slidersData = VIDEO_SLIDER_CATEGORIES.map((category: SliderCategory): PodcastEntry => ({
+  const slidersData = VIDEO_SLIDER_CATEGORIES.map((category: SliderCategory, index: number): PodcastEntry => ({
+    sliderId: `${index.toString()}-${category.sliderKey}`,
     podcastsData: filterByCategory(category.searchKey, podcastsData),
     sliderTitleKey: `podcastSliderCategories-${category.sliderKey}`,
     anchorTextKey: `podcastSliderCategories-${category.sliderShortKey}`

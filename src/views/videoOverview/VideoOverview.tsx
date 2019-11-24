@@ -19,9 +19,11 @@ import styles from './VideoOverview.module.scss';
 // @Actions
 import { enablePlayers } from 'actions/player.actions';
 import { getFeaturedPodcastData, getSlidersData } from 'actions/podcasts.actions';
+import { goToFeaturedPoscast } from 'actions/slider.actions';
 
 // @Utils
 import { formatText } from 'utils/i18n';
+import { getDataElement } from 'utils/commonUtils';
 
 // @PropTypes
 interface StateProps {
@@ -33,12 +35,20 @@ interface DispatchProps {
   enablePlayers: () => void;
   getFeaturedPodcastData: () => void;
   getSlidersData: () => void;
+  goToFeaturedPoscast: (podcastId: string) => void;
 }
 
 type PropTypes = StateProps & DispatchProps;
 
 const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
-  const { enablePlayers, featuredPodcastData, getFeaturedPodcastData, getSlidersData, slidersData } = props;
+  const {
+    enablePlayers,
+    featuredPodcastData,
+    getFeaturedPodcastData,
+    getSlidersData,
+    goToFeaturedPoscast,
+    slidersData
+  } = props;
 
   const [ modalVisible, setModalVisible ] = useState(true);
 
@@ -52,6 +62,11 @@ const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) =>
     enablePlayers();
   };
 
+  const handleClickMoreInfo = (): void => {
+    const featuredPodcastId = getDataElement(featuredPodcastData, 'id', '');
+    goToFeaturedPoscast(featuredPodcastId);
+  };
+
   const renderFeaturedPodcast = (): ReactElement | null => {
     if(!featuredPodcastData) {
       return null;
@@ -59,7 +74,7 @@ const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) =>
 
     return (
       <FeaturedVideoHeader
-        onPressMoreInfo={(): void => {}}
+        onPressMoreInfo={handleClickMoreInfo}
         podcastData={featuredPodcastData}
       />
     );
@@ -68,12 +83,12 @@ const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) =>
   const renderVideoSliders = (data: PodcastEntry[]): ReactElement => {
     return (
       <div className={styles.sliderContainer}>
-        { data.map((slider: PodcastEntry, index: number): ReactElement => (
+        { data.map((slider: PodcastEntry): ReactElement => (
           <VideoSlider
-            key={slider.sliderTitleKey}
+            key={slider.sliderId}
             onPressLike={(): void => {}}
             onPressUnlike={(): void => {}}
-            sliderId={index.toString()}
+            sliderId={slider.sliderId}
             anchorText={formatText(slider.anchorTextKey)}
             titleText={formatText(slider.sliderTitleKey)}
             videosList={slider.podcastsData} />
@@ -99,7 +114,12 @@ const mapStateToProps = (state: StoreState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (
-  bindActionCreators({ enablePlayers, getFeaturedPodcastData, getSlidersData }, dispatch)
+  bindActionCreators({
+    enablePlayers,
+    getFeaturedPodcastData,
+    getSlidersData,
+    goToFeaturedPoscast
+  }, dispatch)
 );
 
 export default connect<{}, DispatchProps>(

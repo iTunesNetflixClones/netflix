@@ -17,6 +17,7 @@ export type PodcastsState = {
 
 export type SlidersState = {
   currentSliderId?: string;
+  currentPodcastIndex: number;
   registeredSliders: SliderRef[];
 };
 

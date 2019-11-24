@@ -44,14 +44,18 @@ interface OwnProps {
 }
 interface StateProps {
   currentSliderId?: string;
+  currentPodcastIndex: number;
 }
 interface DispatchProps {
-  openSlider: Function;
+  clearSelectedPodcastIndex: () => void;
+  openSlider: (sliderId?: string) => void;
 }
 type PropTypes = OwnProps & StateProps & DispatchProps;
 
 const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const {
+    clearSelectedPodcastIndex,
+    currentPodcastIndex,
     currentSliderId,
     onPressLike,
     onPressUnlike,
@@ -70,7 +74,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
 
   const onChangeWindowDimensions = (): void => {
-    if(isLastPage(currentIndex, scrollContentWidth, window.innerWidth)) {
+    if(isLastPage(currentIndex, window.innerWidth, VIDEO_CARDS_AMOUNT, videosList.length)) {
       const lastPageIndex = getLastPageIndex(window.innerWidth, videosList.length, VIDEO_CARDS_AMOUNT);
       setCurrentIndex(lastPageIndex);
     }
@@ -106,7 +110,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
 
   const dragBind = dragScrollBindCreator({
     scrollBackAllowed: currentIndex > 0,
-    scrollForwardAllowed: !isLastPage(currentIndex, scrollContentWidth, window.innerWidth),
+    scrollForwardAllowed: !isLastPage(currentIndex, window.innerWidth, VIDEO_CARDS_AMOUNT, videosList.length),
     scrollIsBlocked: scrollBlocked
   }, useDrag, (isBack: boolean) => {
     setScrollBlocked(true);
@@ -121,7 +125,22 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
       setSelectedIndex(-1);
       setExpandedIndex(-1);
     }
-  }, [currentSliderId, selectedIndex, setExpandedIndex, setSelectedIndex, sliderId]);
+    if((selectedIndex === -1 && currentSliderId === sliderId) ||
+      (currentSliderId === sliderId && currentPodcastIndex !== -1)
+    ) {
+      setSelectedIndex(currentPodcastIndex);
+      setExpandedIndex(currentPodcastIndex);
+      clearSelectedPodcastIndex();
+    }
+  }, [
+    clearSelectedPodcastIndex,
+    currentPodcastIndex,
+    currentSliderId,
+    selectedIndex,
+    setExpandedIndex,
+    setSelectedIndex,
+    sliderId
+  ]);
 
   const renderExpandButton = (index: number, isSelected: boolean): ReactElement | null => {
     const shouldShowFooter = index === expandedIndex && !isSelected && selectedIndex !== -1;
@@ -196,6 +215,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
           onLoad={handleLoad}
           ref={sliderScrollRef}
           style={{ transform: getTranslationStyle({
+            elementsAmount: videosList.length,
             pageIndex: currentIndex,
             translationCoef: VIDEO_SLIDER_TRANSLATION_COEF,
             translationExp: VIDEO_SLIDER_TRANSLATION_EXP
@@ -205,7 +225,7 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
         </div>
         <SliderButton
           isHidden={!slideButtonVisible}
-          isUnmounted={(selectedIndex !== -1) || isLastPage(currentIndex, scrollContentWidth, window.innerWidth)}
+          isUnmounted={(selectedIndex !== -1) || isLastPage(currentIndex, window.innerWidth, VIDEO_CARDS_AMOUNT, videosList.length)}
           onClick={handleScroll}
           type={SLIDER_BUTTON_TYPES.next}/>
       </div>
@@ -215,11 +235,15 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
 };
 
 const mapStateToProps = (state: StoreState): StateProps => ({
-  currentSliderId: state.slidersReducer.currentSliderId
+  currentSliderId: state.slidersReducer.currentSliderId,
+  currentPodcastIndex: state.slidersReducer.currentPodcastIndex
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (
-  bindActionCreators({ openSlider: sliderActions.openSlider }, dispatch)
+  bindActionCreators({
+    clearSelectedPodcastIndex: sliderActions.clearSelectedPodcastIndex,
+    openSlider: sliderActions.openSlider
+  }, dispatch)
 );
 
 export default connect<StateProps, DispatchProps>(
