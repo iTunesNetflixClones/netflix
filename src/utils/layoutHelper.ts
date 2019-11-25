@@ -17,7 +17,7 @@ import { BUTTON_SIZES } from 'constants/enums';
 // @Utils
 import { getDataElement } from './commonUtils';
 
-const getCardsAmount = (screenWidth: number, cardsPerWidth: Record<string, number>): number => {
+export const getCardsAmount = (screenWidth: number, cardsPerWidth: Record<string, number>): number => {
   if(screenWidth >= SCREEN_DESKTOP_MIN_WIDTH) {
     return cardsPerWidth.DESKTOP;
   }
@@ -135,10 +135,10 @@ export const getLastPageIndex = (
   return Math.ceil(cardsAmount / cardsAmountPerPage) - 1;
 };
 
-export const scrollToRef = (ref: RefObject<any>): void => {
+export const scrollToRef = (ref: RefObject<any>, extraOffset: number = 0): void => {
   const currentRef = getDataElement(ref, 'current', null);
   if(currentRef && currentRef.getBoundingClientRect) {
     const offset = ref.current.getBoundingClientRect().top + window.pageYOffset + SCROLL_TOPBAR_OFF_SET_CORRECTOR;
-    window.scrollTo(0, offset);
+    window.scrollTo(0, offset + extraOffset);
   }
 };

@@ -1,8 +1,9 @@
 // @Constants
 import { PodcastData, PodcastEntry, SliderRef } from 'constants/types';
+import { FEATURED_SCROLL_EXTRA_OFFSET, VIDEO_SLIDER_TRANSLATION_COEF, VIDEO_CARDS_AMOUNT } from 'constants/constants';
 
 // @Utils
-import { scrollToRef } from './layoutHelper';
+import { getCardsAmount, scrollToRef } from './layoutHelper';
 
 export const findPodcastInSliders = (
   searchId: string, podcastsData: PodcastEntry[] = []
@@ -25,6 +26,11 @@ export const getPodcastIndex = (searchId: string, podcasts: PodcastData[] = []):
   return podcastIndex;
 };
 
+const calculateExtraOffset = (): number => {
+  const cardsAmount = getCardsAmount(window.innerWidth, VIDEO_CARDS_AMOUNT);
+  return FEATURED_SCROLL_EXTRA_OFFSET + (window.innerWidth * VIDEO_SLIDER_TRANSLATION_COEF / 100) / cardsAmount;
+};
+
 export const scrollToPodcast = (sliderId: string, sliders: SliderRef[]): void => {
   const sliderData = sliders.find((slider: SliderRef): boolean => slider.sliderId === sliderId);
 
@@ -32,5 +38,6 @@ export const scrollToPodcast = (sliderId: string, sliders: SliderRef[]): void =>
     return;
   }
 
-  scrollToRef(sliderData.ref);
+  const extraOffset = calculateExtraOffset();
+  scrollToRef(sliderData.ref, extraOffset);
 };
