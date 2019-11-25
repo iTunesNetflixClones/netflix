@@ -14,6 +14,7 @@ export const EPISODE_CARDS_AMOUNT = {
 export const EPISODE_DESCRIPTION_MAX_LENGTH = 180;
 export const EPISODE_SLIDER_TRANSLATION_COEF = 96;
 export const EPISODE_SLIDER_TRANSLATION_EXP = 'translateX(-%svw)';
+export const FEATURED_SCROLL_EXTRA_OFFSET = 100;
 export const FEATURED_PODCAST_SCROLL_DELAY = 100;
 export const HEADLINER_LINKS = {
   getPro: 'https://make.headliner.app/sign-up?redirect=%2Fprojects%3Ftier%3Dpro&_ga=2.219697887.771030251.1574526425-708842208.1573087194',
