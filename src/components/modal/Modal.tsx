@@ -9,7 +9,7 @@ import FormattedText from 'components/formattedText/FormattedText';
 import HeadlinerButton from 'components/headlinerButton/HeadlinerButton';
 
 // @Assets
-import micLogo from 'assets/png/mic_logo.png';
+import headlinerLogo from 'assets/png/headliner_logo_gradient.png';
 
 // @PropTypes
 interface PropTypes {
@@ -32,7 +32,7 @@ const Modal: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
         <div className={styles.modalContainer}>
           <img
             className={styles.logoImg}
-            src={micLogo}
+            src={headlinerLogo}
             alt="healiner microphone"/>
           <p className={styles.textWrapper}>
             <FormattedText
