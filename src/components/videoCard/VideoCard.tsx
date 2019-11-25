@@ -1,5 +1,6 @@
 // @Vendors
 import React, { ReactElement } from 'react';
+import classNames from 'classnames';
 
 // @Constants
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
@@ -19,7 +20,6 @@ interface PropTypes {
   isSelected: boolean;
   onExpand: (index: number) => void;
   onExpandedStateChanges: (index: number, expandedState: boolean) => void;
-  onPlay: (videoId: string) => void;
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   renderExpandButton?: () => void;
@@ -33,7 +33,6 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     isSelected,
     onExpand,
     onExpandedStateChanges,
-    onPlay,
     onPressLike,
     onPressUnlike,
     renderExpandButton,
@@ -51,13 +50,10 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
 
   const handleUnlike = (): void => { onPressUnlike(id); };
 
-  const handlePlay = (): void => { onPlay(id); };
-
   const renderVideoOverlay = (playing: boolean): ReactElement => {
     return (
       <VideoCardOverlay
         onPressExpand={handleExpand}
-        onPressPlay={handlePlay}
         playing={playing}
         videoData={videoData} />
     );
@@ -91,25 +87,40 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     if(!isSelected) {
       return null;
     }
+
+    const indicatorClassName = classNames('fa fa-caret-down', styles.indicator);
     return (
-      <div className={styles.indicator}/>
+      <div className={styles.indicatorContainer}>
+        <i className={indicatorClassName}/>
+      </div>
     );
   };
 
-  const className = `${styles.container} ${isExpanded ? styles.container__expanded : ''} ${isSelected ? styles.container__selected : ''}`;
+  const containerClassName = classNames({
+    [styles.container]: true,
+    [styles.container__expanded]: isExpanded
+  });
+
+  const wrapperClassName = classNames({
+    [styles.cardWrapper]: true,
+    [styles.cardWrapper__selected]: isSelected
+  });
 
   return (
     <div
-      onMouseEnter={(): void => handleSetExpanded(true)}
-      onMouseLeave={(): void => handleSetExpanded(false)}
-      className={className}>
-      <img
-        alt="featured video poster"
-        className={styles.image}
-        src={posterSrc} />
-      { renderPlayer() }
+      className={wrapperClassName}>
+      <div
+        onMouseEnter={(): void => handleSetExpanded(true)}
+        onMouseLeave={(): void => handleSetExpanded(false)}
+        className={containerClassName}>
+        <img
+          alt="featured video poster"
+          className={styles.image}
+          src={posterSrc} />
+        { renderPlayer() }
+        { renderExpandButton && renderExpandButton() }
+      </div>
       { renderIndicator() }
-      { renderExpandButton && renderExpandButton() }
     </div>
   );
 };

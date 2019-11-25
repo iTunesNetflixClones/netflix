@@ -1,5 +1,5 @@
 // @Vendors
-import React, { useState } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 import { Container } from 'reactstrap';
@@ -10,41 +10,91 @@ import Modal from 'components/modal/Modal';
 import VideoSlider from 'components/videoSlider/VideoSlider';
 
 // @Constants
-import { VIDEO_SLIDER_CATEGORIES } from 'constants/constants';
+import { StoreState } from 'constants/stateTypes';
+import { PodcastData, PodcastEntry } from 'constants/types';
 
 // @Styles
 import styles from './VideoOverview.module.scss';
 
 // @Actions
 import { enablePlayers } from 'actions/player.actions';
+import { getFeaturedPodcastData, getSlidersData } from 'actions/podcasts.actions';
+import { goToFeaturedPoscast } from 'actions/slider.actions';
 
 // @Utils
 import { formatText } from 'utils/i18n';
-import { mapFeaturedPodcast, mapPodcasts, filterByCategory } from 'utils/feedUtils';
-
-const podcastList = mapPodcasts();
-const featuredPodcast = mapFeaturedPodcast();
-const trendingPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.TRENDING, podcastList);
-const entertainmentPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.ENTERTAINMENT, podcastList);
-const comedyPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.COMEDY, podcastList);
-const techPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.TECHNO, podcastList);
-const newsPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.NEWS, podcastList);
-const crimePodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.CRIME, podcastList);
-const sportsPodcasts = filterByCategory(VIDEO_SLIDER_CATEGORIES.SPORTS, podcastList);
+import { getDataElement } from 'utils/commonUtils';
 
 // @PropTypes
-interface DispatchProps {
-  enablePlayers: () => void;
+interface StateProps {
+  featuredPodcastData?: PodcastData;
+  slidersData: PodcastEntry[];
 }
 
-const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchProps) => {
-  const { enablePlayers } = props;
+interface DispatchProps {
+  enablePlayers: () => void;
+  getFeaturedPodcastData: () => void;
+  getSlidersData: () => void;
+  goToFeaturedPoscast: (podcastId: string) => void;
+}
+
+type PropTypes = StateProps & DispatchProps;
+
+const VideoOverview: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
+  const {
+    enablePlayers,
+    featuredPodcastData,
+    getFeaturedPodcastData,
+    getSlidersData,
+    goToFeaturedPoscast,
+    slidersData
+  } = props;
 
   const [ modalVisible, setModalVisible ] = useState(true);
+
+  useEffect(() => {
+    getFeaturedPodcastData();
+    getSlidersData();
+  }, [getFeaturedPodcastData, getSlidersData]);
 
   const handleCloseModal = (): void => {
     setModalVisible(false);
     enablePlayers();
+  };
+
+  const handleClickMoreInfo = (): void => {
+    const featuredPodcastId = getDataElement(featuredPodcastData, 'id', '');
+    goToFeaturedPoscast(featuredPodcastId);
+  };
+
+  const renderFeaturedPodcast = (): ReactElement | null => {
+    if(!featuredPodcastData) {
+      return null;
+    }
+
+    return (
+      <FeaturedVideoHeader
+        onPressMoreInfo={handleClickMoreInfo}
+        podcastData={featuredPodcastData}
+      />
+    );
+  };
+
+  const renderVideoSliders = (data: PodcastEntry[]): ReactElement => {
+    return (
+      <div className={styles.sliderContainer}>
+        { data.map((slider: PodcastEntry): ReactElement => (
+          <VideoSlider
+            key={slider.sliderId}
+            onPressLike={(): void => {}}
+            onPressUnlike={(): void => {}}
+            sliderId={slider.sliderId}
+            anchorText={formatText(slider.anchorTextKey)}
+            titleText={formatText(slider.sliderTitleKey)}
+            videosList={slider.podcastsData} />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -52,78 +102,24 @@ const VideoOverview: React.FunctionComponent<DispatchProps>  = (props: DispatchP
       <Modal
         isVisible={modalVisible}
         onAcceptModal={handleCloseModal}/>
-      <FeaturedVideoHeader
-        onPressPlay={(): void => {}}
-        onPressMoreInfo={(): void => {}}
-        podcastData={featuredPodcast}
-      />
-      <div className={styles.sliderContainer}>
-        <VideoSlider
-          onPlayVideo={(): void => {}}
-          onPressLike={(): void => {}}
-          onPressUnlike={(): void => {}}
-          sliderId="1"
-          anchorText={formatText('placeholders-categoryTrending')}
-          titleText={formatText('placeholders-categoryTrending')}
-          videosList={trendingPodcasts} />
-        <VideoSlider
-          onPlayVideo={(): void => {}}
-          onPressLike={(): void => {}}
-          onPressUnlike={(): void => {}}
-          sliderId="2"
-          anchorText={formatText('placeholders-categoryEntertainmentShort')}
-          titleText={formatText('placeholders-categoryEntertainment')}
-          videosList={entertainmentPodcasts} />
-        <VideoSlider
-          onPlayVideo={(): void => {}}
-          onPressLike={(): void => {}}
-          onPressUnlike={(): void => {}}
-          sliderId="3"
-          anchorText={formatText('placeholders-categoryComedy')}
-          titleText={formatText('placeholders-categoryComedy')}
-          videosList={comedyPodcasts} />
-        <VideoSlider
-          onPlayVideo={(): void => {}}
-          onPressLike={(): void => {}}
-          onPressUnlike={(): void => {}}
-          sliderId="4"
-          anchorText={formatText('placeholders-categoryTech')}
-          titleText={formatText('placeholders-categoryTech')}
-          videosList={techPodcasts} />
-        <VideoSlider
-          onPlayVideo={(): void => {}}
-          onPressLike={(): void => {}}
-          onPressUnlike={(): void => {}}
-          sliderId="5"
-          anchorText={formatText('placeholders-categoryNews')}
-          titleText={formatText('placeholders-categoryNews')}
-          videosList={newsPodcasts} />
-        <VideoSlider
-          onPlayVideo={(): void => {}}
-          onPressLike={(): void => {}}
-          onPressUnlike={(): void => {}}
-          sliderId="6"
-          anchorText={formatText('placeholders-categoryCrime')}
-          titleText={formatText('placeholders-categoryCrime')}
-          videosList={crimePodcasts} />
-        <VideoSlider
-          onPlayVideo={(): void => {}}
-          onPressLike={(): void => {}}
-          onPressUnlike={(): void => {}}
-          sliderId="7"
-          anchorText={formatText('placeholders-categorySport')}
-          titleText={formatText('placeholders-categorySport')}
-          videosList={sportsPodcasts} />
-      </div>
+      { renderFeaturedPodcast() }
+      { renderVideoSliders(slidersData) }
     </Container>
   );
 };
 
-const mapStateToProps = (): {} => ({
+const mapStateToProps = (state: StoreState): StateProps => ({
+  featuredPodcastData: state.podcastsReducer.featuredPodcastData,
+  slidersData: state.podcastsReducer.slidersData
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (
-  bindActionCreators({ enablePlayers }, dispatch)
+  bindActionCreators({
+    enablePlayers,
+    getFeaturedPodcastData,
+    getSlidersData,
+    goToFeaturedPoscast
+  }, dispatch)
 );
 
 export default connect<{}, DispatchProps>(

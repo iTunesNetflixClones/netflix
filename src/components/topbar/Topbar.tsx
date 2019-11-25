@@ -1,6 +1,5 @@
 // @Vendors
 import React, { useEffect, useState, ReactElement, RefObject } from 'react';
-import get from 'lodash/get';
 import { Col } from 'reactstrap';
 import classNames from 'classnames';
 
@@ -8,15 +7,12 @@ import classNames from 'classnames';
 import styles from './Topbar.module.scss';
 
 // @Constants
-import {
-  SCREEN_TABLET_MIN_WIDTH,
-  SCROLL_TOPBAR_OFF_SET_CORRECTOR,
-  TOPBAR_SCROLL_INTERPOLATE_RANGE
-} from 'constants/constants';
+import { SCREEN_TABLET_MIN_WIDTH, TOPBAR_SCROLL_INTERPOLATE_RANGE } from 'constants/constants';
 import { SliderRef } from 'constants/types';
 
 // @Utils
 import { interpolateScroll } from 'utils/calcHelper';
+import { scrollToRef } from 'utils/layoutHelper';
 
 // @Hooks
 import useResizeDetector from 'hooks/resizeDetector';
@@ -39,12 +35,8 @@ const Topbar: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const [ menuVisible, setMenuVisible ] = useState(false);
 
   const handleClickItem = (ref: RefObject<any>): void => {
-    const currentRef = get(ref, 'current', null);
     setMenuVisible(false);
-    if(currentRef && currentRef.getBoundingClientRect) {
-      const offset = ref.current.getBoundingClientRect().top + window.pageYOffset + SCROLL_TOPBAR_OFF_SET_CORRECTOR;
-      window.scrollTo(0, offset);
-    }
+    scrollToRef(ref);
   };
 
   const [scrollHeight, setScrollHeight] = useState(

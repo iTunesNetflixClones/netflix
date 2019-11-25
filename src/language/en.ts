@@ -23,30 +23,34 @@ export default {
     play: 'Play',
     watchAndListen: 'Watch and listen!'
   },
+  footerBar: {
+    getPro: 'Get Pro for Free',
+    getProLink:'Refer Friends Now'
+  },
   introModal: {
     buttonText: 'Take me to the future of audio',
     modalText: 'This is a VERY literal take on the "Netflix of Podcasting"',
     welcome: 'Welcome! '
   },
-  placeholders: {
-    videoLogo: 'Video logo soon',
-    categoryTrending: 'Trending',
-    categoryEntertainment: 'Entertainment (Music/TV and Movies)',
-    categoryEntertainmentShort: 'Entetaintment',
-    categoryComedy: 'Comedy',
-    categoryTech: 'Technology',
-    categoryCrime: 'True Crime',
-    categoryNews: 'News',
-    categorySport: 'Sports'
-  },
   player: {
     parentalExplicit: 'Explicit',
     parentalAll: 'All'
   },
-  test: {
-    edit: 'Edit',
-    learnReact: 'Learn React',
-    saveAndReload: 'and save to reload.'
+  podcastSliderCategories: {
+    categoryTrending: 'Trending',
+    categoryTrendingShort: 'Trending',
+    categoryEntertainment: 'Entertainment (Music/TV and Movies)',
+    categoryEntertainmentShort: 'Entetaintment',
+    categoryComedy: 'Comedy',
+    categoryComedyShort: 'Comedy',
+    categoryTech: 'Technology',
+    categoryTechShort: 'Technology',
+    categoryCrime: 'True Crime',
+    categoryCrimeShort: 'True Crime',
+    categoryNews: 'News',
+    categoryNewsShort: 'News',
+    categorySport: 'Sports',
+    categorySportShort: 'Sports'
   },
   topbar: {
     buttonPlaceholder: 'button soon'

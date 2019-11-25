@@ -1,25 +1,21 @@
 // @Vendors
 import React, { ReactElement } from 'react';
+import classNames from 'classnames';
 
 // @Constants
-import { VIDEO_OVERLAY_SEPARATOR_CHAR } from 'constants/constants';
-import { PodcastData } from '../../constants/types';
+import { PodcastData } from 'constants/types';
+import { ICON_CIRCLE } from 'constants/constants';
 
 // @Components
 import FooterButton from 'components/footerButton/FooterButton';
 import Label from 'components/label/Label';
-import Link from 'components/link/Link';
 
 // @Styles
 import styles from './VideoCardOverlay.module.scss';
 
-// @Utils
-import { formatText } from 'utils/i18n';
-
 // @PropTypes
 interface PropTypes {
   onPressExpand: () => void;
-  onPressPlay: () => void;
   playing: boolean;
   videoData: PodcastData;
 }
@@ -31,10 +27,9 @@ const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) 
     videoData.categories.map((tag: string, index: number) => {
       let separator;
       if(!(index === videoData.categories.length - 1)) {
+        const separatorClassname = classNames(ICON_CIRCLE, styles.separator);
         separator = (
-          <Label
-            className={styles.separator}
-            text={VIDEO_OVERLAY_SEPARATOR_CHAR} />
+          <i className={separatorClassname} />
         );
       }
       return (
@@ -59,9 +54,6 @@ const VideoCardOverlay: React.FunctionComponent<PropTypes> = (props: PropTypes) 
         <div >
           { renderTags() }
         </div>
-        <Link
-          href="#" // TODO: Define where link will be obtained
-          text={formatText('videoCard-latestEpisode')}/>
       </div>
       <FooterButton
         onPress={onPressExpand}/>

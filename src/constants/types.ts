@@ -1,19 +1,32 @@
 // @Vendors
 import { RefObject } from "react";
+import { Moment } from "moment";
 
 export interface Duration {
   values: Array<number>;
   textKey: string;
 }
 
+export interface EpisodeAPIData {
+  ID: string;
+  Episode_Title: string;
+  Episode_Description: string;
+  Duration: string;
+  Episode_Date: string;
+  Episode_Website: string;
+  Video_URL: string;
+  poster_src: string;
+}
+
 export interface EpisodeData {
-  id: string;
+  relatedPodcastId: string;
+  title: string;
   description: string;
   duration: number;
-  episodeNumber: number;
-  link: string;
-  name: string;
-  src: string;
+  date: Moment;
+  posterSrc: string;
+  videoSrc: string;
+  website: string;
 }
 
 export interface FeaturedPodcastAPIData {
@@ -51,15 +64,11 @@ export interface PodcastData {
   website: string;
 }
 
-export interface EpisodeAPIData {
-  ID: string;
-  Episode_Title: string;
-  Episode_Description: string;
-  Duration: string;
-  Episode_Date: string;
-  Episode_Website: string;
-  Video_URL: string;
-  poster_src: string;
+export interface PodcastEntry {
+  sliderId: string;
+  podcastsData: PodcastData[];
+  sliderTitleKey: string;
+  anchorTextKey: string;
 }
 
 export interface PositionCheck {
@@ -73,13 +82,19 @@ export interface SelectorOption {
   value: string | number;
 }
 
+export interface SliderCategory {
+  searchKey: string;
+  sliderKey: string;
+  sliderShortKey: string;
+}
+
 export type getTranslationStyleArgs = {
   pageIndex: number;
   translationCoef: number;
   translationExp: string;
   cardsAmount?: number;
   cardsAmountPerPage?: Record<string, number>;
-  scrollContentWidth?: number;
+  elementsAmount: number;
   screenWidth?: number;
   fitLastPage?: boolean;
 };
@@ -87,6 +102,10 @@ export type getTranslationStyleArgs = {
 export type Action = {
   type: string;
   payload: Record<string, any>;
+};
+
+export type ActionSimple = {
+  type: string;
 };
 
 export type SliderRef = {

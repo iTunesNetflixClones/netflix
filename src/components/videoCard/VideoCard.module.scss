@@ -1,5 +1,17 @@
 @import '../../config/theme.scss';
 
+.cardWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  &__selected {
+    @extend %hl-colors-gradient;
+    padding: $layout-video-card-border_width;
+    transform: translateY(-$layout-video-card-border_width);
+  }
+}
+
 .container {
   position: relative;
   height: 100%;
@@ -19,11 +31,6 @@
   &__expanded {
     transform: scale($layout-video-card-grow-factor);
   }
-
-  &__selected {
-    border: $layout-video-card-border_width solid $colors-border-active;
-    transform: translateY(-$layout-video-card-border_width);
-  }
 }
 
 .image {
@@ -31,12 +38,31 @@
   width: 100%;
 }
 
+.indicatorContainer {
+  position: absolute;
+  bottom: -$font-size-xxlg-abs;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
 .indicator {
-  width: 0;
-  height: 0;
-  border-left: $layout-spacing-md solid transparent;
-  border-right: $layout-spacing-md solid transparent;
-  margin: 0 auto;
-  border-top: $layout-spacing-sm solid $colors-border-active;
+  font-size: $font-size-xxlg-abs * 2;
+  line-height: $font-size-xxlg-abs * 2;
   z-index: $layout-z-index-top;
+  @extend %hl-colors-font-gradient;
+
+  animation: fadein 750ms ease;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

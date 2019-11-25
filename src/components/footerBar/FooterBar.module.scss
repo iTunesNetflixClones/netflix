@@ -1,0 +1,65 @@
+@import '../../config/theme.scss';
+
+.container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: $layout-spacing-xxsm-abs $layout-spacing-lg;
+  background-color: $colors-background-primary-opaque;
+  z-index: $layout-topbar-z-index;
+}
+
+.linkContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: $layout-topbar-content-height;
+  width: 100%;
+  padding: 0 $layout-spacing-xlg-abs;
+
+  &__app {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+.textWrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &__app {
+    position: relative;
+    padding: $layout-spacing-xsm-abs 0;
+  }
+}
+
+.link {
+  margin-right: $layout-spacing-sm-abs;
+  font-size: $font-size-xlg-abs;
+  color: $colors-font-secondary;
+  text-decoration: none;
+
+  &:active {
+    color: $colors-font-secondary;
+    text-decoration: none;
+  }
+}
+
+.getProText {
+  @extend %fonts-ff-bold;
+  color: $colors-font-tertiary;
+  font-size: $font-size-md-abs;
+  margin-right: $layout-spacing-xsm;
+}

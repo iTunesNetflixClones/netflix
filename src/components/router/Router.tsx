@@ -11,6 +11,7 @@ import { StoreState } from 'constants/stateTypes';
 import { SliderRef } from 'constants/types';
 
 // @Components
+import FooterBar from 'components/footerBar/FooterBar';
 import Topbar from 'components/topbar/Topbar';
 
 // @Styles
@@ -29,6 +30,7 @@ const Routes: React.FunctionComponent<PropTypes> = (props: PropTypes) => (
       <Topbar
         anchors={props.registeredSliders}/>
       <Route path="/" exact component={VideoOverview} />
+      <FooterBar />
     </div>
   </Router>
 );

@@ -30,21 +30,16 @@
   margin: $layout-spacing-xsm-abs 0;
 
   @media screen and (max-width: $layout-portrait-width-breakpoint) {
-    font-size: $font-size-md-abs;
+    font-size: $font-size-lg-abs;
     margin: $layout-spacing-xxsm-abs 0;
   }
 }
 
 .separator {
   display: inline;
-  @extend %fonts-ff-regular;
   color: $colors-font-bullets;
-  font-size: $font-size-lg-abs;
+  font-size: $font-size-xsm-abs;
   margin: 0 $layout-spacing-xsm-abs;
-
-  @media screen and (max-width: $layout-portrait-width-breakpoint) {
-    font-size: $font-size-sm-abs;
-  }
 }
 
 .tagsRow {
@@ -63,6 +58,6 @@
   font-size: $font-size-lg-abs;
 
   @media screen and (max-width: $layout-portrait-width-breakpoint) {
-    font-size: $font-size-sm-abs;
+    font-size: $font-size-md-abs;
   }
 }

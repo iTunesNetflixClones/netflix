@@ -1,6 +1,11 @@
+// @Vendors
+import orderBy from 'lodash/orderBy';
+
 // @Constants
-import { PodcastData, EpisodeAPIData, FeaturedPodcastAPIData, PodcastAPIData } from 'constants/types';
+import { PodcastData, EpisodeAPIData, FeaturedPodcastAPIData, PodcastAPIData, EpisodeData } from 'constants/types';
 import {
+  EPISODE_DESCRIPTION_MAX_LENGTH,
+  PODCAST_DESCRIPTION_MAX_LENGTH,
   PODCAST_EXPLICIT,
   PODCAST_DRIVE_IMG_LINK_SUFFIX,
   PODCAST_DRIVE_LINK_PREFIX,
@@ -11,11 +16,12 @@ import {
 
 // @Utils
 import { getDataElement } from './commonUtils';
+import { getDateObject, getDurationInMillis } from './dateHelper';
 
 // @jsonFeed
-import featuredFeed from 'jsonFeed/featured.json';
-import episodesFeed from 'jsonFeed/episodes.json';
-import podcastsFeed from 'jsonFeed/podcasts.json';
+import featuredFeed from 'resources/featured.json';
+import episodesFeed from 'resources/episodes.json';
+import podcastsFeed from 'resources/podcasts.json';
 
 const pushCategory = (category: string, genres: string[]): void => {
   if(category) {
@@ -54,16 +60,23 @@ const countEpisodes = (episodes: EpisodeAPIData[], podcastId: string): number =>
   )).length
 );
 
-const buildVideoUrl = (podcast: PodcastAPIData | FeaturedPodcastAPIData): string => {
+const buildVideoUrl = (podcast: PodcastAPIData | FeaturedPodcastAPIData | EpisodeAPIData): string => {
   const videoURL = getDataElement(podcast, 'Video_URL', '');
   const videoId = videoURL.replace(PODCAST_DRIVE_LINK_PREFIX, '').replace(PODCAST_DRIVE_LINK_SUFFIX, '');
   return `${PODCAST_DRIVE_LINK_RESOLVER}${videoId}`;
 };
 
-const buildImageUrl = (podcast: PodcastAPIData | FeaturedPodcastAPIData): string => {
+const buildImageUrl = (podcast: PodcastAPIData | FeaturedPodcastAPIData | EpisodeAPIData): string => {
   const imgURL = getDataElement(podcast, 'poster_src', '');
   const videoId = imgURL.replace(PODCAST_DRIVE_LINK_PREFIX, '').replace(PODCAST_DRIVE_IMG_LINK_SUFFIX, '');
   return `${PODCAST_DRIVE_IMG_LINK_RESOLVER}${videoId}`;
+};
+
+const buildDescriptionText = (description: string, maxChars: number): string => {
+  if(description.length > maxChars) {
+    return `${description.substring(0, maxChars)}...`;
+  }
+  return description;
 };
 
 const mapPodcastAPIData = (podcast: PodcastAPIData | FeaturedPodcastAPIData): PodcastData => ({
@@ -73,7 +86,7 @@ const mapPodcastAPIData = (podcast: PodcastAPIData | FeaturedPodcastAPIData): Po
   isNew: false, // TODO: Define this value
   categories: mapGenres(podcast),
   coincidence: 100, // TODO: Define this value
-  description: getDataElement(podcast, 'Podcast_Description', ''),
+  description: buildDescriptionText(getDataElement(podcast, 'Podcast_Description', ''), PODCAST_DESCRIPTION_MAX_LENGTH),
   explicit: getExplicitRate(podcast),
   posterSrc: buildImageUrl(podcast),
   title: getDataElement(podcast, 'Podcast_Title', ''),
@@ -82,12 +95,35 @@ const mapPodcastAPIData = (podcast: PodcastAPIData | FeaturedPodcastAPIData): Po
   website: getDataElement(podcast, 'Website', '')
 });
 
+const mapEpisodeAPIData = (episode: EpisodeAPIData): EpisodeData => ({
+  relatedPodcastId: getDataElement(episode, 'ID', ''),
+  title: getDataElement(episode, 'Episode_Title', ''),
+  description: buildDescriptionText(getDataElement(episode, 'Episode_Description', ''), EPISODE_DESCRIPTION_MAX_LENGTH),
+  duration: getDurationInMillis(getDataElement(episode, 'Duration', '00:00:00')),
+  date: getDateObject(getDataElement(episode, 'Episode_Date', '01/01/1900')),
+  website: getDataElement(episode, 'Episode_Website', ''),
+  videoSrc: buildVideoUrl(episode),
+  posterSrc: buildImageUrl(episode)
+});
+
 export const mapPodcasts = (): PodcastData[] => {
   if(!(podcastsFeed instanceof Array)) {
     return [];
   }
 
   return podcastsFeed.map(mapPodcastAPIData);
+};
+
+export const mapEpisodes = (podcastId: string): EpisodeData[] => {
+  if(!(episodesFeed instanceof Array)) {
+    return [];
+  }
+
+  const episodesData = episodesFeed
+    .filter((episode: EpisodeAPIData): boolean => episode.ID === podcastId)
+    .map(mapEpisodeAPIData);
+
+  return orderBy(episodesData, ['date'], ['desc']);
 };
 
 export const mapFeaturedPodcast = (): PodcastData => {
