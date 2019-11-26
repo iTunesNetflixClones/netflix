@@ -31,6 +31,8 @@ interface OwnProps {
   renderOverlay?: (playing: boolean) => void;
   size: PLAYER_CONTROLS_SIZES;
   src: string;
+  thumbsDownActive?: boolean;
+  thumbsUpActive?: boolean;
 }
 
 interface StateProps {
@@ -58,7 +60,9 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     renderOverlay,
     requestPlayerControl,
     size,
-    src
+    src,
+    thumbsDownActive,
+    thumbsUpActive
   } = props;
 
   const [muted, setMuted] = useState(false);
@@ -137,7 +141,9 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
           onRestartPlayer={restartPlayer}
           onToggleMuted={toggleMuted}
           playing={playing}
-          size={size} />
+          size={size}
+          thumbsDownActive={thumbsDownActive}
+          thumbsUpActive={thumbsUpActive} />
       </div>
     </div>
   );

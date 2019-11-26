@@ -23,6 +23,8 @@ interface PropTypes {
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   renderExpandButton?: () => void;
+  thumbsDownActive: boolean;
+  thumbsUpActive: boolean;
   videoData: PodcastData;
 }
 
@@ -36,6 +38,8 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     onPressLike,
     onPressUnlike,
     renderExpandButton,
+    thumbsDownActive,
+    thumbsUpActive,
     videoData
   } = props;
   const { id, explicit, posterSrc, src } = videoData;
@@ -78,7 +82,9 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           playerId={`card-${id}`}
           renderOverlay={renderVideoOverlay}
           size={PLAYER_CONTROLS_SIZES.small}
-          src={src} />
+          src={src}
+          thumbsDownActive={thumbsDownActive}
+          thumbsUpActive={thumbsUpActive} />
       </div>
     );
   };

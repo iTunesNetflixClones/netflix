@@ -26,6 +26,8 @@ interface PropTypes {
   onToggleMuted: () => any;
   playing: boolean;
   size: PLAYER_CONTROLS_SIZES;
+  thumbsDownActive?: boolean;
+  thumbsUpActive?: boolean;
 }
 
 const getToggleMutedButton = (isMuted: boolean): string => isMuted ? 'fa fa-volume-off' : 'fa fa-volume-up';
@@ -41,7 +43,9 @@ const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     onRestartPlayer,
     onToggleMuted,
     playing,
-    size
+    size,
+    thumbsDownActive,
+    thumbsUpActive
   } = props;
 
   const buildControlsModifiers = (): string => {
@@ -64,15 +68,22 @@ const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     }
   };
 
-  const renderControlButton = (icon: string, onPress?: () => any): ReactElement => (
-    <CircularButton
-      iconSource={icon}
-      modifiers={[BUTTON_MODIFIERS.withBorder]}
-      size={getControlButtonsSize()}
-      spacing={[SPACING.right, SPACING.bottom]}
-      onPress={onPress}
-    />
-  );
+  const renderControlButton = (icon: string, onPress?: () => any, activeState: boolean = false): ReactElement => {
+    const buttonModifiers = [BUTTON_MODIFIERS.withBorder];
+    if(activeState) {
+      buttonModifiers.push(BUTTON_MODIFIERS.gradientActive);
+    }
+
+    return (
+      <CircularButton
+        iconSource={icon}
+        modifiers={buttonModifiers}
+        size={getControlButtonsSize()}
+        spacing={[SPACING.right, SPACING.bottom]}
+        onPress={onPress}
+      />
+    );
+  };
 
   const renderParentalTag = (): ReactElement => {
     const parentalText = getParentalAgeText(explicit);
@@ -87,8 +98,8 @@ const PlayerControls: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     <div className={buildControlsModifiers()}>
       <div className={styles.controlColumn} >
         { checkControlRender(PLAYER_CONTROLS.volumeControl, renderControlButton.bind(null, buttonIcon, buttonCallback)) }
-        { checkControlRender(PLAYER_CONTROLS.like, renderControlButton.bind(null, 'fa fa-thumbs-up', onPressLike)) }
-        { checkControlRender(PLAYER_CONTROLS.unlike, renderControlButton.bind(null, 'fa fa-thumbs-down', onPressUnlike)) }
+        { checkControlRender(PLAYER_CONTROLS.like, renderControlButton.bind(null, 'fa fa-thumbs-up', onPressLike, thumbsUpActive)) }
+        { checkControlRender(PLAYER_CONTROLS.unlike, renderControlButton.bind(null, 'fa fa-thumbs-down', onPressUnlike, thumbsDownActive)) }
         { checkControlRender(PLAYER_CONTROLS.myList, renderControlButton.bind(null, 'fa fa-plus', onPressMyList)) }
       </div>
       <div className={styles.tagContainer}>
