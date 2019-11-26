@@ -48,15 +48,14 @@ const FeaturedVideoInfoArea: React.FunctionComponent<PropTypes> = (props: PropTy
           text={podcastDescription} />
         <HeadlinerButton
           containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
+          iconSource={ICON_INFO}
+          onClick={onPressMoreInfo.bind(null, videoId)}
+          text={formatText('featuredVideoHeader-moreInfo')} />
+        <HeadlinerButton
+          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
           modifiers={[HL_BUTTON_MODIFIERS.GRADIENT_BG]}
           iconSource={ICON_LINK}
           onClick={onPressPlay} />
-        <HeadlinerButton
-          containerModifiers={[HL_BUTTON_CONTAINER_MODIFIERS.INLINE]}
-          iconSource={ICON_INFO}
-          onClick={onPressMoreInfo.bind(null, videoId)}
-          text={formatText('featuredVideoHeader-moreInfo')}
-        />
       </div>
     </div>
   );
