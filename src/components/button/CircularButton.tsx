@@ -46,7 +46,8 @@ const CircularButton: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
       [styles[`${baseButtonClassName}__border`]]: modifiers.indexOf(BUTTON_MODIFIERS.withBorder) !== -1,
       [styles[`${baseButtonClassName}__redContent`]]: modifiers.indexOf(BUTTON_MODIFIERS.redContent) !== -1,
       [styles[`${baseButtonClassName}__redBody`]]: modifiers.indexOf(BUTTON_MODIFIERS.redBody) !== -1,
-      [styles[`${baseButtonClassName}__upperCase`]]: modifiers.indexOf(BUTTON_MODIFIERS.upperCase) !== -1
+      [styles[`${baseButtonClassName}__upperCase`]]: modifiers.indexOf(BUTTON_MODIFIERS.upperCase) !== -1,
+      [styles[`${baseButtonClassName}__gradientActive`]]: modifiers.indexOf(BUTTON_MODIFIERS.gradientActive) !== -1
     });
   };
 

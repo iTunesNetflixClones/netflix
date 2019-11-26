@@ -1,4 +1,5 @@
 export enum BUTTON_MODIFIERS {
+  gradientActive,
   redBody,
   redContent,
   upperCase,

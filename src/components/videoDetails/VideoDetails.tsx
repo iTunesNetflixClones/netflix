@@ -20,11 +20,13 @@ import styles from './VideoDetails.module.scss';
 interface PropTypes {
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
+  thumbsDownActive: boolean;
+  thumbsUpActive: boolean;
   videoData: PodcastData;
 }
 
 const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { onPressLike, onPressUnlike, videoData } = props;
+  const { onPressLike, onPressUnlike, thumbsDownActive, thumbsUpActive, videoData } = props;
 
   const handlePressLinkButton = (): void => {
     window.open(videoData.website, '_blank');
@@ -38,6 +40,14 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
     onPressUnlike(videoData.id);
   };
 
+  const getCircularButtonModifiers = (isActivated: boolean): BUTTON_MODIFIERS[] => {
+    const modifiers = [BUTTON_MODIFIERS.withBorder];
+    if(isActivated) {
+      modifiers.push(BUTTON_MODIFIERS.gradientActive);
+    }
+    return modifiers;
+  };
+
   const renderButtonsRow = (): ReactElement => {
     return (
       <div className={styles.buttonsRow}>
@@ -47,12 +57,12 @@ const VideoDetails: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           iconSource={ICON_LINK}
           onClick={handlePressLinkButton} />
         <CircularButton
-          modifiers={[BUTTON_MODIFIERS.withBorder]}
+          modifiers={getCircularButtonModifiers(thumbsUpActive)}
           iconSource={ICON_LIKE}
           onPress={handlePressLike}
           spacing={[SPACING.right, SPACING.left]}/>
         <CircularButton
-          modifiers={[BUTTON_MODIFIERS.withBorder]}
+          modifiers={getCircularButtonModifiers(thumbsDownActive)}
           iconSource={ICON_UNLIKE}
           onPress={handlePressUnlike}
           spacing={[SPACING.right, SPACING.left]}/>

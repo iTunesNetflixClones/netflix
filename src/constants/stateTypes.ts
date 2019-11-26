@@ -13,6 +13,8 @@ export type PlayerState = {
 export type PodcastsState = {
   featuredPodcastData?: PodcastData;
   slidersData: PodcastEntry[];
+  thumbsUp: string[];
+  thumbsDown: string[];
 };
 
 export type SlidersState = {

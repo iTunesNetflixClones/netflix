@@ -105,6 +105,10 @@
   &__leftSeparated {
     margin-left: $margin-size;
   }
+
+  &__gradientActive {
+    @extend %hl-colors-gradient;
+  }
 }
 
 .buttonArea {

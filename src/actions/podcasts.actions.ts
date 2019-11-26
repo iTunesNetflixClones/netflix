@@ -2,7 +2,12 @@
 import { Dispatch } from 'redux';
 
 // @Action types
-import  { PODCAST_GET_FEATURED, PODCASTS_GET_SLIDERS_DATA } from 'constants/actionTypes';
+import  {
+  PODCAST_GET_FEATURED,
+  PODCASTS_GET_SLIDERS_DATA,
+  PODCAST_THUMBS_DOWN,
+  PODCAST_THUMBS_UP
+} from 'constants/actionTypes';
 
 // @Constants
 import { Action, SliderCategory, PodcastEntry } from 'constants/types';
@@ -32,5 +37,19 @@ export const getFeaturedPodcastData = () => (dispatch: Dispatch): Action => {
   return dispatch({
     type: PODCAST_GET_FEATURED,
     payload: { featuredPodcastData }
+  });
+};
+
+export const thumbsDownPodcast = (podcastId: string) => (dispatch: Dispatch): Action => {
+  return dispatch({
+    type: PODCAST_THUMBS_DOWN,
+    payload: { podcastId }
+  });
+};
+
+export const thumbsUpPodcast = (podcastId: string) => (dispatch: Dispatch): Action => {
+  return dispatch({
+    type: PODCAST_THUMBS_UP,
+    payload: { podcastId }
   });
 };

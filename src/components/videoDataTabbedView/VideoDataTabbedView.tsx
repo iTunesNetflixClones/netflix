@@ -23,11 +23,13 @@ interface PropTypes {
   onPressLike: (videoId: string) => void;
   onPressUnlike: (videoId: string) => void;
   onClose: () => void;
+  thumbsDownActive: boolean;
+  thumbsUpActive: boolean;
   videoData: PodcastData;
 }
 
 const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
-  const { id, onClose, onPressLike, onPressUnlike, videoData } = props;
+  const { id, onClose, onPressLike, onPressUnlike, thumbsDownActive, thumbsUpActive, videoData } = props;
 
   const [ tabIndex, setTabIndex ] = useState(0);
 
@@ -87,6 +89,8 @@ const VideoDataTabbedView: React.FunctionComponent<PropTypes> = (props: PropType
         <VideoDetails
           onPressLike={onPressLike}
           onPressUnlike={onPressUnlike}
+          thumbsDownActive={thumbsDownActive}
+          thumbsUpActive={thumbsUpActive}
           videoData={videoData}/>
       );
     }

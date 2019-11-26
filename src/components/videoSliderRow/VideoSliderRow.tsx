@@ -34,6 +34,10 @@ import dragScrollBindCreator from 'hooks/dragHook';
 
 // @Actions
 import * as sliderActions from 'actions/slider.actions';
+import { thumbsDownPodcast, thumbsUpPodcast } from 'actions/podcasts.actions';
+
+// @Utils
+import { getDataElement } from 'utils/commonUtils';
 
 // @PropTypes
 interface OwnProps {
@@ -45,10 +49,14 @@ interface OwnProps {
 interface StateProps {
   currentSliderId?: string;
   currentPodcastIndex: number;
+  thumbsDown: string[];
+  thumbsUp: string[];
 }
 interface DispatchProps {
   clearSelectedPodcastIndex: () => void;
   openSlider: (sliderId?: string) => void;
+  thumbsDownPodcast: (podcastId: string) => void;
+  thumbsUpPodcast: (podcastId: string) => void;
 }
 type PropTypes = OwnProps & StateProps & DispatchProps;
 
@@ -57,10 +65,12 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     clearSelectedPodcastIndex,
     currentPodcastIndex,
     currentSliderId,
-    onPressLike,
-    onPressUnlike,
     openSlider,
     sliderId,
+    thumbsDown,
+    thumbsDownPodcast,
+    thumbsUp,
+    thumbsUpPodcast,
     videosList
   } = props;
 
@@ -158,6 +168,8 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
       const isSelected: boolean = selectedIndex === indexInRow;
       const isExpanded: boolean = selectedIndex === -1 && indexInRow === expandedIndex;
       const className: string = `${styles.sliderCard} ${isExpanded ? styles.sliderCard__expanded : ''}`;
+      const thumbsDownActive: boolean = thumbsDown.includes(video.id);
+      const thumbsUpActive: boolean = thumbsUp.includes(video.id);
       return (
         <div
           key={video.id}
@@ -168,25 +180,33 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
             isSelected={isSelected}
             onExpand={handleExpandVideo}
             onExpandedStateChanges={handleExpandedStateChange}
-            onPressLike={onPressLike}
-            onPressUnlike={onPressUnlike}
+            onPressLike={thumbsUpPodcast.bind(null, video.id)}
+            onPressUnlike={thumbsDownPodcast.bind(null, video.id)}
             renderExpandButton={renderExpandButton.bind(null, indexInRow, isSelected)}
+            thumbsDownActive={thumbsDownActive}
+            thumbsUpActive={thumbsUpActive}
             videoData={video}/>
         </div>
       );
     })
   );
 
-  const renderDetailsTab = (): ReactElement | null => {
+  const renderDetailsTab = (thumbsDownList: string[], thumbsUpList: string[]): ReactElement | null => {
     if(selectedIndex === -1) {
       return null;
     }
+
+    const selectedPodcastId = getDataElement(videosList, `[${selectedIndex}].id`, '');
+    const thumbsDownActive: boolean = thumbsDownList.includes(selectedPodcastId);
+    const thumbsUpActive: boolean = thumbsUpList.includes(selectedPodcastId);
     return (
       <VideoDataTabbedView
         id={`tabeedView-${sliderId}`}
         onClose={handleCloseVideo}
-        onPressLike={onPressLike}
-        onPressUnlike={onPressUnlike}
+        onPressLike={thumbsUpPodcast}
+        onPressUnlike={thumbsDownPodcast}
+        thumbsDownActive={thumbsDownActive}
+        thumbsUpActive={thumbsUpActive}
         videoData={videosList[selectedIndex]}/>
     );
   };
@@ -229,20 +249,24 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
           onClick={handleScroll}
           type={SLIDER_BUTTON_TYPES.next}/>
       </div>
-      { renderDetailsTab() }
+      { renderDetailsTab(thumbsDown, thumbsUp) }
     </React.Fragment>
   );
 };
 
 const mapStateToProps = (state: StoreState): StateProps => ({
   currentSliderId: state.slidersReducer.currentSliderId,
-  currentPodcastIndex: state.slidersReducer.currentPodcastIndex
+  currentPodcastIndex: state.slidersReducer.currentPodcastIndex,
+  thumbsDown: state.podcastsReducer.thumbsDown,
+  thumbsUp: state.podcastsReducer.thumbsUp,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): DispatchProps => (
   bindActionCreators({
     clearSelectedPodcastIndex: sliderActions.clearSelectedPodcastIndex,
-    openSlider: sliderActions.openSlider
+    openSlider: sliderActions.openSlider,
+    thumbsDownPodcast,
+    thumbsUpPodcast
   }, dispatch)
 );
 
