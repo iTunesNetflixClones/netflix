@@ -7,6 +7,7 @@ import { BUTTON_MODIFIERS, BUTTON_SIZES, SPACING } from 'constants/enums';
 
 // @Helpers
 import { getButtonSizeStyle } from 'utils/layoutHelper';
+import { propagationPreventer } from 'utils/miscHelper';
 
 // @Styles
 import styles from './CircularButton.module.scss';
@@ -23,6 +24,10 @@ interface PropTypes {
 const CircularButton: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { iconSource, modifiers, onPress, size, spacing } = props;
   const { baseButtonClass, baseButtonClassName } = getButtonSizeStyle(styles, size);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
+    propagationPreventer(event, onPress);
+  };
 
   const buildSpacing = (): string => {
     if(!spacing) {
@@ -56,7 +61,7 @@ const CircularButton: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   return (
     <button
       className={buildButtonClassName()}
-      onClick={onPress}
+      onClick={handleClick}
       type="button"
     >
       <i className={iconSource} />

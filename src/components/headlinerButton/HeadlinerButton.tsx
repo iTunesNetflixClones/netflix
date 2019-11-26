@@ -8,6 +8,9 @@ import styles from './HeadlinerButton.module.scss';
 // @Constants
 import { HL_BUTTON_CONTAINER_MODIFIERS, HL_BUTTON_MODIFIERS } from 'constants/enums';
 
+// @Helpers
+import { propagationPreventer } from 'utils/miscHelper';
+
 // @Utils
 import { formatText } from 'utils/i18n';
 
@@ -26,6 +29,10 @@ const HeadlinerButton: React.FunctionComponent<PropTypes>  = (props: PropTypes) 
   const { containerModifiers, disabled, iconSource, modifiers, onClick, text, textKey } = props;
 
   const buttonText = textKey ? formatText(textKey) : (text || '');
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
+    propagationPreventer(event, onClick);
+  };
 
   const buildButtonClassName = (): string => {
     if(!modifiers) {
@@ -69,7 +76,7 @@ const HeadlinerButton: React.FunctionComponent<PropTypes>  = (props: PropTypes) 
       <button
         className={buildButtonClassName()}
         disabled={disabled}
-        onClick={onClick}>
+        onClick={handleClick}>
         { renderIcon() }
         { buttonText.toUpperCase() }
       </button>
