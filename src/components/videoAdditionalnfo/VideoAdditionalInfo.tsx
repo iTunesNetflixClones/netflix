@@ -4,15 +4,10 @@ import React, { ReactElement } from 'react';
 // @Constants
 import { PodcastData } from 'constants/types';
 import { VIDEO_INFO_TEXT_SEPARATOR } from 'constants/constants';
-import { LINK_MODIFIERS } from 'constants/enums';
 
 // @Components
 import FormattedText from 'components/formattedText/FormattedText';
 import Label from 'components/label/Label';
-import Link from 'components/link/Link';
-
-// @Utils
-import { formatText } from 'utils/i18n';
 
 // @Styles
 import styles from './VideoAdditionalInfo.module.scss';
@@ -65,10 +60,6 @@ const VideoAddionalInfo: React.FunctionComponent<PropTypes> = (props: PropTypes)
     <div className={styles.addionalDataContainer}>
       { renderAuthorRow() }
       { renderRow('videoDetails-genres', videoData.categories) }
-      <Link
-        href={videoData.website}
-        modifiers={[LINK_MODIFIERS.LARGE]}
-        text={formatText('videoDetails-visitWebsite')}/>
     </div>
   );
 };
