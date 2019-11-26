@@ -114,7 +114,8 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
 
   return (
     <div
-      className={wrapperClassName}>
+      className={wrapperClassName}
+      onClick={onExpand.bind(null, index)}>
       <div
         onMouseEnter={(): void => handleSetExpanded(true)}
         onMouseLeave={(): void => handleSetExpanded(false)}
