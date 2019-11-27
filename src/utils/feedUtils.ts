@@ -18,11 +18,6 @@ import {
 import { getDataElement } from './commonUtils';
 import { getDateObject, getDurationInMillis } from './dateHelper';
 
-// @jsonFeed
-import featuredFeed from 'resources/featured.json';
-import episodesFeed from 'resources/episodes.json';
-import podcastsFeed from 'resources/podcasts.json';
-
 const pushCategory = (category: string, genres: string[]): void => {
   if(category) {
     genres.push(category);
@@ -79,7 +74,7 @@ const buildDescriptionText = (description: string, maxChars: number): string => 
   return description;
 };
 
-const mapPodcastAPIData = (podcast: PodcastAPIData | FeaturedPodcastAPIData): PodcastData => ({
+const mapPodcastAPIData = (podcast: PodcastAPIData | FeaturedPodcastAPIData, episodesFeed: EpisodeAPIData[]): PodcastData => ({
   author: getDataElement(podcast, 'Author', ''),
   episodesAmount: countEpisodes(episodesFeed, getDataElement(podcast, 'ID', '')),
   id: getDataElement(podcast, 'ID', ''),
@@ -106,15 +101,15 @@ const mapEpisodeAPIData = (episode: EpisodeAPIData): EpisodeData => ({
   posterSrc: buildImageUrl(episode)
 });
 
-export const mapPodcasts = (): PodcastData[] => {
+export const mapPodcasts = (podcastsFeed: PodcastAPIData[], episodesFeed: EpisodeAPIData[]): PodcastData[] => {
   if(!(podcastsFeed instanceof Array)) {
     return [];
   }
 
-  return podcastsFeed.map(mapPodcastAPIData);
+  return podcastsFeed.map((podcast: PodcastAPIData): PodcastData => mapPodcastAPIData(podcast, episodesFeed));
 };
 
-export const mapEpisodes = (podcastId: string): EpisodeData[] => {
+export const mapEpisodes = (podcastId: string, episodesFeed: EpisodeAPIData[]): EpisodeData[] => {
   if(!(episodesFeed instanceof Array)) {
     return [];
   }
@@ -126,9 +121,9 @@ export const mapEpisodes = (podcastId: string): EpisodeData[] => {
   return orderBy(episodesData, ['date'], ['desc']);
 };
 
-export const mapFeaturedPodcast = (): PodcastData => {
+export const mapFeaturedPodcast = (featuredFeed: PodcastAPIData[], episodesFeed: EpisodeAPIData[]): PodcastData => {
   const featured = getDataElement(featuredFeed, '[0]', {});
-  return mapPodcastAPIData(featured);
+  return mapPodcastAPIData(featured, episodesFeed);
 };
 
 export const filterByCategory = (sliderCategory: string, podcasts: PodcastData[] = []): PodcastData[] => (
