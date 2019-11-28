@@ -6,6 +6,8 @@ $layout-spacing-lg: 4vw;
 $layout-spacing-xlg: 5vw;
 $layout-spacing-xxlg: 7vw;
 
+$layout-spacing-xxxxsm-abs: 4px;
+$layout-spacing-xxxsm-abs: 6px;
 $layout-spacing-xxsm-abs: 8.5px;
 $layout-spacing-xsm-abs: 12.5px;
 $layout-spacing-sm-abs: 15px;
@@ -13,6 +15,11 @@ $layout-spacing-md-abs: 25px;
 $layout-spacing-lg-abs: 30px;
 $layout-spacing-xlg-abs: 45px;
 $layout-spacing-xxlg-abs: 90px;
+
+$layout-spacing-podcast-slider-top: 10px;
+$layout-spacing-podcast-slider-bottom: 65px;
+$layout-spacing-podcast-app-slider-top: 20px;
+$layout-spacing-podcast-app-slider-bottom: 75px;
 
 $layout-logo-size: 100px;
 
@@ -61,7 +68,7 @@ $layout-sm-controls-bottom-space: 15%;
 $layout-grow-factor-hl-button: 1.05;
 $layout-button-grow-factor-small: 1.1;
 $layout-button-grow-factor-large: 1.5;
-$layout-video-card-grow-factor: 1.6;
+$layout-video-card-grow-factor: 1.55;
 
 $layout-transition-time-quick: 300ms ease 100ms;
 $layout-transition-time: 750ms ease 100ms;

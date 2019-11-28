@@ -3,14 +3,10 @@
 .mainContainer {
   position: relative;
   overflow: hidden;
-  padding: $layout-spacing-lg 0 $layout-spacing-xxlg;
-
-  @media screen and (max-width: $layout-tablet-width-breakpoint) {
-    padding: ($layout-spacing-lg * 1.6) 0 ($layout-spacing-xxlg * 1.6);
-  }
+  padding: $layout-spacing-podcast-slider-top 0 $layout-spacing-podcast-slider-bottom;
 
   @media screen and (max-width: $layout-app-width-breakpoint) {
-    padding: ($layout-spacing-lg * 2) 0 ($layout-spacing-xxlg * 2);
+    padding: $layout-spacing-podcast-app-slider-top 0 $layout-spacing-podcast-app-slider-bottom;
   }
 }
 

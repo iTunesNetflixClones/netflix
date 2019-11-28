@@ -37,6 +37,12 @@ $font-size-lg-abs: 18px;
 $font-size-xlg-abs: 25px;
 $font-size-xxlg-abs: 30px;
 
+$font-size-featured-subtitle: 17px;
+$font-size-featured-subtitle-responsive: 15px;
+
+$font-size-featured-desc: 21px;
+$font-size-featured-desc-responsive: 18px;
+
 @mixin font-size-responsive($base-font-size) {
   font-size: $base-font-size;
 
