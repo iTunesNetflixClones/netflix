@@ -7,16 +7,21 @@
   left: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   padding: $layout-spacing-xxsm-abs $layout-spacing-lg;
   z-index: $layout-topbar-z-index;
+
+  @media screen and (max-width: $layout-app-width-breakpoint) {
+    justify-content: space-between;
+  }
 }
 
 .anchorsContainer {
   position: relative;
   display: inline-block;
   margin: auto 0;
+  padding-left: $layout-spacing-md-abs;
 }
 
 .background {
@@ -46,7 +51,7 @@
   text-decoration: none;
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
-    font-size: $font-size-sm-abs;
+    font-size: $font-size-xsm-abs;
   }
 
   &:hover {
