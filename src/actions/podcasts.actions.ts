@@ -11,6 +11,9 @@ import  {
   PODCAST_THUMBS_UP
 } from 'constants/actionTypes';
 
+// @Config
+import { EPISODES_DATA, FEATURED_PODCAST, PODCAST_DATA } from 'config/endpoints';
+
 // @Constants
 import { Action, SliderCategory, PodcastEntry } from 'constants/types';
 import { VIDEO_SLIDER_CATEGORIES } from 'constants/constants';
@@ -20,7 +23,7 @@ import { filterByCategory, mapPodcasts, mapFeaturedPodcast } from 'utils/feedUti
 import { localFetch } from 'utils/fetchUtils';
 
 export const getSlidersData = () => (dispatch: Dispatch): Promise<Action> => {
-  return Promise.all([localFetch('/resources/podcasts.json'), localFetch('/resources/episodes.json')])
+  return Promise.all([localFetch(PODCAST_DATA), localFetch(EPISODES_DATA)])
     .then(data => {
       const podcastsData = mapPodcasts(data[0], data[1]);
       const slidersData = VIDEO_SLIDER_CATEGORIES.map((category: SliderCategory, index: number): PodcastEntry => ({
@@ -44,7 +47,7 @@ export const getSlidersData = () => (dispatch: Dispatch): Promise<Action> => {
 };
 
 export const getFeaturedPodcastData = () => (dispatch: Dispatch): Promise<Action> => {
-  return Promise.all([localFetch('/resources/featured.json'), localFetch('/resources/episodes.json')])
+  return Promise.all([localFetch(FEATURED_PODCAST), localFetch(EPISODES_DATA)])
     .then(data => {
       const featuredPodcastData = mapFeaturedPodcast(data[0], data[1]);
 
