@@ -5,11 +5,11 @@
   display: flex;
   align-items: center;
   background:
-    linear-gradient(transparent 20%, $colors-background-primary),
+    linear-gradient($colors-background-primary, $colors-background-primary-featured-overlay, $colors-background-primary),
     linear-gradient(to right, $colors-hl-gradient-start, $colors-hl-gradient-mid, $colors-hl-gradient-end, transparent 75%);
 
   @media screen and (max-width: $layout-app-width-breakpoint) {
-    background: linear-gradient($colors-background-primary-overlay, $colors-background-primary 80%);
+    background: linear-gradient($colors-background-primary, $colors-background-primary-featured-overlay, $colors-background-primary);
   }
   z-index: $layout-z-index-low;
 }
