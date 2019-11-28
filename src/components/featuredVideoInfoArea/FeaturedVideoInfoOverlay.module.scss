@@ -21,9 +21,9 @@
 .titleText {
   @extend %fonts-ff-bold;
   font-size: $font-size-xxlg-abs;
-  color: $colors-font-secondary;
+  color: $colors-font-tertiary;
   text-transform: uppercase;
-  margin: 0 auto $layout-spacing-md;
+  margin: 0 auto $layout-spacing-xxxxsm-abs;
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
     font-size: $font-size-xlg-abs;
@@ -32,24 +32,24 @@
 
 .subtitleText {
   @extend %fonts-ff-bold;
-  font-size: $font-size-xlg-abs;
+  font-size: $font-size-featured-subtitle;
   color: $colors-font-highlight;
   margin: 0 auto;
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
-    font-size: $font-size-lg-abs;
+    font-size: $font-size-featured-subtitle-responsive;
   }
 }
 
 .descriptionText {
   max-width: 50vw;
   @extend %fonts-ff-regular;
-  font-size: $font-size-xlg-abs;
-  color: $colors-font-secondary;
-  margin: $layout-spacing-xsm 0 $layout-spacing-md;
+  font-size: $font-size-featured-desc;
+  color: $colors-font-tertiary;
+  margin: $layout-spacing-xxxsm-abs 0 $layout-spacing-md;
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
-    font-size: $font-size-lg-abs;
+    font-size: $font-size-featured-desc-responsive;
     max-width: 80vw;
   }
 
