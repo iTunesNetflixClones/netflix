@@ -4,6 +4,9 @@ import { Dispatch } from 'redux';
 // @Action types
 import  { EPISPDES_SET_EPISODE_DATA, EPISPDES_SET_EPISODE_DATA_ERR } from 'constants/actionTypes';
 
+// @Config
+import { EPISODES_DATA } from 'config/endpoints';
+
 // @Constants
 import { Action } from 'constants/types';
 
@@ -12,7 +15,7 @@ import { mapEpisodes } from 'utils/feedUtils';
 import { localFetch } from 'utils/fetchUtils';
 
 export const getEpisodes = (podcastId: string) => (dispatch: Dispatch): Promise<Action> => {
-  return localFetch('/resources/episodes.json')
+  return localFetch(EPISODES_DATA)
     .then(data => {
       const episodesData = mapEpisodes(podcastId, data);
       return dispatch({
