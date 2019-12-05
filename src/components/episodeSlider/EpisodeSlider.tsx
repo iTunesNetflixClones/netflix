@@ -2,6 +2,7 @@
 import React, { RefObject, useRef, useState, ReactElement, useEffect } from 'react';
 import get from 'lodash/get';
 import { isMobile } from 'react-device-detect';
+import { useDrag } from 'react-use-gesture';
 
 // @Constants
 import { EpisodeData } from 'constants/types';
@@ -11,7 +12,8 @@ import {
   EPISODE_SLIDER_TRANSLATION_COEF,
   EPISODE_SLIDER_TRANSLATION_COEF_RESP,
   EPISODE_SLIDER_TRANSLATION_EXP,
-  SCREEN_TABLET_MIN_WIDTH
+  SCREEN_TABLET_MIN_WIDTH,
+  VIDEO_SLIDER_SCROLL_BLOCK_TIME
 } from 'constants/constants';
 
 // @Components
@@ -23,6 +25,7 @@ import { getLastPageIndex, getTranslationStyle, isLastPage } from 'utils/layoutH
 
 // @Hooks
 import useResizeDetector from 'hooks/resizeDetector';
+import dragScrollBindCreator from 'hooks/dragHook';
 
 // @Styles
 import styles from './EpisodeSlider.module.scss';
@@ -39,6 +42,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
   const [ sliderButtonVisible, setSliderButtonVisible ] = useState(false);
   const [ pageIndex, setPageIndex ] = useState(0);
   const [ scrollContentWidth, setScrollContentWidth ] = useState(0);
+  const [ scrollBlocked, setScrollBlocked ] = useState(false);
 
   const sliderScrollRef: RefObject<HTMLDivElement> = useRef(null);
 
@@ -61,6 +65,18 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
     const nextIndex: number = pageIndex + (isBack ? -1 : 1);
     setPageIndex(nextIndex);
   };
+
+  const dragBind = dragScrollBindCreator({
+    scrollBackAllowed: pageIndex > 0,
+    scrollForwardAllowed: !isLastPage(pageIndex, window.innerWidth, EPISODE_CARDS_AMOUNT, episodesList.length),
+    scrollIsBlocked: scrollBlocked
+  }, useDrag, (isBack: boolean) => {
+    setScrollBlocked(true);
+    handleScroll(isBack);
+    setTimeout(() => {
+      setScrollBlocked(false);
+    }, VIDEO_SLIDER_SCROLL_BLOCK_TIME);
+  });
 
   useEffect(() => {
     const totalWidth: number = get(sliderScrollRef, 'current.scrollWidth', 0);
@@ -85,6 +101,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
 
   return (
     <div
+      { ... dragBind() }
       onMouseEnter={handleMouseOver.bind(null, true) }
       onMouseLeave={handleMouseOver.bind(null, false)}
       className={styles.sliderFrame}>
