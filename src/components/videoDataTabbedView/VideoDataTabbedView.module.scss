@@ -68,6 +68,7 @@ $breakpoints-player: (
 
   @media screen and (max-width: $layout-app-width-breakpoint) {
     height: $layout-spacing-details-header-height-app;
+    padding-left: $layout-spacing-xxlg;
   }
 }
 

@@ -9,6 +9,10 @@
   @extend %layout-absolute-fill;
   padding: $layout-spacing-md $layout-spacing-lg;
   z-index: $layout-z-index-low;
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    padding: $layout-spacing-md $layout-spacing-xxlg;
+  }
 }
 
 .buttonsRow {

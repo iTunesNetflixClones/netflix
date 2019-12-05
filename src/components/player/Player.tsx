@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { connect } from 'react-redux';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
+import { isMobile } from "react-device-detect";
 
 // @Components
 import PlayerControls from 'components/playerControls/PlayerControls';
@@ -96,17 +97,28 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     }
   };
 
+  const handleHoverPlay = (nextState: boolean): void => {
+    if(nextState) {
+      restartPlayer();
+    }
+    setHoverPlay(nextState);
+  };
+
   const handleTogleHoverPlay = (nextState: boolean): void => {
-    if(hoverPlayMode) {
-      if(nextState) {
-        restartPlayer();
-      }
-      setHoverPlay(nextState);
+    if(!isMobile && hoverPlayMode) {
+      handleHoverPlay(nextState);
+    }
+  };
+
+  const handleClick = (): void => {
+    if(isMobile && hoverPlayMode) {
+      handleHoverPlay(!hoverPlayOn);
     }
   };
 
   return (
     <div
+      onClick={handleClick}
       onMouseEnter={handleTogleHoverPlay.bind(null, true)}
       onMouseLeave={handleTogleHoverPlay.bind(null, false)}
       className={styles.wrapper}>
@@ -120,6 +132,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
           controls={false}
           frameBorder="0"
           modestbranding={1}
+          playsinline
           muted={muted}
           onPause={handlePauseVideo}
           onEnded={stopPlaying}

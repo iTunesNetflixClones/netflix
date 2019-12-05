@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import { connect } from 'react-redux';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 import { useDrag } from 'react-use-gesture';
+import { isMobile } from 'react-device-detect';
 
 // @Styles
 import styles from './VideoSliderRow.module.scss';
@@ -16,8 +17,10 @@ import VideoDataTabbedView from 'components/videoDataTabbedView/VideoDataTabbedV
 
 // @Constants
 import {
+  SCREEN_TABLET_MIN_WIDTH,
   VIDEO_SLIDER_SCROLL_BLOCK_TIME,
   VIDEO_SLIDER_TRANSLATION_COEF,
+  VIDEO_SLIDER_TRANSLATION_COEF_RESP,
   VIDEO_SLIDER_TRANSLATION_EXP,
   VIDEO_CARDS_AMOUNT
 } from 'constants/constants';
@@ -116,6 +119,12 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
   const handleScroll = (isBack: boolean): void => {
     const nextIndex: number = currentIndex + (isBack ? -1 : 1);
     setCurrentIndex(nextIndex);
+  };
+
+  const handleMouseOver = (nextOverState: boolean): void => {
+    if(!isMobile) {
+      setSlideButtonVisible(nextOverState);
+    }
   };
 
   const dragBind = dragScrollBindCreator({
@@ -223,11 +232,11 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
     <React.Fragment>
       <div
         { ... dragBind() }
-        onMouseEnter={setSlideButtonVisible.bind(null, true)}
-        onMouseLeave={setSlideButtonVisible.bind(null, false)}
+        onMouseEnter={handleMouseOver.bind(null, true)}
+        onMouseLeave={handleMouseOver.bind(null, false)}
         className={styles.sliderFrame}>
         <SliderButton
-          isHidden={!slideButtonVisible}
+          isHidden={!slideButtonVisible && !isMobile}
           isUnmounted={(selectedIndex !== -1) || currentIndex === 0}
           onClick={handleScroll}
           type={SLIDER_BUTTON_TYPES.back}/>
@@ -237,14 +246,14 @@ const VideoSliderRow: React.FunctionComponent<PropTypes> = (props: PropTypes) =>
           style={{ transform: getTranslationStyle({
             elementsAmount: videosList.length,
             pageIndex: currentIndex,
-            translationCoef: VIDEO_SLIDER_TRANSLATION_COEF,
+            translationCoef: window.innerWidth >= SCREEN_TABLET_MIN_WIDTH ? VIDEO_SLIDER_TRANSLATION_COEF : VIDEO_SLIDER_TRANSLATION_COEF_RESP,
             translationExp: VIDEO_SLIDER_TRANSLATION_EXP
           })}}
           className={className}>
           { renderVideoCards() }
         </div>
         <SliderButton
-          isHidden={!slideButtonVisible}
+          isHidden={!slideButtonVisible && !isMobile}
           isUnmounted={(selectedIndex !== -1) || isLastPage(currentIndex, window.innerWidth, VIDEO_CARDS_AMOUNT, videosList.length)}
           onClick={handleScroll}
           type={SLIDER_BUTTON_TYPES.next}/>

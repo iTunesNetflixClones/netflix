@@ -1,6 +1,7 @@
 // @Vendors
 import React, { ReactElement } from 'react';
 import classNames from 'classnames';
+import { isMobile } from "react-device-detect";
 
 // @Constants
 import { PLAYER_CONTROLS, PLAYER_CONTROLS_SIZES } from 'constants/enums';
@@ -53,6 +54,12 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const handleLike = (): void => { onPressLike(id); };
 
   const handleUnlike = (): void => { onPressUnlike(id); };
+
+  const handleMouseOverStateChange = (isEnter: boolean): void => {
+    if(!isMobile) {
+      handleSetExpanded(isEnter);
+    }
+  };
 
   const renderVideoOverlay = (playing: boolean): ReactElement => {
     return (
@@ -117,8 +124,8 @@ const VideoCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
       className={wrapperClassName}
       onClick={onExpand.bind(null, index)}>
       <div
-        onMouseEnter={(): void => handleSetExpanded(true)}
-        onMouseLeave={(): void => handleSetExpanded(false)}
+        onMouseEnter={(): void => handleMouseOverStateChange(true)}
+        onMouseLeave={(): void => handleMouseOverStateChange(false)}
         className={containerClassName}>
         <img
           alt="featured video poster"

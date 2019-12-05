@@ -6,7 +6,10 @@ $breakpoints: (
   576px: $episode-slider-cards-amount-mobile-portrait
 );
 
-@function calc-slider-card-width($cards-amount) {
+@function calc-slider-card-width($cards-amount, $is-app: false) {
+  @if($is-app) {
+    @return (100vw - (($layout-spacing-xxlg) * 2 + $layout-spacing-xxlg * ($cards-amount - 1))) / $cards-amount;
+  }
   @return (100vw - (($layout-spacing-lg) * 2 + $layout-spacing-lg * ($cards-amount - 1))) / $cards-amount;
 }
 
@@ -23,12 +26,20 @@ $breakpoints: (
     white-space: nowrap;
     transition: all $layout-transition-time;
 
+    @media screen and (max-width: $layout-tablet-width-breakpoint) {
+      padding-left: $layout-spacing-xxlg;
+    }
+
     .sliderCard {
       position: relative;
       display: inline-block;
       margin-right: $layout-spacing-lg;
       transition: all $layout-transition-time;
       transform-origin: center left;
+
+      @media screen and (max-width: $layout-tablet-width-breakpoint) {
+        margin-right: $layout-spacing-xxlg;
+      }
 
       @include calculate-cards-size($episode-slider-cards-amount-desktop, $aspect-ratio: $episode-aspect-ratio-coef);
 
