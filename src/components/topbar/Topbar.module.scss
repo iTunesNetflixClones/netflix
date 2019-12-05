@@ -12,6 +12,10 @@
   padding: $layout-spacing-xxsm-abs $layout-spacing-lg;
   z-index: $layout-topbar-z-index;
 
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    padding: $layout-spacing-xxsm-abs $layout-spacing-xxlg;
+  }
+
   @media screen and (max-width: $layout-app-width-breakpoint) {
     justify-content: space-between;
   }
@@ -78,10 +82,20 @@
   cursor: pointer;
   border: none;
   background-color: transparent;
-  padding: $layout-spacing-xxsm-abs;
+  padding: $layout-spacing-xxsm-abs 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 
   img {
     height: 100%;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -94,25 +108,27 @@
   left: 0;
   padding-top: $layout-spacing-xxlg-abs;
   text-align: center;
-
-  &:active {
-    outline: none;
-  }
 }
 
 .closeButton {
   position: absolute;
   top: $layout-spacing-sm-abs;
-  right: $layout-spacing-sm-abs;
+  right: $layout-spacing-xxlg;
   border: none;
   background-color: transparent;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 
   i {
     @extend %hl-colors-font-gradient;
-    font-size: $font-size-lg-abs;
+    font-size: $font-size-xxlg-abs;
   }
 
   &:active {
+    outline: none;
+  }
+
+  &:focus {
     outline: none;
   }
 }

@@ -1,11 +1,18 @@
 // @Vendors
 import React, { RefObject, useRef, useState, ReactElement, useEffect } from 'react';
 import get from 'lodash/get';
+import { isMobile } from 'react-device-detect';
 
 // @Constants
 import { EpisodeData } from 'constants/types';
 import { SLIDER_BUTTON_TYPES } from 'constants/enums';
-import { EPISODE_CARDS_AMOUNT, EPISODE_SLIDER_TRANSLATION_COEF, EPISODE_SLIDER_TRANSLATION_EXP } from 'constants/constants';
+import {
+  EPISODE_CARDS_AMOUNT,
+  EPISODE_SLIDER_TRANSLATION_COEF,
+  EPISODE_SLIDER_TRANSLATION_COEF_RESP,
+  EPISODE_SLIDER_TRANSLATION_EXP,
+  SCREEN_TABLET_MIN_WIDTH
+} from 'constants/constants';
 
 // @Components
 import EpisodeCard from 'components/episodeCard/EpisodeCard';
@@ -42,6 +49,12 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
     }
   };
 
+  const handleMouseOver = (nextOverState: boolean): void => {
+    if(!isMobile) {
+      setSliderButtonVisible(nextOverState);
+    }
+  };
+
   useResizeDetector(onChangeWindowDimensions, [pageIndex, scrollContentWidth]);
 
   const handleScroll = (isBack: boolean): void => {
@@ -72,11 +85,11 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
 
   return (
     <div
-      onMouseEnter={setSliderButtonVisible.bind(null, true) }
-      onMouseLeave={setSliderButtonVisible.bind(null, false)}
+      onMouseEnter={handleMouseOver.bind(null, true) }
+      onMouseLeave={handleMouseOver.bind(null, false)}
       className={styles.sliderFrame}>
       <SliderButton
-        isHidden={!sliderButtonVisible}
+        isHidden={!sliderButtonVisible && !isMobile}
         isUnmounted={pageIndex === 0}
         onClick={handleScroll}
         type={SLIDER_BUTTON_TYPES.back}/>
@@ -84,7 +97,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
         ref={sliderScrollRef}
         style={{ transform: getTranslationStyle({
           pageIndex,
-          translationCoef: EPISODE_SLIDER_TRANSLATION_COEF,
+          translationCoef: window.innerWidth >= SCREEN_TABLET_MIN_WIDTH ? EPISODE_SLIDER_TRANSLATION_COEF: EPISODE_SLIDER_TRANSLATION_COEF_RESP,
           translationExp: EPISODE_SLIDER_TRANSLATION_EXP,
           cardsAmount: episodesList.length,
           cardsAmountPerPage: EPISODE_CARDS_AMOUNT,
@@ -96,7 +109,7 @@ const EpisodeSlider: React.FunctionComponent<PropTypes> = (props: PropTypes) => 
         { renderEpisodeCards() }
       </div>
       <SliderButton
-        isHidden={!sliderButtonVisible}
+        isHidden={!sliderButtonVisible && !isMobile}
         isUnmounted={isLastPage(pageIndex, window.innerWidth, EPISODE_CARDS_AMOUNT, episodesList.length)}
         onClick={handleScroll}
         type={SLIDER_BUTTON_TYPES.next}/>

@@ -16,6 +16,10 @@
   color: $colors-font-tertiary;
   padding: $layout-spacing-md $layout-spacing-lg $layout-spacing-sm-abs;
 
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    padding: $layout-spacing-md $layout-spacing-xxlg $layout-spacing-sm-abs;
+  }
+
   @media screen and (max-width: $layout-app-width-breakpoint) {
     font-size: $font-size-lg-abs;
   }

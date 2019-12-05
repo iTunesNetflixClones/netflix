@@ -17,9 +17,13 @@
   );
   transition: opacity $layout-transition-time;
 
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    width: $layout-spacing-xxlg;
+  }
+
   i {
     transition: transform $layout-transition-time-quick;
-    @include font-size-responsive($font-size-xlg);
+    font-size: $font-size-xlg-abs;
     color: $colors-font-data-and-button;
   }
 

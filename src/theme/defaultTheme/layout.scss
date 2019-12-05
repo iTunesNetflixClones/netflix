@@ -4,7 +4,7 @@ $layout-spacing-sm: 0.7vw;
 $layout-spacing-md: 1vw;
 $layout-spacing-lg: 4vw;
 $layout-spacing-xlg: 5vw;
-$layout-spacing-xxlg: 7vw;
+$layout-spacing-xxlg: 8vw;
 
 $layout-spacing-xxxxsm-abs: 4px;
 $layout-spacing-xxxsm-abs: 6px;
@@ -34,7 +34,7 @@ $layout-spacing-details-max-width: 50vw;
 $layout-spacing-overview-bottom-space: 15vw;
 $layout-spacing-overview-sliders-overlap: -15vw;
 $layout-spacing-overview-sliders-overlap-app: -25vw;
-$layout-spacing-overview-sliders-overlap-mobile: -15vw;
+$layout-spacing-overview-sliders-overlap-mobile: 0vw;
 
 $layout-border-radius: 5px;
 $layout-border-radius-lg: 10px;
@@ -124,12 +124,27 @@ $video-details-header-shrink-factor: 0.7;
   width: $width;
 }
 
+@function calc-slider-card-width($cards-amount, $is-app: false) {
+  @if($is-app) {
+    @return (100vw - (($layout-spacing-xxlg) * 2 + $layout-spacing-xsm * ($cards-amount - 1))) / $cards-amount;
+  }
+  @return (100vw - (($layout-spacing-lg) * 2 + $layout-spacing-xsm * ($cards-amount - 1))) / $cards-amount;
+}
+
 @mixin calculate-cards-size($cards-amount, $class-name: '', $aspect-ratio: $player-aspect-ratio-coef) {
   $slider-card-width: calc-slider-card-width($cards-amount);
   $slider-card-height: $slider-card-width / $aspect-ratio;
 
   height: $slider-card-height;
   width: $slider-card-width;
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    $slider-card-width: calc-slider-card-width($cards-amount, true);
+    $slider-card-height: $slider-card-width / $aspect-ratio;
+
+    height: $slider-card-height;
+    width: $slider-card-width;
+  }
 
   @if($class-name != '') {
     &__expanded ~ .#{$class-name} {

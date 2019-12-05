@@ -11,11 +11,20 @@
   @media screen and (max-width: $layout-app-width-breakpoint) {
     background: linear-gradient($colors-background-primary, $colors-background-primary-featured-overlay, $colors-background-primary);
   }
+
+  @media screen and (max-width: $layout-portrait-width-breakpoint) {
+    align-items: flex-end;
+  }
+
   z-index: $layout-z-index-low;
 }
 
 .innerContainer {
   padding: 0 $layout-spacing-lg;
+
+  @media screen and (max-width: $layout-tablet-width-breakpoint) {
+    padding: 0 $layout-spacing-xxlg;
+  }
 }
 
 .titleText {
