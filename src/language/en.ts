@@ -24,12 +24,12 @@ export default {
     watchAndListen: 'Watch and listen!'
   },
   footerBar: {
-    getPro: 'Get Pro for Free',
-    getProLink:'Refer Friends Now'
+    getPro: 'Your Podcast Here',
+    getProLink: 'Get In Touch'
   },
   introModal: {
     buttonText: 'Take me to the future of audio',
-    modalText: 'This is a VERY literal take on the "Netflix of Podcasting"',
+    modalText: 'This site is a mashup of Netflix and Headliner Automation. SOUND ON!',
     welcome: 'Welcome! '
   },
   player: {
@@ -40,7 +40,7 @@ export default {
     categoryTrending: 'Trending',
     categoryTrendingShort: 'Trending',
     categoryEntertainment: 'Entertainment (Music/TV and Movies)',
-    categoryEntertainmentShort: 'Entetaintment',
+    categoryEntertainmentShort: 'Entertainment',
     categoryComedy: 'Comedy',
     categoryComedyShort: 'Comedy',
     categoryTech: 'Technology',
