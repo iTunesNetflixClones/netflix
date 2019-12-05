@@ -1,7 +1,7 @@
 export default {
   categories: {
     trending: 'Trending',
-    entertainment: 'Entertainment (Music/TV and Movies)',
+    entertainment: 'Entertainment',
     comedy: 'Comedy',
     technology: 'Technology',
     trueCrime: 'True Crime',
@@ -39,7 +39,7 @@ export default {
   podcastSliderCategories: {
     categoryTrending: 'Trending',
     categoryTrendingShort: 'Trending',
-    categoryEntertainment: 'Entertainment (Music/TV and Movies)',
+    categoryEntertainment: 'Entertainment',
     categoryEntertainmentShort: 'Entertainment',
     categoryComedy: 'Comedy',
     categoryComedyShort: 'Comedy',
