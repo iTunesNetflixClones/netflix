@@ -28,7 +28,7 @@ export default {
     getProLink: 'Get In Touch'
   },
   introModal: {
-    buttonText: 'Take me to the future of audio',
+    buttonText: 'Let\'s Go!',
     modalText: 'This site is a mashup of Netflix and Headliner Automation. SOUND ON!',
     welcome: 'Welcome! '
   },
