@@ -29,6 +29,7 @@ interface OwnProps {
   onPressMyList?: () => void;
   onPressUnlike?: () => void;
   playerId: string;
+  posterSrc?: string;
   renderOverlay?: (playing: boolean) => void;
   size: PLAYER_CONTROLS_SIZES;
   src: string;
@@ -58,6 +59,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
     onPressUnlike,
     playingEnabled,
     playerId,
+    posterSrc,
     renderOverlay,
     requestPlayerControl,
     size,
@@ -125,6 +127,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
       <div
         className={styles.playerArea}>
         <ReactPlayer
+          fileConfig={{ attributes: { poster: posterSrc } }}
           loop={loop}
           ref={player}
           height="100%"

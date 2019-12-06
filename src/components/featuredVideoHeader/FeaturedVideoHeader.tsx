@@ -40,6 +40,7 @@ const FeaturedVideoHeader: React.FunctionComponent<PropTypes> = (props: PropType
         <Player
           controlsSet={[PLAYER_CONTROLS.volumeControl]}
           playerId={`viewHeader-${id}`}
+          posterSrc={podcastData.posterSrc}
           size={PLAYER_CONTROLS_SIZES.regular}
           src={podcastData.src}
         />
