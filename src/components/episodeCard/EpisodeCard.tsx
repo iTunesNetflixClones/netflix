@@ -26,7 +26,7 @@ interface PropTypes {
 const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
   const { episodeData } = props;
 
-  const { duration, website, title, relatedPodcastId, videoSrc } = episodeData;
+  const { duration, posterSrc, website, title, relatedPodcastId, videoSrc } = episodeData;
   const episodeDuration: Duration = formatDuration(duration);
   const composedId = `${title}${relatedPodcastId}`;
 
@@ -39,6 +39,7 @@ const EpisodeCard: React.FunctionComponent<PropTypes> = (props: PropTypes) => {
           loop={false}
           muted={false}
           playerId={composedId}
+          posterSrc={posterSrc}
           size={PLAYER_CONTROLS_SIZES.small}
           src={videoSrc}
           />
