@@ -89,7 +89,12 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
 
   const toggleMuted = (): void => setMuted(!muted);
 
-  const stopPlaying = (): void => setPlaying(false);
+  const stopPlaying = (): void => {
+    setPlaying(false);
+    if(player.current) {
+      player.current.seekTo(0);
+    }
+  };
 
   const restartPlayer = (): void => {
     if (player.current) {
