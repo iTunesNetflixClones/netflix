@@ -151,7 +151,7 @@ const Player: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
         />
       </div>
       <div>
-        {renderOverlay && renderOverlay(playing)}
+        {renderOverlay && renderOverlay(isPlaying)}
         <PlayerControls
           controlsSet={controlsSet || []}
           explicit={explicit}
