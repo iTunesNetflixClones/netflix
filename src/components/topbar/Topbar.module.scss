@@ -14,9 +14,6 @@
 
   @media screen and (max-width: $layout-tablet-width-breakpoint) {
     padding: $layout-spacing-xxsm-abs $layout-spacing-xxlg;
-  }
-
-  @media screen and (max-width: $layout-app-width-breakpoint) {
     justify-content: space-between;
   }
 }
@@ -54,8 +51,8 @@
   margin: auto $layout-spacing-md;
   text-decoration: none;
 
-  @media screen and (max-width: $layout-tablet-width-breakpoint) {
-    font-size: $font-size-xsm-abs;
+  @media screen and (max-width: $layout-desktop-small-width-breakpoint) {
+    font-size: $font-size-sm-abs;
   }
 
   &:hover {

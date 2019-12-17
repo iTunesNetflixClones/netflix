@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import styles from './Topbar.module.scss';
 
 // @Constants
-import { SCREEN_TABLET_MIN_WIDTH, TOPBAR_SCROLL_INTERPOLATE_RANGE } from 'constants/constants';
+import { SCREEN_TOPBAR_RESP_MIN_WIDTH, TOPBAR_SCROLL_INTERPOLATE_RANGE } from 'constants/constants';
 import { SliderRef } from 'constants/types';
 
 // @Utils
@@ -29,7 +29,7 @@ interface PropTypes {
 const Topbar: React.FunctionComponent<PropTypes>  = (props: PropTypes) => {
   const { anchors } = props;
 
-  const checkAppMode = (): boolean => window.innerWidth < SCREEN_TABLET_MIN_WIDTH;
+  const checkAppMode = (): boolean => window.innerWidth < SCREEN_TOPBAR_RESP_MIN_WIDTH;
 
   const [ appMode, setAppMode ] = useState(checkAppMode());
   const [ menuVisible, setMenuVisible ] = useState(false);

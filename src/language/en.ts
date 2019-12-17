@@ -39,7 +39,7 @@ export default {
   podcastSliderCategories: {
     categoryTrending: 'Trending',
     categoryTrendingShort: 'Trending',
-    categoryEntertainment: 'Entertainment',
+    categoryEntertainment: 'Arts & Entertainment',
     categoryEntertainmentShort: 'Entertainment',
     categoryComedy: 'Comedy',
     categoryComedyShort: 'Comedy',
@@ -49,6 +49,8 @@ export default {
     categoryCrimeShort: 'True Crime',
     categoryNews: 'News',
     categoryNewsShort: 'News',
+    categorySociety: 'Society',
+    categorySocietyShort: 'Society',
     categorySport: 'Sports',
     categorySportShort: 'Sports'
   },

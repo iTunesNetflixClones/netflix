@@ -54,6 +54,7 @@ export const SCREEN_DESKTOP_MIN_WIDTH = 1201;
 export const SCREEN_MOBILE_LANDSCAPE_MIN_WIDTH = 577;
 export const SCREEN_MOBILE_PORTRAIT_MIN_WIDTH = 0;
 export const SCREEN_TABLET_MIN_WIDTH = 769;
+export const SCREEN_TOPBAR_RESP_MIN_WIDTH = 992;
 export const SCROLL_TOPBAR_OFF_SET_CORRECTOR = -50;
 export const TOPBAR_SCROLL_INTERPOLATE_RANGE: Array<number> = [0, 100];
 export const VIDEO_CARDS_AMOUNT = {
@@ -68,6 +69,7 @@ export const VIDEO_SLIDER_CATEGORIES = [
   { searchKey: 'trending', sliderKey: 'categoryTrending', sliderShortKey: 'categoryTrendingShort' },
   { searchKey: 'arts and entertainment', sliderKey: 'categoryEntertainment', sliderShortKey: 'categoryEntertainmentShort' },
   { searchKey: 'comedy', sliderKey: 'categoryComedy', sliderShortKey: 'categoryComedyShort' },
+  { searchKey: 'society', sliderKey: 'categorySociety', sliderShortKey: 'categorySocietyShort' },
   { searchKey: 'technology', sliderKey: 'categoryTech', sliderShortKey: 'categoryTechShort' },
   { searchKey: 'news', sliderKey: 'categoryNews', sliderShortKey: 'categoryNewsShort' },
   { searchKey: 'true crime', sliderKey: 'categoryCrime', sliderShortKey: 'categoryCrimeShort' },
